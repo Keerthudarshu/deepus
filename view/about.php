@@ -62,7 +62,7 @@
           </a>
           <div class="banner-content">
             <div class="banner-content-desc">
-              "Nếu bạn tìm một local brand có giá mềm, thiết kế sáng tạo, hãy nhớ đến Scott Platon."
+              "If you’re looking for a local brand with affordable prices and stylish, creative designs, think of Just4You."
             </div>
           </div>
         </div>
@@ -70,15 +70,15 @@
       <!-- BANNER END -->
       <section class="intro">
         <div class="container">
-          <div class="heading-primary">GIỚI THIỆU VỀ CHÚNG TÔI</div>
+          <div class="heading-primary">About Us</div>
           <div class="intro-content">
             <p class="intro-desc">
-              ZStyle là một local brand Việt Nam chuyên cung cấp các sản phẩm thời trang đặc biệt là
-              các loại áo: áo thun, áo sơ mi, áo khoác, áo thể thao,… Khách hàng có thể đặt hàng dễ
-              dàng tại trang web. ZStyle muốn thu nhận được các phản hồi từ người tiêu dùng về các
-              mặt hàng để cải tiến và nâng cao chất lượng nhằm phục vụ khách hàng ngày một tốt hơn.
-              Đặc biệt ZStyle cho phép khách hàng có thể tự thiết kế mẫu áo thun theo ý muốn của
-              mình.
+              JUST 4 YOU – Adorable Styles for Little Smiles
+Welcome to JUST 4 YOU, Bangalore’s favorite destination for trendy and comfortable kidswear. From playful everyday outfits to stylish party wear, we bring you a delightful range of clothing designed to keep your little ones looking cute and feeling comfy.
+
+Our collection includes soft cotton t-shirts, colorful dresses, cozy jackets, and fun seasonal wear — all made with love, care, and kid-friendly fabrics. Every piece is thoughtfully designed to combine style, comfort, and durability, perfect for your growing champs.
+
+At JUST 4 YOU, we know every child is unique. That’s why our designs are as vibrant and joyful as your little one’s personality. Step in today and discover outfits that make every moment picture-perfect!
             </p>
             <div class="intro-image">
               <img src="view/layout/assets/images/intro.png" alt="" />
