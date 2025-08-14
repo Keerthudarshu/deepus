@@ -50,25 +50,25 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home </a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-shirt</a>
       </div>
       <!-- Contact -->
 
       <section class="contact">
         <div class="container">
-          <div class="heading-primary">LIÊN HỆ CHÚNG TÔI</div>
+          <div class="heading-primary">Get in Touch</div>
           <div class="contact-main">
             <div class="contact-left">
-              <h2>Thông tin liên hệ</h2>
+              <h2>Contact Information</h2>
               <ul class="contact-menu">
                 <li class="contact-list">
                   <div class="contact-list-icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="36"
-                      height="34"
+                      width="84"
+                      height="84"
                       viewBox="0 0 36 34"
                       fill="none">
                       <rect width="35.1724" height="34" rx="5" fill="#46694F" />
@@ -78,8 +78,8 @@
                     </svg>
                   </div>
                   <a href="#" class="contact-link">
-                    <div class="contact-link-title">Địa chỉ</div>
-                    Tầng 12, Nhà T, Quận 12, TPHCM
+                    <div class="contact-link-title">Address</div>
+                   64, Nehru Rd, Kullappa Circle, Subbayianiah Palyam, Kammanahalli, Bengaluru, Karnataka 560084
                   </a>
                 </li>
                 <li class="contact-list">
@@ -116,8 +116,8 @@
                     </svg>
                   </div>
                   <a href="#" class="contact-link">
-                    <div class="contact-link-title">Điện thoại</div>
-                    123456789
+                    <div class="contact-link-title">Phone</div>
+                    09448251753
                   </a>
                 </li>
                 <li class="contact-list">
@@ -141,25 +141,25 @@
                 </li>
               </ul>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.443592406482!2d106.6252534743984!3d10.853826357762593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752bee0b0ef9e5%3A0x5b4da59e47aa97a8!2zQ8O0bmcgVmnDqm4gUGjhuqduIE3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1699367979161!5m2!1svi!2s"
+                src="https://www.google.com/maps/embed?pb=!1mJust+4+You+Z+Style+Kullappa+Circle,+Subbayianiah+Palyam,+Kammanahalli,+Bengaluru,+Karnataka+560084"
                 style="border: 0; height:200px"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="contact-right">
-              <h2>Để lại lời nhắn cho chúng tôi</h2>
+              <h2>Send Us a Message</h2>
               <form action="" class="contact-form">
                 <div class="contact-form-group">
-                  <input type="text" placeholder="Tên của bạn*" />
+                  <input type="text" placeholder="Your Name*" />
                 </div>
                 <div class="contact-form-group">
                   <input type="text" placeholder="Email*" />
-                  <input type="text" placeholder="Số điện thoại" />
+                  <input type="text" placeholder="Phone Number*" />
                 </div>
-                <textarea class="comment-contact" name="" id="" cols="30" rows="10">Lời nhắn...</textarea>
+                <textarea class="comment-contact" name="" id="" cols="30" rows="10">Your message...</textarea>
                 <div class="product-btn contact-btn">
-                  <button class="button-primary">Gửi tin nhắn</button>
+                  <button class="button-primary">Send Message</button>
                 </div>
               </form>
             </div>
