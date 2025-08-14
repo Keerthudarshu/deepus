@@ -50,14 +50,14 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home </a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-shirt</a>
       </div>
       <!-- Login -->
       <section class="cart">
         <div class="container">
-          <div class="cart-title-heading">Giỏ hàng của bạn</div>
+          <div class="cart-title-heading">Shopping Cart</div>
           <div class="cart-main">
             <div class="cart-left">
               <!-- <div class="cart-box">
@@ -73,10 +73,10 @@
               <table class="cart-table">
               <thead>
                   <tr>
-                    <th class="pro-info">Thông tin sản phẩm</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
+                    <th class="pro-info">Product Details</th>
+                    <th>Item Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
                   </tr>
               </thead>
                 
@@ -182,18 +182,18 @@
               ?>
               <div class="cart-auth">
                 <div class="cart-auth-del">
-                <a href="index.php?pg=cart&delcart=true"><button class="cart-auth-del__btn">Xóa tất cả</button></a>
+                <a href="index.php?pg=cart&delcart=true"><button class="cart-auth-del__btn">Clear All</button></a>
                 </div>
                 <div class="cart-auth-continue">
-                <a href="index.php?pg=product"><button class="cart-auth-continue__btn">Tiếp tục mua hàng</button></a>
+                <a href="index.php?pg=product"><button class="cart-auth-continue__btn">Continue Shopping</button></a>
                 </div>
               </div>
             </div>
             <div class="cart-right">
-              <div class="cart-info">Thông tin đơn hàng</div>
+              <div class="cart-info">Order Details</div>
               <div class="cart-content">
                 <div class="cart-content-price">
-                  <div class="cart-content__text">Tổng tiền</div>
+                  <div class="cart-content__text">Total Amount</div>
                   <input class="tong" type="hidden" value=<?=$tongtien?>>
                   <div class="cart-content__price"><?=number_format($tongtien,0,'',',')?>đ</div>
                 </div>
@@ -375,20 +375,20 @@
         });
     </script>
                 <div class="cart-item">
-                  <div class="cart-sale">Giảm giá</div>
-                  <span>Áp dụng tại trang thanh toán</span>
+                  <div class="cart-sale">Discount</div>
+                  <span>Valid at checkout</span>
                 </div>
                 <div class="cart-item">
-                  <div class="cart-sale">Phí vận chuyển</div>
-                  <span>Được tính tại trang thanh toán</span>
+                  <div class="cart-sale">Delivery Charges</div>
+                  <span>Calculated at checkout</span>
                 </div>
                 <div class="detail-btn">
                   <a href="index.php?pg=checkout">
-                    <button class="detail-button">Tiếp tục thanh toán</button>
+                    <button class="detail-button">Go to Payment</button>
                   </a>
                 </div>
                 <div class="cart-checkout">
-                  <p>Hỗ trợ thanh toán với</p>
+                  <p>We accept payments via</p>
                   <div class="cart-checkout-icon">
                     <img src="view/layout/assets/images/visa.svg" alt="" />
                     <img src="view/layout/assets/images/napas.svg" alt="" />
