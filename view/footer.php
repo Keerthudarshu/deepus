@@ -1,12 +1,12 @@
 <footer class="footer">
         <div class="container">
           <div class="footer-box">
-            <div class="footer-box__title">Nhận thông tin khuyến mãi từ chúng tôi</div>
+            <div class="footer-box__title">Receive promotional information from us</div>
             <form action="" class="footer-form">
               <div class="footer-form__input">
-                <input class="form-control" type="text" placeholder="Nhập email của bạn " />
+                <input class="form-control" type="text" placeholder="Enter your email" />
                 <div class="footer-form__submit">
-                  <button type="submit" class="footer-btn">Gửi</button>
+                  <button type="submit" class="footer-btn">Send</button>
                 </div>
               </div>
             </form>
@@ -15,7 +15,7 @@
             <div class="footer-column">
               <div class="footer-logo">
                 <a href="#">
-                  <img src="view/layout/assets/images/logo-footer.svg" alt="" />
+                  <img src="view/layout/assets/images/logo.jpg" alt="" style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
                 </a>
                 <div class="footer-nav">
                   <ul class="footer-menu">
@@ -48,40 +48,40 @@
               </div>
             </div>
             <div class="footer-column">
-              <h4 class="footer-title">Về chúng tôi</h4>
+              <h4 class="footer-title">About Us</h4>
               <ul class="footer-menus">
                 <li>
-                  <a href="#" class="footer-link">Trang chủ </a>
+                  <a href="#" class="footer-link">Home</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Giới thiệu</a>
+                  <a href="#" class="footer-link">Introduction</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Sản phẩm</a>
+                  <a href="#" class="footer-link">Products</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Hệ thống cửa hàng</a>
+                  <a href="#" class="footer-link">Store System</a>
                 </li>
               </ul>
             </div>
             <div class="footer-column">
-              <h4 class="footer-title">Chính sách</h4>
+              <h4 class="footer-title">Policy</h4>
               <ul class="footer-menus">
                 <li>
-                  <a href="#" class="footer-link">Chính sách đối tác </a>
+                  <a href="#" class="footer-link">Partner Policy</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Chính sách đổi trả</a>
+                  <a href="#" class="footer-link">Return Policy</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Chính sách thanh toán</a>
+                  <a href="#" class="footer-link">Payment Policy</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Chính sách giao hàng</a>
+                  <a href="#" class="footer-link">Shipping Policy</a>
                 </li>
               </ul>
               <div class="footer-checkout">
-                <div class="footer-checkout__title">Hình thức thanh toán</div>
+                <div class="footer-checkout__title">Payment Methods</div>
                 <div class="footer-checkout__icon">
                   <img src="view/layout/assets/images/napas.svg" alt="" />
                   <img src="view/layout/assets/images/zalopay-icon.svg" alt="" />
@@ -90,23 +90,23 @@
               </div>
             </div>
             <div class="footer-column">
-              <h4 class="footer-title">Tư vấn khách hàng</h4>
+              <h4 class="footer-title">Customer Consultation</h4>
               <ul class="footer-menus">
                 <li>
-                  <a href="#" class="footer-link">Mua hàng 12345678 </a>
+                  <a href="#" class="footer-link">Purchase 12345678</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Bản hành 12345678</a>
+                  <a href="#" class="footer-link">Warranty 12345678</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Khiếu nại 12345678</a>
+                  <a href="#" class="footer-link">Complaint 12345678</a>
                 </li>
                 <li>
-                  <a href="#" class="footer-link">Hỗ trợ 24/7</a>
+                  <a href="#" class="footer-link">Support 24/7</a>
                 </li>
               </ul>
               <div class="footer-checkout">
-                <div class="footer-checkout__title">Mua qua sàn TMDT</div>
+                <div class="footer-checkout__title">Buy via E-commerce Platforms</div>
                 <div class="footer-checkout__icon">
                   <img class="footer-icon__image" src="view/layout/assets/images/lazada.svg" alt="" />
                   <img class="footer-icon__image" src="view/layout/assets/images/sendo.svg" alt="" />
@@ -117,7 +117,7 @@
             </div>
           </div>
         </div>
-        <div class="footer-copy">Copyright © 2023 ZStyle. All rights reserved.</div>
+  <div class="footer-copy">Copyright © 2025 Just 4 You. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
       </footer>
     </div>
 

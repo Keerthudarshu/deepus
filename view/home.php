@@ -55,37 +55,29 @@
           <div class="hero-item">
             <div class="hero-image">
               <a href="index.php?pg=design">
-                <img src="view/layout/assets/images/banner 1.png" alt="" />
+                <img src="view/layout/assets/images/banner 1.webp" alt="" />
               </a>
-              <div class="hero-btn">
-                <a href="index.php?pg=design">
-                  <button class="button-primary">Thiết kế ngay</button>
-                </a>
-              </div>
+              
             </div>
           </div>
           <div class="hero-item">
             <a href="index.php?pg=product">
-              <img src="view/layout/assets/images/banner 2.png" alt="" />
+              <img src="view/layout/assets/images/banner 2.webp" alt="" />
             </a>
           </div>
           <div class="hero-item">
             <div class="hero-image">
               <a href="index.php?pg=design">
-                <img src="view/layout/assets/images/banner 3.png" alt="" />
+                <img src="view/layout/assets/images/banner 3.webp" alt="" />
               </a>
-              <div class="hero-btn hero-btn-3">
-              <a href="index.php?pg=design">
-                  <button class="button-primary">Thiết kế ngay</button>
-                </a>
-              </div>
+              
             </div>
           </div>
         </div>
       </section>
       <section class="product">
         <div class="container">
-          <div class="heading-primary">SẢN PHẨM NỔI BẬT</div>
+          <div class="heading-primary">Outstanding Products</div>
           <div class="product-main">
             <div class="product-left">
               <div class="product-list product-list-2">
@@ -103,19 +95,19 @@
             <div class="product-right">
               <div class="product-banner">
                 <a href="index.php?pg=design">
-                  <img class="banner-img" src="view/layout/assets/images/banner-custom-1.png" alt="" />
+                  <img class="banner-img" src="view/layout/assets/images/newkids.jpg" alt="" />
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div class="product-btn">
-        <a href="index.php?pg=product"><button class="button-primary">Xem tất cả</button></a>
+        <a href="index.php?pg=product"><button class="button-primary">See all</button></a>
         </div>
       </section>
       <section class="deal">
         <div class="container">
-          <div class="heading-primary deal-heading">DEAL HOT TRONG TUẦN</div>
+          <div class="heading-primary deal-heading">HOT DEAL OF THE WEEK</div>
           <div class="deal-main">
           <?=showproduct_box_mobile($product_hot, 1)?>
             
@@ -129,30 +121,30 @@
 
           </div>
           <div class="product-btn">
-            <a href="index.php?pg=product"><button class="button-primary button-secondary">Xem tất cả</button></a>
+            <a href="index.php?pg=product"><button class="button-primary button-secondary">View all</button></a>
           </div>
         </div>
       </section>
       <section class="top">
         <div class="container">
-          <div class="heading-primary">DÀNH CHO BẠN</div>
-          <h2 class="top-item-title top-item-title-mobile">Bán chạy</h2>
+          <div class="heading-primary">JUST FOR YOU</div>
+          <h2 class="top-item-title top-item-title-mobile">Best Seller</h2>
           <div class="top-list">
             <div class="top-main-list">
 
-              <?= showproduct_column($product_bestsell, 'Bán chạy')?>
+              <?= showproduct_column($product_bestsell, 'Best Seller')?>
 
             </div>
-            <h2 class="top-item-title top-item-title-mobile">Nhiều lượt xem</h2>
+            <h2 class="top-item-title top-item-title-mobile">Many views</h2>
             <div class="top-main-list">
               
-            <?= showproduct_column($product_topview, 'Nhiều lượt xem')?>
+            <?= showproduct_column($product_topview, 'Many views')?>
         
             </div>
-            <h2 class="top-item-title top-item-title-mobile">Xu hướng</h2>
+            <h2 class="top-item-title top-item-title-mobile">Trend</h2>
             <div class="top-main-list">
               
-            <?= showproduct_column($product_trend, 'Xu hướng')?>
+            <?= showproduct_column($product_trend, 'Trend')?>
 
             </div>
           </div>
@@ -160,7 +152,7 @@
       </section>
       <section class="product">
         <div class="container">
-          <div class="heading-primary">SẢN PHẨM CỦA CHÚNG TÔI</div>
+          <div class="heading-primary">OUR BEST SELLING PRODUCTS</div>
           <ul class="tab-menu">
             <?php
                 $html_catalog='';
@@ -196,8 +188,8 @@
                             </div>
                             <div class="deal-bestseller">Best Seller</div>
                             <div class="deal-auth">
-                            <a href="#" class="deal-view">Xem chi tiết</a>
-                            <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
+                            <a href="#" class="deal-view">View details</a>
+                            <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy now</button></a>
 
                             </div>
                         </div>
@@ -359,10 +351,9 @@
                 <img src="view/layout/assets/images/customer-icon.svg" alt="" />
               </div>
               <div class="service-content">
-                <h4 class="service-title">Miễn phí giao hàng</h4>
+                <h4 class="service-title">Free shipping</h4>
                 <p class="service-desc">
-                  Áp dụng Free ship cho tất cả đơn hàng từ 500 nghìn, giao ngay trong vòng 24h
-                </p>
+                  Apply free shipping for all orders from 500,000 VND, delivered within 24 hours.                </p>
               </div>
             </div>
             <div class="service-box item-2">
@@ -370,10 +361,9 @@
                 <img src="view/layout/assets/images/customer-icon-2.svg" alt="" />
               </div>
               <div class="service-content">
-                <h4 class="service-title">ĐỔI TRẢ DỄ DÀNG</h4>
+                <h4 class="service-title">Easy Exchanges/Returns</h4>
                 <p class="service-desc">
-                  Đổi ngay trong ngày nếu sản phẩm bị lỗi sản xuất, giao sai yêu cầu của quý khách
-                </p>
+                Exchange on the same day if the product is defective or delivered incorrectly as per your request.                </p>
               </div>
             </div>
             <div class="service-box item-3">
@@ -381,9 +371,9 @@
                 <img src="view/layout/assets/images/customer-icon-3.svg" alt="" />
               </div>
               <div class="service-content">
-                <h4 class="service-title">Tư vấn 24/7</h4>
+                <h4 class="service-title">24/7 Consultation</h4>
                 <p class="service-desc">
-                  Gọi hotline: 1900 6750 để được hỗ trợ ngay, hỗ trợ tư vấn mọi vấn đề về thể thao
+                  Call hotline: 1900 6750 for immediate support, consulting on all sports-related issues.
                 </p>
               </div>
             </div>
@@ -392,9 +382,9 @@
                 <img src="view/layout/assets/images/customer-icon-4.svg" alt="" />
               </div>
               <div class="service-content">
-                <h4 class="service-title">THANH TOÁN ĐA DẠNG</h4>
+                <h4 class="service-title">DIVERSE PAYMENT OPTIONS</h4>
                 <p class="service-desc">
-                  Thanh toán khi nhận hàng COD, Chuyển Khoản, Napas, Visa, ATM, Trả góp
+                  Payment on delivery (COD), Bank Transfer, Napas, Visa, ATM, Installment Payment.
                 </p>
               </div>
             </div>
@@ -473,22 +463,20 @@
         <div class="customer-main">
           <div class="customer-banner">
             <a href="#">
-              <img class="customer-image" src="https://source.unsplash.com/random" alt="" />
+              <img class="customer-image" src="<?php echo 'view/layout/assets/images/kisd poster.avif'; ?>" alt="" />
             </a>
           </div>
           <div class="customer-content">
             <div class="customer-icon">
               <i class="fa fa-quote-left" aria-hidden="true"></i>
             </div>
-            <div class="customer-title">KHÁCH HÀNG NÓI GÌ VỀ SẢN PHẨM CỦA ZSTYLE THỂ THAO</div>
+            <div class="customer-title">WHAT CUSTOMERS SAY ABOUT JUST 4 YOU SPORTS PRODUCTS</div>
             <p class="customer-desc">
-              “Cảm ơn ZStyle đã giúp mình tậu được 2 đôi giày ưng ý cho mùa hè này. Đối với mình
-              OH!Sport luôn là lựa chọn đầu tiên của mình, mẫu mã đa dạng, cách phục vụ chu đáo và
-              luôn support khách hàng nhiệt tình. Chúc OH!Sport thành công hơn nữa.”
+             "Thank you JUST 4 YOU for helping me get 2 pairs of nice shoes for this summer. For me, JUST 4 YOU is always my first choice, with diverse designs, attentive service, and always providing enthusiastic support to customers. Wishing JUST 4 YOU even more success."
             </p>
             <div class="customer-info">
-              <div class="customer-name">Diễm Hồng</div>
-              <div class="customer-member">Khách hàng mua áo tạo ZSTYLE</div>
+              <div class="customer-name">Harsha</div>
+              <div class="customer-member">Customer who bought a t-shirt from JUST 4 YOU</div>
               <div class="customer-rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -502,7 +490,7 @@
       </section>
       <section class="blog">
         <div class="container">
-          <div class="heading-primary">TIN TỨC MỚI NHẤT</div>
+          <div class="heading-primary">Latest News</div>
           <div class="blog-list">
             
           <?php
@@ -526,7 +514,7 @@
                     '.$noidung.'...
                   </div>
                   <div class="blog-btn">
-                  <a href="index.php?pg=news"><button class="blog-button">Đọc tiếp</button></a>
+                  <a href="index.php?pg=news"><button class="blog-button">Read more</button></a>
                   </div>
                 </div>
               </div>';

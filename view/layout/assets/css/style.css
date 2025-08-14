@@ -4,15 +4,15 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-color: #47694f;
+  --primary-color: #c0902e;
   --white: #ffffff;
   --bg: #799881;
   --font: "Poppins", sans-serif;
   --black: #000;
-  --text-heading: #46694f;
+  --text-heading: #c0902e;
   --bg-footer: #222222;
   --red: #f00;
-  --hover: #80b885;
+  --hover: #c0902e;
 }
 * {
   margin: 0;
@@ -61,7 +61,7 @@ body {
   display: none;
 }
 .header {
-  background-color: var(--text-heading);
+  background-color: #c0902e !important;
   padding: 15px 0;
 }
 .header-main {
@@ -133,7 +133,7 @@ body {
   display: none;
 }
 .header-bottom {
-  background-color: var(--black);
+  background-color: #c9a45c ;
   padding: 20px 0;
   position: sticky;
   top: 0;
@@ -750,7 +750,7 @@ body {
 }
 .service {
   padding: 60px 0;
-  background-color: #b5c3b9;
+  background-color: #f0c879;
 }
 .service-list {
   display: grid;
@@ -785,16 +785,16 @@ body {
   line-height: 22px;
 }
 .service-box.item-1 {
-  background-color: #6b8772;
+  background-color: #e2aa38;
 }
 .service-box.item-2 {
-  background-color: #46694f;
+  background-color: #e2aa38;
 }
 .service-box.item-3 {
-  background-color: #38543f;
+  background-color: #e2aa38;
 }
 .service-box.item-4 {
-  background-color: #38543f;
+  background-color: #e2aa38;
 }
 .seller {
   padding: 60px 0;

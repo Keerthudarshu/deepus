@@ -38,7 +38,7 @@
     <div class="app">
       
       <!-- Header -->
-      <header class="header">
+      <header class="header" style="  background-color: #c0902e !important">
         <div class="container">
           <div class="header-main">
             <div class="header-bars">
@@ -139,7 +139,7 @@
         </li>
       </ul>
 
-      <section class="header-bottom">
+      <section class="header-bottom" style="  background-color: #c9a45c ;">
         <div class="container">
           <div class="header-bottom__main">
             <form action="" class="header-form header-form-mobile">
@@ -150,7 +150,7 @@
                 </div>
               </div>
             </form>
-            <ul class="header-menu">
+            <ul class="header-menu"  >
               <li class="header-menu-item">
                 <a href="index.php" class="header-menu-link">Home</a>
               </li>

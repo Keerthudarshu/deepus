@@ -18,8 +18,8 @@
                                  '.check_img($img).'
                               </a>
                               <div class="icons">
-                                 <a href="'.$linkdetail.'" class="views">Xem chi tiết</a>
-                                 <a href="index.php?pg=checkout&id='.$id.'" class="add">Mua ngay</a>
+                                 <a href="'.$linkdetail.'" class="views">View details</a>
+                                 <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
                               </div>
                               </div>
                               <div class="product-title">'.$name.'</div>
@@ -135,9 +135,9 @@
                 </div>
                 <div class="deal-bestseller">Hot</div>
                 <div class="deal-auth">
-                  <a href="'.$linkdetail.'" class="deal-view">Xem chi tiết</a>
-                  
-                  <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
+                  <a href="'.$linkdetail.'" class="deal-view">View details</a>
+
+                  <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
                 </div>
               </div>
             </div>
@@ -170,8 +170,8 @@
                 </div>
                 <div class="deal-bestseller">Hot</div>
                 <div class="deal-auth">
-                  <a href="'.$linkdetail.'" class="deal-view">Xem chi tiết</a>
-                  <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
+                  <a href="'.$linkdetail.'" class="deal-view">View details</a>
+                  <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
 
                 </div>
               </div>
@@ -214,7 +214,7 @@
                               '.sale($item).'
                               </div>
                               <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
+                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
 
                               </div>
                               </div>
@@ -234,7 +234,7 @@
                               '.sale($item).'
                               </div>
                               <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
+                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
 
                               </div>
                               </div>
