@@ -11,8 +11,8 @@
           <td>'.$ngayketthuc.'</td>
           <td>'.$dieukien.'</td>
           <td>
-              <a href="index.php?pg=update_voucher&id='.$id.'" class="edit">Sửa</a>
-              <a href="index.php?pg=del_voucher&id='.$id.'" class="del">Xóa</a>
+              <a href="index.php?pg=update_voucher&id='.$id.'" class="edit">Fix</a>
+              <a href="index.php?pg=del_voucher&id='.$id.'" class="del">Delete</a>
           </td>
         </tr>';
     $active='';
@@ -54,7 +54,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -80,31 +80,31 @@
                   </span>
                   <div class="modal-main">
                     <form action="index.php?pg=add_voucher" method="post"  enctype="multipart/form-data">
-                    <div class="modal-heading">Thêm voucher mới</div>
+                    <div class="modal-heading">Add New Voucher</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mã Voucher*</div>
+                        <div class="modal-form-name">Voucher Code*</div>
                         <input name="mavoucher" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giảm giá*</div>
+                        <div class="modal-form-name">Discount*</div>
                         <input name="dale" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Ngày bắt đầu*</div>
+                        <div class="modal-form-name">Start Date*</div>
                         <input name="start" type="date" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Ngày kết thúc*</div>
+                        <div class="modal-form-name">End Date*</div>
                         <input name="end" type="date" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Điều kiện*</div>
+                        <div class="modal-form-name">Condition*</div>
                         <input name="dk" type="text" />
                       </div>
                     </div> 
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                 </form>
                   </div>
@@ -116,7 +116,7 @@
                 <h2 class="title-primary">Voucher</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                  Add
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -158,31 +158,31 @@
                     </a>
                     <div class="modal-main">
                         <form action="index.php?pg=update_voucher" method="post"  enctype="multipart/form-data">
-                        <div class="modal-heading">Cập nhật voucher</div>
+                        <div class="modal-heading">Update Voucher</div>
                         <div class="modal-form  modal-form-addpro">
                             <div class="modal-form-item">
-                              <div class="modal-form-name">Mã Voucher*</div>
+                              <div class="modal-form-name">Voucher Code*</div>
                               <input name="mavoucher" type="text" value="<?=$ma_voucher?>" />
                             </div>
                             <div class="modal-form-item">
-                              <div class="modal-form-name">Giảm giá*</div>
+                              <div class="modal-form-name">Discount*</div>
                               <input name="dale" type="text" value="<?=$giamgia?>"/>
                             </div>
                             <div class="modal-form-item">
-                              <div class="modal-form-name">Ngày bắt đầu*</div>
+                              <div class="modal-form-name">Start Date*</div>
                               <input name="start" type="date" value="<?=$ngaybatdau?>"/>
                             </div>
                             <div class="modal-form-item">
-                              <div class="modal-form-name">Ngày kết thúc*</div>
+                              <div class="modal-form-name">End Date*</div>
                               <input name="end" type="date" value="<?=$ngayketthuc?>"/>
                             </div>
                             <div class="modal-form-item">
-                              <div class="modal-form-name">Điều kiện*</div>
+                              <div class="modal-form-name">Condition*</div>
                               <input name="dk" type="text" value="<?=$dieukien?>" />
                             </div>
                         </div>
                         <div class="modal-btn">
-                          <button name="btnupdate" class="modal-button">Lưu</button>
+                          <button name="btnupdate" class="modal-button">Save</button>
                         </div>
                     </form>
                     </div>
@@ -193,12 +193,12 @@
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th>Mã voucher</th>
-                    <th>Giảm giá</th>
-                    <th>Ngày bắt đầu</th>
-                    <th>Ngày kết thúc</th>
-                    <th>Điều kiện</th>
-                    <th>Thao tác</th>
+                    <th>Voucher Code</th>
+                    <th>Discount</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Condition</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

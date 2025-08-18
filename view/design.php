@@ -85,9 +85,9 @@
     <div class="modal-content">
       <div class="modal-main">
       <img src="view/layout/assets/images/thatbai.png" alt="">
-        <h3>Bạn phải đăng nhập vào tài khoản trước khi sử dụng chức năng thiết kế</h3>
+        <h3>You must log in to your account before using the design function.</h3>
         <div class="modal__succesfully">
-            <a href="index.php?pg=login"><button class="monal__succesfully-btn">Đăng nhập</button>
+            <a href="index.php?pg=login"><button class="monal__succesfully-btn">Log In</button>
         </div>
       </div>
     </div>
@@ -147,24 +147,24 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home</a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-Shirts</a>
       </div>
       <!-- DESIGN -->
       <section class="design">
         <div class="container">
           <div class="design-center">
-            
-            <h2>THIẾT KẾ SẢN PHẨM</h2>
-            <p>Bắt đầu thiết kế cho mình một chiếc áo đặc biệt</p>
+
+            <h2>PRODUCT DESIGN</h2>
+            <p>Start designing your own special T-shirt</p>
           </div>
           <div class="design-main">
             <div class="design-right">
               <div class="custom-box">
                 <div class="custom-heading">
                   <img src="view/layout/assets/images/design-color.png" alt="" />
-                  <span>Chọn màu</span>
+                  <span>Select Color</span>
                 </div>
                 <input type="hidden" name="picksize" value="#ffffff">
                 <div class="custom-color">
@@ -200,7 +200,7 @@
                       d="M22.6562 21.875H2.34375C1.04932 21.875 0 20.8257 0 19.5312V5.46875C0 4.17432 1.04932 3.125 2.34375 3.125H22.6562C23.9507 3.125 25 4.17432 25 5.46875V19.5312C25 20.8257 23.9507 21.875 22.6562 21.875ZM5.46875 5.85938C3.95859 5.85938 2.73438 7.08359 2.73438 8.59375C2.73438 10.1039 3.95859 11.3281 5.46875 11.3281C6.97891 11.3281 8.20312 10.1039 8.20312 8.59375C8.20312 7.08359 6.97891 5.85938 5.46875 5.85938ZM3.125 18.75H21.875V13.2812L17.6018 9.00806C17.373 8.77925 17.002 8.77925 16.7731 9.00806L10.1562 15.625L7.44556 12.9143C7.21675 12.6855 6.84575 12.6855 6.61689 12.9143L3.125 16.4062V18.75Z"
                       fill="#46694F" />
                   </svg>
-                  Chọn ảnh
+                  Select photo
                 </div>
                 <div class="custom-design-icon">
                   <div class="custom-design-item">
@@ -220,7 +220,7 @@
                       d="M22.5 2.48803H12.5L10 0.0779419H2.5C1.125 0.0779419 0.0125 1.16248 0.0125 2.48803L0 16.9486C0 18.2741 1.125 19.3587 2.5 19.3587H22.5C23.875 19.3587 25 18.2741 25 16.9486V4.89812C25 3.57257 23.875 2.48803 22.5 2.48803ZM22.5 16.9486H2.5V4.89812H22.5V16.9486ZM7.5 10.9354L9.2625 12.6345L11.25 10.7305V15.7435H13.75V10.7305L15.7375 12.6466L17.5 10.9354L12.5125 6.10317L7.5 10.9354Z"
                       fill="#46694F" />
                   </svg>
-                  Upload ảnh
+                  Upload photo
                 </div>
                 <form action="index.php?pg=design" method="post" enctype="multipart/form-data">
                 <div class="design-upload">   
@@ -244,7 +244,7 @@
                       d="M20 9.98111C20.0102 15.4908 15.5169 19.9961 10.0072 20C7.62761 20.0017 5.44181 19.1722 3.72411 17.7858C3.27746 17.4254 3.24407 16.756 3.64996 16.3501L4.10427 15.8958C4.45141 15.5486 5.0056 15.5106 5.3902 15.8158C6.65572 16.82 8.25729 17.4194 9.99999 17.4194C14.101 17.4194 17.4193 14.1004 17.4193 10C17.4193 5.899 14.1004 2.58065 9.99999 2.58065C8.03169 2.58065 6.24399 3.34553 4.91661 4.59404L6.96314 6.64058C7.36959 7.04703 7.08173 7.74195 6.50697 7.74195H0.645161C0.28883 7.74195 0 7.45312 0 7.09679V1.23496C0 0.660203 0.694919 0.372339 1.10137 0.778751L3.09217 2.76956C4.88746 1.05387 7.32064 0 9.99999 0C15.5165 0 19.9898 4.46694 20 9.98111ZM12.7052 13.1579L13.1012 12.6486C13.4294 12.2267 13.3534 11.6187 12.9315 11.2906L11.2903 10.0141V5.80646C11.2903 5.27199 10.857 4.83872 10.3226 4.83872H9.67741C9.14294 4.83872 8.70967 5.27199 8.70967 5.80646V11.2763L11.3471 13.3276C11.769 13.6558 12.377 13.5798 12.7052 13.1579Z"
                       fill="#46694F" />
                   </svg>
-                  Lịch sử thiết kế
+                  Design history
                 </div>
                 <div class="custom-design-icon">
                   <div class="custom-design-item">
@@ -254,18 +254,18 @@
               </div>
               <div class="design-left-save design-left-save-mobile">
                 <div class="detail-btn custom-add">
-                  <button class="detail-button__cart design-btn save-btn">Lưu thiết kế</button>
+                  <button class="detail-button__cart design-btn save-btn">Save Design</button>
                 </div>
               </div>
               <div class="custom-box custom-total custom-total-mobile">
-                <h3 class="custom-title">Tổng cộng</h3>
+                <h3 class="custom-title">Total</h3>
                 <div class="custom-price">
-                  <p>Tiền áo:</p>
-                  <p>Tiền in:</p>
-                  <p>Thành tiền:</p>
+                  <p>T-Shirt Price:</p>
+                  <p>Printing Price:</p>
+                  <p>Subtotal:</p>
                 </div>
                 <div class="detail-btn custom-add">
-                  <button class="detail-button__cart design-btn">Thêm vào giỏ hàng</button>
+                  <button class="detail-button__cart design-btn">Add to Cart</button>
                 </div>
               </div>
             </div>
@@ -321,16 +321,16 @@
 
                     </div>
                   </div>
-                  <div class='mataolon'>Mặt trước</div>
+                  <div class='mataolon'>Front</div>
                 </div>
                 <div class="design-image-list">
                   <div class="design-image-item" onclick="mattruoc()">
                   <?=check_img($img_sub1)?>
-                  <div class='mataonho'>Mặt trước</div>
+                  <div class='mataonho'>Front</div>
                   </div>
                   <div class="design-image-item" onclick="matsau()">
                   <?=check_img($img_sub2)?>
-                  <div class='mataonho'>Mặt sau</div>
+                  <div class='mataonho'>Back</div>
                   </div>
                 </div>
 
@@ -384,23 +384,23 @@
 
                     </div>
                   </div>
-                  <div class='mataolon'>Mặt sau</div>
+                  <div class='mataolon'>Back</div>
                 </div>
                 <div class="design-image-list"  style="display:none">
                   <div class="design-image-item" onclick="mattruoc()">
                   <?=check_img($img_sub1)?>
-                  <div class='mataonho'>Mặt trước</div>
+                  <div class='mataonho'>Front</div>
                   </div>
                   <div class="design-image-item" onclick="matsau()">
                   <?=check_img($img_sub2)?>
-                  <div class='mataonho'>Mặt sau</div>
+                  <div class='mataonho'>Back</div>
                   </div>
                 </div>
 
                 <div class="design-left-save">
                   <div class="detail-btn custom-add">
                     
-                        <button onclick="convertToImage()" class="detail-button__cart design-btn save-btn">Lưu thiết kế</button>
+                        <button onclick="convertToImage()" class="detail-button__cart design-btn save-btn">Save design</button>
                   
                   </div>
                 </div>
@@ -462,7 +462,7 @@
               <div class="design-mobile-content active design-mobile-content-size">
                 <div class="custom-box-mobile">
                   <div class="custom-heading-mobile">
-                    <span>Chọn size</span>
+                    <span>Select Size</span>
                   </div>
                   <div class="custom-size">
                     <button class="custom-btn active">S</button>
@@ -478,7 +478,7 @@
               <div class="design-mobile-content design-mobile-content-upload">
                 <div class="custom-box-mobile">
                   <div class="custom-heading-mobile">
-                    <span>Chọn ảnh từ thư viện</span>
+                    <span>Select Image from Library</span>
                   </div>
                   <div class="custom-design-icon">
                     <div class="custom-design-item">
@@ -498,7 +498,7 @@
               <div class="design-mobile-content design-mobile-content-upload-file">
                 <div class="custom-box-mobile">
                   <div class="custom-heading-mobile">
-                    <span>Tải ảnh lên</span>
+                    <span>Upload Image</span>
                   </div>
                   <div class="design-upload">
                     <input type="file" />
@@ -511,7 +511,7 @@
               <div class="design-mobile-content design-mobile-content-history">
                 <div class="custom-box-mobile">
                   <div class="custom-heading-mobile">
-                    <span>Lịch sử thiết kế</span>
+                    <span>Design History</span>
                   </div>
                   <div class="custom-design-icon">
                     <div class="custom-design-item">
@@ -525,17 +525,17 @@
                 </div>
               </div>
               <div class="custom-box custom-total">
-                <h3 class="custom-title">Tổng cộng</h3>
+                <h3 class="custom-title">Total</h3>
                 <div class="custom-price">
-                  <p>Tiền áo:</p>
+                  <p>T-Shirt Price:</p>
                   <p class="price-design">250,000đ</p>
-                  <p>Tiền in:</p>
+                  <p>Printing Price:</p>
                   <p class="price-design">50,000đ</p>
-                  <p>Thành tiền:</p>
+                  <p>Subtotal:</p>
                   <p class="price-design">300,000</p>
                 </div>
                 <div class="detail-btn custom-add" id="addcart">
-                  <button onclick="convertToImagecart()" class="detail-button__cart design-btn">Thêm vào giỏ hàng</button>
+                  <button onclick="convertToImagecart()" class="detail-button__cart design-btn">Add to cart</button>
                 </div>
                 
               </div>
@@ -546,8 +546,8 @@
       <section class="blog-design">
         <div class="container">
           <div class="blog-design-center">
-            <div class="heading-primary heading-secondary">Làm thế nào để nó hoạt động</div>
-            <p>3 bước để làm ra một chiếc áo đặc biệt cho riêng bạn</p>
+            <div class="heading-primary heading-secondary">How it works</div>
+                  <p>3 steps to making your own special shirt</p>
           </div>
           <div class="blog-design-list">
             <div class="blog-design-item">
@@ -557,10 +557,10 @@
                 </a>
               </div>
               <div class="blog-design-content">
-                <div class="blog-design-title">Thiết kế trực tuyến</div>
+                <div class="blog-design-title">Online Design</div>
                 <p class="blog-design-desc">
-                  Chúng tôi hỗ trợ bạn thiết kế online ngay tại nhà. Chọn hình ảnh theo mẫu có sẳn
-                  hoặc tải ảnh lên theo ý muốn của bạn.
+                  We support you to design online right at home. Choose images from available templates
+                  or upload your own images as you wish.
                 </p>
               </div>
             </div>
@@ -571,9 +571,9 @@
                 </a>
               </div>
               <div class="blog-design-content">
-                <div class="blog-design-title">In ấn chuyên nghiệp</div>
+                <div class="blog-design-title">Professional Printing</div>
                 <p class="blog-design-desc">
-                  Khi bạn đã thiết kế xong chiếc áo của mình thì phần còn lại cứ giao cho chúng tôi.
+                  Once you have designed your shirt, just leave the rest to us.
                 </p>
               </div>
             </div>
@@ -584,9 +584,9 @@
                 </a>
               </div>
               <div class="blog-design-content">
-                <div class="blog-design-title">Sản phẩm đến tay bạn</div>
+                <div class="blog-design-title">Your Product Delivered</div>
                 <p class="blog-design-desc">
-                  Chúng tôi sẽ giao những chiếc áo đặc biệt này đến tận tay của bạn.
+                  We will deliver these special shirts right to your hands.
                 </p>
               </div>
             </div>
@@ -601,10 +601,10 @@
   <div class="modal-content">
     <div class="modal-main">
     <img src="view/layout/assets/images/thanhcong.png" alt="">
-      <h3>Đã lưu thiết kế thành công</h3>
+      <h3>Design saved successfully</h3>
       <div class="modal__succesfully">
         <form action="index.php?pg=design" method="post">
-          <button name='save_btn' class="monal__succesfully-btn">Đồng ý</button>
+          <button name='save_btn' class="monal__succesfully-btn">OK</button>
         </form>
       </div>
     </div>
@@ -615,11 +615,11 @@
   <div class="modal-content">
     <div class="modal-main">
     <img src="view/layout/assets/images/thanhcong.png" alt="">
-      <h3>Đã thêm thiết kế vào giỏ hàng thành công</h3>
+      <h3>Design added to cart successfully</h3>
       <div class="modal__succesfully">
         <form action="index.php?pg=design" method="post">
-          <button name='addcart_btn_cart' class="monal__succesfully-btn">Xem giỏ hàng</button>
-          <button name='addcart_btn_con' class="monal__succesfully-btn">Tiếp tục thiết kế</button>
+          <button name='addcart_btn_cart' class="monal__succesfully-btn">View Cart</button>
+          <button name='addcart_btn_con' class="monal__succesfully-btn">Continue Designing</button>
         </form>
       </div>
     </div>

@@ -1,21 +1,21 @@
 <?php
-    $html_tintuc='';
-    foreach ($tintuc as $news) {
-        extract($news);
+    $html_news='';
+    foreach ($news as $item) {
+        extract($item);
         if(check_img_admin($img)==''){
             $img=check_img_admin('user.webp');
         }else{
             $img=check_img_admin($img);
         }
-        $html_tintuc.='<tr>
+        $html_news.='<tr>
         <td>'.$id.'</td>
         <td >'.$title.'</td>
         <td>'.$img.'</td>
         <td>'.$thoigian.'</td>
         <td>'.$noidung.'</td>
         <td class="chunhieu">
-            <a href="index.php?pg=update_tintuc&id='.$id.'" class="edit">Sửa</a>
-            <a href="index.php?pg=del_tintuc&id='.$id.'" class="del">Xóa</a>
+            <a href="index.php?pg=update_news&id='.$id.'" class="edit">Fix</a>
+            <a href="index.php?pg=del_news&id='.$id.'" class="del">Erase</a>
         </td>
         </tr>';
     $active='';
@@ -28,8 +28,8 @@
     $hinhcu='';
     if(isset($_SESSION['update_id']) && $_SESSION['update_id']){
       $active='active';
-      if(isset($tintuc_detail)){
-        extract($tintuc_detail);
+      if(isset($news_detail)){
+        extract($news_detail);
         $hinhcu=$img;
         if($img==''){
           $img='user.webp';
@@ -62,7 +62,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -87,15 +87,15 @@
                     </svg>
                   </span>
                   <div class="modal-main">
-                    <form action="index.php?pg=add_tintuc" method="post"  enctype="multipart/form-data">
-                    <div class="modal-heading">Thêm tin tức mới</div>
+                    <form action="index.php?pg=add_news" method="post"  enctype="multipart/form-data">
+                    <div class="modal-heading">Add New News</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tiêu đề*</div>
+                        <div class="modal-form-name">Title*</div>
                         <input name="title" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Hình ảnh*</div>
+                        <div class="modal-form-name">Image*</div>
                         <div class='input-image'>
                             <input id="file-input1" name="img" type="file"  accept="image/*"/>
                             <?=substr_replace(check_img_admin('user.webp'), ' id="img-preview1" ', 5, 0)?>
@@ -113,16 +113,16 @@
                           });
                       </script>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Thời gian*</div>
+                        <div class="modal-form-name">Time*</div>
                         <input name="thoigian" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Nội dung*</div>
+                        <div class="modal-form-name">Content*</div>
                         <input name="noidung" type="text" />
                       </div>
                     </div> 
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                 </form>
                   </div>
@@ -131,10 +131,10 @@
 
 
               <div class="dashboard-heading">
-                <h2 class="title-primary">Tin Tức</h2>
+                <h2 class="title-primary">News</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                  Add
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -159,7 +159,7 @@
                 <div class="modal modal-update <?=$active?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=update_tintuc&close=1">
+                    <a href="index.php?pg=update_news&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -175,15 +175,15 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                        <form action="index.php?pg=update_tintuc" method="post"  enctype="multipart/form-data">
-                        <div class="modal-heading">Cập nhật tin tức</div>
+                        <form action="index.php?pg=update_news" method="post"  enctype="multipart/form-data">
+                        <div class="modal-heading">Update News</div>
                         <div class="modal-form  modal-form-addpro">
                           <div class="modal-form-item">
-                              <div class="modal-form-name">Tiêu đề*</div>
+                              <div class="modal-form-name">Title*</div>
                               <input name="title" type="text" value="<?=$title?>"/>
                           </div>
                           <div class="modal-form-item">
-                            <div class="modal-form-name">Hình ảnh*</div>
+                            <div class="modal-form-name">Image*</div>
                             <div class='input-image'>
                                 <input id="file-input2" name="img1" type="file"  accept="image/*"/>
                                 <?=substr_replace(check_img_admin($hinhcu), ' id="img-preview2" ', 5, 0)?>
@@ -218,16 +218,16 @@
                               });
                           </script>
                           <div class="modal-form-item">
-                              <div class="modal-form-name">Thời gian*</div>
+                              <div class="modal-form-name">Time*</div>
                               <input name="thoigian" type="text"  value="<?=$thoigian?>"/>
                           </div>
                           <div class="modal-form-item">
-                              <div class="modal-form-name">Nội dung</div>
+                              <div class="modal-form-name">Content*</div>
                               <input name="noidung" type="text"  value="<?=$noidung?>"/>
                           </div>
                         </div>
                         <div class="modal-btn">
-                          <button name="btnupdate" class="modal-button">Lưu</button>
+                          <button name="btnupdate" class="modal-button">Save</button>
                         </div>
                     </form>
                     </div>
@@ -238,16 +238,16 @@
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th>Tiêu đề</th>
-                    <th>Hình ảnh</th>
-                    <th>Thời gian</th>
-                    <th>Nội dung</th>
-                    <th>Thao tác</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Time</th>
+                    <th>Content</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                     
-                    <?=$html_tintuc?>
+                    <?=$html_news?>
 
                 </tbody>
               </table>

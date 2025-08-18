@@ -34,7 +34,7 @@
                   <div class="account-name"><?=$user?></div>
                   <div class="account-edit">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Sửa hồ sơ
+                   Edit profile
                   </div>
                 </div>
               </div>

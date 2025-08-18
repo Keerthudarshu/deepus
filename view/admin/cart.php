@@ -17,7 +17,7 @@ foreach ($cart as $item) {
         <td>' . $id_color . '</td>
         <td>
             
-            <a href="index.php?pg=delcart&id=' . $id . '" class="del" style="padding: 0px">Xóa</a>
+            <a href="index.php?pg=delcart&id=' . $id . '" class="del" style="padding: 0px">Erase</a>
         </td>
         </tr>';
     // $active = '';
@@ -88,7 +88,7 @@ foreach ($cart as $item) {
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -121,16 +121,14 @@ foreach ($cart as $item) {
                     enctype="multipart/form-data">
                     <div
                         class="modal-heading">
-                        Thêm sản phẩm
-                        mới</div>
+                        Add new product</div>
                     <div
                         class="modal-form modal-form-addpro">
                         <div
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Mã khách
-                                hàng
+                                Customer ID
                             </div>
                             <input
                                 name="id_user"
@@ -140,7 +138,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Hình ảnh
+                                Image
                             </div>
                             <div
                                 class='input-image'>
@@ -171,7 +169,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Giá
+                                Price
                             </div>
                             <input
                                 name="price"
@@ -181,7 +179,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Số lượng
+                                Quantity
                             </div>
                             <input
                                 name="soluong"
@@ -191,8 +189,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Thành
-                                tiền
+                                Total
                             </div>
                             <input
                                 name="thanhtien"
@@ -210,7 +207,7 @@ foreach ($cart as $item) {
                                     class="dropdown-select">
                                     <div class="dropdown-content"
                                         dropdown="1">
-                                        Khác
+                                       Other
                                     </div>
                                     <input
                                         name="size"
@@ -227,7 +224,7 @@ foreach ($cart as $item) {
                                     dropdown="1">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                        Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
@@ -252,7 +249,7 @@ foreach ($cart as $item) {
                                     class="dropdown-select">
                                     <div class="dropdown-content"
                                         dropdown="2">
-                                        Khác
+                                        Other
                                     </div>
                                     <input
                                         name="color"
@@ -269,7 +266,7 @@ foreach ($cart as $item) {
                                     dropdown="2">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                        Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
@@ -301,7 +298,7 @@ foreach ($cart as $item) {
                         class="modal-btn">
                         <button
                             name="btnsave"
-                            class="modal-button">Lưu</button>
+                            class="modal-button">Save</button>
                     </div>
                 </form>
             </div>
@@ -310,9 +307,8 @@ foreach ($cart as $item) {
 
 
     <div class="dashboard-heading">
-        <h2 class="title-primary">Giỏ
-            hàng</h2>
-       
+        <h2 class="title-primary">Shopping Cart</h2>
+
     </div>
 
     <div
@@ -343,15 +339,14 @@ foreach ($cart as $item) {
                     enctype="multipart/form-data">
                     <div
                         class="modal-heading">
-                        Cập nhật danh
-                        mục</div>
+                        Update Category</div>
                     <div
                         class="modal-form  modal-form-addpro">
                         <div
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Họ tên*
+                                Full Name*
                             </div>
                             <input
                                 name="name"
@@ -362,8 +357,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Tên đăng
-                                nhập*
+                                Username*
                             </div>
                             <input
                                 name="user"
@@ -374,8 +368,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Mật
-                                khẩu*
+                                Password*
                             </div>
                             <input
                                 name="pass"
@@ -397,8 +390,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Số điện
-                                thoại
+                                Phone Number
                             </div>
                             <input
                                 name="sdt"
@@ -409,8 +401,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Giới
-                                tính
+                                Gender
                             </div>
 
                             <div
@@ -436,15 +427,15 @@ foreach ($cart as $item) {
                                     dropdown="4">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                        Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Nam
+                                        Male
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Nữ
+                                        Female
                                     </div>
                                 </div>
                             </div>
@@ -453,8 +444,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Ngày
-                                sinh
+                                Date of Birth
                             </div>
                             <input
                                 name="ngaysinh"
@@ -465,7 +455,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Địa chỉ
+                                Address
                             </div>
                             <input
                                 name="diachi"
@@ -476,7 +466,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Hình ảnh
+                                Image
                             </div>
                             <div
                                 class='input-image'>
@@ -507,7 +497,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Vai trò
+                                Role
                             </div>
 
                             <div
@@ -533,14 +523,11 @@ foreach ($cart as $item) {
                                     dropdown="5">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khách
-                                        hàng
+                                       Client
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Quản
-                                        trị
-                                        viên
+                                        Administrator
                                     </div>
                                 </div>
                             </div>
@@ -549,8 +536,7 @@ foreach ($cart as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Kích
-                                hoạt
+                                Activate
                             </div>
 
                             <div
@@ -576,13 +562,11 @@ foreach ($cart as $item) {
                                     dropdown="6">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Kích
-                                        hoạt
+                                        Activate
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Bị
-                                        khóa
+                                        Deactivate
                                     </div>
                                 </div>
                             </div>
@@ -592,7 +576,7 @@ foreach ($cart as $item) {
                         class="modal-btn">
                         <button
                             name="btnupdate"
-                            class="modal-button">Lưu</button>
+                            class="modal-button">Save</button>
                     </div>
                 </form>
             </div>
@@ -602,14 +586,14 @@ foreach ($cart as $item) {
     <table class="product">
         <thead>
             <tr>
-                <th>Mã khách hàng</th>
-                <th>Hình ảnh</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
+                <th>Customer Code</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
                 <th>Size</th>
                 <th>Color</th>
-                <th>Thao tác</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

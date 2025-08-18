@@ -226,7 +226,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -254,22 +254,22 @@
                 </a>
                   <div class="modal-main">
                     <form action="index.php?pg=adduser" method="post"  enctype="multipart/form-data">
-                    <div class="modal-heading">Thêm tài khoản mới</div>
+                    <div class="modal-heading">Add new account</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Họ tên</div>
+                        <div class="modal-form-name">Full Name</div>
                         <input name="name" type="text" value="<?=$nameadd?>"/>
                       </div>
                 
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tên đăng nhập*</div>
+                        <div class="modal-form-name">Username*</div>
                         <input name="user" type="text" value="<?=$useradd?>" />
                       </div>
                       <?=$err_useradd?>
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mật khẩu*</div>
+                        <div class="modal-form-name">Password*</div>
                         <input name="pass" type="text" value="<?=$passadd?>" />
                       </div>
                       <?=$err_passadd?>
@@ -281,18 +281,18 @@
                       <?=$err_emailadd?>
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Số điện thoại</div>
+                        <div class="modal-form-name">Phone number</div>
                         <input name="sdt" type="text" value="<?=$sdtadd?>"/>
                       </div>
                 
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giới tính</div>
+                        <div class="modal-form-name">Sex</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="1">
-                              Khác
+                              Other
                               </div>
                               <input name="gioitinh" type="hidden" class="dropdown-input" value="Khác" dropdown="1"/>
                               <i
@@ -300,26 +300,26 @@
                                 aria-hidden="true" dropdown="1" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="1">
-                            <div class="dropdown-item" onclick="select(this)">Khác</div>
-                            <div class="dropdown-item" onclick="select(this)">Nam</div>
-                            <div class="dropdown-item" onclick="select(this)">Nữ</div>
+                            <div class="dropdown-item" onclick="select(this)">Other</div>
+                            <div class="dropdown-item" onclick="select(this)">Male</div>
+                            <div class="dropdown-item" onclick="select(this)">Female</div>
                           </div>
                         </div>
                       </div>  
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Ngày sinh</div>
+                        <div class="modal-form-name">Date of Birth</div>
                         <input name="ngaysinh" type="date" value="<?=$ngaysinhadd?>"/>
                       </div>
                   
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Địa chỉ</div>
+                        <div class="modal-form-name">Address</div>
                         <input name="diachi" type="text" value="<?=$diachiadd?>" />
                       </div>
                
 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Hình ảnh</div>
+                        <div class="modal-form-name">Image</div>
                         <div class='input-image'>
                             <input id="file-input1" name="img1" type="file"  accept="image/*"/>
                             <?=substr_replace(check_img_admin('user.webp'), ' id="img-preview1" ', 5, 0)?>
@@ -337,12 +337,12 @@
                           });
                       </script>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Vai trò</div>
+                        <div class="modal-form-name">Role</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="2">
-                              Khách hàng
+                              Customer
                               </div>
                               <input name="role" type="hidden" class="dropdown-input" value="Khách hàng" dropdown="2"/>
                               <i
@@ -350,18 +350,18 @@
                                 aria-hidden="true" dropdown="2" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="2">
-                            <div class="dropdown-item" onclick="select(this)">Khách hàng</div>
-                            <div class="dropdown-item" onclick="select(this)">Quản trị viên</div>
+                            <div class="dropdown-item" onclick="select(this)">Customer</div>
+                            <div class="dropdown-item" onclick="select(this)">Administrator</div>
                           </div>
                         </div>
                       </div> 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Kích hoạt</div>
+                        <div class="modal-form-name">Activate</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="3">
-                              Kích hoạt
+                              Activate
                               </div>
                               <input name="kichhoat" type="hidden" class="dropdown-input" value="Kích hoạt" dropdown="3"/>
                               <i
@@ -369,15 +369,15 @@
                                 aria-hidden="true" dropdown="3" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="3">
-                            <div class="dropdown-item" onclick="select(this)">Kích hoạt</div>
-                            <div class="dropdown-item" onclick="select(this)">Bị khóa</div>
+                            <div class="dropdown-item" onclick="select(this)">Activate</div>
+                            <div class="dropdown-item" onclick="select(this)">Locked</div>
                           </div>
                         </div>
                       </div> 
                       
                     </div> 
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                 </form>
                   </div>
@@ -386,10 +386,10 @@
 
 
               <div class="dashboard-heading">
-                <h2 class="title-primary">Tài khoản</h2>
+                <h2 class="title-primary">Account</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                  Add
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -431,20 +431,20 @@
                     </a>
                     <div class="modal-main">
                         <form action="index.php?pg=updateuser" method="post"  enctype="multipart/form-data">
-                        <div class="modal-heading">Cập nhật tài khoản</div>
+                        <div class="modal-heading">Update Account</div>
                         <div class="modal-form  modal-form-addpro">
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Họ tên</div>
+                            <div class="modal-form-name">Full Name</div>
                             <input name="name" type="text" value="<?=$nameup?>"/>
                         </div>
                        
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Tên đăng nhập*</div>
+                            <div class="modal-form-name">Username*</div>
                             <input name="user" type="text"  value="<?=$userup?>"/>
                         </div>
                         <?=$err_userup?>
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Mật khẩu*</div>
+                            <div class="modal-form-name">Password*</div>
                             <input name="pass" type="text"  value="<?=$passup?>"/>
                         </div>
                         <?=$err_passup?>
@@ -454,12 +454,12 @@
                         </div>
                         <?=$err_emailup?>
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Số điện thoại</div>
+                            <div class="modal-form-name">Phone Number</div>
                             <input name="sdt" type="text"  value="<?=$sdtup?>"/>
                         </div>
                      
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Giới tính</div>
+                            <div class="modal-form-name">Gender</div>
 
                             <div class="dropdown">
                             <div class="dropdown-select">
@@ -472,24 +472,24 @@
                                     aria-hidden="true" dropdown="4" onclick="dropdown(this)"></i>
                             </div>
                             <div class="dropdown-list active" dropdown="4">
-                                <div class="dropdown-item" onclick="select(this)">Khác</div>
-                                <div class="dropdown-item" onclick="select(this)">Nam</div>
-                                <div class="dropdown-item" onclick="select(this)">Nữ</div>
+                                <div class="dropdown-item" onclick="select(this)">Other</div>
+                                <div class="dropdown-item" onclick="select(this)">Male</div>
+                                <div class="dropdown-item" onclick="select(this)">Female</div>
                             </div>
                             </div>
                         </div>  
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Ngày sinh</div>
+                            <div class="modal-form-name">Date of birth</div>
                             <input name="ngaysinh" type="date"  value="<?=$ngaysinhup?>"/>
                         </div>
                    
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Địa chỉ</div>
+                            <div class="modal-form-name">Address</div>
                             <input name="diachi" type="text"  value="<?=$diachiup?>"/>
                         </div>
                   
                         <div class="modal-form-item">
-                        <div class="modal-form-name">Hình ảnh</div>
+                        <div class="modal-form-name">Image</div>
                             <div class='input-image'>
                                 <input id="file-input2" name="img2" type="file"  accept="image/*"/>
                                 <?=substr_replace(check_img_admin($img), ' id="img-preview2" ', 5, 0)?>
@@ -508,7 +508,7 @@
                           });
                       </script>
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Vai trò</div>
+                            <div class="modal-form-name">Role</div>
 
                             <div class="dropdown">
                             <div class="dropdown-select">
@@ -521,13 +521,13 @@
                                     aria-hidden="true" dropdown="5" onclick="dropdown(this)"></i>
                             </div>
                             <div class="dropdown-list active" dropdown="5">
-                                <div class="dropdown-item" onclick="select(this)">Khách hàng</div>
-                                <div class="dropdown-item" onclick="select(this)">Quản trị viên</div>
+                                <div class="dropdown-item" onclick="select(this)">Customer</div>
+                                <div class="dropdown-item" onclick="select(this)">Administrator</div>
                             </div>
                             </div>
                         </div> 
                         <div class="modal-form-item">
-                            <div class="modal-form-name">Kích hoạt</div>
+                            <div class="modal-form-name">Activate</div>
 
                             <div class="dropdown">
                             <div class="dropdown-select">
@@ -540,14 +540,14 @@
                                     aria-hidden="true" dropdown="6" onclick="dropdown(this)"></i>
                             </div>
                             <div class="dropdown-list active" dropdown="6">
-                                <div class="dropdown-item" onclick="select(this)">Kích hoạt</div>
-                                <div class="dropdown-item" onclick="select(this)">Bị khóa</div>
+                                <div class="dropdown-item" onclick="select(this)">Activate</div>
+                                <div class="dropdown-item" onclick="select(this)">Locked</div>
                             </div>
                             </div>
                         </div> 
                         </div>
                       <div class="modal-btn">
-                        <button name="btnupdate" class="modal-button">Lưu</button>
+                        <button name="btnupdate" class="modal-button">Save</button>
                       </div>
                     </form>
                     </div>
@@ -557,12 +557,12 @@
                 <table class="product">
                 <thead>
                   <tr>
-                    <th>Tên</th>
-                    <th>Hình ảnh</th>
-                    <th>Tên đăng nhập</th>
-                    <th>Mật khẩu</th>
-                    <th>SDT</th>
-                    <th>Thao tác</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>

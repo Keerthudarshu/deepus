@@ -10,8 +10,16 @@ function get_img_product_color($limit=100000){
  }
 
 function create_img_product_color($main_img, $sub_img1, $sub_img2, $sub_img3, $id_product, $id_color){
-    $sql="INSERT INTO img_product_color(main_img, sub_img1,sub_img2, sub_img3,id_product,id_color) VALUES (?,?,?,?,?,?)";      
-    pdo_execute($sql,$main_img, $sub_img1,$sub_img2,$sub_img3, $id_product, $id_color);
+    // Check if id_product exists in product table
+    $sql_check = "SELECT id FROM product WHERE id = ?";
+    $product = pdo_query_one($sql_check, $id_product);
+    if ($product) {
+        $sql="INSERT INTO img_product_color(main_img, sub_img1,sub_img2, sub_img3,id_product,id_color) VALUES (?,?,?,?,?,?)";      
+        pdo_execute($sql,$main_img, $sub_img1,$sub_img2,$sub_img3, $id_product, $id_color);
+    } else {
+        echo '<div style="color:red;font-weight:bold;">Error: Product ID '.$id_product.' does not exist. Cannot add image.</div>';
+        return false;
+    }
  }
 
 function update_img_product_color($id,$main_img, $sub_img1, $sub_img2, $sub_img3, $id_product, $id_color){

@@ -6,7 +6,7 @@
             </div>
             <form action="" class="header-form">
               <div class="header-input">
-                <input type="text" placeholder="Tìm kiếm " />
+                <input type="text" placeholder="Search " />
                 <div class="header-input-icon">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </div>
@@ -21,7 +21,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -29,11 +29,11 @@
           <div class="container">
 <div class="dashboard-content active" data-tab="1">
               <h2 class="heading-primary">Dashboard</h2>
-              <div class="dashboard-title">Tổng quan</div>
+              <div class="dashboard-title">Overview</div>
               <div class="dashboard-list">
                 <div class="dashboard-card">
                   <div class="dashboard-card-quantity">
-                    <div class="dashboard-card-name">Khách truy cập</div>
+                    <div class="dashboard-card-name">Visitors</div>
                     <span><?=count(getusertable())?></span>
                   </div>
                   <div class="dashboard-card-icon">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="dashboard-card">
                   <div class="dashboard-card-quantity">
-                    <div class="dashboard-card-name">Đơn hàng</div>
+                    <div class="dashboard-card-name">Orders</div>
                     <span><?=count(getdonhangtable())?></span>
                   </div>
                   <div class="dashboard-card-icon">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="dashboard-card">
                   <div class="dashboard-card-quantity">
-                    <div class="dashboard-card-name">Sản phẩm</div>
+                    <div class="dashboard-card-name">Product</div>
                     <span><?=count(getproduct())?></span>
                   </div>
                   <div class="dashboard-card-icon">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="dashboard-card">
                   <div class="dashboard-card-quantity">
-                    <div class="dashboard-card-name">Doanh thu</div>
+                    <div class="dashboard-card-name">Revenue</div>
                     <span><?=number_format(tongdoanhthu()[0]['tongdoanhthu'],0,'.',',')?></span>
                   </div>
                   <div class="dashboard-card-icon">
@@ -106,7 +106,7 @@
               </div>
               <div class="statistical-main">
                 <div class="statistical-left">
-                  <h2 class="title">Tỉ lệ sản phẩm danh mục</h2>
+                  <h2 class="title">Category product ratio</h2>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
                   <canvas id="myChart" style="width:100%;max-width:450px; margin-bottom:50px"></canvas>
@@ -161,7 +161,7 @@
                   </script>
                 </div>
                 <div class="statistical-right">
-                  <h2 style="margin-bottom:0" class="title">Lượt xem</h2>
+                  <h2 style="margin-bottom:0" class="title">View</h2>
                   <script src="https://www.gstatic.com/charts/loader.js"></script>
 
                   <div id="myChart1" style="width:100%; max-width:600px; height:300px;"></div>
@@ -210,13 +210,13 @@
               <section class="dashboard-list-pro">
                 <div class="container">
                   <div class="">
-                    <h2 class="title mt-0">Doanh thu thống kê theo tháng (triệu đồng)</h2>
-                    
-                   
+                    <h2 class="title mt-0">Revenue statistics by month (million VND)</h2>
+
+
                     <canvas id="myChart2" style="width:100%;"></canvas>
 
                     <script>
-                    const xValues2 = ["Tháng 1", "Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
+                    const xValues2 = ["January", "February","March","April","May","June","July","August","September","October","November","December"];
                     <?php
                       $doanhthu=doanhthu();
                       $i=0;

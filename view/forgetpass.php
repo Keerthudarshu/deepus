@@ -50,19 +50,19 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home </a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-Shirts</a>
       </div>
       <!-- Login -->
       <section class="login">
         <div class="container">
           <div class="login-box">
             <div class="login-auth__login">
-              <div class="login-title">QUÊN MẬT KHẨU</div>
+              <div class="login-title">FORGOT PASSWORD</div>
               <div class="login-regiter">
-                Nếu bạn chưa có tài khoản, đăng ký
-                <a href="index.php?pg=register" class="regester-link"> tại đây</a>
+                If you don't have an account, register
+                <a href="index.php?pg=register" class="regester-link"> here</a>
               </div>
             </div>
             <div class="login-form">
@@ -98,7 +98,7 @@
                         <input name="emailxn" type="text" placeholder="Email" value="'.$_SESSION['emailxn'].'">
                         <div class="errform mb-unset">'.$_SESSION['erremailxn'].'</div>
                         <div class="login-button">
-                        <button class="login-btn" name="guima">Xác nhận email</button>
+                        <button class="login-btn" name="guima">Confirm email</button>
                       </div>
                       </form>';
                     }
@@ -109,7 +109,7 @@
 
               
               <div class="login__center">
-                <div class="form-group-center text">Hoặc đăng nhập bằng</div>
+                <div class="form-group-center text">Or log in with</div>
                 <div class="form-app">
                   <div class="form-app__fb">
                   <button class="btn_google">

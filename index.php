@@ -659,13 +659,13 @@
                      $_SESSION['sdtnhan']=$_POST['sdtnhan'];
                      $_SESSION['diachinhan']=$_POST['diachinhan'];
                      if($tennhan==''){
-                        $errnamenhan='*Bạn chưa nhập tên người nhận hàng';
+                        $errnamenhan='*You have not entered a recipient name.';
                      }
                      if($emailnhan==''){
-                        $erremailnhan="*Bạn chưa nhập email người nhận hàng";
+                        $erremailnhan="*You have not entered a recipient email.";
                      }else{
                         if (!filter_var($emailnhan, FILTER_VALIDATE_EMAIL)){
-                           $erremailnhan="*Địa chỉ email không hợp lệ";
+                           $erremailnhan="*Invalid email address.";
                         }
                      }
                      
@@ -673,16 +673,16 @@
                
                     
                      if($sdtnhan==''){
-                        $errsdtnhan="*Bạn chưa nhập số điện thoại người đặt hàng";
+                        $errsdtnhan="*You have not entered a recipient phone number.";
                      }else{
                         if (isValidPhoneNumber($sdtnhan)) {
    
                        } else {
-                           $errsdtnhan= "*Số điện thoại không hợp lệ";
+                           $errsdtnhan= "*Invalid phone number.";
                        }
                      }
                      if($diachinhan==''){
-                        $errdiachinhan="*Bạn chưa nhập địa chỉ người nhận hàng";
+                        $errdiachinhan="*You have not entered a recipient address.";
                      }
                      
                      if($errnamenhan=='' && $erremailnhan=='' && $errdiachinhan=='' && $errsdtnhan==''){
@@ -777,13 +777,13 @@
                      $_SESSION['giaohangnhanh']=0;
                   }
                   if($tendat==''){
-                     $errname='*Bạn chưa nhập tên người đặt hàng';
+                     $errname='*You have not entered a recipient name.';
                   }
                   if($emaildat==''){
-                     $erremail="*Bạn chưa nhập email người đặt hàng";
+                     $erremail="*You have not entered a recipient email.";
                   }else{
                      if (!filter_var($emaildat, FILTER_VALIDATE_EMAIL)){
-                        $erremail="*Địa chỉ email không hợp lệ";
+                        $erremail="*Invalid email address.";
                      }else{
                         $kt=0;
                         $tableuser=getusertable();
@@ -795,22 +795,22 @@
                            }
                         }
                         if($kt==1){
-                           $erremail='*Email đã tồn tại';
+                           $erremail='*Email already exists';
                         }
                      }
                   }
                   
                   if($sdtdat==''){
-                     $errsdt="*Bạn chưa nhập số điện thoại người đặt hàng";
+                     $errsdt="*You have not entered a recipient phone number.";
                   }else{
                      if (isValidPhoneNumber($sdtdat)) {
 
                     } else {
-                        $errsdt= "*Số điện thoại không hợp lệ";
+                        $errsdt= "*Invalid phone number.";
                     }
                   }
                   if($diachidat==''){
-                     $errdiachi="*Bạn chưa nhập địa chỉ người đặt hàng";
+                     $errdiachi="*You have not entered a recipient address.";
                   }
                   
                   if((isset($_POST['emailnhan']) && $_POST['emailnhan']!='') || $_SESSION['namenhan']!=''  || $_SESSION['emailnhan']!=''  || $_SESSION['sdtnhan']!=''  || $_SESSION['diachinhan']!='' || (isset($_POST['tennhan']) && $_POST['tennhan']!='') || (isset($_POST['sdtnhan']) && $_POST['sdtnhan']!='') || (isset($_POST['diachinhan']) && $_POST['diachinhan']!='')){
@@ -823,13 +823,13 @@
                      $_SESSION['sdtnhan']=$_POST['sdtnhan'];
                      $_SESSION['diachinhan']=$_POST['diachinhan'];
                      if($tennhan==''){
-                        $errnamenhan='*Bạn chưa nhập tên người nhận hàng';
+                        $errnamenhan='*You have not entered a recipient name.';
                      }
                      if($emailnhan==''){
-                        $erremailnhan="*Bạn chưa nhập email người nhận hàng";
+                        $erremailnhan="*You have not entered a recipient email.";
                      }else{
                         if (!filter_var($emailnhan, FILTER_VALIDATE_EMAIL)){
-                           $erremailnhan="*Địa chỉ email không hợp lệ";
+                           $erremailnhan="*Invalid email address.";
                         }
                      }
                      
@@ -837,16 +837,16 @@
                
                     
                      if($sdtnhan==''){
-                        $errsdtnhan="*Bạn chưa nhập số điện thoại người đặt hàng";
+                        $errsdtnhan="*You have not entered a recipient phone number.";
                      }else{
                         if (isValidPhoneNumber($sdtnhan)) {
    
                        } else {
-                           $errsdtnhan= "*Số điện thoại không hợp lệ";
+                           $errsdtnhan= "*Invalid phone number.";
                        }
                      }
                      if($diachinhan==''){
-                        $errdiachinhan="*Bạn chưa nhập địa chỉ người nhận hàng";
+                        $errdiachinhan="*You have not entered a recipient address.";
                      }
                      
                      if($errnamenhan=='' && $erremailnhan=='' && $errdiachinhan=='' && $errsdtnhan==''){
@@ -948,19 +948,19 @@
                      }
                   }
                   if($kt==0){
-                     $errusername='*Tên đăng nhập không tồn tại';
+                     $errusername='*Username does not exist';
                   }
                }
                if($_POST['password']==''){
-                  $errpassword='*Bạn chưa nhập mật khẩu';
+                  $errpassword='*You have not entered a password.';
                }else{
                   if(strlen($_POST['password'])<6){
-                     $errpassword='*Mật khẩu phải có ít nhất 6 ký tự';
+                     $errpassword='*Password must be at least 6 characters long';
                   }else{
                      if(is_array(getlogin($_SESSION['usernamelogin'],$_SESSION['passwordlogin'])) && getrole($_SESSION['usernamelogin'],$_SESSION['passwordlogin'])==0){
    
                      }else{
-                        $errpassword='*Mật khẩu không đúng';
+                        $errpassword='*Incorrect password';
                      }
                   }
                }
@@ -1026,7 +1026,7 @@
                $_SESSION['emailsignup']=$_POST['email'];
                $_SESSION['repasswordsignup']=$_POST['repass'];
                if($_POST['user']==''){
-                  $errusername='*Bạn chưa nhập tên đăng nhập';
+                  $errusername='*You have not entered a username';
                }else{
                   $kt=0;
                   $tableuser=getusertable();
@@ -1037,28 +1037,28 @@
                      }
                   }
                   if($kt==1){
-                     $errusername='*Tên đăng nhập đã tồn tại';
+                     $errusername='*Username already exists';
                   }
                }
                if($_POST['pass']==''){
-                  $errpassword='*Bạn chưa nhập mật khẩu';
+                  $errpassword='*You have not entered a password';
                }else{
                   if(strlen($_POST['pass'])<6){
-                     $errpassword='*Mật khẩu phải có ít nhất 6 ký tự';
+                     $errpassword='*Password must be at least 6 characters long';
                   }
                }
                if($_POST['repass']==''){
-                  $errrepassword='*Bạn chưa nhập lại mật khẩu';
+                  $errrepassword='*You have not entered a password confirmation';
                }else{
                   if($_POST['repass'] != $_POST['pass']){
-                     $errrepassword='*Mật khẩu không khớp';
+                     $errrepassword='*Passwords do not match';
                   }
                }
                if($_POST['email']==''){
-                  $erremail="*Bạn chưa nhập email";
+                  $erremail="*You have not entered an email";
                }else{
                   if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                     $erremail="*Địa chỉ email không hợp lệ";
+                     $erremail="*Invalid email address";
                   }
                }
                $user=$_POST['user'];
@@ -1106,10 +1106,10 @@
             if(isset($_POST['nhapcode'])){
                $_SESSION['code']=$_POST['codexn'];
                if($_SESSION['code']==''){
-                  $_SESSION['errcode']='*Bạn chưa nhập mã xác nhận email';
+                  $_SESSION['errcode']='*You have not entered an email verification code.';
                }else{
                   if($_SESSION['code']!=$_SESSION['codedung']){
-                     $_SESSION['errcode']='*Mã xác nhận email không đúng';
+                     $_SESSION['errcode']='*Incorrect email verification code.';
                   }else{
                      unset($_SESSION['code']);
                      unset($_SESSION['codedung']);
@@ -1120,21 +1120,21 @@
             if(isset($_POST['nhappass'])){
                $_SESSION['passnew']=$_POST['pass'];
                if($_SESSION['passnew']==''){
-                  $_SESSION['errpassnew']='*Bạn chưa nhập mặt khẩu mới';
+                  $_SESSION['errpassnew']='*You have not entered a new password.';
                }else{
                   if(strlen($_SESSION['passnew'])<6){
-                     $_SESSION['errpassnew']='*Mật khẩu phải có ít nhất 6 ký tự';
+                     $_SESSION['errpassnew']='*Password must be at least 6 characters long.';
                   }
                }
                $_SESSION['repassnew']=$_POST['repass'];
                if($_SESSION['repassnew']==''){
-                  $_SESSION['errrepassnew']='*Bạn chưa nhập lại mặt khẩu';
+                  $_SESSION['errrepassnew']='*You have not entered a password confirmation.';
                }else{
                   if(strlen($_SESSION['repassnew'])<6){
-                     $_SESSION['errrepassnew']='*Mật khẩu phải có ít nhất 6 ký tự';
+                     $_SESSION['errrepassnew']='*Password must be at least 6 characters long.';
                   }else{
                      if($_SESSION['repassnew']!=$_SESSION['passnew']){
-                        $_SESSION['errrepassnew']='*Mật khẩu không khớp';
+                        $_SESSION['errrepassnew']='*Passwords do not match.';
                      }else{
                         changepassword($_SESSION['emailxn'], $_SESSION['passnew']);
                         unset($_SESSION['xacnhanemail']);
@@ -1195,7 +1195,7 @@
                   $img=$_FILES['img']['name'];
                   $tableuser=getusertable();
                   if($user==''){
-                     $erruser="*Tên đăng nhập không được để trống";
+                     $erruser="*Username cannot be empty";
                   }else{
                      $kt=0;
                      foreach ($tableuser as $item) {
@@ -1205,14 +1205,14 @@
                         }
                      }
                      if($kt==1){
-                        $erruser="*Tên đăng nhập này đã tồn tại";
+                        $erruser="*This username already exists.";
                      }
                   }
                   if($email==''){
-                     $erremail="*Email không được để trống";
+                     $erremail="*Email cannot be empty.";
                   }else{
                      if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                        $erremail="*Email không hợp lệ";
+                        $erremail="*Invalid email address.";
                      }else{
                         $kt=0;
                         foreach ($tableuser as $item) {
@@ -1222,7 +1222,7 @@
                            }
                         }
                         if($kt==1){
-                           $erremail="*Email này đã tồn tại";
+                           $erremail="*This email already exists.";
                         }
                      }
                   }

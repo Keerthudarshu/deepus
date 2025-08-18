@@ -675,11 +675,11 @@
                 include_once 'binhluan.php';
                 break;
 
-                case 'tintuc':
-                  $tintuc=getnew_home();
-                  include_once 'tintuc.php';
+                case 'news':
+                  $news=getnew_home();
+                  include_once 'news.php';
                   break;
-                case 'add_tintuc':
+                case 'add_news':
                   if(isset($_POST['btnsave'])){
                     // $id=$_POST['id'];
                     $id='';
@@ -691,15 +691,15 @@
                       $target_file = PATH_IMG_ADMIN . basename($img);
                     move_uploaded_file($_FILES['img']["tmp_name"], $target_file);
                       }
-                      create_tintuc($id, $title, $img, $noidung, $thoigian);
+                      create_news($id, $title, $img, $noidung, $thoigian);
                     }
-                      $tintuc=getnew_home();
-                  include_once "tintuc.php";
+                      $news=getnew_home();
+                  include_once "news.php";
                   break;
-                case 'update_tintuc':
+                case 'update_news':
                   if(isset($_GET['id']) && $_GET['id']){
                     $_SESSION['update_id']=$_GET['id'];
-                    $tintuc_detail=getdetail($_SESSION['update_id']);
+                    $news_detail=getdetail($_SESSION['update_id']);
                   }
                   if(isset($_GET['close']) && $_GET['close']){
                     unset($_SESSION['update_id']);
@@ -716,24 +716,24 @@
       
                       }
                     if(isset($_SESSION['update_id'])){
-                      update_tintuc($_SESSION['update_id'],$title, $img, $noidung, $thoigian );
+                      update_news($_SESSION['update_id'],$title, $img, $noidung, $thoigian );
                       unset($_SESSION['update_id']);
                     }    
                   }
-                  $tintuc=getnew_home();
-                  include_once 'tintuc.php';
+                  $news=getnew_home();
+                  include_once 'news.php';
                   break;
-                case 'del_tintuc':
+                case 'del_news':
                   if(isset($_GET['id']) && $_GET['id']){
                     $id=$_GET['id'];
-                    if(get_idtintuc($id)['img']!=''){
-                      $img_file=PATH_IMG_ADMIN.get_idtintuc($id)['img'];
+                    if(get_idnews($id)['img']!=''){
+                      $img_file=PATH_IMG_ADMIN.get_idnews($id)['img'];
                       delimghost($img_file);
                    }
-                    del_tintuc($_GET['id']);
+                    del_news($_GET['id']);
                   }
-                  $tintuc=getnew_home();
-                  include_once 'tintuc.php';
+                  $news=getnew_home();
+                  include_once 'news.php';
                   break;
       
       

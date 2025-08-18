@@ -12,8 +12,8 @@
         <td>'.$id_product.'</td>
         <td>'.$id_color.'</td>
         <td>
-            <a href="index.php?pg=update_img_product_color&id='.$id.'" class="edit">Sửa</a>
-            <a href="index.php?pg=del_img_product_color&id='.$id.'" class="del">Xóa</a>
+            <a href="index.php?pg=update_img_product_color&id='.$id.'" class="edit">Fix</a>
+            <a href="index.php?pg=del_img_product_color&id='.$id.'" class="del">Erase</a>
         </td>
         </tr>';
     $active='';
@@ -78,7 +78,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@
                   </span>
                   <div class="modal-main">
                     <form action="index.php?pg=add_img_product_color" method="post"  enctype="multipart/form-data">
-                    <div class="modal-heading">Thêm hình ảnh mới</div>
+                    <div class="modal-heading">Add New Image</div>
                     <div class="modal-form modal-form-addpro">
                         <?php 
                             for($i=1;$i<=4;$i++){
@@ -138,18 +138,18 @@
                         </script>
                       
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mã sản phẩm*</div>
+                        <div class="modal-form-name">Product ID*</div>
                         <input name="id_product" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mã màu*</div>
+                        <div class="modal-form-name">Color ID*</div>
                         <input name="id_color" type="text" />
                       </div>
                       
                       
                     </div> 
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                 </form>
                   </div>
@@ -158,10 +158,10 @@
 
 
               <div class="dashboard-heading">
-                <h2 class="title-primary">Hình ảnh sản phẩm</h2>
+                <h2 class="title-primary">Product Images</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                  Add
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -203,7 +203,7 @@
                     </a>
                     <div class="modal-main">
                         <form action="index.php?pg=update_img_product_color" method="post"  enctype="multipart/form-data">
-                        <div class="modal-heading">Cập nhật hình ảnh</div>
+                        <div class="modal-heading">Update Image</div>
                         <div class="modal-form  modal-form-addpro">
                         
                           <?php 
@@ -243,16 +243,16 @@
                             
                           
                           <div class="modal-form-item">
-                              <div class="modal-form-name">Mã sản phẩm*</div>
+                              <div class="modal-form-name">Product ID*</div>
                               <input name="id_product" type="text" value="<?=$id_product?>"/>
                           </div>
                           <div class="modal-form-item">
-                            <div class="modal-form-name">Mã màu*</div>
+                            <div class="modal-form-name">Color ID*</div>
                             <input name="id_color" type="text" value="<?=$id_color?>" />
                           </div>
                         </div>
                         <div class="modal-btn">
-                          <button name="btnupdate" class="modal-button">Lưu</button>
+                          <button name="btnupdate" class="modal-button">Save</button>
                         </div>`
                     </form>
                     </div>
@@ -262,13 +262,13 @@
                 <table class="product">
                 <thead>
                   <tr>
-                    <th>Hình ảnh 1</th>
-                    <th>Hình ảnh 2</th>
-                    <th>Hình ảnh 3</th>
-                    <th>Hình ảnh 4</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Mã màu</th>
-                    <th>Thao tác</th>
+                    <th>Image 1</th>
+                    <th>Image 2</th>
+                    <th>Image 3</th>
+                    <th>Image 4</th>
+                    <th>Product ID</th>
+                    <th>Color ID</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>

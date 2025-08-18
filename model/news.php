@@ -1,39 +1,39 @@
 <?php
      function getnew_home(){
-        $sql="SELECT * FROM tintuc ORDER BY id";
+        $sql="SELECT * FROM news ORDER BY id";
         return pdo_query($sql);
      }
 
      function getdetail($id){
-      $sql="SELECT * FROM tintuc WHERE id=?";
+      $sql="SELECT * FROM news WHERE id=?";
       return pdo_query_one($sql, $id);
    }
 
      function get_detail_news($limit=100000){
-      $sql="SELECT * FROM tintuc ORDER BY id DESC limit ".$limit;
+      $sql="SELECT * FROM news ORDER BY id DESC limit ".$limit;
       return pdo_query($sql);
    }
      function getnew_home_new(){
-        $sql="SELECT * FROM tintuc ORDER BY id DESC limit 1";
+        $sql="SELECT * FROM news ORDER BY id DESC limit 1";
         return pdo_query($sql);
      }
 
-     function get_idtintuc($id){
-        $sql="SELECT * FROM tintuc WHERE id=?";
+     function get_idnews($id){
+        $sql="SELECT * FROM news WHERE id=?";
         return pdo_query_one($sql, $id);
      }
-     function create_tintuc($id, $title, $img, $noidung, $thoigian){
-      $sql="INSERT INTO tintuc(id, title, img, noidung,thoigian) VALUES (?,?,?,?,?)";      
+     function create_news($id, $title, $img, $noidung, $thoigian){
+      $sql="INSERT INTO news(id, title, img, noidung,thoigian) VALUES (?,?,?,?,?)";      
       pdo_execute($sql,$id, $title, $img, $noidung, $thoigian);
    }
-  
-  function update_tintuc($id, $title, $img, $noidung, $thoigian){
-      $sql = "UPDATE tintuc SET title=?,img=?,noidung=?,thoigian=? WHERE id=?";
+
+  function update_news($id, $title, $img, $noidung, $thoigian){
+      $sql = "UPDATE news SET title=?,img=?,noidung=?,thoigian=? WHERE id=?";
       pdo_execute($sql, $title, $img, $noidung, $thoigian, $id);
     }
-  
-  function del_tintuc($id){
-      $sql = "DELETE FROM tintuc WHERE  id=?";
+
+  function del_news($id){
+      $sql = "DELETE FROM news WHERE  id=?";
       if(is_array($id)){
           foreach ($id as $ma) {
               pdo_execute($sql, $ma);

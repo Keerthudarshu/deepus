@@ -34,18 +34,18 @@
   }
   $html_giamgia='';
   $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" checked="checked"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" checked="checked"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
   if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
     $html_giamgia='<div class="form-flex">
@@ -73,52 +73,52 @@
         if(isset($_SESSION['giaohangnhanh']) && $_SESSION['giaohangnhanh']==1){
           $html_tocdo=' checked="checked"';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán trực tiếp khi giao hàng'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Cash on Delivery'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" checked="checked"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" checked="checked"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán bằng Thẻ quốc tế / Thẻ nội địa'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='International / Domestic Card Payment'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" />
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" />
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio" checked="checked"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio" checked="checked"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán bằng ví MoMo'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='E-wallet Payment'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"  checked="checked"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"  checked="checked"/>
+          E-wallet Payment
         </label>';
         }
 
@@ -131,12 +131,12 @@
     <div class="modal-content">
       <div class="modal-main">
       <img src="view/layout/assets/images/thanhcong.png" alt="">
-        <h3>Bạn đã đặt hàng thành công</h3>
+        <h3>You have successfully placed your order.</h3>
         <div class="modal__succesfully">
           <form action="mailer.php" method="post">
             <input type="hidden" name="emaildat" value="'.$_SESSION['email'].'">
             <input type="hidden" name="tendat" value="'.$_SESSION['name'].'">
-            <button name="sendmail" class="monal__succesfully-btn">Xem đơn hàng</button>
+            <button name="sendmail" class="monal__succesfully-btn">View order</button>
           </form>
         </div>
       </div>
@@ -199,9 +199,9 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home</a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-shirts</a>
       </div>
     <form action="index.php?pg=checkout" method="post">
       <section class="checkout">
@@ -211,49 +211,49 @@
             <div class="checkout-center-icon">
               <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
             </div>
-            <div class="checkout-center-text">Thanh toán</div>
-            <p>Vui lòng kiểm tra thông tin khách hàng, đơn hàng trước khi thanh toán.</p>
+            <div class="checkout-center-text">Payment</div>
+            <p>Please check customer information and order before payment.</p>
           </div>
           <div class="checkout-main">
             <div class="checkout-left">
               <div class="order">
-                <h3 class="order-title">Thông tin đặt hàng</h3>
+                <h3 class="order-title">Order information</h3>
                 <div action="" class="order-form order-info">
                   
-                  <input name="tendat" class="order-input" type="text" placeholder="Nhập họ tên" value="<?=$_SESSION['name']?>" />
+                  <input name="tendat" class="order-input" type="text" placeholder="Enter your name" value="<?=$_SESSION['name']?>" />
                   <div class="errform"><?=$errname?></div>
-                  <input name="emaildat" class="order-input" type="text" placeholder="Nhập email"  value="<?=$_SESSION['email']?>"/> 
+                  <input name="emaildat" class="order-input" type="text" placeholder="Enter your email"  value="<?=$_SESSION['email']?>"/> 
                   <div class="errform"><?=$erremail?></div>
-                  <input name="sdtdat" class="order-input" type="text" placeholder="Nhập số điên thoại"  value="<?=$_SESSION['sdt']?>"/> 
+                  <input name="sdtdat" class="order-input" type="text" placeholder="Enter your phone number"  value="<?=$_SESSION['sdt']?>"/> 
                   <div class="errform"><?=$errsdt?></div>
-                  <input name="diachidat" class="order-input" type="text" placeholder="Nhập địa chỉ"  value="<?=$_SESSION['diachi']?>"/> 
+                  <input name="diachidat" class="order-input" type="text" placeholder="Enter your address"  value="<?=$_SESSION['diachi']?>"/> 
                   <div class="errform"><?=$errdiachi?></div>
                 </div>
                 <div class="order-checkbox">
                   <input onchange='diachikhac()' class="checkdiachi" type="checkbox" />
-                  Giao hàng đến địa chỉ khác
+                  Delivery to another address
                 </div>
                 <div class="diachikhac"  style="display:none">
-                  <h3 class="order-title">Thông tin nhận hàng</h3>
+                  <h3 class="order-title">Recipient information</h3>
                   <div class="order-form order-info">
-                    <input name="tennhan" class="order-input" type="text" placeholder="Nhập họ tên"  value="<?=$_SESSION['namenhan']?>"/> 
+                    <input name="tennhan" class="order-input" type="text" placeholder="Enter full name"  value="<?=$_SESSION['namenhan']?>"/> 
                     <div class="errform"><?=$errnamenhan?></div>
-                    <input name="emailnhan" class="order-input" type="text" placeholder="Nhập email"  value="<?=$_SESSION['emailnhan']?>"/>
+                    <input name="emailnhan" class="order-input" type="text" placeholder="Enter email"  value="<?=$_SESSION['emailnhan']?>"/>
                     <div class="errform"><?=$erremailnhan?></div>
-                    <input name="sdtnhan" class="order-input" type="text" placeholder="Nhập số điên thoại"  value="<?=$_SESSION['sdtnhan']?>"/> 
+                    <input name="sdtnhan" class="order-input" type="text" placeholder="Enter phone number"  value="<?=$_SESSION['sdtnhan']?>"/> 
                     <div class="errform"><?=$errsdtnhan?></div>
-                    <input name="diachinhan" class="order-input" type="text" placeholder="Nhập địa chỉ"  value="<?=$_SESSION['diachinhan']?>"/> 
+                    <input name="diachinhan" class="order-input" type="text" placeholder="Enter address"  value="<?=$_SESSION['diachinhan']?>"/> 
                     <div class="errform"><?=$errdiachinhan?></div>
                   </div>
                 </div>
               </div>
               <div class="order-pt">
-                <h3 class="order-title">Phương thức giao hàng</h3>
+                <h3 class="order-title">Shipping method</h3>
                   <input type="checkbox" <?=$html_tocdo?> name="tocdo">
-                  <label for="radio1">Tốc độ tiêu chuẩn (từ 2 - 5 ngày làm việc)</label>
+                  <label for="radio1">Standard shipping (2 - 5 business days)</label>
               </div>
               <div id="order-pt">
-                <h3 class="order-title">Phương thức thanh toán</h3>
+                <h3 class="order-title">Payment method</h3>
                 
                 <?=$html_phuongthuc?>
 
@@ -288,7 +288,7 @@
             </div>
             <div class="checkout-right">
               <div class="checkout-right-box">
-                <div class="checkout-right-title-heading">Đơn hàng (<?=$tongsoluong?> sản phẩm)</div>
+                <div class="checkout-right-title-heading">Order (<?=$tongsoluong?> products)</div>
                 <div class="checkout-right-overflow">
                   
                 <?=$html_product_checkout?>
@@ -299,10 +299,10 @@
                     <?php
                       echo '<div class="voucher-list">
                       <div class="voucher-item">
-                      <input name="magiamgia" type="text" placeholder="Nhập mã giảm giá" value='.$_SESSION['magiamgia'].'>
+                      <input name="magiamgia" type="text" placeholder="Enter coupon code" value='.$_SESSION['magiamgia'].'>
                     </div>
                     <div class="voucher-btn">
-                      <button name="btngiamgia" class="voucher-button voucher-button-mobile">Áp dụng</button>
+                      <button name="btngiamgia" class="voucher-button voucher-button-mobile">Apply</button>
                     </div>
                     </div>
                     <div class="errform">'.$errvoucher.'</div>';
@@ -311,29 +311,29 @@
                 </div>
                 <div class="form-group">
                   <div class="form-flex">
-                    <span> Tạm tính</span>
+                    <span> Provisional</span>
                     <span><?=number_format($tongtien,0,'',',')?>đ</span>
                   </div>
 
                   <?=$html_giamgia?>
 
                   <div class="form-flex">
-                    <span>Phí vận chuyển </span>
+                    <span>Shipping fee</span>
                     <span>-</span>
                   </div>
                 </div>
                 
                 <div class="form-flex mt-10">
-                  <span class="checkout-total">Tổng cộng </span>
+                  <span class="checkout-total">Total</span>
                   <span><?=number_format($tongtien-$_SESSION['giamgia']*$tongtien/100,0,'',',')?>đ</span>
                 </div>
                 <div class="form-flex back-flex mt-10">
                   <div class="back-cart">
-                    <a href="index.php?pg=cart">Quay về giỏ hàng</a>
+                    <a href="index.php?pg=cart">Back to cart</a>
                   </div>
                   
                   <div class="voucher-btn button-primary__primary">
-                    <button name="thanhtoan"  class="voucher-button">Đặt hàng</button>
+                    <button name="thanhtoan"  class="voucher-button">Place order</button>
                   </div>
                 </div>
               </div>

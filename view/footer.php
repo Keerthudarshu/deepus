@@ -15,7 +15,7 @@
             <div class="footer-column">
               <div class="footer-logo">
                 <a href="#">
-                  <img src="view/layout/assets/images/logo.jpg" alt="" style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
+                  <img src="view/layout/assets/images/logo.png" alt="" style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
                 </a>
                 <div class="footer-nav">
                   <ul class="footer-menu">

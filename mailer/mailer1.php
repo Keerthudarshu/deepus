@@ -26,13 +26,13 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     $mail->CharSet  = "utf-8";
     $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
     $mail->SMTPAuth   = true;             //Enable SMTP authentication
-    $mail->Username   = 'myhong11a32004@gmail.com';   //SMTP write your email
-    $mail->Password   = 'zhuv uzbw gnrd ziop';      //SMTP password
+    $mail->Username   = 'keerthudarshu06@gmail.com';   //SMTP write your email
+    $mail->Password   = 'urdz ztjn ppzf agwn';      //SMTP password
     $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
     $mail->Port       = 465;                                    
  
     //Recipients
-    $mail->setFrom('myhong11a32004@gmail.com', 'ZStyle' );  // Sender Email and name
+    $mail->setFrom('keerthudarshu06@gmail.com', 'ZStyle' );  // Sender Email and name
     $mail->addAddress($_POST["emaildat"], $_POST["tendat"]);     //Add a recipient email   // reply to sender email
  
     //Content

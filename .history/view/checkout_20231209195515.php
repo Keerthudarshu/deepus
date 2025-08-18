@@ -36,18 +36,18 @@
   }
   $html_giamgia='';
   $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" checked="checked"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" checked="checked"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
   if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
     $html_giamgia='<div class="form-flex">
@@ -75,52 +75,52 @@
         if(isset($_SESSION['giaohangnhanh']) && $_SESSION['giaohangnhanh']==1){
           $html_tocdo=' checked="checked"';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán trực tiếp khi giao hàng'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Cash on Delivery'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" checked="checked"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" checked="checked"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán bằng Thẻ quốc tế / Thẻ nội địa'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='International / Domestic Card Payment'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio" />
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio" />
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio" checked="checked"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio" checked="checked"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"/>
+          E-wallet Payment
         </label>';
         }
-        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='Thanh toán bằng ví MoMo'){
+        if(isset($_SESSION['phuongthuc']) && $_SESSION['phuongthuc']=='E-wallet Payment'){
           $html_phuongthuc='<label class="phuongthuctt">
-          <input name="phuongthuc" value="Thanh toán trực tiếp khi giao hàng" type="radio"/>
-          Thanh toán trực tiếp khi giao hàng
+          <input name="phuongthuc" value="Cash on Delivery" type="radio"/>
+          Cash on Delivery
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa" type="radio"/>
-          Thanh toán bằng Thẻ quốc tế / Thẻ nội địa
+          <input name="phuongthuc" value="International / Domestic Card Payment" type="radio"/>
+          International / Domestic Card Payment
         </label><br>
         <label id="phuongthuctt"
           >
-          <input name="phuongthuc" value="Thanh toán bằng ví MoMo" type="radio"  checked="checked"/>
-          Thanh toán bằng ví MoMo
+          <input name="phuongthuc" value="E-wallet Payment" type="radio"  checked="checked"/>
+          E-wallet Payment
         </label>';
         }
 
@@ -150,9 +150,9 @@
   
 ?>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home</a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-shirt</a>
       </div>
     <form action="index.php?pg=checkout" method="post">
       <section class="checkout">
@@ -162,8 +162,8 @@
             <div class="checkout-center-icon">
               <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
             </div>
-            <div class="checkout-center-text">Thanh toán</div>
-            <p>Vui lòng kiểm tra thông tin khách hàng, đơn hàng trước khi thanh toán.</p>
+            <div class="checkout-center-text">Payment</div>
+            <p>Please check customer information and order before payment.</p>
           </div>
           <div class="checkout-main">
             <div class="checkout-left">

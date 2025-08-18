@@ -38,7 +38,7 @@
     <div class="app">
       
       <!-- Header -->
-      <header class="header" style="  background-color: #c0902e !important">
+      <header class="header" style="  background-color: #2B2B2B !important">
         <div class="container">
           <div class="header-main">
             <div class="header-bars">
@@ -46,7 +46,7 @@
             </div>
             <div class="header-logo">
               <a href="index.php">
-                <img src="view/layout/assets/images/logo.jpg" alt="" style="height:48px; width:auto; max-width:160px;" />
+                <img src="view/layout/assets/images/logo.png" alt="" style="height:48px; width:auto; max-width:160px;" />
               </a>
             </div>
             <div class="header-logo-mobile">
@@ -139,7 +139,7 @@
         </li>
       </ul>
 
-      <section class="header-bottom" style="  background-color: #c9a45c ;">
+      <section class="header-bottom" style="  background-color: #B28737 ;">
         <div class="container">
           <div class="header-bottom__main">
             <form action="" class="header-form header-form-mobile">

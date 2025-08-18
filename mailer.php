@@ -26,19 +26,20 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     $mail->CharSet  = "utf-8";
     $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
     $mail->SMTPAuth   = true;             //Enable SMTP authentication
-    $mail->Username   = 'zstyleshopvn@gmail.com';   //SMTP write your email
-    $mail->Password   = 'sxdl zwmw frep mzwh';      //SMTP password
-    $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
-    $mail->Port       = 465;                                    
- 
+ $mail->Username   = 'keerthudarshu06@gmail.com'; // Your Gmail address
+    $mail->Password   = 'urdz ztjn ppzf agwn'; // Gmail App Password (not your Gmail password)
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
+
+
     //Recipients
-    $mail->setFrom('zstyleshopvn@gmail.com', 'ZStyle' );  // Sender Email and name
+    $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
     $mail->addAddress($_POST["emaildat"], $_POST["tendat"]);     //Add a recipient email   // reply to sender email
  
     //Content
     $mail->isHTML(true);               //Set email format to HTML
-    $mail->Subject = 'Cảm ơn bạn đã mua hàng cùng chúng tôi!';  // email subject headings
-    $mail->AddEmbeddedImage('view/layout/assets/images/logo-form.png', 'logo', 'logo-form.png');
+    $mail->Subject = 'Thank you for shopping with us!';  // email subject headings
+    $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
     $mail->AddEmbeddedImage('upload/form-thanks.jpg', 'img', 'form-thanks.jpg');
     $i=0;
     $tongtien=0;
@@ -70,7 +71,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     </tr>';
         $html_donhang.='<tr>
             <td class="td-trong" colspan="5"></td>
-            <td>Tổng tiền</td>
+            <td>Total amount</td>
             <td>'.number_format(($tongtien-$tongtien*$giamgia/100),0,'.',',').'</td>
         </tr>';
         unset($_SESSION['giamgia']);
@@ -81,7 +82,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
             <td class="td-trong"></td>
             <td class="td-trong"></td>
             <td class="td-trong"></td>
-            <td><strong>Tổng tiền</strong></td>
+            <td><strong>Total amount</strong></td>
             <td>'.number_format($tongtien,0,'.',',').'</td>
         </tr>';
         unset($_SESSION['giamgia']);
@@ -157,24 +158,24 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
         <div class="container-form">
         <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
         <hr>
-        <h2 class="title">THÔNG TIN ĐƠN HÀNG</h2> 
-        <p class="thank">Cảm ơn bạn đã ghé thăm cửa hàng của chúng tôi và đặt hàng tại đây!</p>
-    
+        <h2 class="title">ORDER INFORMATION</h2> 
+        <p class="thank">Thank you for visiting our store and placing an order here!</p>
+
                 <table>
                     <thead>
                         <tr >
-                            <th  colspan="8"><p style="font-size: 16px;text-align: center"><strong>Mã đơn hàng:</strong> '.$_SESSION['donhang']['ma_donhang'].' </th>
+                            <th  colspan="8"><p style="font-size: 16px;text-align: center"><strong>Order ID:</strong> '.$_SESSION['donhang']['ma_donhang'].' </th>
                         </tr> 
                         
                     </thead>
                     
                     <tbody>
-                        <td colspan="2" style="text-align:left"><strong>Ngày lập</strong></td>
+                        <td colspan="2" style="text-align:left"><strong>Date Of Establishment</strong></td>
                         <td colspan="6" style="text-align:left">'.$_SESSION['ngaylap'].'</td>
                       
                     </tbody>
                     <tbody>
-                        <td colspan="2" style="text-align:left"><strong>Họ tên</strong></td>
+                        <td colspan="2" style="text-align:left"><strong>Full Name</strong></td>
                         <td colspan="6" style="text-align:left">'.$_SESSION['name'].'</td>
                       
                     </tbody>
@@ -183,11 +184,11 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                         <td colspan="6" style="text-align:left">'.$_SESSION['email'].'</td>
                     </tbody>
                     <tbody>
-                        <td colspan="2" style="text-align:left"><strong>Số điện thoại</strong></td>
+                        <td colspan="2" style="text-align:left"><strong>Phone Number</strong></td>
                         <td colspan="6" style="text-align:left">'.$_SESSION['sdt'].'</td>
                     </tbody>
                     <tbody>
-                        <td colspan="2" style="text-align:left"><strong>Địa chỉ</strong></td>
+                        <td colspan="2" style="text-align:left"><strong>Address</strong></td>
                         <td colspan="6" style="text-align:left">'.$_SESSION['diachi'].'</td>
                     </tbody>
                     '.$account.'
@@ -196,13 +197,13 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                     
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên sản phẩm</th>
+                          <th>STT</th>
+                            <th>Product Name</th>
                             <th>Size</th>
-                            <th>Màu sắc</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Thành tiền</th>
+                            <th>Color</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     
@@ -212,10 +213,10 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
         
                     
                 </table>
-                Chúng tôi mong sớm được gặp lại bạn.
+                We look forward to seeing you soon.
             <br>
-    
-            Trân trọng, <strong>Zstyle</strong>
+
+            Best regards, <strong>Just 4 You</strong>
             <hr>
 
             <div class="icon">
@@ -225,10 +226,10 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 <i class="fa-brands fa-shopify"></i>
             </div>
 
-            ZStyle Shop <br>
+            Just 4 You Shop <br>
             Website: https://zstyle.online/ <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-            Email: zstyleshopvn@gmail.com <br>
+            Email: keerthudarshu06@gmail.com <br>
             Hotline: 19006789 <br>
             </div>
     </body>
@@ -338,21 +339,21 @@ if (isset($_POST["guima"])) {
         $mail->CharSet  = "utf-8";
         $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
         $mail->SMTPAuth   = true;             //Enable SMTP authentication
-        $mail->Username   = 'myhong11a32004@gmail.com';   //SMTP write your email
-        $mail->Password   = 'zhuv uzbw gnrd ziop';      //SMTP password
-        $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
-        $mail->Port       = 465;                                    
-     
+        $mail->Username   = 'keerthudarshu06@gmail.com';   //SMTP write your email
+        $mail->Password   = 'urdz ztjn ppzf agwn';      //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;                                    
+
         //Recipients
-        $mail->setFrom('zstyleshopvn@gmail.com', 'ZStyle' );  // Sender Email and name
+        $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
         $mail->addAddress($_POST["emailxn"]);     //Add a recipient email   // reply to sender email
         $_SESSION['emailxn']=$_POST["emailxn"];
         $_SESSION['username']=getusertoemail($_SESSION['emailxn'])['user'];
     
         //Content
         $mail->isHTML(true);               //Set email format to HTML
-        $mail->Subject = 'Chúng tôi đã khôi phục thành công tài khoản cho bạn!';  // email subject headings
-        $mail->AddEmbeddedImage('view/layout/assets/images/logo-form.png', 'logo', 'logo-form.png');
+        $mail->Subject = 'We have successfully restored your account!';  // email subject headings
+        $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
         
     
         $_SESSION['code']=creatcode();
@@ -450,7 +451,7 @@ if (isset($_POST["guima"])) {
                 <hr>
                 
                 <h2>Chào mừng bạn trở lại!</h2>
-                <p class="text">Hãy sử dụng mã xác minh bên dưới để xác nhận tài khoản có thông tin</p>
+                <p class="text">Please use the verification code below to confirm your account information.</p>
                 <table>
                     <tbody>
                         <tr>
@@ -468,14 +469,14 @@ if (isset($_POST["guima"])) {
                 <div id="code">
                     '.$_SESSION['code'].'
                 </div>
-        
-                Trân trọng, <strong>Zstyle</strong>
+
+                Best regards, <strong>Just 4 You</strong>
                 <hr>
-    
-                ZStyle Shop <br>
+
+                Just 4 You Shop <br>
                 Website: https://zstyle.online/ <br>
-                Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-                Email: zstyleshopvn@gmail.com <br>
+                Address: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
+                Email: Keerthudarshu06@gmail.com <br>
                 Hotline: 19006789 <br>
             </div>
         </body>

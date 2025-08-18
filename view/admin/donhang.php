@@ -14,7 +14,7 @@ foreach ($donhang as $item) {
         <td>' . $trangthai. '</td>
         <td>
             
-            <a href="index.php?pg=deldonhang&id=' . $id . '" class="del" style="padding: 0px">Hủy</a>
+            <a href="index.php?pg=deldonhang&id=' . $id . '" class="del" style="padding: 0px">Cancel</a>
         </td>
         </tr>';
     // $active = '';
@@ -70,7 +70,7 @@ foreach ($donhang as $item) {
             </div>
             <form action="index.php?pg=donhang" method="post" class="header-form">
               <div class="header-input">
-                <input name="keyworddonhang" type="text" placeholder="Tìm kiếm " />
+                <input name="keyworddonhang" type="text" placeholder="Search " />
                 <div class="header-input-icon">
                   <button name="searchdonhang"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
@@ -85,7 +85,7 @@ foreach ($donhang as $item) {
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -118,16 +118,15 @@ foreach ($donhang as $item) {
                     enctype="multipart/form-data">
                     <div
                         class="modal-heading">
-                        Thêm sản phẩm
-                        mới</div>
+                        Add new product
+                    </div>
                     <div
                         class="modal-form modal-form-addpro">
                         <div
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Mã khách
-                                hàng
+                                Customer ID
                             </div>
                             <input
                                 name="id_user"
@@ -137,7 +136,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Hình ảnh
+                                Image
                             </div>
                             <div
                                 class='input-image'>
@@ -168,7 +167,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Giá
+                                Price
                             </div>
                             <input
                                 name="price"
@@ -178,7 +177,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Số lượng
+                                Quantity
                             </div>
                             <input
                                 name="soluong"
@@ -188,8 +187,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Thành
-                                tiền
+                                Total
                             </div>
                             <input
                                 name="thanhtien"
@@ -207,7 +205,7 @@ foreach ($donhang as $item) {
                                     class="dropdown-select">
                                     <div class="dropdown-content"
                                         dropdown="1">
-                                        Khác
+                                        Other
                                     </div>
                                     <input
                                         name="size"
@@ -224,7 +222,7 @@ foreach ($donhang as $item) {
                                     dropdown="1">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                       Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
@@ -249,7 +247,7 @@ foreach ($donhang as $item) {
                                     class="dropdown-select">
                                     <div class="dropdown-content"
                                         dropdown="2">
-                                        Khác
+                                        Other
                                     </div>
                                     <input
                                         name="color"
@@ -266,7 +264,7 @@ foreach ($donhang as $item) {
                                     dropdown="2">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                        Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
@@ -298,7 +296,7 @@ foreach ($donhang as $item) {
                         class="modal-btn">
                         <button
                             name="btnsave"
-                            class="modal-button">Lưu</button>
+                            class="modal-button">Save</button>
                     </div>
                 </form>
             </div>
@@ -307,8 +305,8 @@ foreach ($donhang as $item) {
 
 
     <div class="dashboard-heading">
-        <h2 class="title-primary">Đơn hàng</h2>
-     
+        <h2 class="title-primary">Orders</h2>
+
     </div>
 
     <div
@@ -339,15 +337,14 @@ foreach ($donhang as $item) {
                     enctype="multipart/form-data">
                     <div
                         class="modal-heading">
-                        Cập nhật danh
-                        mục</div>
+                        Update Category</div>
                     <div
                         class="modal-form  modal-form-addpro">
                         <div
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Họ tên*
+                                Full Name*
                             </div>
                             <input
                                 name="name"
@@ -358,8 +355,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Tên đăng
-                                nhập*
+                                Username*
                             </div>
                             <input
                                 name="user"
@@ -370,8 +366,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Mật
-                                khẩu*
+                                Password*
                             </div>
                             <input
                                 name="pass"
@@ -393,8 +388,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Số điện
-                                thoại
+                                Phone Number
                             </div>
                             <input
                                 name="sdt"
@@ -405,8 +399,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Giới
-                                tính
+                                Gender
                             </div>
 
                             <div
@@ -432,15 +425,15 @@ foreach ($donhang as $item) {
                                     dropdown="4">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khác
+                                        Other
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Nam
+                                        Male
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Nữ
+                                        Female
                                     </div>
                                 </div>
                             </div>
@@ -449,8 +442,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Ngày
-                                sinh
+                                Date of birth
                             </div>
                             <input
                                 name="ngaysinh"
@@ -461,7 +453,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Địa chỉ
+                                Address
                             </div>
                             <input
                                 name="diachi"
@@ -472,7 +464,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Hình ảnh
+                                Image
                             </div>
                             <div
                                 class='input-image'>
@@ -503,7 +495,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Vai trò
+                                Role
                             </div>
 
                             <div
@@ -529,14 +521,11 @@ foreach ($donhang as $item) {
                                     dropdown="5">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Khách
-                                        hàng
+                                        Customer
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Quản
-                                        trị
-                                        viên
+                                        Administrator
                                     </div>
                                 </div>
                             </div>
@@ -545,8 +534,7 @@ foreach ($donhang as $item) {
                             class="modal-form-item">
                             <div
                                 class="modal-form-name">
-                                Kích
-                                hoạt
+                                Activate
                             </div>
 
                             <div
@@ -572,13 +560,11 @@ foreach ($donhang as $item) {
                                     dropdown="6">
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Kích
-                                        hoạt
+                                        Activate
                                     </div>
                                     <div class="dropdown-item"
                                         onclick="select(this)">
-                                        Bị
-                                        khóa
+                                        Deactivate
                                     </div>
                                 </div>
                             </div>
@@ -588,24 +574,26 @@ foreach ($donhang as $item) {
                         class="modal-btn">
                         <button
                             name="btnupdate"
-                            class="modal-button">Lưu</button>
+                            class="modal-button">Save</button>
                     </div>
                 </form>
             </div>
         </div>
+        
     </div>
+    
 
     <table class="product">
         <thead>
             <tr>
                 <th>STT</th>
-                <th>ID user</th>
-                <th>Tên người đặt</th>
-                <th>Mã đơn hàng</th>
-                <th>Địa chỉ</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-                <th>Thao tác</th>
+                <th>User ID</th>
+                <th>Placer's Name</th>
+                <th>Order Code</th>
+                <th>Address</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

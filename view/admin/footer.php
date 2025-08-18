@@ -4,9 +4,9 @@
 <footer class="footer">
           <div class="container">
             <div class="footer-logo">
-              <img src="../layout/assets/images/logo-footer.svg" alt="" />
+              <img src="../layout/assets/images/logo.png" alt=""style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
             </div>
-            <div class="footer-copy">@Copyright ZStyle.online since 2023</div>
+  <div class="footer-copy">Copyright © 2025 Just 4 You. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
           </div>
         </footer>
       </div>

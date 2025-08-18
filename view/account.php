@@ -60,14 +60,14 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home</a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-Shirts</a>
       </div>
       <form action="index.php?pg=account" method="post" enctype="multipart/form-data">
       <section class="account">
         <div class="container">
-          <h2 class="title-mobile">Hồ sơ của tôi</h2>
+          <h2 class="title-mobile">My profile</h2>
           <div class="account-main">
             <div class="account-left">
               <div class="account-info">
@@ -85,29 +85,29 @@
                   <div class="account-name"><?=$user?></div>
                   <div class="account-edit">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Sửa hồ sơ
+                Edit profile
                   </div>
                 </div>
               </div>
               <ul class="contact-menu account-menu">
                 <li class="contact-list account-list" id="myaccount">
                   <a href="#" class="contact-link account-link active" data-tab="1">
-                    <i class="fa fa-user" aria-hidden="true"></i>Tài khoản của tôi</a
+                    <i class="fa fa-user" aria-hidden="true"></i>My account</a
                   >
                 </li>
                 <li class="contact-list account-list" id="history">
                   <a href="#" class="contact-link account-link" data-tab="2">
-                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Lịch sử mua hàng</a
+                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Order history</a
                   >
                 </li>
                 <li class="contact-list account-list" style="display:none" id="history-order">
                   <a href="#" class="contact-link account-link" data-tab="2">
-                    <i class="fa fa-product-hunt" aria-hidden="true"></i>Đơn hàng</a
+                    <i class="fa fa-product-hunt" aria-hidden="true"></i>Orders</a
                   >
                 </li>
                 <li class="contact-list account-list">
                   <a href="index.php?pg=logoutuser" class="contact-link account-link">
-                  <i class="fas fa-sign-out-alt"></i>Đăng xuất</a
+                  <i class="fas fa-sign-out-alt"></i>Log out</a
                   >
                 </li>
               </ul>
@@ -116,16 +116,16 @@
             <div class="account-right active tab-content" data-tab="1">
               
               <div class="account-box">
-                <h2>Hồ sơ của tôi</h2>
-                <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                <h2>My profile</h2>
+                <p>Manage your profile information for account security</p>
                 <div class="account-group">
-                  <label for="">Tên đăng nhập:</label> <br />
+                  <label for="">Username:</label> <br />
                   <input name="user" type="text" value="<?=$user?>" />
                 </div>
                 <?=$erruser?>
                 <input name="pass" type="hidden" value="<?=$pass?>" />
                 <div class="account-group">
-                  <label for="">Họ và tên:</label> <br />
+                  <label for="">Full name:</label> <br />
                   <input name="name" type="text" value="<?=$name?>" />
                 </div>
                 <div class="account-group">
@@ -134,20 +134,20 @@
                 </div>
                 <?=$erremail?>
                 <div class="account-group">
-                  <label for="">Số điện thoại:</label> <br />
+                  <label for="">Phone number:</label> <br />
                   <input  name="sdt" type="text" value="<?=$sdt?>" />
                 </div>
                 <div class="account-group">
-                  <label for="">Ngày sinh:</label> <br />
+                  <label for="">Date of birth:</label> <br />
                   <input name="ngaysinh" type="date" value="<?=$ngaysinh?>" />
                 </div>
                 <div class="account-group">
-                  <label for="">Địa chỉ</label> <br />
+                  <label for="">Address:</label> <br />
                   <input name="diachi" type="text" value="<?=$diachi?>" />
                 </div>
                 <div class="product-btn account-btn">
-                  <button name="update_account" class="button-primary">Cập nhật tài khoản</button>
-                  <button name="del_account" class="button-primary button-del">Xoá tài khoản</button>
+                  <button name="update_account" class="button-primary">Update account</button>
+                  <button name="del_account" class="button-primary button-del">Delete account</button>
                 </div>
                 </div>
               
@@ -179,18 +179,18 @@
             </div>
             
             <div class="account-history tab-content" data-tab="2">
-              <p class="account-history-title">Lịch sử mua hàng</p>
-              <div>Quản lý thông tin mua hàng</div>
+              <p class="account-history-title">Order history</p>
+              <div>Manage your purchase information</div>
               <table class="history-order" border="1">
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th>Mã đơn hàng</th>
-                    <th>Mã khách hàng</th>
-                    <th>Ngày đặt hàng</th>
-                    <th>Thành tiền</th>
-                    <th>Trạng thái</th>
-                    <th>Thao tác</th>
+                    <th>Order ID</th>
+                    <th>Customer ID</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -221,17 +221,17 @@
               </table>
             </div>
             <div class="order-history tab-content" data-tab="2">
-              <p class="account-history-title">ĐƠN HÀNG</p>
-              <div>Quản lý thông tin chi tiết đơn hàng</div>
+              <p class="account-history-title">Order details</p>
+              <div>Manage your order information</div>
               <table class="history-order" border="1">
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th>Mã đơn hàng</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
+                    <th>Order ID</th>
+                    <th>Product ID</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
                   </tr>
                 </thead>
                 <tbody>

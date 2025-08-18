@@ -238,7 +238,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -266,34 +266,34 @@
                 </a>
                   <div class="modal-main">
                     <form action="index.php?pg=addproduct" method="post">
-                    <div class="modal-heading">Thêm sản phẩm mới</div>
+                    <div class="modal-heading">Add new product</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mã sản phẩm*</div>
+                        <div class="modal-form-name">Product code*</div>
                         <input name="ma_sanpham" type="text" value="<?=$ma_sanphamadd?>">
                       </div>
                       <?=$errma_sanphamadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tên sản phẩm*</div>
+                        <div class="modal-form-name">Product name*</div>
                         <input name="name" type="text" value="<?=$nameadd?>">
                       </div>
                       <?=$errnameadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giá hiện tại*</div>
+                        <div class="modal-form-name">Current price*</div>
                         <input name="price" type="text" value="<?=$priceadd?>">
                       </div>
                       <?=$errpriceadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giá cũ</div>
+                        <div class="modal-form-name">Old price</div>
                         <input name="priceold" type="text" />
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm hot</div>
+                        <div class="modal-form-name">Hot product</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="1">
-                              Không
+                              No
                               </div>
                               <input name="hot" type="hidden" class="dropdown-input" value="Không" dropdown="1"/>
                               <i
@@ -301,18 +301,18 @@
                                 aria-hidden="true" dropdown="1" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="1">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div> 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm nổi bật</div>
+                        <div class="modal-form-name">Featured Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="2">
-                              Không
+                              No
                               </div>
                               <input name="noibat" type="hidden" class="dropdown-input" value="Không" dropdown="2"/>
                               <i
@@ -320,13 +320,13 @@
                                 aria-hidden="true" dropdown="2" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="2">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div>  
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giới tính</div>
+                        <div class="modal-form-name">Sex</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -340,13 +340,13 @@
                           </div>
                           <div class="dropdown-list active" dropdown="3">
                             <div class="dropdown-item" onclick="select(this)">Unisex</div>
-                            <div class="dropdown-item" onclick="select(this)">Nam</div>
-                            <div class="dropdown-item" onclick="select(this)">Nữ</div>
+                            <div class="dropdown-item" onclick="select(this)">Male</div>
+                            <div class="dropdown-item" onclick="select(this)">Female</div>
                           </div>
                         </div>
                       </div>   
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Danh mục</div>
+                        <div class="modal-form-name">Category</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -366,12 +366,12 @@
                         </div>
                       </div>   
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm bán chạy</div>
+                        <div class="modal-form-name">Best-selling Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="5">
-                              Không
+                              No
                               </div>
                               <input name="bestsell" type="hidden" class="dropdown-input" value="Không" dropdown="5"/>
                               <i
@@ -379,18 +379,18 @@
                                 aria-hidden="true" dropdown="5" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="5">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div> 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm xu hướng</div>
+                        <div class="modal-form-name">Trending Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="6">
-                              Không
+                              No
                               </div>
                               <input name="trend" type="hidden" class="dropdown-input" value="Không" dropdown="6"/>
                               <i
@@ -398,23 +398,23 @@
                                 aria-hidden="true" dropdown="6" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="6">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div>  
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Lượt xem*</div>
+                        <div class="modal-form-name">Views*</div>
                         <input name="view" type="text" value="<?=$viewadd?>">
                       </div> 
                       <?=$errviewadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Chi tiết</div>
+                        <div class="modal-form-name">Details</div>
                         <input name="chitiet" type="text" />
                       </div>
                     </div> 
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                 </form>
                   </div>
@@ -423,10 +423,10 @@
 
 
               <div class="dashboard-heading">
-                <h2 class="title-primary">Sản phẩm</h2>
+                <h2 class="title-primary">Products</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                  Add
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -468,29 +468,29 @@
                     </a>
                     <div class="modal-main">
                       <form action="index.php?pg=updateproduct" method="post">
-                      <div class="modal-heading">Cập nhật sản phẩm</div>
+                      <div class="modal-heading">Product Updates</div>
                       <div class="modal-form  modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Mã sản phẩm*</div>
+                        <div class="modal-form-name">Product ID*</div>
                         <input name="ma_sanpham" type="text" value="<?=$ma_sanphamup?>"/>
                       </div>
                       <?=$errma_sanphamup?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tên sản phẩm*</div>
+                        <div class="modal-form-name">Product Name*</div>
                         <input name="name" type="text" value="<?=$nameup?>"/>
                       </div>
                       <?=$errnameup?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giá hiện tại*</div>
+                        <div class="modal-form-name">Current Price*</div>
                         <input name="price" type="text" value="<?=$priceup?>"/>
                       </div>
                       <?=$errpriceup?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giá cũ</div>
+                        <div class="modal-form-name">Old Price</div>
                         <input name="priceold" type="text" value="<?=$priceoldup?>"/>
                       </div>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm hot</div>
+                        <div class="modal-form-name">Trending Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -503,13 +503,13 @@
                                 aria-hidden="true" dropdown="7" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="7">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div> 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm nổi bật</div>
+                        <div class="modal-form-name">Featured Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -522,13 +522,13 @@
                                 aria-hidden="true" dropdown="8" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="8">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div>  
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Giới tính</div>
+                        <div class="modal-form-name">Gender</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -542,13 +542,13 @@
                           </div>
                           <div class="dropdown-list active" dropdown="9">
                             <div class="dropdown-item" onclick="select(this)">Unisex</div>
-                            <div class="dropdown-item" onclick="select(this)">Nam</div>
-                            <div class="dropdown-item" onclick="select(this)">Nữ</div>
+                            <div class="dropdown-item" onclick="select(this)">Male</div>
+                            <div class="dropdown-item" onclick="select(this)">Female</div>
                           </div>
                         </div>
                       </div>   
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Danh mục</div>
+                        <div class="modal-form-name">Category</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -568,7 +568,7 @@
                         </div>
                       </div>   
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm bán chạy</div>
+                        <div class="modal-form-name">Best Selling Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -581,13 +581,13 @@
                                 aria-hidden="true" dropdown="11" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="11">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div> 
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Sản phẩm xu hướng</div>
+                        <div class="modal-form-name">Trending Products</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -600,23 +600,23 @@
                                 aria-hidden="true" dropdown="12" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="12">
-                            <div class="dropdown-item" onclick="select(this)">Có</div>
-                            <div class="dropdown-item" onclick="select(this)">Không</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
+                            <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
                       </div>  
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Lượt xem*</div>
+                        <div class="modal-form-name">Views*</div>
                         <input name="view" type="text" value="<?=$viewup?>"/>
                       </div> 
                       <?=$errviewup?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Chi tiết</div>
+                        <div class="modal-form-name">Details</div>
                         <input name="chitiet" type="text" <?=$chitiet?>/>
                       </div> 
                     </div>
                       <div class="modal-btn">
-                        <button name="btnupdate" class="modal-button">Lưu</button>
+                        <button name="btnupdate" class="modal-button">Save</button>
                       </div>
                     </form>
                     </div>
@@ -626,14 +626,14 @@
                 <table class="product">
                 <thead>
                   <tr>
-                    <th>Mã sản phẩm</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Nổi bật</th>
-                    <th>Bán chạy</th>
-                    <th>Xu hướng</th>
-                    <th>Lượt xem</th>
-                    <th>Thao tác</th>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Featured</th>
+                    <th>Best Selling</th>
+                    <th>Trending</th>
+                    <th>Views</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>

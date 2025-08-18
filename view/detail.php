@@ -59,9 +59,9 @@
       <div class="modal-content">
         <div class="modal-main">
           <img src="view/layout/assets/images/thatbai.png" alt="">
-          <h3>Bạn phải đăng nhập vào tài khoản trước khi bình luận</h3>
+          <h3>You must log in to your account before commenting.</h3>
           <div class="modal__succesfully">
-              <button onclick="tatthongbaocart()" class="monal__succesfully-btn">Đồng ý</button>
+              <button onclick="tatthongbaocart()" class="monal__succesfully-btn">OK</button>
           </div>
         </div>
       </div>
@@ -73,9 +73,9 @@
       <div class="modal-content">
         <div class="modal-main">
           <img src="view/layout/assets/images/thatbai.png" alt="">
-          <h3>Bạn phải đặt hàng thành công ít nhất một sản phẩm mới có thể bình luận</h3>
+          <h3>You must place a successful order for at least one product before you can comment</h3>
           <div class="modal__succesfully">
-              <button onclick="tatthongbaocart()" class="monal__succesfully-btn">Đồng ý</button>
+              <button onclick="tatthongbaocart()" class="monal__succesfully-btn">OK</button>
           </div>
         </div>
       </div>
@@ -96,9 +96,9 @@
 <?=$html_err_comment?>
 
 <div class="link-mobile">
-    <a href="#">Trang chủ </a>
+    <a href="#">Home</a>
     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-    <a href="#">Áo thun</a>
+    <a href="#">T-Shirts</a>
 </div>
 
 <section class="detail">
@@ -109,12 +109,12 @@
 
             <div class="detail-content">
               <h3 class="detail-title"><?=$name?></h3>
-              <div class="detail-code">Mã sản phẩm: <span><?=$ma_sanpham?></span></div>
+              <div class="detail-code">Product code: <span><?=$ma_sanpham?></span></div>
               <div class="detail-price"><?=number_format($detail['price'],0,'',',')?>đ
                 <?=sale($detail)?>
               </div>
               <div class="detail-auth__color">
-                <div class="detail-colors">Màu sắc: </div>
+                <div class="detail-colors">Color: </div>
                 <?=$html_color?>
               </div>
               <div class="detail-size">Size: <span class="pick-size">XS</span></div>
@@ -126,22 +126,22 @@
 
               </div>
               <div class="detail-auth">
-                <div class="detail-text">Số lượng:</div>
+                <div class="detail-text">Quantity:</div>
                 <div class="detail-input">
                   <button onclick="minus()" class="detail-input__minus">-</button>
                   <input onchange="update_soluong()" type="text" value=1 />
                   <button onclick="plus()" class="detail-input__plus">+</button>
                 </div>
-                <div class="detail-inventory">Còn hàng</div>
+                <div class="detail-inventory">In stock</div>
                 <div style="display:none" id="slcon"></div>
               </div>
               <div class="detail-btn">
                 <form id="checkoutdung" action="index.php?pg=checkout" method="post">
                   <input  type="hidden" name="soluong_checkout" value=1>
                   <input type="hidden" name="id_checkout" value=<?=$detail['id']?>>
-                  <button name="btndetailcheckout" class="detail-button">Mua ngay</button>
+                  <button name="btndetailcheckout" class="detail-button">Buy now</button>
               </form>
-              <button style="display:none" id="checkoutsai" onclick="hethang()" class="detail-button">Mua ngay</button>
+              <button style="display:none" id="checkoutsai" onclick="hethang()" class="detail-button">Buy now</button>
               </div>
               <div class="detail-btn">
                 <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post">
@@ -152,9 +152,9 @@
                   <input  type="hidden" name="size" value="">
                   <input  type="hidden" name="soluong" value="">
                   <input  type="hidden" name="price" value=<?=$price?>>
-                  <button name="addtocart" class="detail-button__cart">Thêm vào giỏ hàng</button>
+                  <button name="addtocart" class="detail-button__cart">Add to cart</button>
                 </form>
-                <button style="display:none" id="cartsai" onclick="hethang()" class="detail-button__cart">Thêm vào giỏ hàng</button>
+                <button style="display:none" id="cartsai" onclick="hethang()" class="detail-button__cart">Add to cart</button>
               </div>
             </div>
           </div>
@@ -162,98 +162,88 @@
             <div class="detail-menu">
               <ul class="detail-tab">
                 <li class="detail-tab__item" id="iddetail">
-                  <a href="#tab" class="detail-tab__link active">Thông tin chi tiết</a>
+                  <a href="#tab" class="detail-tab__link active">Product Details</a>
                 </li>
                 <li class="detail-tab__item" id="policy">
-                  <a href="#tab" class="detail-tab__link">Chính sách bán hàng</a>
+                  <a href="#tab" class="detail-tab__link">Sales Policy</a>
                 </li>
                 <li class="detail-tab__item" id="comment">
-                  <a href="#tab" class="detail-tab__link">Đánh giá sản phẩm</a>
+                  <a href="#tab" class="detail-tab__link">Product Reviews</a>
                 </li>
               </ul>
             </div>
             <div class="detail-policy">
               <div class="detail-body">
                 <p class="detail-body__text">
-                  Áo thun Half được DESCENTE thổi hồn khả năng sáng tạo qua thiết kế phối màu tinh
-                  tế. Với sự kết hợp các gam màu một cách hài hòa, Half tạo ra điểm nhấn độc đáo và
-                  tươi mới cho phong cách của bạn. Chưa hết, nhờ chất vải mềm mại, thấm hút mồ hôi
-                  và khô nhanh, Half mang lại sự thoải mái và độ bền trong mọi hoạt động. Áo thun
-                  Half không chỉ là sự lựa chọn thời trang mà còn là cảm hứng cho những ngày sôi
-                  động.
+                  Our stylish range of kids wear, including kurthas, t-shirts, and all types of boys’ and girls’ outfits, breathes creativity into every design with sophisticated and playful color schemes. With a harmonious blend of shades, each piece adds a fresh and unique highlight to your child’s style. Made from soft, sweat-absorbent, and quick-drying fabrics, our kids wear ensures comfort, durability, and ease of movement in every activity. More than just fashion, our collection is an inspiration for vibrant and joyful days for your little ones.
                 </p>
               </div>
               <div class="detail-brand">
-                <div class="detail-brand__text">Thương hiệu: Zstyle</div>
-                <div class="detail-brand__text">Xuất xứ: Việt Nam</div>
-                <div class="detail-brand__text">Giới tính: Nam</div>
-                <div class="detail-brand__text">Màu sắc: Blue, Black</div>
-                <div class="detail-brand__text">Chất liệu: Polyester, Polyurethane</div>
+                <div class="detail-brand__text">Brand: Just4You</div>
+                <div class="detail-brand__text">Origin: Vietnam</div>
+                <div class="detail-brand__text">Gender: Male</div>
+                <div class="detail-brand__text">Color: Blue, Black</div>
+                <div class="detail-brand__text">Material: Polyester, Polyurethane</div>
               </div>
               <div class="detail-desc">
-                Thiết kế
+                Design
                 <ul class="detail-design">
                   <li class="detail-design__item">
-                    Chi tiết phản quang được đưa vào phía sau để tăng độ an toàn khi chạy vào ban
-                    đêm
+                  Reflective details are included at the back for increased safety when running at night.
                   </li>
-                  <li class="detail-design__item">Chất vải mềm mại và thấm hút tốt</li>
+                  <li class="detail-design__item">The fabric is soft and highly absorbent.</li>
                   <li class="detail-design__item">
-                    Gam màu hiện đại dễ dàng phối với nhiều trang phục
+                    The modern color palette easily coordinates with various outfits.
                   </li>
                 </ul>
               </div>
             </div>
             <div class="detail-content-2">
-              <h3 class="detail-content-heading">CHÍNH SÁCH ĐỔI SẢN PHẨM:</h3>
-              <div class="detail-content-title">1. Điều kiện đổi hàng</div>
+              <h3 class="detail-content-heading">PRODUCT EXCHANGE POLICY:</h3>
+              <div class="detail-content-title">1. Conditions for Exchange</div>
               <ul class="detail-menu">
                 <li class="detail-menu-item">
-                  Bạn lưu ý giữ lại hoá đơn để đổi hàng trong vòng 30 ngày.
+                  Please keep the invoice to exchange the product within 30 days.
                 </li>
                 <li class="detail-menu-item">
-                  Đối với mặt hàng giảm giá phụ kiện cá nhân không nhận đổi hàng.
+                  For discounted personal accessories, exchanges are not accepted.
                 </li>
                 <li class="detail-menu-item">
-                  Tất cả sản phẩm đã mua sẽ không được đổi trả lại bằng tiền mặt.
+                  All purchased products cannot be exchanged for cash.
                 </li>
                 <li class="detail-menu-item">
-                  Bạn có thể đổi size hoặc sản phẩm khác trong 30 ngày (Lưu ý: sản phẩm chưa qua sử
-                  dụng, còn tag nhãn và hoá đơn mua hàng).
+                  You can exchange for a different size or product within 30 days (Note: the product must be unused, with tags and purchase invoice intact).
                 </li>
                 <li class="detail-menu-item">
-                  Bạn vui lòng gửi cho chúng mình clip đóng gói và hình ảnh đơn hàng đổi trả của
-                  bạn, nhân viên tư vấn sẽ xác nhận và tiến hành lên đơn đổi trả cho bạn.
+                  Please send us a video of the packaging and images of your return order, and our consultants will verify and proceed with your return order.
                 </li>
               </ul>
-              <div class="detail-content-title">2.Trường hợp khiếu nại</div>
+              <div class="detail-content-title">2. Cases for Complaints</div>
               <ul class="detail-menu">
                 <li class="detail-menu-item">
-                  Bạn lưu ý giữ lại hoá đơn để đổi hàng trong vòng 30 ngày.
+                  Please keep the invoice to exchange the product within 30 days.
                 </li>
                 <li class="detail-menu-item">
-                  Đối với mặt hàng giảm giá phụ kiện cá nhân không nhận đổi hàng.
+                  For discounted personal accessories, exchanges are not accepted.
                 </li>
                 <li class="detail-menu-item">
-                  Tất cả sản phẩm đã mua sẽ không được đổi trả lại bằng tiền mặt.
+                  All purchased products cannot be exchanged for cash.
                 </li>
                 <li class="detail-menu-item">
-                  Bạn có thể đổi size hoặc sản phẩm khác trong 30 ngày (Lưu ý: sản phẩm chưa qua sử
-                  dụng, còn tag nhãn và hoá đơn mua hàng).
+                  You can exchange for a different size or product within 30 days (Note: the product must be unused, with tags and purchase invoice intact).
                 </li>
                 <li class="detail-menu-item">
-                  Bạn vui lòng gửi cho chúng mình clip đóng gói và hình ảnh đơn hàng đổi trả của
-                  bạn, nhân viên tư vấn sẽ xác nhận và tiến hành lên đơn đổi trả cho bạn.
+                  Please send us a video of the packaging and images of your return order, and our consultants will verify and proceed with your return order.
                 </li>
               </ul>
             </div>
             <div class="detail-content-comment">
-              <h2 class="detail-content-heading"><?=count($listcomment)?> Đánh giá</h2>
+              <h2 class="detail-content-heading"><?=count($listcomment)?> Evaluate</h2>
 
               
               <?=showcomment($listcomment)?>
               <div class="review">
-                Đánh giá của bạn
+                Your review
                 <div class="your-rating">
                     <input type="radio" id="star5" name="rating" value="5">
                     <label for="star5"></label>
@@ -286,7 +276,7 @@
       </section>
       <section class="product">
         <div class="container">
-          <div class="heading-primary">SẢN PHẨM CÙNG DANH MỤC</div>
+          <div class="heading-primary">PRODUCTS IN THE SAME CATEGORY</div>
           <div class="product-list">
               
           <?=$html_relative_product?>
@@ -294,7 +284,7 @@
           </div>
         </div>
         <div class="product-btn">
-          <a href='index.php?pg=product'><button class="button-primary">Xem tất cả</button></a>
+          <a href='index.php?pg=product'><button class="button-primary">View All</button></a>
         </div>
       </section>
       <div class="modal">
@@ -302,9 +292,9 @@
     <div class="modal-content">
       <div class="modal-main">
         <img src="view/layout/assets/images/thatbai.png" alt="">
-        <h3>Số lượng sẳn phẩm còn lại không đủ với yêu cầu của bạn</h3>
+        <h3>The remaining quantity of the product is not enough to meet your request</h3>
         <div class="modal__succesfully">
-            <button onclick="tatthongbaocart()" class="monal__succesfully-btn">Đồng ý</button>
+            <button onclick="tatthongbaocart()" class="monal__succesfully-btn">Agree</button>
         </div>
       </div>
     </div>

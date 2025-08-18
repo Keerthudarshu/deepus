@@ -50,15 +50,15 @@
         </ul>
       </div>
 <div class="link-mobile">
-        <a href="#">Trang chủ </a>
+        <a href="#">Home </a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <a href="#">Áo thun</a>
+        <a href="#">T-Shirts</a>
       </div>
       <section class="news">
         <div class="container">
           <div class="design-center news-center">
          
-            <h2 class="heading-primary heading-secondary">BÀI VIẾT MỚI NHẤT</h2>
+            <h2 class="heading-primary heading-secondary">LATEST ARTICLES</h2>
           </div>
           <?php
             $html_new_new='';
@@ -74,7 +74,7 @@
                   <p class="news-content-desc">
                   '.$noidung.'...
                   </p>
-                  <div class="news-content-more"><span>Đọc thêm</span> | '.$thoigian.'</div>
+                  <div class="news-content-more"><span>Read more</span> | '.$thoigian.'</div>
                 </div>
               </div>
             </div>';
@@ -87,7 +87,7 @@
       </section>
       <section class="news-card">
         <div class="container">
-          <h2>BÀI VIẾT KHÁC</h2>
+          <h2>OTHER ARTICLES</h2>
           <div class="news-item">
             <div class="blog-list news-list">
             <?php

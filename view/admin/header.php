@@ -17,7 +17,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
-    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/logo-admin.png" />
+    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/logo.png" />
   </head>
   <body>
     <div class="app">
@@ -59,7 +59,7 @@
       <div class="navigation">
         <ul class="dashboard-menu">
           <li class="dashboard-menu-list">
-            <img src="../layout/assets/images/logo-admin.png" alt="" />
+            <img src="../layout/assets/images/logo.png" alt="" style="height: 100px; width:auto; max-width:160px;"/>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php" class="dashboard-menu-link" data-tab="1">
@@ -70,49 +70,49 @@
           <li class="dashboard-menu-list">
             <a href="index.php?pg=catalog" class="dashboard-menu-link" data-tab="2">
               <i class="fa fa-list" aria-hidden="true"></i>
-              Danh mục sản phẩm
+              Product categories
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=product" class="dashboard-menu-link" data-tab="3">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              Sản phẩm
+             Products
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=user" class="dashboard-menu-link" data-tab="4">
               <i class="fa fa-user" aria-hidden="true"></i>
-              Tài khoản
+              Account
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=donhang" class="dashboard-menu-link" data-tab="5">
               <i class="fa fa-shopping-bag " aria-hidden="true"></i>
-              Đơn hàng
+             Orders
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=cart" class="dashboard-menu-link" data-tab="6">
               <i class="	fa fa-shopping-cart" aria-hidden="true"></i>
-              Giỏ hàng
+              Cart
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=binhluan" class="dashboard-menu-link" data-tab="7">
               <i class="fa fa-commenting" aria-hidden="true"></i>
-              Bình luận
+              Comments
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=tintuc" class="dashboard-menu-link" data-tab="8">
+            <a href="index.php?pg=news" class="dashboard-menu-link" data-tab="8">
             <ion-icon name="newspaper"></ion-icon>
-              Tin tức
+              News
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=img_product_color" class="dashboard-menu-link" data-tab="9">
             <ion-icon name="image"></ion-icon>
-              Hình ảnh sản phẩm
+              Product images
             </a>
           </li>
           <li class="dashboard-menu-list">
@@ -124,7 +124,7 @@
           <li class="dashboard-menu-list">
             <a href="index.php?pg=dadung_voucher" class="dashboard-menu-link" data-tab="11">
             <ion-icon name="gift"></ion-icon>
-              Voucher đã dùng
+             Used vouchers
             </a>
           </li>
           <li class="dashboard-menu-list">
@@ -136,13 +136,13 @@
           <li class="dashboard-menu-list">
             <a href="index.php?pg=img_design" class="dashboard-menu-link" data-tab="13">
             <ion-icon name="images"></ion-icon>
-              Ảnh design
+              Product images
             </a>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php?pg=logout" class="dashboard-menu-link">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
-              Đăng xuất
+              Log out
             </a>
           </li>
         </ul>

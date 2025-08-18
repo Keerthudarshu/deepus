@@ -23,7 +23,7 @@
             </div>
             <form action="" class="header-form">
               <div class="header-input">
-                <input type="text" placeholder="Tìm kiếm " />
+                <input type="text" placeholder="Search" />
                 <div class="header-input-icon">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </div>
@@ -38,7 +38,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="container">
 <div class="dashboard-content" data-tab="11">
   <div class="dashboard-heading">
-    <h2 class="title-primary">Voucher đã dùng</h2>
+    <h2 class="title-primary">Used Vouchers</h2>
   </div>
 
     <table class="product">

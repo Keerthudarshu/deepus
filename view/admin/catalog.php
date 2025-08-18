@@ -85,7 +85,7 @@
             </div>
             <form action="index.php?pg=catalog" method="post" class="header-form">
               <div class="header-input">
-                <input name="keywordcatalog" type="text" placeholder="Tìm kiếm " />
+                <input name="keywordcatalog" type="text" placeholder="Search" />
                 <div class="header-input-icon">
                   <button name="searchcatalog"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
@@ -100,7 +100,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -129,25 +129,25 @@
                   </a>
                   <div class="modal-main">
                     <form action="index.php?pg=addcatalog" method="post">
-                    <div class="modal-heading">Thêm danh mục mới</div>
+                    <div class="modal-heading">Add new category</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Stt hiển thị*</div>
+                        <div class="modal-form-name">Display status*</div>
                         <input name="stt" type="text" value="<?=$sttadd?>" />
                       </div>
                       <?=$err_sttadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tên danh mục*</div>
+                        <div class="modal-form-name">Category name*</div>
                         <input name="name" type="text" value="<?=$nameadd?>"/>
                       </div>
                       <?=$err_nameadd?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Hiển thị ở trang chủ</div>
+                        <div class="modal-form-name">Display on home page</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
                               <div class="dropdown-content" dropdown="1">
-                              Hiển thị
+                              Display
                               </div>
                               <input name="sethome" type="hidden" class="dropdown-input" value="Hiển thị" dropdown="1"/>
                               <i
@@ -155,14 +155,14 @@
                                 aria-hidden="true" dropdown="1" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="1">
-                            <div class="dropdown-item" onclick="select(this)">Hiển thị</div>
-                            <div class="dropdown-item" onclick="select(this)">Không hiển thị</div>
+                            <div class="dropdown-item" onclick="select(this)">Show</div>
+                            <div class="dropdown-item" onclick="select(this)">Hide</div>
                           </div>
                         </div>
                       </div>  
                       </div>  
                     <div class="modal-btn">
-                      <button name="btnsave" class="modal-button">Lưu</button>
+                      <button name="btnsave" class="modal-button">Save</button>
                     </div>
                     </form>
                   </div>
@@ -171,10 +171,10 @@
 
 
               <div class="dashboard-heading">
-                <h2 class="title-primary">Danh mục sản phẩm</h2>
+                <h2 class="title-primary">Product categories</h2>
                 <button class="dashboard-add">
                   <i class="fa fa-plus" aria-hidden="true"></i>
-                  Thêm
+                 More
                 </button>
                 <div class="modal">
                   <div class="modal-overlay"></div>
@@ -216,21 +216,21 @@
                     </a>
                     <div class="modal-main">
                       <form action="index.php?pg=updatecatalog" method="post">
-                      <div class="modal-heading">Cập nhật danh mục</div>
+                      <div class="modal-heading">Update catalog</div>
                       <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Stt hiển thị*</div>
+                        <div class="modal-form-name">Display status*</div>
                         <input name="stt" type="text" value=<?=$sttup?>>
                       </div>
                       <?=$err_sttup?>
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Tên danh mục*</div>
+                        <div class="modal-form-name">Category name*</div>
                         <input name="name" type="text"  value=<?=$nameup?>>
                       </div>
                       <?=$err_nameup?>
                       
                       <div class="modal-form-item">
-                        <div class="modal-form-name">Hiển thị ở trang chủ</div>
+                        <div class="modal-form-name">Display on home page*</div>
 
                         <div class="dropdown">
                           <div class="dropdown-select">
@@ -243,14 +243,14 @@
                                 aria-hidden="true" dropdown="2" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="2">
-                            <div class="dropdown-item" onclick="select(this)">Hiển thị</div>
-                            <div class="dropdown-item" onclick="select(this)">Không hiển thị</div>
+                            <div class="dropdown-item" onclick="select(this)">Show</div>
+                            <div class="dropdown-item" onclick="select(this)">Hide</div>
                           </div>
                         </div>
                       </div>
                       </div>
                       <div class="modal-btn">
-                        <button name="btnupdate" class="modal-button">Lưu</button>
+                        <button name="btnupdate" class="modal-button">Save</button>
                       </div>
                       </form>
                     </div>
@@ -260,10 +260,10 @@
                 <table class="product">
                 <thead>
                   <tr>
-                    <th>Stt hiển thị</th>
-                    <th>Tên danh mục</th>
-                    <th>Hiển thị ở trang chủ</th>
-                    <th>Thao tác</th>
+                    <th>Display status</th>
+                    <th>Category name</th>
+                    <th>Display on home page</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

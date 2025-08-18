@@ -59,10 +59,10 @@
         <div class="container">
           <div class="login-box">
             <div class="login-auth__login">
-              <div class="login-title">ĐĂNG KÝ</div>
+              <div class="login-title">REGISTER</div>
               <div class="login-regiter">
-                Đã có tài khoản, đăng nhập
-                <a href="index.php?pg=login" class="regester-link">tại đây </a>
+              Already have an account, 
+                <a href="index.php?pg=login" class="regester-link">log in </a>
               </div>
             </div>
             <form action="index.php?pg=register" method="post" class="login-form">
@@ -73,27 +73,27 @@
                   $_SESSION['emailsignup']='';
                   $_SESSION['repasswordsignup']='';
                }
-               echo '<input name="user" type="text" placeholder="Tên tài khoản" value='.$_SESSION['usernamesignup'].'> 
+               echo '<input name="user" type="text" placeholder="Account Name" value='.$_SESSION['usernamesignup'].'> 
                <div class="errform mb-unset">'.$errusername.'</div>
                <input name="email" type="text" placeholder="Email "  value='.$_SESSION['emailsignup'].'> 
                <div class="errform mb-unset">'.$erremail.'</div>
                <div class="login-password">
-                 <input name="pass" type="password" placeholder="Mật khẩu "  value='.$_SESSION['passwordsignup'].'>
+                 <input name="pass" type="password" placeholder="Password"  value='.$_SESSION['passwordsignup'].'>
                  <i class="fa fa-eye hien"  onclick="anmatkhau()" aria-hidden="true"></i>
                </div>
                <div class="errform mb-unset">'.$errpassword.'</div>
                <div class="login-password">
-                 <input name="repass" type="password" placeholder="Nhập lại mật khẩu "  value='.$_SESSION['repasswordsignup'].'>
+                 <input name="repass" type="password" placeholder="Confirm Password"  value='.$_SESSION['repasswordsignup'].'>
                  <i class="fa fa-eye hien"  onclick="anmatkhau1()" aria-hidden="true"></i>
                </div>
                <div class="errform mb-unset">'.$errrepassword.'</div>';
               ?>
               
               <div class="login-button">
-                <button name="btn_register" class="login-btn">Đăng ký</button>
+                <button name="btn_register" class="login-btn">Register</button>
               </div>
               <div class="login__center">
-                <div class="form-group-center text">Hoặc đăng nhập bằng</div>
+                <div class="form-group-center text">Or register with</div>
                 <div class="form-app">
                   <div class="form-app__fb">
                   <button class="btn_google">

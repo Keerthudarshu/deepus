@@ -14,7 +14,7 @@ foreach ($binhluan as $item) {
     
         <td>
             
-            <a href="index.php?pg=delbinhluan&id=' . $id . '" class="del" style="padding: 0px">Xóa</a>
+            <a href="index.php?pg=delbinhluan&id=' . $id . '" class="del" style="padding: 0px">Erase</a>
         </td>
         </tr>';
     // $active = '';
@@ -85,7 +85,7 @@ foreach ($binhluan as $item) {
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Chào, ZStyle</div>
+              <div class="header-name">Hi, Just4You</div>
             </div>
           </div>
         </div>
@@ -117,9 +117,9 @@ foreach ($binhluan as $item) {
 
 
     <div class="dashboard-heading">
-        <h2 class="title-primary">Bình luận</h2>
-        
-       
+        <h2 class="title-primary">Comments</h2>
+
+
     </div>
 
     <div
@@ -149,13 +149,13 @@ foreach ($binhluan as $item) {
     <table class="product">
         <thead>
             <tr>
-                <th>STT</th>
-                <th>ID PRO</th>
-                <th>ID USER</th>
-                <th>Thời gian</th>
-                <th>Nội dung</th>
-                <th>Đánh giá</th>
-                <th>Thao tác</th>
+                <th>No.</th>
+                <th>Product ID</th>
+                <th>User ID</th>
+                <th>Time</th>
+                <th>Content</th>
+                <th>Rating</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

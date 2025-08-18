@@ -132,7 +132,7 @@ $html_iconsubpage.='<li class="product-pagination-list">
           <!-- <div class="heading-primary">Danh sách sản phẩm</div> -->
           <div class="list-product__main">
             <div class="list-product__left">
-              <div class="list-product__left-aside">Danh mục sản phẩm</div>
+              <div class="list-product__left-aside">Product categories</div>
               <div class="list-product__left-aside-item">
                 <ul class="navbar-aside">
                   
