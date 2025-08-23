@@ -123,7 +123,12 @@
         return pdo_query_one($sql, $idproduct, $color)['price'];
      }
      function getsoluongtonkho($id){
-        $sql="SELECT * FROM soluongtonkho WHERE id_product=? ORDER BY id";
-        return pdo_query($sql, $id);
+        try{
+            $sql="SELECT * FROM soluongtonkho WHERE id_product=? ORDER BY id";
+            return pdo_query($sql, $id);
+        }catch(PDOException $e){
+            $sql2="SELECT * FROM quantity_of_inventory WHERE id_product=? ORDER BY id";
+            return pdo_query($sql2, $id);
+        }
      }
 ?>

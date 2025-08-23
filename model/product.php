@@ -1,7 +1,7 @@
 <?php
    function sale($item){
-      if($item['priceold']>0){
-         return '<span class="product-price-old">'.number_format($item['priceold'],0,'',',').'đ</span>';
+      if(isset($item['priceold']) && $item['priceold'] !== null && $item['priceold'] > 0){
+         return '<span class="product-price-old">'.number_format($item['priceold'],0,'',',').'9</span>';
       }else{
          return '';
       }
@@ -18,13 +18,13 @@
                                  '.check_img($img).'
                               </a>
                               <div class="icons">
-                                 <a href="'.$linkdetail.'" class="views">View details</a>
+                                 <a href="'.$linkdetail.'" class="views">View Details</a>
                                  <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
                               </div>
                               </div>
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">
-                              '.number_format($product['price'],0,'',',').'đ
+                              '.number_format($product['price'],0,'',',').'₹
                                  '.sale($product).'
                               </div>
                            </div>';
@@ -130,12 +130,12 @@
               </div>
               <div class="deal-content">
                 <div class="deal-title">Áo Thun Regular Bear Cool</div>
-                <div class="deal-price">'.number_format($product['price'],0,'',',').'đ
+                <div class="deal-price">'.number_format($product['price'],0,'',',').'₹
                 '.sale($product).'
                 </div>
                 <div class="deal-bestseller">Hot</div>
                 <div class="deal-auth">
-                  <a href="'.$linkdetail.'" class="deal-view">View details</a>
+                  <a href="'.$linkdetail.'" class="deal-view">View Details</a>
 
                   <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
                 </div>
@@ -165,12 +165,12 @@
               </div>
               <div class="deal-content">
                 <div class="deal-title">'.$name.'</div>
-                <div class="deal-price">'.number_format($item['price'],0,'',',').'đ
+                <div class="deal-price">'.number_format($item['price'],0,'',',').'₹
                 '.sale($item).'
                 </div>
                 <div class="deal-bestseller">Hot</div>
                 <div class="deal-auth">
-                  <a href="'.$linkdetail.'" class="deal-view">View details</a>
+                  <a href="'.$linkdetail.'" class="deal-view">View Details</a>
                   <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
 
                 </div>
@@ -210,11 +210,11 @@
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
-                              <div class="product-price">'.number_format($item['price'],0,'',',').'đ
+                              <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
                               </div>
                               <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
+                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
 
                               </div>
                               </div>
@@ -230,11 +230,11 @@
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
-                              <div class="product-price">'.number_format($item['price'],0,'',',').'đ
+                              <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
                               </div>
                               <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
+                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
 
                               </div>
                               </div>

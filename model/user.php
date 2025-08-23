@@ -56,10 +56,18 @@ function creatpass() {
    }
    return $username;
  }
- function creatuser($user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat){
-   $sql = "INSERT INTO users (user,pass, name,email,sdt,gioitinh,ngaysinh,diachi,role,img,kichhoat)
-   VALUES (?,?,?,?,?,?,?,?,?,?,?)";      
-   pdo_execute($sql, $user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat);
+// Duplicate creatuser removed
+function creatuser($user,$pass, $name,$email,$sdt,$gioitinh=null,$ngaysinh=null,$diachi='', $role=0, $img='', $kichhoat=1){
+  // Only require user, pass, name, email, sdt. All others get safe defaults.
+  $gioitinh = ($gioitinh == 1) ? 1 : 0;
+  $ngaysinh = (empty($ngaysinh) || $ngaysinh == '0000-00-00') ? null : $ngaysinh;
+  $diachi = $diachi ?? '';
+  $role = $role ?? 0;
+  $img = $img ?? '';
+  $kichhoat = $kichhoat ?? 1;
+  $sql = "INSERT INTO users (user,pass, name,email,sdt,gioitinh,ngaysinh,diachi,role,img,kichhoat)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?)";      
+  pdo_execute($sql, $user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat);
 }
 
 function update_user($id,$user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat){

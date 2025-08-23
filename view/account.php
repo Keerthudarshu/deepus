@@ -210,7 +210,7 @@
                       <td>'.number_format($tongtien,0,'.',',').'</td>
                       <td>'.$trangthai.'</td>
                       <td>
-                        <a href="index.php?pg=account&id='.$id.'" class="del">Hủy</a>
+                        <a href="index.php?pg=account&id='.$id.'" class="del">Cancel</a>
                       </td>
                     </tr>';
                      } 

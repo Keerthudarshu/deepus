@@ -3,14 +3,16 @@
     foreach ($img_product_color as $item) {
         extract($item);
         
+        $idProductVal = isset($id_product) ? $id_product : (isset($item['id_product']) ? $item['id_product'] : '');
+        $idColorVal = isset($id_color) ? $id_color : (isset($item['id_color']) ? $item['id_color'] : '');
         
         $html_img_product_color.='<tr>
         <td><img src="../../upload/'.$main_img.'"></td>
         <td ><img src="../../upload/'.$sub_img1.'"></td>
         <td><img src="../../upload/'.$sub_img2.'"></td>
         <td><img src="../../upload/'.$sub_img3.'"></td>
-        <td>'.$id_product.'</td>
-        <td>'.$id_color.'</td>
+        <td>'.$idProductVal.'</td>
+        <td>'.$idColorVal.'</td>
         <td>
             <a href="index.php?pg=update_img_product_color&id='.$id.'" class="edit">Fix</a>
             <a href="index.php?pg=del_img_product_color&id='.$id.'" class="del">Erase</a>
@@ -110,7 +112,7 @@
                             for($i=1;$i<=4;$i++){
                               $html_id= 'id="img-preview'.$i.'" ';
                               echo '<div class="modal-form-item">
-                              <div class="modal-form-name">Hình ảnh '.$i.'*</div>
+                              <div class="modal-form-name">Image '.$i.'*</div>
                               <div class="input-image">
                                 <input id="file-input'.$i.'" name="img'.$i.'" type="file" accept="image/*"/>
                                 '.substr_replace(check_img_admin("user.webp"), $html_id, 5, 0).'

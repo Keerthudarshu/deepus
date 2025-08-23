@@ -1,4 +1,3 @@
-   
 <?php
     function update_quantity_of_inventory($id_product,$id_color,$id_size,$soluong){
         $sql = "UPDATE quantity_of_inventory SET soluong=? WHERE id_product=? and id_color=? and id_size=?";
@@ -6,13 +5,6 @@
     }
     function getquantity_of_inventorythat($id_product,$id_color,$id_size){
         $sql="SELECT * FROM quantity_of_inventory where id_product=? and id_color=? and id_size=?";
-        $result = pdo_query_one($sql, $id_product,$id_color,$id_size);
-        return (is_array($result) && isset($result['soluong'])) ? $result['soluong'] : 0;
-    }
-
-     function getsoluongkho($id_product){
-        $sql = "SELECT SUM(soluong) as total FROM quantity_of_inventory WHERE id_product=?";
-        $result = pdo_query_one($sql, $id_product);
-        return isset($result['total']) ? $result['total'] : 0;
+        return pdo_query_one($sql, $id_product,$id_color,$id_size)['soluong'];
     }
 ?>

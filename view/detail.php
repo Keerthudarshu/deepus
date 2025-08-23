@@ -42,14 +42,14 @@
 
   
   $arr='';
-  if(isset($listsoluongtonkho)){
-    usort($listsoluongtonkho, function($a, $b) {
+  if(isset($listquantity_of_inventory)){
+    usort($listquantity_of_inventory, function($a, $b) {
       if ($a['id_color'] == $b['id_color']) {
           return $a['id_size'] - $b['id_size'];
       }
       return $a['id_color'] - $b['id_color'];
   });
-    $arr = json_encode($listsoluongtonkho);
+    $arr = json_encode($listquantity_of_inventory);
   }
   $html_err_comment='';
   if(isset($_SESSION['err_comment']) && $_SESSION['err_comment']>0){
@@ -90,8 +90,8 @@
 
 <div id="myData" data-array='<?php echo $arr; ?>'></div>
 <script>
-   var soluongtonkho = JSON.parse(document.getElementById('myData').getAttribute('data-array'));
-    console.log(soluongtonkho); // ['apple', 'banana', 'orange']
+   var quantity_of_inventory = JSON.parse(document.getElementById('myData').getAttribute('data-array'));
+    console.log(quantity_of_inventory); // ['apple', 'banana', 'orange']
 </script>
 <?=$html_err_comment?>
 
@@ -110,7 +110,7 @@
             <div class="detail-content">
               <h3 class="detail-title"><?=$name?></h3>
               <div class="detail-code">Product code: <span><?=$ma_sanpham?></span></div>
-              <div class="detail-price"><?=number_format($detail['price'],0,'',',')?>đ
+              <div class="detail-price"><?=number_format($detail['price'],0,'',',')?>₹
                 <?=sale($detail)?>
               </div>
               <div class="detail-auth__color">
@@ -266,7 +266,7 @@
               </div>
               <form class="div-comment" action="index.php?pg=comment" method="post">
                     <input id="selectedRating" type="hidden" name="rate">
-                    <input type="hidden" name="id_product" value=<?=$detail['id']?>>
+                    <input type="hidden" name="id_product" value="<?=$detail['ma_sanpham']?>">
                     <input type="text" name="comment" class="comment" placeholder="Bình luận...">
                     <button type="submit" name="send"><i class="fa fa-send send"></i></button>
                 </form>

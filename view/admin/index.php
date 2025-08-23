@@ -45,7 +45,8 @@
               $sethome=$_POST['sethome'];
               $_SESSION['addcatalog']=1;
               $catalog=getcatalog();
-              if($sethome=='Hiển thị'){
+              // Accept both Vietnamese and English for sethome
+              if($sethome=='Hiển thị' || strtolower($sethome)=='display' || strtolower($sethome)=='show'){
                 $sethome=1;
               }else{
                 $sethome=0;
@@ -99,6 +100,7 @@
           case 'updatecatalog':
             $err_nameup='';
             $err_sttup='';
+            $catalogdetail = [];
             if(isset($_GET['id']) && $_GET['id']){
               $_SESSION['update_id']=$_GET['id'];
               $catalogdetail=getcatalogdetail($_SESSION['update_id']);

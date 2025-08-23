@@ -61,8 +61,8 @@
             <div class="login-auth__login">
               <div class="login-title">REGISTER</div>
               <div class="login-regiter">
-              Already have an account, 
-                <a href="index.php?pg=login" class="regester-link">log in </a>
+                Already have an account, log in
+                <a href="index.php?pg=login" class="regester-link">here</a>
               </div>
             </div>
             <form action="index.php?pg=register" method="post" class="login-form">
@@ -78,12 +78,12 @@
                <input name="email" type="text" placeholder="Email "  value='.$_SESSION['emailsignup'].'> 
                <div class="errform mb-unset">'.$erremail.'</div>
                <div class="login-password">
-                 <input name="pass" type="password" placeholder="Password"  value='.$_SESSION['passwordsignup'].'>
+                 <input name="pass" type="password" placeholder="Password "  value='.$_SESSION['passwordsignup'].'>
                  <i class="fa fa-eye hien"  onclick="anmatkhau()" aria-hidden="true"></i>
                </div>
                <div class="errform mb-unset">'.$errpassword.'</div>
                <div class="login-password">
-                 <input name="repass" type="password" placeholder="Confirm Password"  value='.$_SESSION['repasswordsignup'].'>
+                 <input name="repass" type="password" placeholder="Confirm Password "  value='.$_SESSION['repasswordsignup'].'>
                  <i class="fa fa-eye hien"  onclick="anmatkhau1()" aria-hidden="true"></i>
                </div>
                <div class="errform mb-unset">'.$errrepassword.'</div>';
@@ -93,7 +93,7 @@
                 <button name="btn_register" class="login-btn">Register</button>
               </div>
               <div class="login__center">
-                <div class="form-group-center text">Or register with</div>
+                <div class="form-group-center text">Or sign in with</div>
                 <div class="form-app">
                   <div class="form-app__fb">
                   <button class="btn_google">

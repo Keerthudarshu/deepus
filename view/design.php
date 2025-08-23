@@ -528,11 +528,11 @@
                 <h3 class="custom-title">Total</h3>
                 <div class="custom-price">
                   <p>T-Shirt Price:</p>
-                  <p class="price-design">250,000đ</p>
+                  <p class="price-design">250,000₹</p>
                   <p>Printing Price:</p>
-                  <p class="price-design">50,000đ</p>
+                  <p class="price-design">50,000₹</p>
                   <p>Subtotal:</p>
-                  <p class="price-design">300,000</p>
+                  <p class="price-design">300,000₹</p>
                 </div>
                 <div class="detail-btn custom-add" id="addcart">
                   <button onclick="convertToImagecart()" class="detail-button__cart design-btn">Add to cart</button>

@@ -33,12 +33,13 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
+<link rel="icon" type="image/png" href="view/layout/assets/images/logo.png" />
   </head>
   <body>
     <div class="app">
       
       <!-- Header -->
-      <header class="header" style="  background-color: #2B2B2B !important">
+      <header class="header" style="  background-color: white!important">
         <div class="container">
           <div class="header-main">
             <div class="header-bars">
@@ -46,12 +47,12 @@
             </div>
             <div class="header-logo">
               <a href="index.php">
-                <img src="view/layout/assets/images/logo.png" alt="" style="height:48px; width:auto; max-width:160px;" />
+                <img src="view/layout/assets/images/logo.png" alt="" style="height:72px; width: 150px;; max-width:350px;" /><strong style="color: #f0a924ff;font-size: 24px; font-family: 'Times New Roman', Times, serif; font-weight: 600;">JUST 4 YOU</strong>
               </a>
             </div>
             <div class="header-logo-mobile">
               <a href="#">
-                <img src="view/layout/assets/images/logo-footer.svg" alt="" />
+                <img src="view/layout/assets/images/logo.png" alt="" />
               </a>
             </div>
             <div class="header-bad">
@@ -60,17 +61,17 @@
             <div class="header-form">
               <div class="header-input">
                 <form action="index.php?pg=product" method="post">
-                <input name="search" type="text" placeholder="Search products" />
+                <input name="search" type="text" placeholder="Search products" style="border:2px solid #000;" />
                 <div class="header-input-icon">
-                  <button name="btn_search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  <button name="btn_search" ><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
                 </form>
               </div>
             </div>
-            <div class="header-auth">
+            <div class="header-auth" style="color: #060606ff;">
               <div class="header-auth__item">
                 <i class="fa fa-heart" aria-hidden="true"></i>
-                <a href="#" class="header-link">Favorites</a>
+                <a href="#" class="header-link" style="color: #060606ff;" >Favorites</a>
               </div>
               <div class="header-auth__item">
               <?php
@@ -97,11 +98,11 @@
                 ?>
                 
                 <?=$img?>
-                <a href="<?=$link_taikhoan?>" class="header-link"><?=$tentaikhoan?></a>
+                <a href="<?=$link_taikhoan?>" class="header-link" style="color: #060606ff;" ><?=$tentaikhoan?></a>
               </div>
               <div class="header-auth__item">
                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                <a href="index.php?pg=cart" class="header-link">Shopping Cart</a>
+                <a href="index.php?pg=cart" class="header-link" style="color: #060606ff;">Shopping Cart</a>
               </div>
             </div>
           </div>
@@ -139,7 +140,7 @@
         </li>
       </ul>
 
-      <section class="header-bottom" style="  background-color: #B28737 ;">
+      <section class="header-bottom" style="  background-color: #f0a924ff ;">
         <div class="container">
           <div class="header-bottom__main">
             <form action="" class="header-form header-form-mobile">
@@ -162,6 +163,12 @@
               </li>
               <li class="header-menu-item">
                 <a href="index.php?pg=product" class="header-menu-link">Products</a>
+              </li>
+              <li class="header-menu-item">
+                <a href="index.php?pg=boys" class="header-menu-link">Boys</a>
+              </li>
+              <li class="header-menu-item">
+                <a href="index.php?pg=girls" class="header-menu-link">Girls</a>
               </li>
               <li class="header-menu-item">
                 <a href="index.php?pg=news" class="header-menu-link">News</a>

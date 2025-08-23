@@ -1,19 +1,25 @@
+
 <?php
     $html_catalog='<li class="navbar-list">
-    <a href="index.php?pg=product&tatca=1" class="navbar-link">All</a>
+    <a href="index.php?pg=boys&tatca=1" class="navbar-link">All</a>
     </li>';
     foreach ($catalog as $item) {
         extract($item);
         $html_catalog.='<li class="navbar-list">
-        <a href="index.php?pg=product&ind='.$id.'" class="navbar-link">'.$name.'</a>
+        <a href="index.php?pg=boys&ind='.$id.'" class="navbar-link">'.$name.'</a>
         </li>';
     }
+
+    // Filter products by gioitinh=1 (boys)
+    $boys_products = array_filter($_SESSION['product'], function($item) {
+        return isset($item['gioitinh']) && $item['gioitinh'] == 1;
+    });
 
     $html_product='<div class="product-list list-product-items subpage" page="1">';
     $i=1;
     $j=1;
     $html_iconsubpage='';
-    foreach ($_SESSION['product'] as $item) {
+    foreach ($boys_products as $item) {
       $html_product.=showproduct($item);
       if($i==12*$j){
         $html_product.='</div>
@@ -43,11 +49,7 @@ $html_iconsubpage.='<li class="product-pagination-list">
     
     $catalog_show='';
     if(isset($_SESSION['filtercatalog']) && ($_SESSION['filtercatalog']>0)){
-    if (is_array($catalog_pick) && isset($catalog_pick['name'])) {
-      $catalog_show=$catalog_pick['name'];
-    } else {
-      $catalog_show='All products';
-    }
+        $catalog_show=$catalog_pick['name'];
     }else{
         $catalog_show='All products';
     }

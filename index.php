@@ -281,6 +281,525 @@
             include_once "view/product.php";
             break;
 
+         case 'boys':
+            if(isset($_GET['tatca']) && $_GET['tatca']){
+               unset($_SESSION['filterprice']);
+               unset($_SESSION['filtercolor']);
+               unset($_SESSION['filtergioitinh']);
+               unset($_SESSION['filtercatalog']);
+            }
+            $catalog=getcatalog();
+            if(!isset($_SESSION['filtercatalog'])){
+               $_SESSION['filtercatalog']=0;
+            }
+            if(isset($_GET['ind']) && $_GET['ind']){
+               $_SESSION['filtercatalog']=$_GET['ind'];
+            }
+            if($_SESSION['filtercatalog']){
+               $catalog_pick=getcatalogdetail($_SESSION['filtercatalog']);
+            }
+            $_SESSION['product']=getproduct_catalog($_SESSION['filtercatalog']);
+            if(isset($_GET['color']) && $_GET['color']){
+               $_SESSION['filtercolor']=$_GET['color'];
+               $j=0;
+               foreach ($_SESSION['product'] as $item) {
+                  $listcolor=getlistcolor($item['id']);
+                  $kt=0;
+                  foreach ($listcolor as $item1) {
+                     if($item1['id']==$_SESSION['filtercolor']){
+                        $kt=1;
+                        break;
+                     }
+                  }
+                  if($kt==0){
+                     unset($_SESSION['product'][$j]);
+                  }
+                  $j++;
+               }
+            }else{
+               if(isset($_SESSION['filtercolor'])){
+                  $j=0;
+                  foreach ($_SESSION['product'] as $item) {
+                     $listcolor=getlistcolor($item['id']);
+                     $kt=0;
+                     foreach ($listcolor as $item1) {
+                        if($item1['id']==$_SESSION['filtercolor']){
+                           $kt=1;
+                           break;
+                        }
+                     }
+                     if($kt==0){
+                        unset($_SESSION['product'][$j]);
+                     }
+                     $j++;
+                  }
+               }
+            }
+            $_SESSION['producttemp']=[];
+            if(isset($_POST['btn_search'])){
+               $_SESSION['product']=searchproduct($_POST['search']);
+            }
+            if(!isset($_SESSION['filterprice'])){
+               $_SESSION['filterprice']='';
+            }
+            if(!isset($_SESSION['filtergioitinh'])){
+               $_SESSION['filtergioitinh']='';
+            }
+            if(isset($_GET['price']) || $_SESSION['filterprice']){
+               if(isset($_GET['price'])){
+                  if($_GET['price']<0){
+                     for($j=0;$j<strlen($_SESSION['filterprice']);$j++){
+                        if($_SESSION['filterprice'][$j]==-1*$_GET['price']){
+                           $dung='đúng';
+                           $_SESSION['filterprice']=str_replace($_SESSION['filterprice'][$j],'',$_SESSION['filterprice']);
+                        }
+                     }
+                  }else{
+                     $_SESSION['filterprice'].=$_GET['price'];
+                  }
+               }
+               
+               
+               for($i=0;$i<strlen($_SESSION['filterprice']);$i++){
+                  switch ($_SESSION['filterprice'][$i]) {
+                     case '1':
+                        $j=0;
+                        $productprice1=$_SESSION['product'];
+                        foreach ($productprice1 as $item) {
+                           if($item['price']>=300000){
+                              unset($productprice1[$j]);
+                           
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice1;
+                        break;
+                     case '2':
+                        $j=0;
+                        $productprice2=$_SESSION['product'];
+                        foreach ($productprice2 as $item) {
+                           if($item['price']<300000 || $item['price']>400000){
+                              unset($productprice2[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice2;
+                        break;
+                     case '3':
+                        $j=0;
+                        $productprice3=$_SESSION['product'];
+                        foreach ($productprice3 as $item) {
+                           if($item['price']<400000 || $item['price']>500000){
+                              unset($productprice3[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice3;
+                        break;
+                     case '4':
+                        $j=0;
+                        $productprice4=$_SESSION['product'];
+                        foreach ($productprice4 as $item) {
+                           if($item['price']<=500000){
+                              unset($productprice4[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice4;
+                        break;
+                     
+                     // default:
+                     //    # code...
+                     //    break;
+                  }
+               }
+            }
+            
+            if(isset($_GET['gioitinh']) || $_SESSION['filtergioitinh']){
+               if(isset($_GET['gioitinh'])){
+                  if($_GET['gioitinh']<0){
+                     for($j=0;$j<strlen($_SESSION['filtergioitinh']);$j++){
+                        if($_SESSION['filtergioitinh'][$j]==-1*$_GET['gioitinh']){
+                           $_SESSION['filtergioitinh']=str_replace($_SESSION['filtergioitinh'][$j],'',$_SESSION['filtergioitinh']);
+                        }
+                     }
+                  }else{
+                     $_SESSION['filtergioitinh'].=$_GET['gioitinh'];
+                  }
+               }
+               
+               for($i=0;$i<strlen($_SESSION['filtergioitinh']);$i++){
+                  switch ($_SESSION['filtergioitinh'][$i]) {
+                     case '1':
+                        $j=0;
+                        $productgioitinh1=$_SESSION['product'];
+                        foreach ($productgioitinh1 as $item) {
+                           if($item['gioitinh']!=1){
+                              unset($productgioitinh1[$j]);
+                           
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh1;
+                        break;
+                     case '2':
+                        $j=0;
+                        $productgioitinh2=$_SESSION['product'];
+                        foreach ($productgioitinh2 as $item) {
+                           if($item['gioitinh']!=2){
+                              unset($productgioitinh2[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh2;
+                        break;
+                     case '3':
+                        $j=0;
+                        $productgioitinh3=$_SESSION['product'];
+                        foreach ($productgioitinh3 as $item) {
+                           if($item['gioitinh']!=0){
+                              unset($productgioitinh3[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh3;
+                        break;
+                     
+                     // default:
+                     //    # code...
+                     //    break;
+                  }
+               }
+            }
+            $filter=0;
+            if($_SESSION['filterprice'] || $_SESSION['filtergioitinh']){
+               $filter=1;
+            }
+            if($filter==1){
+               unset($_SESSION['product']);
+               $_SESSION['product']=$_SESSION['producttemp'];
+               unset($_SESSION['producttemp']);
+            }else{
+               unset($_SESSION['producttemp']);
+            }
+
+            
+        
+        
+        
+            if(isset($_GET['sort']) && $_GET['sort']){
+               $_SESSION['sort']=$_GET['sort'];
+               switch ($_SESSION['sort']) {
+                  case '1':
+                     break;
+                  case '2':
+                     function compareNames($product1, $product2) {
+                        return strcmp($product1["name"], $product2["name"]);
+                     }
+                     
+                     // Sắp xếp mảng theo thuộc tính tên
+                     usort($_SESSION['product'], 'compareNames');
+                     
+                     break;
+                  case '3':
+                     function compareByNameDesc($a, $b) {
+                        return strcmp($b['name'], $a['name']);
+                     }
+                     // Sắp xếp mảng sử dụng hàm so sánh
+                     usort($_SESSION['product'], 'compareByNameDesc');
+                     break;
+                  case '4':
+                     function compareByPriceAsc($a, $b) {
+                        return $a['price'] - $b['price'];
+                     }
+                    
+                    // Sắp xếp mảng sử dụng hàm so sánh
+                    usort($_SESSION['product'], 'compareByPriceAsc');
+                     
+                     break;
+                  case '5':
+                     function compareByPriceDesc($a, $b) {
+                        return $b['price'] - $a['price'];
+                    }
+                    
+                    // Sắp xếp mảng sử dụng hàm so sánh
+                    usort($_SESSION['product'], 'compareByPriceDesc');
+                     break;
+                  
+                  // default:
+                  //    # code...
+                  //    break;
+               }
+            }
+            $_SESSION['subpage']=1;
+            if(isset($_GET['subpage']) && $_GET['subpage']){
+               $_SESSION['subpage']=$_GET['subpage'];
+               
+            }
+            $listcolor=getlistcolor(1);
+            include_once "view/boys.php";
+            break;
+
+
+            case 'girls':
+            if(isset($_GET['tatca']) && $_GET['tatca']){
+               unset($_SESSION['filterprice']);
+               unset($_SESSION['filtercolor']);
+               unset($_SESSION['filtergioitinh']);
+               unset($_SESSION['filtercatalog']);
+            }
+            $catalog=getcatalog();
+            if(!isset($_SESSION['filtercatalog'])){
+               $_SESSION['filtercatalog']=0;
+            }
+            if(isset($_GET['ind']) && $_GET['ind']){
+               $_SESSION['filtercatalog']=$_GET['ind'];
+            }
+            if($_SESSION['filtercatalog']){
+               $catalog_pick=getcatalogdetail($_SESSION['filtercatalog']);
+            }
+            $_SESSION['product']=getproduct_catalog($_SESSION['filtercatalog']);
+            if(isset($_GET['color']) && $_GET['color']){
+               $_SESSION['filtercolor']=$_GET['color'];
+               $j=0;
+               foreach ($_SESSION['product'] as $item) {
+                  $listcolor=getlistcolor($item['id']);
+                  $kt=0;
+                  foreach ($listcolor as $item1) {
+                     if($item1['id']==$_SESSION['filtercolor']){
+                        $kt=1;
+                        break;
+                     }
+                  }
+                  if($kt==0){
+                     unset($_SESSION['product'][$j]);
+                  }
+                  $j++;
+               }
+            }else{
+               if(isset($_SESSION['filtercolor'])){
+                  $j=0;
+                  foreach ($_SESSION['product'] as $item) {
+                     $listcolor=getlistcolor($item['id']);
+                     $kt=0;
+                     foreach ($listcolor as $item1) {
+                        if($item1['id']==$_SESSION['filtercolor']){
+                           $kt=1;
+                           break;
+                        }
+                     }
+                     if($kt==0){
+                        unset($_SESSION['product'][$j]);
+                     }
+                     $j++;
+                  }
+               }
+            }
+            $_SESSION['producttemp']=[];
+            if(isset($_POST['btn_search'])){
+               $_SESSION['product']=searchproduct($_POST['search']);
+            }
+            if(!isset($_SESSION['filterprice'])){
+               $_SESSION['filterprice']='';
+            }
+            if(!isset($_SESSION['filtergioitinh'])){
+               $_SESSION['filtergioitinh']='';
+            }
+            if(isset($_GET['price']) || $_SESSION['filterprice']){
+               if(isset($_GET['price'])){
+                  if($_GET['price']<0){
+                     for($j=0;$j<strlen($_SESSION['filterprice']);$j++){
+                        if($_SESSION['filterprice'][$j]==-1*$_GET['price']){
+                           $dung='đúng';
+                           $_SESSION['filterprice']=str_replace($_SESSION['filterprice'][$j],'',$_SESSION['filterprice']);
+                        }
+                     }
+                  }else{
+                     $_SESSION['filterprice'].=$_GET['price'];
+                  }
+               }
+               
+               
+               for($i=0;$i<strlen($_SESSION['filterprice']);$i++){
+                  switch ($_SESSION['filterprice'][$i]) {
+                     case '1':
+                        $j=0;
+                        $productprice1=$_SESSION['product'];
+                        foreach ($productprice1 as $item) {
+                           if($item['price']>=300000){
+                              unset($productprice1[$j]);
+                           
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice1;
+                        break;
+                     case '2':
+                        $j=0;
+                        $productprice2=$_SESSION['product'];
+                        foreach ($productprice2 as $item) {
+                           if($item['price']<300000 || $item['price']>400000){
+                              unset($productprice2[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice2;
+                        break;
+                     case '3':
+                        $j=0;
+                        $productprice3=$_SESSION['product'];
+                        foreach ($productprice3 as $item) {
+                           if($item['price']<400000 || $item['price']>500000){
+                              unset($productprice3[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice3;
+                        break;
+                     case '4':
+                        $j=0;
+                        $productprice4=$_SESSION['product'];
+                        foreach ($productprice4 as $item) {
+                           if($item['price']<=500000){
+                              unset($productprice4[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productprice4;
+                        break;
+                     
+                     // default:
+                     //    # code...
+                     //    break;
+                  }
+               }
+            }
+            
+            if(isset($_GET['gioitinh']) || $_SESSION['filtergioitinh']){
+               if(isset($_GET['gioitinh'])){
+                  if($_GET['gioitinh']<0){
+                     for($j=0;$j<strlen($_SESSION['filtergioitinh']);$j++){
+                        if($_SESSION['filtergioitinh'][$j]==-1*$_GET['gioitinh']){
+                           $_SESSION['filtergioitinh']=str_replace($_SESSION['filtergioitinh'][$j],'',$_SESSION['filtergioitinh']);
+                        }
+                     }
+                  }else{
+                     $_SESSION['filtergioitinh'].=$_GET['gioitinh'];
+                  }
+               }
+               
+               for($i=0;$i<strlen($_SESSION['filtergioitinh']);$i++){
+                  switch ($_SESSION['filtergioitinh'][$i]) {
+                     case '1':
+                        $j=0;
+                        $productgioitinh1=$_SESSION['product'];
+                        foreach ($productgioitinh1 as $item) {
+                           if($item['gioitinh']!=1){
+                              unset($productgioitinh1[$j]);
+                           
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh1;
+                        break;
+                     case '2':
+                        $j=0;
+                        $productgioitinh2=$_SESSION['product'];
+                        foreach ($productgioitinh2 as $item) {
+                           if($item['gioitinh']!=2){
+                              unset($productgioitinh2[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh2;
+                        break;
+                     case '3':
+                        $j=0;
+                        $productgioitinh3=$_SESSION['product'];
+                        foreach ($productgioitinh3 as $item) {
+                           if($item['gioitinh']!=0){
+                              unset($productgioitinh3[$j]);
+                           }
+                           $j++;
+                        }
+                        $_SESSION['producttemp']=$_SESSION['producttemp']+$productgioitinh3;
+                        break;
+                     
+                     // default:
+                     //    # code...
+                     //    break;
+                  }
+               }
+            }
+            $filter=0;
+            if($_SESSION['filterprice'] || $_SESSION['filtergioitinh']){
+               $filter=1;
+            }
+            if($filter==1){
+               unset($_SESSION['product']);
+               $_SESSION['product']=$_SESSION['producttemp'];
+               unset($_SESSION['producttemp']);
+            }else{
+               unset($_SESSION['producttemp']);
+            }
+
+            
+        
+        
+        
+            if(isset($_GET['sort']) && $_GET['sort']){
+               $_SESSION['sort']=$_GET['sort'];
+               switch ($_SESSION['sort']) {
+                  case '1':
+                     break;
+                  case '2':
+                     function compareNames($product1, $product2) {
+                        return strcmp($product1["name"], $product2["name"]);
+                     }
+                     
+                     // Sắp xếp mảng theo thuộc tính tên
+                     usort($_SESSION['product'], 'compareNames');
+                     
+                     break;
+                  case '3':
+                     function compareByNameDesc($a, $b) {
+                        return strcmp($b['name'], $a['name']);
+                     }
+                     // Sắp xếp mảng sử dụng hàm so sánh
+                     usort($_SESSION['product'], 'compareByNameDesc');
+                     break;
+                  case '4':
+                     function compareByPriceAsc($a, $b) {
+                        return $a['price'] - $b['price'];
+                     }
+                    
+                    // Sắp xếp mảng sử dụng hàm so sánh
+                    usort($_SESSION['product'], 'compareByPriceAsc');
+                     
+                     break;
+                  case '5':
+                     function compareByPriceDesc($a, $b) {
+                        return $b['price'] - $a['price'];
+                    }
+                    
+                    // Sắp xếp mảng sử dụng hàm so sánh
+                    usort($_SESSION['product'], 'compareByPriceDesc');
+                     break;
+                  
+                  // default:
+                  //    # code...
+                  //    break;
+               }
+            }
+            $_SESSION['subpage']=1;
+            if(isset($_GET['subpage']) && $_GET['subpage']){
+               $_SESSION['subpage']=$_GET['subpage'];
+               
+            }
+            $listcolor=getlistcolor(1);
+            include_once "view/girls.php";
+            break;
+
          case 'news':
             $new_home=getnew_home();
             $new_news= getnew_home_new();
@@ -728,8 +1247,8 @@
                            update_cart_ma_donhang($item,$iddonhang);
                            extract(getcartthanhtoan($item));
                            if($product_design==0){
-                              $soluongkho=getsoluongtonkhothat($id_product,$id_color,$id_size);
-                              update_soluongtonkho($id_product,$id_color,$id_size,$soluongkho-$soluong);
+                              $soluongkho=getsoluongkho($id_product,$id_color,$id_size);
+                              update_quantity_of_inventory($id_product,$id_color,$id_size,$soluongkho-$soluong);
                            }
                            
                         }
@@ -1274,8 +1793,8 @@
             foreach ($cart as $item) {
                extract($item);
                if($product_design==0){
-                  $soluongkho=getsoluongtonkhothat($id_product,$id_color,$id_size);
-                  update_soluongtonkho($id_product,$id_color,$id_size,$soluongkho+$soluong);
+                  $soluongkho=getquantity_of_inventorythat($id_product,$id_color,$id_size);
+                  update_quantity_of_inventory($id_product,$id_color,$id_size,$soluongkho+$soluong);
                }
                
                del_cart($id);
@@ -1288,8 +1807,8 @@
                      add_cart($_SESSION['iduser'], 1, $id, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),0,1);
                      $id_color=getidcolor($color);
                      $id_size=getidsize($size);
-                     $soluongkho=getsoluongtonkhothat($id,$id_color,$id_size);
-                     update_soluongtonkho($id,$id_color,$id_size,$soluongkho-$soluong);
+                     $soluongkho=getquantity_of_inventorythat($id,$id_color,$id_size);
+                     update_quantity_of_inventory($id,$id_color,$id_size,$soluongkho-$soluong);
                   }else{
                      add_cart($_SESSION['iduser'], 1, 1, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),1,$id_product_design);
                   }

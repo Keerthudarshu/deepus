@@ -3,17 +3,17 @@
     foreach ($catalog as $item) {
         extract($item);
         if($sethome==0){
-            $sethome='Không hiển thị';
+            $sethome='Not displayed';
         }else{
-            $sethome='Hiển thị';
+            $sethome='Display';
         }
         $html_catalog.='<tr>
         <td>'.$stt.'</td>
         <td>'.$name.'</td>
         <td>'.$sethome.'</td>
         <td>
-            <a href="index.php?pg=updatecatalog&id='.$id.'" class="edit">Sửa</a>
-            <a href="index.php?pg=delcatalog&id='.$id.'" class="del">Xóa</a>
+            <a href="index.php?pg=updatecatalog&id='.$id.'" class="edit">Edit</a>
+            <a href="index.php?pg=delcatalog&id='.$id.'" class="del">Delete</a>
         </td>
         </tr>
         ';
@@ -41,22 +41,28 @@
 
     
     // check form update catalog
+  $err_sttup = '';
+  $err_nameup = '';
+  $sttup = '';
+  $nameup = '';
     if(isset($_SESSION['update_id'])  && $_SESSION['update_id'] && !isset($_SESSION['editcatalog'])){
       $activeedit='';
-      extract($catalogdetail);
+      if (is_array($catalogdetail)) {
+        extract($catalogdetail);
+      }
       $sttup=$stt;
       $nameup=$name;
       if($sethome==1){
-        $sethomeup='Hiển thị';
+        $sethomeup='Display';
       }else{
-        $sethomeup='Không hiển thị';
+        $sethomeup='Not displayed';
       }
     }
     if(isset($_SESSION['update_id']) && $_SESSION['update_id'] && isset($_SESSION['editcatalog'])){
       if($sethomeup==1){
-        $sethomeup='Hiển thị';
+        $sethomeup='Display';
       }else{
-        $sethomeup='Không hiển thị';
+        $sethomeup='Not displayed';
       }
     }
     if(!isset($_SESSION['update_id'])){

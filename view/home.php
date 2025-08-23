@@ -83,21 +83,30 @@
               <div class="product-list product-list-2">
 
               <?php
+                $product_latest = getproduct(8);
                 $html_product='';
-                foreach ($product_noibat as $item) {
+                foreach (array_slice($product_latest, 0, 4) as $item) {
                     $html_product.= showproduct($item);
                 }
                 echo $html_product;
-            ?>
+              ?>
                 
               </div>
             </div>
             <div class="product-right">
-              <div class="product-banner">
-                <a href="index.php?pg=design">
-                  <img class="banner-img" src="view/layout/assets/images/newkids.jpg" alt="" />
-                </a>
+            <div class="product-left">
+              <div class="product-list product-list-2">
+
+              <?php
+                $html_product='';
+                foreach (array_slice($product_latest, 4, 4) as $item) {
+                    $html_product.= showproduct($item);
+                }
+                echo $html_product;
+              ?>
+                
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -166,7 +175,9 @@
                         $html_catalog.='<li class="tab-item"><a onclick="click_catalog(this)" class="tab-link">'.$item['name'].'</a></li>';
                     }
                     $product_catalog=getproduct_catalog($item['id']);
-                    extract($product_catalog[0]);
+          if (isset($product_catalog[0]) && is_array($product_catalog[0])) {
+            extract($product_catalog[0]);
+          }
                     
                     $html_product.='<div class="my-product" style="display:none;">
                     <div class="product-main mt-30">
@@ -183,8 +194,8 @@
                         </div>
                         <div class="deal-content">
                             <div class="deal-title">'.$name.'</div>
-                            <div class="deal-price">'.number_format($product_catalog[0]['price'],0,'',',').'đ
-                            '.sale($product_catalog[0]).'
+                            <div class="deal-price">'.(isset($product_catalog[0]['price']) && $product_catalog[0]['price'] !== null ? number_format($product_catalog[0]['price'],0,'',',') : '0').'₹
+                            '.(isset($product_catalog[0]) && is_array($product_catalog[0]) ? sale($product_catalog[0]) : '').'
                             </div>
                             <div class="deal-bestseller">Best Seller</div>
                             <div class="deal-auth">
@@ -343,7 +354,7 @@
         </div> -->
         </div>
       </section>
-      <section class="service">
+      <section class="service" style="background-color: white !important;">
         <div class="container">
           <div class="service-list">
             <div class="service-box item-1">

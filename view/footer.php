@@ -22,25 +22,25 @@
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><i class="fa fa-map-marker" aria-hidden="true"></i>
-                        Tầng 12, Nhà T, Quận 12, TPHCM
+                       JUST 4 YOU, Kammanahalli, Bengaluru, Bangalore, Karnataka 560084
                       </a>
                     </li>
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><i class="fa fa-phone" aria-hidden="true"></i>
-                        123456789
+                        094482 51753
                       </a>
                     </li>
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-google"></ion-icon>
-                        ZStyle@gmail.com
+                       Just4You@gmail.com
                       </a>
                     </li>
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-facebook"></ion-icon>
-                        ZStyle
+                        Just 4 You
                       </a>
                     </li>
                   </ul>

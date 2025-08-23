@@ -4,15 +4,15 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-color: #c0902e;
+  --primary-color: #f0a924ff;
   --white: #ffffff;
   --bg: #799881;
   --font: "Poppins", sans-serif;
   --black: #000;
-  --text-heading: #c0902e;
-  --bg-footer: #222222;
+  --text-heading: #f0a924ff;
+  --bg-footer: #000000ff ;
   --red: #f00;
-  --hover: #c0902e;
+  --hover: #f0a924ff;
 }
 * {
   margin: 0;
@@ -61,7 +61,7 @@ body {
   display: none;
 }
 .header {
-  background-color: #c0902e !important;
+  background-color: #f0a924ff !important;
   padding: 15px 0;
 }
 .header-main {
@@ -290,7 +290,7 @@ body {
 }
 .your-rating input:checked ~ label:before {
   content: "\2605"; /* Dấu sao đầy */
-  color: #f8df00;
+  color: #f0a924ff;
 }
 .div-comment {
   width: 100%;
@@ -376,10 +376,10 @@ body {
   font-size: 14px;
 }
 .comment-rating i:nth-child(1) {
-  color: #f8df00;
+  color: #f0a924ff;
 }
 .comment-rating i:nth-child(2) {
-  color: #f8df00;
+  color: #f0a924ff;
 }
 .review {
   display: flex;
@@ -750,7 +750,7 @@ body {
 }
 .service {
   padding: 60px 0;
-  background-color: #f0c879;
+  background-color: white !important;
 }
 .service-list {
   display: grid;
@@ -785,16 +785,16 @@ body {
   line-height: 22px;
 }
 .service-box.item-1 {
-  background-color: #e2aa38;
+  background-color: #f0a924ff;
 }
 .service-box.item-2 {
-  background-color: #e2aa38;
+  background-color: #f0a924ff;
 }
 .service-box.item-3 {
-  background-color: #e2aa38;
+  background-color: #f0a924ff;
 }
 .service-box.item-4 {
-  background-color: #e2aa38;
+  background-color: #f0a924ff;
 }
 .seller {
   padding: 60px 0;
@@ -862,7 +862,7 @@ body {
   font-weight: 400;
 }
 .customer-rating i {
-  color: #f4b744;
+  color: #f0a924ff;
 }
 .blog {
   padding: 60px 0;

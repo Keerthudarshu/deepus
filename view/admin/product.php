@@ -28,6 +28,7 @@
             $trend='';
         }
         $html_product.='<tr>
+        <td>'.$id.'</td>
         <td>'.$ma_sanpham.'</td>
         <td>'.$name.'</td>
         <td>'.number_format($price,0,'.',',').'</td>
@@ -36,8 +37,8 @@
         <td>'.$trend.'</td>
         <td>'.$view.'</td>
         <td>
-            <a href="index.php?pg=updateproduct&id='.$id.'" class="edit">Sửa</a>
-            <a href="index.php?pg=delproduct&id='.$id.'" class="del">Xóa</a>
+            <a href="index.php?pg=updateproduct&id='.$id.'" class="edit">Edit</a>
+            <a href="index.php?pg=delproduct&id='.$id.'" class="del">Delete</a>
         </td>
         </tr>';
         
@@ -626,7 +627,8 @@
                 <table class="product">
                 <thead>
                   <tr>
-                    <th>Product ID</th>
+                    <th>ID</th>
+                    <th>Product Code</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Featured</th>

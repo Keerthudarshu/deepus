@@ -111,7 +111,7 @@
                                 </div>
                               </div>
                             </td>
-                            <td class="pro-price">'.number_format($price,0,'',',').'đ</td>
+                            <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
                             <td class="pro-td-quantity">
                               <div class="detail-input pro-quantity">
                                 <button class="detail-input__minus tru">-</button>
@@ -121,7 +121,7 @@
                                 <input class="price" type="hidden" value="'.$price.'">
                               </div>
                             </td>
-                            <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'đ</td>
+                            <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
                           </tr>';
                           $tongtien+=intval($price)*intval($soluong);
                           $j++;
@@ -150,7 +150,7 @@
                                     </div>
                                   </div>
                                 </td>
-                                <td class="pro-price">'.number_format($price,0,'',',').'đ</td>
+                                <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
                                 <td class="pro-td-quantity">
                                   <div class="detail-input pro-quantity">
                                     <button class="detail-input__minus tru">-</button>
@@ -160,7 +160,7 @@
                                     <input class="price" type="hidden" value="'.$price.'">
                                   </div>
                                 </td>
-                                <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'đ</td>
+                                <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
                               </tr>';
                               $tongtien+=intval($price)*intval($soluong);
                               $j++;
@@ -195,7 +195,7 @@
                 <div class="cart-content-price">
                   <div class="cart-content__text">Total Amount</div>
                   <input class="tong" type="hidden" value=<?=$tongtien?>>
-                  <div class="cart-content__price"><?=number_format($tongtien,0,'',',')?>đ</div>
+                  <div class="cart-content__price"><?=number_format($tongtien,0,'',',')?>₹</div>
                 </div>
                 <script>
                 $(document).ready(function () {
@@ -223,7 +223,7 @@
                     var thanhtienso=soluong*price;
                     var thanhtien='';
                     if(thanhtienso==0){
-                        thanhtien='0đ';
+                        thanhtien='0₹';
                     }else{
                         while(thanhtienso>0){
                             if(thanhtienso>=1000000){
@@ -236,9 +236,9 @@
                             }
                             if(thanhtienso<1000){
                                 if(thanhtienso>0){
-                                    thanhtien+=thanhtienso+'đ';
+                                    thanhtien+=thanhtienso+'₹';
                                 }else{
-                                    thanhtien+='000đ';
+                                    thanhtien+='000₹';
                                 }
                             }
                         }
@@ -250,7 +250,7 @@
                 tong1=tong;
                 var tongchuoi='';
                 if(tong1==0){
-                    tongchuoi='0đ';
+                    tongchuoi='0₹';
                 }else{
                     while(tong1>0){
                         if(tong1>=1000000){
@@ -263,9 +263,9 @@
                         }
                         if(tong1<1000){
                             if(tong1>0){
-                                tongchuoi+=tong1+'đ';
+                                tongchuoi+=tong1+'₹';
                             }else{
-                                tongchuoi+='000đ';
+                                tongchuoi+='000₹';
                             }
                         }
                     }
@@ -309,7 +309,7 @@
                     var thanhtienso=soluong*price;
                     var thanhtien='';
                     if(thanhtienso==0){
-                        thanhtien='0đ';
+                        thanhtien='0₹';
                     }else{
                         while(thanhtienso>0){
                             if(thanhtienso>=1000000){
@@ -322,9 +322,9 @@
                             }
                             if(thanhtienso<1000){
                                 if(thanhtienso>0){
-                                    thanhtien+=thanhtienso+'đ';
+                                    thanhtien+=thanhtienso+'₹';
                                 }else{
-                                    thanhtien+='000đ';
+                                    thanhtien+='000₹';
                                 }
                             }
                         }
@@ -336,7 +336,7 @@
                 tong1=tong;
                 var tongchuoi='';
                 if(tong1==0){
-                    tongchuoi='0đ';
+                    tongchuoi='0₹';
                 }else{
                     while(tong1>0){
                         if(tong1>=1000000){
@@ -349,9 +349,9 @@
                         }
                         if(tong1<1000){
                             if(tong1>0){
-                                tongchuoi+=tong1+'đ';
+                                tongchuoi+=tong1+'₹';
                             }else{
-                                tongchuoi+='000đ';
+                                tongchuoi+='000₹';
                             }
                         }
                     }

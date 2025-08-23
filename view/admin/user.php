@@ -14,8 +14,8 @@
         <td>'.$pass.'</td>
         <td>'.$sdt.'</td>
         <td>
-            <a href="index.php?pg=updateuser&id='.$id.'" class="edit">Sửa</a>
-            <a href="index.php?pg=deluser&id='.$id.'" class="del">Xóa</a>
+            <a href="index.php?pg=updateuser&id='.$id.'" class="edit">Edit</a>
+            <a href="index.php?pg=deluser&id='.$id.'" class="del">Delete</a>
         </td>
         </tr>';
     }

@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="checkout-right-price">'.number_format($price,0,'',',').'đ</div>
+      <div class="checkout-right-price">'.number_format($price,0,'',',').'₹</div>
     </div>';
     }
   }
@@ -50,7 +50,7 @@
   if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
     $html_giamgia='<div class="form-flex">
     <span> Giảm giá</span>
-    <span>'.number_format($_SESSION['giamgia']*$tongtien/100,0,'',',').'đ</span>
+    <span>'.number_format($_SESSION['giamgia']*$tongtien/100,0,'',',').'₹</span>
   </div>';
   }
   $html_tocdo='';
@@ -312,7 +312,7 @@
                 <div class="form-group">
                   <div class="form-flex">
                     <span> Provisional</span>
-                    <span><?=number_format($tongtien,0,'',',')?>đ</span>
+                    <span><?=number_format($tongtien,0,'',',')?>₹</span>
                   </div>
 
                   <?=$html_giamgia?>
@@ -325,7 +325,7 @@
                 
                 <div class="form-flex mt-10">
                   <span class="checkout-total">Total</span>
-                  <span><?=number_format($tongtien-$_SESSION['giamgia']*$tongtien/100,0,'',',')?>đ</span>
+                  <span><?=number_format($tongtien-$_SESSION['giamgia']*$tongtien/100,0,'',',')?>₹</span>
                 </div>
                 <div class="form-flex back-flex mt-10">
                   <div class="back-cart">
