@@ -13,15 +13,27 @@
             $linkdetail='index.php?pg=detail&id='.$id;
             $strproduct='';
             $strproduct='<div class="product-item">
-                              <div class="product-images">
-                              <a href="'.$linkdetail.'">
-                                 '.check_img($img).'
-                              </a>
-                              <div class="icons">
-                                 <a href="'.$linkdetail.'" class="views">View Details</a>
-                                 <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
-                              </div>
-                              </div>
+                                             <div class="product-images" style="position:relative;">
+                                                <a href="'.$linkdetail.'">
+                                                    '.check_img($img).'
+                                                </a>
+                                                <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post" style="position:absolute;top:10px;right:10px;z-index:2;">
+                                                   <input type="hidden" name="id" value="'.$id.'">
+                                                   <input type="hidden" name="img" value="'.$img.'">
+                                                   <input type="hidden" name="name" value="'.$name.'">
+                                                   <input type="hidden" name="color" value="default">
+                                                   <input type="hidden" name="size" value="default">
+                                                   <input type="hidden" name="soluong" value="1">
+                                                   <input type="hidden" name="price" value="'.$price.'">
+                                                   <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">
+                                                      🛒
+                                                   </button>
+                                                </form>
+                                                <div class="icons">
+                                                    <a href="'.$linkdetail.'" class="views">View Details</a>
+                                                    <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
+                                                </div>
+                                             </div>
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">
                               '.number_format($product['price'],0,'',',').'₹
@@ -134,11 +146,20 @@
                 '.sale($product).'
                 </div>
                 <div class="deal-bestseller">Hot</div>
-                <div class="deal-auth">
-                  <a href="'.$linkdetail.'" class="deal-view">View Details</a>
-
-                  <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
-                </div>
+                        <div class="deal-auth">
+                           <a href="'.$linkdetail.'" class="deal-view">View Details</a>
+                           <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post" style="display:inline;">
+                              <input type="hidden" name="id" value="'.$id.'">
+                              <input type="hidden" name="img" value="'.(isset($img['main_img']) ? $img['main_img'] : '').'">
+                              <input type="hidden" name="name" value="'.$name.'">
+                              <input type="hidden" name="color" value="default">
+                              <input type="hidden" name="size" value="default">
+                              <input type="hidden" name="soluong" value="1">
+                              <input type="hidden" name="price" value="'.$price.'">
+                              <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">🛒</button>
+                           </form>
+                           <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
+                        </div>
               </div>
             </div>
           </div>';
@@ -212,11 +233,21 @@
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
+                              <div class="top-btn" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
+                                                <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post" style="display:inline;">
+                                                   <input type="hidden" name="id" value="'.$id.'">
+                                                   <input type="hidden" name="img" value="'.$img.'">
+                                                   <input type="hidden" name="name" value="'.$name.'">
+                                                   <input type="hidden" name="color" value="default">
+                                                   <input type="hidden" name="size" value="default">
+                                                   <input type="hidden" name="soluong" value="1">
+                                                   <input type="hidden" name="price" value="'.$price.'">
+                                                   <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">🛒</button>
+                                                </form>
+                                                <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
+                                             </div>
                               </div>
-                              <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
-
-                              </div>
+                                             
                               </div>
                            </div>
                            </div>';
@@ -232,11 +263,21 @@
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
+                              <div class="top-btn" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
+                                                <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post" style="display:inline;">
+                                                   <input type="hidden" name="id" value="'.$id.'">
+                                                   <input type="hidden" name="img" value="'.$img.'">
+                                                   <input type="hidden" name="name" value="'.$name.'">
+                                                   <input type="hidden" name="color" value="default">
+                                                   <input type="hidden" name="size" value="default">
+                                                   <input type="hidden" name="soluong" value="1">
+                                                   <input type="hidden" name="price" value="'.$price.'">
+                                                   <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">🛒</button>
+                                                </form>
+                                                <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
+                                             </div>
                               </div>
-                              <div class="top-btn">
-                              <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Mua ngay</button></a>
-
-                              </div>
+                              
                               </div>
                            </div>
                            </div>';

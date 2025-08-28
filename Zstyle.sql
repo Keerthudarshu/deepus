@@ -1,3 +1,17 @@
+CREATE TABLE users (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user VARCHAR(255),
+	pass VARCHAR(255),
+	name VARCHAR(255),
+	email VARCHAR(255),
+	sdt VARCHAR(255),
+	gioitinh VARCHAR(10),
+	ngaysinh DATE,
+	diachi VARCHAR(255),
+	role INT(1),
+	img VARCHAR(255),
+	kichhoat INT(1)
+);
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Server version:               8.4.3 - MySQL Community Server - GPL

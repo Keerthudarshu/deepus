@@ -28,22 +28,42 @@
 
     function getcolor($id_color){
         $sql="SELECT * FROM color where id=?";
-        return pdo_query_one($sql, $id_color)['color'];
+        $row = pdo_query_one($sql, $id_color);
+        if ($row !== false && isset($row['color'])) {
+            return $row['color'];
+        } else {
+            return '';
+        }
     }
 
     function getsize($id_size){
         $sql="SELECT * FROM size where id=?";
-        return pdo_query_one($sql, $id_size)['ma_size'];
+        $row = pdo_query_one($sql, $id_size);
+        if ($row !== false && isset($row['ma_size'])) {
+            return $row['ma_size'];
+        } else {
+            return '';
+        }
     }
 
     function getidcolor($color){
         $sql="SELECT * FROM color where color=?";
-        return pdo_query_one($sql, $color)['id'];
+        $row = pdo_query_one($sql, $color);
+        if ($row !== false && isset($row['id'])) {
+            return $row['id'];
+        } else {
+            return 1; // fallback to valid default
+        }
     }
 
     function getidsize($size){
         $sql="SELECT * FROM size where ma_size=?";
-        return pdo_query_one($sql, $size)['id'];
+        $row = pdo_query_one($sql, $size);
+        if ($row !== false && isset($row['id'])) {
+            return $row['id'];
+        } else {
+            return 1; // fallback to valid default
+        }
     }
 
     function getcartuser($id_user){

@@ -100,7 +100,7 @@
                                   <div class="cart-body-size">'.$color.'/'.$size.'</div>
                                   <div class="detail-input pro-quantity-mobile">
                                     <button class="detail-input__minus tru">-</button>
-                                    <input class="soluong" type="text" value='.$soluong.' />
+                                    <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
                                     <button class="detail-input__plus cong">+</button>
                                     <input class="index" type="hidden" value="'.$j.'">
                                 <input class="price" type="hidden" value="'.$price.'">
@@ -115,13 +115,13 @@
                             <td class="pro-td-quantity">
                               <div class="detail-input pro-quantity">
                                 <button class="detail-input__minus tru">-</button>
-                                <input class="soluong" type="text" value='.$soluong.' />
+                                <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
                                 <button class="detail-input__plus cong">+</button>
                                 <input class="index" type="hidden" value="'.$j.'">
                                 <input class="price" type="hidden" value="'.$price.'">
                               </div>
                             </td>
-                            <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
+                              <td class="pro-price-quantity">'.number_format(intval($price)*max(intval($soluong),1),0,'',',').'₹</td>
                           </tr>';
                           $tongtien+=intval($price)*intval($soluong);
                           $j++;
@@ -169,7 +169,12 @@
                           
                       }
                     }
-                    echo $html_cart;
+          echo $html_cart;
+          if(count($_SESSION['giohang'])>0){
+            $_SESSION['cart_total'] = $tongtien;
+          }else{
+            unset($_SESSION['cart_total']);
+          }
                   ?>
                 </tbody>
               </table>  
@@ -194,184 +199,51 @@
               <div class="cart-content">
                 <div class="cart-content-price">
                   <div class="cart-content__text">Total Amount</div>
-                  <input class="tong" type="hidden" value=<?=$tongtien?>>
-                  <div class="cart-content__price"><?=number_format($tongtien,0,'',',')?>₹</div>
+                  <input class="tong" type="hidden" value="<?=$tongtien?>">
+                  <div class="cart-content__price"><span id="cart-total-display"><?=number_format($tongtien,0,'',',')?>₹</span></div>
                 </div>
                 <script>
-                $(document).ready(function () {
-            var tong=$('.tong').val();
-            $(".tru").click(function (e) { 
-                e.preventDefault();
-                // alert("ok");
-                var soluong=$(this).parent().find('.soluong').val();
-                soluongdau=soluong;
-                soluong--;
-                $(this).parent().find('.soluong').val(soluong);
-                // alert(txt);
-                // alert(mycart.length);
-        
-                // alert(tong);
-                var ind=$(this).parent().find('.index').val();
-                var price=$(this).parent().find('.price').val();
-                if(soluong==0){
-                    $(".cart-product:eq("+ind+")").remove();
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").remove();
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").remove();
-                }else{
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").find("span").html(soluong);
-                    // $(".fee-cart").find("h1:eq("+(ind*2+1)+")").find("span").html((soluong*price).toLocaleString("en-US", {style:"currency", currency:"USD"}));'
-                    var thanhtienso=soluong*price;
-                    var thanhtien='';
-                    if(thanhtienso==0){
-                        thanhtien='0₹';
-                    }else{
-                        while(thanhtienso>0){
-                            if(thanhtienso>=1000000){
-                                thanhtien+=Math.floor(thanhtienso/1000000)+',';
-                                thanhtienso=thanhtienso-Math.floor(thanhtienso/1000000)*1000000;
-                            }
-                            if(thanhtienso>=1000){
-                                thanhtien+=Math.floor(thanhtienso/1000)+',';
-                                thanhtienso=thanhtienso-Math.floor(thanhtienso/1000)*1000;
-                            }
-                            if(thanhtienso<1000){
-                                if(thanhtienso>0){
-                                    thanhtien+=thanhtienso+'₹';
-                                }else{
-                                    thanhtien+='000₹';
-                                }
-                            }
-                        }
-                    }
-                       
-                    $(".cart-product:eq("+ind+")").find('.pro-price-quantity').html(thanhtien);
-                }
-                tong=parseInt(tong)-parseInt((soluongdau-soluong)*price);
-                tong1=tong;
-                var tongchuoi='';
-                if(tong1==0){
-                    tongchuoi='0₹';
-                }else{
-                    while(tong1>0){
-                        if(tong1>=1000000){
-                            tongchuoi+=Math.floor(tong1/1000000)+',';
-                            tong1=tong1-Math.floor(tong1/1000000)*1000000;
-                        }
-                        if(tong1>=1000){
-                            tongchuoi+=Math.floor(tong1/1000)+',';
-                            tong1=tong1-Math.floor(tong1/1000)*1000;
-                        }
-                        if(tong1<1000){
-                            if(tong1>0){
-                                tongchuoi+=tong1+'₹';
-                            }else{
-                                tongchuoi+='000₹';
-                            }
-                        }
-                    }
-                }
-                $(".cart-content__price").html(tongchuoi);
-
-                // $(".fee-cart:eq(1)").find('span').html(tong.toLocaleString("en-US", {style:"currency", currency:"USD"}));
-                // if(tong==0){
-                //     $('.layout-cart').find('article').html(str);
-                //     $('.layout-cart').find('aside').remove();
-                // }
-                $.post("index.php?pg=cart", {
-                    soluongmoi: soluong,
-                    ind: ind
-                },
-                    function (data, textStatus, jqXHR) {
-                        $("#msg").html(data);
-                    }
-                );
+        $(document).ready(function () {
+          function updateTotal() {
+            var total = 0;
+            $('.pro-price-quantity').each(function () {
+              var text = $(this).text().replace(/[^\d]/g, '');
+              var value = parseInt(text);
+              if (!isNaN(value)) {
+                total += value;
+              }
             });
-            $(".cong").click(function (e) { 
-                e.preventDefault();
-                // alert("ok");
-                var soluong=$(this).parent().find('.soluong').val();
-                soluongdau=soluong;
-                soluong++;
-                $(this).parent().find('.soluong').val(soluong);
-                // alert(txt);
-                // alert(mycart.length);
-        
-                // alert(tong);
-                var ind=$(this).parent().find('.index').val();
-                var price=$(this).parent().find('.price').val();
-                if(soluong==0){
-                    $(".cart-product:eq("+ind+")").remove();
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").remove();
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").remove();
-                }else{
-                    // $(".fee-cart").find("h1:eq("+(ind*2)+")").find("span").html(soluong);
-                    // $(".fee-cart").find("h1:eq("+(ind*2+1)+")").find("span").html((soluong*price).toLocaleString("en-US", {style:"currency", currency:"USD"}));'
-                    var thanhtienso=soluong*price;
-                    var thanhtien='';
-                    if(thanhtienso==0){
-                        thanhtien='0₹';
-                    }else{
-                        while(thanhtienso>0){
-                            if(thanhtienso>=1000000){
-                                thanhtien+=Math.floor(thanhtienso/1000000)+',';
-                                thanhtienso=thanhtienso-Math.floor(thanhtienso/1000000)*1000000;
-                            }
-                            if(thanhtienso>=1000){
-                                thanhtien+=Math.floor(thanhtienso/1000)+',';
-                                thanhtienso=thanhtienso-Math.floor(thanhtienso/1000)*1000;
-                            }
-                            if(thanhtienso<1000){
-                                if(thanhtienso>0){
-                                    thanhtien+=thanhtienso+'₹';
-                                }else{
-                                    thanhtien+='000₹';
-                                }
-                            }
-                        }
-                    }
-                       
-                    $(".cart-product:eq("+ind+")").find('.pro-price-quantity').html(thanhtien);
-                }
-                tong=parseInt(tong)+parseInt((soluong-soluongdau)*price);
-                tong1=tong;
-                var tongchuoi='';
-                if(tong1==0){
-                    tongchuoi='0₹';
-                }else{
-                    while(tong1>0){
-                        if(tong1>=1000000){
-                            tongchuoi+=Math.floor(tong1/1000000)+',';
-                            tong1=tong1-Math.floor(tong1/1000000)*1000000;
-                        }
-                        if(tong1>=1000){
-                            tongchuoi+=Math.floor(tong1/1000)+',';
-                            tong1=tong1-Math.floor(tong1/1000)*1000;
-                        }
-                        if(tong1<1000){
-                            if(tong1>0){
-                                tongchuoi+=tong1+'₹';
-                            }else{
-                                tongchuoi+='000₹';
-                            }
-                        }
-                    }
-                }
-                $(".cart-content__price").html(tongchuoi);
-
-                // $(".fee-cart:eq(1)").find('span').html(tong.toLocaleString("en-US", {style:"currency", currency:"USD"}));
-                // if(tong==0){
-                //     $('.layout-cart').find('article').html(str);
-                //     $('.layout-cart').find('aside').remove();
-                // }
-                $.post("index.php?pg=cart", {
-                    soluongmoi: soluong,
-                    ind: ind
-                },
-                    function (data, textStatus, jqXHR) {
-                        $("#msg").html(data);
-                    }
-                );
-            });
+            $('#cart-total-display').html(total.toLocaleString('en-US') + '₹');
+            $('.tong').val(total);
+          }
+          // Initial sync on page load
+          updateTotal();
+          $(".tru").click(function (e) {
+            e.preventDefault();
+            var soluong = parseInt($(this).parent().find('.soluong').val());
+            if (soluong > 1) {
+              soluong--;
+              $(this).parent().find('.soluong').val(soluong);
+              var ind = $(this).parent().find('.index').val();
+              var price = $(this).parent().find('.price').val();
+              var thanhtienso = soluong * price;
+              var thanhtien = thanhtienso.toLocaleString('en-US') + '₹';
+              $(this).closest('tr').find('.pro-price-quantity').html(thanhtien);
+              updateTotal();
+            }
+          });
+          $(".cong").click(function (e) {
+            e.preventDefault();
+            var soluong = parseInt($(this).parent().find('.soluong').val());
+            soluong++;
+            $(this).parent().find('.soluong').val(soluong);
+            var ind = $(this).parent().find('.index').val();
+            var price = $(this).parent().find('.price').val();
+            var thanhtienso = soluong * price;
+            var thanhtien = thanhtienso.toLocaleString('en-US') + '₹';
+            $(this).closest('tr').find('.pro-price-quantity').html(thanhtien);
+            updateTotal();
+          });
         });
     </script>
                 <div class="cart-item">

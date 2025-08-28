@@ -79,14 +79,20 @@
                 $tentaikhoan='Account';
                   if(isset($_SESSION['loginuser']) && isset($_SESSION['iduser']) && isset($_SESSION['role']) && $_SESSION['role']==0){
                     $taikhoan=getuser($_SESSION['iduser']);
-                    $tentaikhoan=$taikhoan['user'];
-                    $img=$taikhoan['img'];
-                    if(check_img($img)==''){
+                    if(is_array($taikhoan)) {
+                      $tentaikhoan=$taikhoan['user'];
+                      $img=$taikhoan['img'];
+                      if(check_img($img)==''){
+                        $img='<img src="view/layout/assets/images/avatar.png" alt="" />';
+                      }else{
+                        $img=check_img($img);
+                      }
+                      $link_taikhoan='index.php?pg=account';
+                    } else {
+                      $tentaikhoan='Account';
                       $img='<img src="view/layout/assets/images/avatar.png" alt="" />';
-                    }else{
-                      $img=check_img($img);
+                      $link_taikhoan='index.php?pg=login';
                     }
-                    $link_taikhoan='index.php?pg=account';
                   }else{
                     $img='<i class="fa fa-user-circle" aria-hidden="true"></i>';
                     $link_taikhoan='index.php?pg=login';

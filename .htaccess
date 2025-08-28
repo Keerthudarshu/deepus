@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Block extensionless URLs (e.g., /index)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9_-]+)$ - [F,L]

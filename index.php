@@ -973,7 +973,7 @@
                $kt=true;
                foreach ($_SESSION['giohang'] as $item) {
                   if($sp['id']==$item['id'] && $sp['img']==$item['img'] && $sp['name']==$item['name'] && $sp['price']==$item['price'] && $sp['color']==$item['color'] && $sp['size']==$item['size']){
-                     $_SESSION['giohang'][$i]['soluong']+=$sp['soluong'];
+                     $_SESSION['giohang'][$i]['soluong'] = intval($_SESSION['giohang'][$i]['soluong']) + intval($sp['soluong']);
                      $kt=false;
                      break;
                   }

@@ -11,15 +11,15 @@
   text-decoration: none;
 }
 :root {
-  --primary-color: #f0a924ff;
+  --primary-color: rgb(0, 0, 0);
   --white: #ffffff;
   --bg: #799881;
   --font: "Poppins", sans-serif;
   --black: #000;
-  --text-heading: #f0a924ff;
+  --text-heading: rgb(0, 0, 0);
   --bg-footer: #222222;
   --red: #f00;
-  --hover: #f0a924ff;
+  --hover: rgb(0, 0, 0);
 }
 img,
 picture,

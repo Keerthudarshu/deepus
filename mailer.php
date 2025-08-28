@@ -20,16 +20,18 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     
  
     $mail = new PHPMailer(true);
- 
+
     //Server settings
     $mail->isSMTP();                              //Send using SMTP
     $mail->CharSet  = "utf-8";
     $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
     $mail->SMTPAuth   = true;             //Enable SMTP authentication
- $mail->Username   = 'keerthudarshu06@gmail.com'; // Your Gmail address
+    $mail->Username   = 'keerthudarshu06@gmail.com'; // Your Gmail address
     $mail->Password   = 'urdz ztjn ppzf agwn'; // Gmail App Password (not your Gmail password)
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+    $mail->SMTPSecure = 'tls'; // or 'ssl'
+    $mail->Port = 587; // 465 if using ssl
+    $mail->SMTPDebug  = 2; // Show SMTP debug output (set to 0 to disable)
+    $mail->Debugoutput = 'html';
 
 
     //Recipients
@@ -242,13 +244,12 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     $mail->Body=$text;//email message
     
     // Success sent message alert
-    $mail->send();
-    echo
-    " 
-    <script> 
-     document.location.href = 'index.php?pg=account';
-    </script>
-    ";
+    try {
+        $mail->send();
+        echo "<script>document.location.href = 'index.php?pg=account';</script>";
+    } catch (Exception $e) {
+        echo '<div style="color:red;">Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '</div>';
+    }
 } 
 function creatcode() {
     $code='';

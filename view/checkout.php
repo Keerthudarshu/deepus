@@ -1,13 +1,14 @@
 <?php
-  
+  if(!isset($_SESSION['giamgia'])) $_SESSION['giamgia'] = 0;
   $html_product_checkout='';
   $tongtien=0;
   $tongsoluong=0;
-  if(isset($_SESSION['giohang'])){
+  // Always recalculate tongtien from cart session
+  if(isset($_SESSION['giohang']) && count($_SESSION['giohang'])>0){
     foreach ($_SESSION['giohang'] as $item) {
       extract($item);
-      $tongsoluong+=$soluong;
-      $tongtien+=$soluong*$price;
+      $tongsoluong += (int)$soluong;
+      $tongtien += ((int)$soluong) * ((int)$price);
       if($soluong==1){
         $soluong='';
       }else{
@@ -23,7 +24,7 @@
         <div class="checkout-right-content">
           <div class="checkout-right-title">'.$name.'</div>
           <div class="checkout-right-main">
-            <div class="checkout-right-color">Màu: '.$color.'</div>
+            <div class="checkout-right-color">Color: '.$color.'</div>
             <div class="checkout-right-size">Size: '.$size.'</div>
           </div>
         </div>
@@ -288,7 +289,7 @@
             </div>
             <div class="checkout-right">
               <div class="checkout-right-box">
-                <div class="checkout-right-title-heading">Order (<?=$tongsoluong?> products)</div>
+                <div class="checkout-right-title-heading">Order (<?=($tongsoluong>0?$tongsoluong:count($_SESSION['giohang']))?> products)</div>
                 <div class="checkout-right-overflow">
                   
                 <?=$html_product_checkout?>
@@ -312,7 +313,7 @@
                 <div class="form-group">
                   <div class="form-flex">
                     <span> Provisional</span>
-                    <span><?=number_format($tongtien,0,'',',')?>₹</span>
+                    <span><?=number_format($tongtien > 0 ? $tongtien : 0,0,'',',')?>₹</span>
                   </div>
 
                   <?=$html_giamgia?>
@@ -325,7 +326,7 @@
                 
                 <div class="form-flex mt-10">
                   <span class="checkout-total">Total</span>
-                  <span><?=number_format($tongtien-$_SESSION['giamgia']*$tongtien/100,0,'',',')?>₹</span>
+                  <span><?=number_format(($tongtien > 0 ? $tongtien : 0)-$_SESSION['giamgia']*($tongtien > 0 ? $tongtien : 0)/100,0,'',',')?>₹</span>
                 </div>
                 <div class="form-flex back-flex mt-10">
                   <div class="back-cart">
@@ -333,9 +334,84 @@
                   </div>
                   
                   <div class="voucher-btn button-primary__primary">
-                    <button name="thanhtoan"  class="voucher-button">Place order</button>
+                    <button name="thanhtoan" id="place-order-btn" class="voucher-button">Place order</button>
                   </div>
                 </div>
+              <!-- Razorpay Payment Button -->
+              <div class="form-flex mt-10">
+                <button id="rzp-button" class="voucher-button button-primary__primary" style="display:none;">Pay with Razorpay</button>
+              </div>
+              <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+              <script>
+              function updatePaymentButtons() {
+                var method = document.querySelector('input[name="phuongthuc"]:checked').value;
+                var rzpBtn = document.getElementById('rzp-button');
+                var placeOrderBtn = document.getElementById('place-order-btn');
+                if (method === 'Cash on Delivery') {
+                  rzpBtn.style.display = 'none';
+                  placeOrderBtn.style.display = '';
+                } else {
+                  rzpBtn.style.display = '';
+                  placeOrderBtn.style.display = 'none';
+                }
+              }
+              document.querySelectorAll('input[name="phuongthuc"]').forEach(function(el){
+                el.addEventListener('change', updatePaymentButtons);
+              });
+              updatePaymentButtons();
+
+              var options = {
+                  "key": "rzp_test_R9V9xLm1ZY5RW3", // Replace with your Razorpay Key ID
+                  "amount": "<?=($tongtien > 0 ? $tongtien : 0)-$_SESSION['giamgia']*($tongtien > 0 ? $tongtien : 0)/100?>00", // Amount in paise
+                  "currency": "INR",
+                  "name": "keerthan",
+                  "description": "Order Payment",
+                  "handler": function (response){
+                      // Send payment ID and order details to send_mail.php after successful payment
+                      var xhr = new XMLHttpRequest();
+                      xhr.open('POST', 'send_mail.php', true);
+                      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                      xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                          alert('Payment successful! Order placed and mail sent.');
+                          window.location.reload();
+                        }
+                      };
+                      // Collect product and user details from the form
+                      var name = document.querySelector('input[name="tendat"]').value;
+                      var email = document.querySelector('input[name="emaildat"]').value;
+                      var phone = document.querySelector('input[name="sdtdat"]').value;
+                      var address = document.querySelector('input[name="diachidat"]').value;
+                      var products = [];
+                      document.querySelectorAll('.checkout-right-list').forEach(function(item){
+                        var title = item.querySelector('.checkout-right-title').textContent;
+                        var color = item.querySelector('.checkout-right-color').textContent.replace('Color: ','');
+                        var size = item.querySelector('.checkout-right-size').textContent.replace('Size: ','');
+                        var price = item.querySelector('.checkout-right-price').textContent.replace('₹','').replace(/,/g,'');
+                        var quantity = item.querySelector('.number') ? item.querySelector('.number').textContent : '1';
+                        products.push({title:title, color:color, size:size, price:price, quantity:quantity});
+                      });
+                      var params = 'razorpay_payment_id=' + encodeURIComponent(response.razorpay_payment_id)
+                        + '&name=' + encodeURIComponent(name)
+                        + '&email=' + encodeURIComponent(email)
+                        + '&phone=' + encodeURIComponent(phone)
+                        + '&address=' + encodeURIComponent(address)
+                        + '&products=' + encodeURIComponent(JSON.stringify(products))
+                        + '&sendmail=1';
+                      xhr.send(params);
+                  },
+                  "prefill": {
+                      "name": "<?=isset($_SESSION['name']) ? $_SESSION['name'] : ''?>",
+                      "email": "<?=isset($_SESSION['email']) ? $_SESSION['email'] : ''?>",
+                      "contact": "<?=isset($_SESSION['sdt']) ? $_SESSION['sdt'] : ''?>"
+                  }
+              };
+              var rzp1 = new Razorpay(options);
+              document.getElementById('rzp-button').onclick = function(e){
+                  rzp1.open();
+                  e.preventDefault();
+              }
+              </script>
               </div>
             </div>
           </div>

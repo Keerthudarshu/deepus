@@ -90,8 +90,52 @@
 
 <div id="myData" data-array='<?php echo $arr; ?>'></div>
 <script>
-   var quantity_of_inventory = JSON.parse(document.getElementById('myData').getAttribute('data-array'));
-    console.log(quantity_of_inventory); // ['apple', 'banana', 'orange']
+   var basePrice = <?=$detail['price']?>;
+   function update_soluong() {
+     var qtyInput = document.getElementById('detail-quantity');
+     var qty = Number(qtyInput.value);
+     if (!qty || qty < 1) {
+       qty = 1;
+       qtyInput.value = 1;
+     }
+     var priceInput = document.getElementById('detail-price-value');
+     if (priceInput) {
+       var total = basePrice * qty;
+       priceInput.value = total.toLocaleString() + '₹';
+       console.log('Qty:', qty, 'BasePrice:', basePrice, 'Total:', total);
+     }
+     var checkoutQty = document.querySelector('input[name="soluong_checkout"]');
+     if (checkoutQty) checkoutQty.value = qty;
+     var cartQty = document.querySelector('form.addtocart input[name="soluong"]');
+     if (cartQty) cartQty.value = qty;
+   }
+   document.addEventListener('DOMContentLoaded', function() {
+     var qtyInput = document.getElementById('detail-quantity');
+     var minusBtn = document.querySelector('.detail-input__minus');
+     var plusBtn = document.querySelector('.detail-input__plus');
+     if (qtyInput) {
+       qtyInput.addEventListener('input', update_soluong);
+     }
+     if (minusBtn) {
+       minusBtn.addEventListener('click', function(e) {
+         var qty = Number(qtyInput.value);
+         if (qty > 1) {
+           qty--;
+           qtyInput.value = qty;
+           update_soluong();
+         }
+       });
+     }
+     if (plusBtn) {
+       plusBtn.addEventListener('click', function(e) {
+         var qty = Number(qtyInput.value);
+         qty++;
+         qtyInput.value = qty;
+         update_soluong();
+       });
+     }
+     update_soluong();
+   });
 </script>
 <?=$html_err_comment?>
 
@@ -110,7 +154,8 @@
             <div class="detail-content">
               <h3 class="detail-title"><?=$name?></h3>
               <div class="detail-code">Product code: <span><?=$ma_sanpham?></span></div>
-              <div class="detail-price"><?=number_format($detail['price'],0,'',',')?>₹
+              <div class="detail-price">
+                <input id="detail-price-value" type="text" value="<?=number_format($detail['price'],0,'',',')?>₹" readonly style="border:none;background:transparent;font-size:inherit;width:100px;" />
                 <?=sale($detail)?>
               </div>
               <div class="detail-auth__color">
@@ -127,11 +172,11 @@
               </div>
               <div class="detail-auth">
                 <div class="detail-text">Quantity:</div>
-                <div class="detail-input">
-                  <button onclick="minus()" class="detail-input__minus">-</button>
-                  <input onchange="update_soluong()" type="text" value=1 />
-                  <button onclick="plus()" class="detail-input__plus">+</button>
-                </div>
+                  <div class="detail-input">
+                    <button class="detail-input__minus">-</button>
+                    <input id="detail-quantity" type="number" value="1" min="1" />
+                    <button class="detail-input__plus">+</button>
+                  </div>
                 <div class="detail-inventory">In stock</div>
                 <div style="display:none" id="slcon"></div>
               </div>

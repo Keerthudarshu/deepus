@@ -39,6 +39,12 @@
         <td>
             <a href="index.php?pg=updateproduct&id='.$id.'" class="edit">Edit</a>
             <a href="index.php?pg=delproduct&id='.$id.'" class="del">Delete</a>
+        <form action="index.php?pg=addcart" method="post" style="display:inline;">
+          <input type="hidden" name="id" value="'.$id.'">
+          <input type="hidden" name="name" value="'.$name.'">
+          <input type="hidden" name="price" value="'.$price.'">
+          
+        </form>
         </td>
         </tr>';
         

@@ -1,36 +1,523 @@
+<style>
+
+</style>
 <?php
+ 
+ session_start();
+ ob_start();
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+ 
+//required files
+require 'PHPMailer-master/PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/PHPMailer-master/src/SMTP.php';
+ 
+//Create an instance; passing `true` enables exceptions
+if (isset($_POST["sendmail"]) && (isset($_SESSION['giohang']) || (isset($_POST['razorpay_payment_id']) && isset($_POST['products'])))) {
+// If called via Razorpay, get transaction details from POST
+$transaction_html = '';
+if (isset($_POST['razorpay_payment_id'])) {
+    $transaction_html = '<h3 style="color:#46694F;">Transaction Details</h3>';
+    $transaction_html .= '<table style="border-collapse:collapse;width:100%;margin-bottom:20px;">';
+    $transaction_html .= '<tr><th style="background:#46694F;color:#fff;padding:8px;">Payment ID</th><td style="padding:8px;">'.htmlspecialchars($_POST['razorpay_payment_id']).'</td></tr>';
+    if (isset($_POST['name'])) $transaction_html .= '<tr><th style="background:#46694F;color:#fff;padding:8px;">Name</th><td style="padding:8px;">'.htmlspecialchars($_POST['name']).'</td></tr>';
+    if (isset($_POST['email'])) $transaction_html .= '<tr><th style="background:#46694F;color:#fff;padding:8px;">Email</th><td style="padding:8px;">'.htmlspecialchars($_POST['email']).'</td></tr>';
+    if (isset($_POST['phone'])) $transaction_html .= '<tr><th style="background:#46694F;color:#fff;padding:8px;">Phone</th><td style="padding:8px;">'.htmlspecialchars($_POST['phone']).'</td></tr>';
+    if (isset($_POST['address'])) $transaction_html .= '<tr><th style="background:#46694F;color:#fff;padding:8px;">Address</th><td style="padding:8px;">'.htmlspecialchars($_POST['address']).'</td></tr>';
+    $transaction_html .= '</table>';
+}
+    
+ 
+    $mail = new PHPMailer(true);
 
-require __DIR__ . '/../PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
-require __DIR__ . '/../PHPMailer-master/PHPMailer-master/src/SMTP.php';
-require __DIR__ . '/../PHPMailer-master/PHPMailer-master/src/Exception.php';
-
-$mail = new PHPMailer(true);
-
-try {
     //Server settings
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
-    $mail->SMTPAuth   = true;
+    $mail->isSMTP();                              //Send using SMTP
+    $mail->CharSet  = "utf-8";
+    $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;             //Enable SMTP authentication
     $mail->Username   = 'keerthudarshu06@gmail.com'; // Your Gmail address
     $mail->Password   = 'urdz ztjn ppzf agwn'; // Gmail App Password (not your Gmail password)
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+    $mail->SMTPSecure = 'tls'; // or 'ssl'
+    $mail->Port = 587; // 465 if using ssl
+    $mail->SMTPDebug  = 2; // Show SMTP debug output (set to 0 to disable)
+    $mail->Debugoutput = 'html';
+
 
     //Recipients
-    $mail->setFrom('keerthudarshu06@gmail.com', 'Keerthudarshu');
-    $mail->addAddress('keerthan20020907@gmail.com', 'keerthan'); // Add a recipient
-
+    $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
+    $mail->addAddress($_POST["emaildat"], $_POST["tendat"]);     //Add a recipient email   // reply to sender email
+ 
     //Content
-    $mail->isHTML(true);
-    $mail->Subject = 'Test Email from PHPMailer';
-    $mail->Body    = 'This is a <b>test email</b> sent using PHPMailer!';
-    $mail->AltBody = 'This is a test email sent using PHPMailer!';
+    $mail->isHTML(true);               //Set email format to HTML
+    $mail->Subject = 'Thank you for shopping with us!';  // email subject headings
+    $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
+    $mail->AddEmbeddedImage('upload/form-thanks.jpg', 'img', 'form-thanks.jpg');
+    $i=0;
+    $tongtien=0;
+    $html_donhang='';
+    if (isset($_SESSION['giohang'])) {
+        foreach ($_SESSION['giohang'] as $item) {
+            $i++;
+            extract($item);
+            $html_donhang.='<tr>
+            <td>'.$i.'</td>
+            <td>'.$name.'</td>
+            <td>'.$size.'</td>
+            <td>'.$color.'</td>
+            <td>'.number_format($price,0,'.',',').'</td>
+            <td>'.$soluong.'</td>
+            <td>'.number_format($price*$soluong,0,'.',',').'</td>
+        </tr>';
+            $tongtien+=$price*$soluong;
+        }
+    } else if (isset($_POST['products'])) {
+        $products = json_decode($_POST['products'], true);
+        foreach ($products as $item) {
+            $i++;
+            $name = $item['title'];
+            $size = $item['size'];
+            $color = $item['color'];
+            $price = $item['price'];
+            $soluong = $item['quantity'];
+            $html_donhang.='<tr>
+            <td>'.$i.'</td>
+            <td>'.$name.'</td>
+            <td>'.$size.'</td>
+            <td>'.$color.'</td>
+            <td>'.number_format($price,0,'.',',').'</td>
+            <td>'.$soluong.'</td>
+            <td>'.number_format($price*$soluong,0,'.',',').'</td>
+        </tr>';
+            $tongtien+=$price*$soluong;
+        }
+    }
+    if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
+        $giamgia=$_SESSION['giamgia'];
+        $html_donhang.='<tr>
+        <td class="td-trong"></td>
+        <td class="td-trong"></td>
+        <td class="td-trong"></td>
+        <td class="td-trong"></td>
+        <td class="td-trong"></td>
+        <td>Giảm giá</td>
+        <td>'.number_format(($tongtien*$giamgia/100),0,'.',',').'</td>
+    </tr>';
+        $html_donhang.='<tr>
+            <td class="td-trong" colspan="5"></td>
+            <td>Total amount</td>
+            <td>'.number_format(($tongtien-$tongtien*$giamgia/100),0,'.',',').'</td>
+        </tr>';
+        unset($_SESSION['giamgia']);
+    }else{
+        $html_donhang.='<tr>
+            <td class="td-trong"></td>
+            <td class="td-trong"></td>
+            <td class="td-trong"></td>
+            <td class="td-trong"></td>
+            <td class="td-trong"></td>
+            <td><strong>Total amount</strong></td>
+            <td>'.number_format($tongtien,0,'.',',').'</td>
+        </tr>';
+        unset($_SESSION['giamgia']);
+    }
 
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-?>
+    $account='';
+    if(isset($_SESSION['username']) && $_SESSION['username'] && isset($_SESSION['password']) && $_SESSION['password']){
+        $account='<tbody>
+                    <td colspan="2" style="text-align:left"><strong>Username</strong> </td>
+                    <td colspan="6" style="text-align:left">'.$_SESSION['username'].'</td>
+                </tbody>
+                <tbody>
+                    <td colspan="2" style="text-align:left"><strong>Password</strong> </td>
+                    <td colspan="6" style="text-align:left"> '.$_SESSION['password'].'</td>
+                </tbody>';
+    }
+
+
+    unset($_SESSION['id_voucher']);
+    unset($_SESSION['giamgia']);
+    unset($_SESSION['btngiamgia']);
+    unset($_SESSION['magiamgia']);
+    unset($_SESSION['giohang']);
+
+    // $noidung = file_get_contents("form_thank.php");
+    $text= '<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .title{
+                text-align: center;
+                color:  #46694F;
+            }
+    
+            .thank{
+                text-align: center;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+            }
+    
+            th{
+                background-color: #46694F;
+                color: #fff;
+                text-align: center;
+            }
+            tr{
+                text-align: center;
+            }
+            thead{
+                text-align: center;
+            }
+            
+            
+    
+            th, td {
+                border: 1px solid #dddddd;
+                text-align:center;
+                padding: 8px;
+            }
+            tbody>td{
+                text-align: left;
+
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container-form">
+        <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
+        <hr>
+        <h2 class="title">ORDER INFORMATION</h2> 
+        <p class="thank">Thank you for visiting our store and placing an order here!</p>
+        <!-- Transaction Details -->
+        '.$transaction_html.'
+        <table>
+            <thead>
+                <tr >
+                    <th  colspan="8"><p style="font-size: 16px;text-align: center"><strong>Order ID:</strong> '.$_SESSION['donhang']['ma_donhang'].' </th>
+                </tr> 
+            </thead>
+            <tbody>
+                <td colspan="2" style="text-align:left"><strong>Date Of Establishment</strong></td>
+                <td colspan="6" style="text-align:left">'.$_SESSION['ngaylap'].'</td>
+            </tbody>
+            <tbody>
+                <td colspan="2" style="text-align:left"><strong>Full Name</strong></td>
+                <td colspan="6" style="text-align:left">'.$_SESSION['name'].'</td>
+            </tbody>
+            <tbody>
+                <td colspan="2" style="text-align:left"><strong>Email</strong></td>
+                <td colspan="6" style="text-align:left">'.$_SESSION['email'].'</td>
+            </tbody>
+            <tbody>
+                <td colspan="2" style="text-align:left"><strong>Phone Number</strong></td>
+                <td colspan="6" style="text-align:left">'.$_SESSION['sdt'].'</td>
+            </tbody>
+            <tbody>
+                <td colspan="2" style="text-align:left"><strong>Address</strong></td>
+                <td colspan="6" style="text-align:left">'.$_SESSION['diachi'].'</td>
+            </tbody>
+            '.$account.'
+            <thead>
+                <tr>
+                  <th>STT</th>
+                    <th>Product Name</th>
+                    <th>Size</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+              '.$html_donhang.'
+            </tbody>
+        </table>
+        We look forward to seeing you soon.<br>
+        Best regards, <strong>Just 4 You</strong>
+        <hr>
+        <div class="icon">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-google"></i>
+            <i class="fa-brands fa-shopify"></i>
+        </div>
+        Just 4 You Shop <br>
+        Website: https://zstyle.online/ <br>
+        Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
+        Email: keerthudarshu06@gmail.com <br>
+        Hotline: 19006789 <br>
+        </div>
+    </body>
+    </html>';
+    unset($_SESSION['donhang']);
+    unset($_SESSION['name']);
+    unset($_SESSION['sdt']);
+    unset($_SESSION['diachi']);
+    unset($_SESSION['email']);
+    $mail->Body=$text;//email message
+    
+    // Success sent message alert
+    try {
+        $mail->send();
+        echo "<script>document.location.href = 'index.php?pg=account';</script>";
+    } catch (Exception $e) {
+        echo '<div style="color:red;">Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '</div>';
+    }
+} 
+function creatcode() {
+    $code='';
+    $characters = '0123456789';
+    for ($i = 0; $i < 4; $i++) {
+      $code .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+    return $code;
+  }
+  function pdo_get_connection(){
+    $dburl = "mysql:host=localhost;dbname=zstyle;charset=utf8";
+    $username = 'root';
+    $password = '';
+    $conn = new PDO($dburl, $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
+ }
+ function pdo_query($sql){
+    $sql_args = array_slice(func_get_args(), 1);
+    try{
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $rows = $stmt->fetchAll();
+        return $rows;
+    }
+    catch(PDOException $e){
+        throw $e;
+    }
+    finally{
+        unset($conn);
+    }
+ }
+ function pdo_query_one($sql){
+    $sql_args = array_slice(func_get_args(), 1);
+    try{
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    catch(PDOException $e){
+        throw $e;
+    }
+    finally{
+        unset($conn);
+    }
+ }
+ function getusertoemail($email){
+    $sql="SELECT * FROM users WHERE email=?";
+    return pdo_query_one($sql, $email);
+  }
+
+if (isset($_POST["guima"])) {
+    $_SESSION['erremailxn']='';
+    $_SESSION['emailxn']=$_POST["emailxn"];
+    if($_POST['emailxn']==''){
+        $_SESSION['erremailxn']='*Bạn chưa nhập email';
+    }else{
+        if(!filter_var($_POST['emailxn'], FILTER_VALIDATE_EMAIL)){
+            $_SESSION['erremailxn']="*Địa chỉ email không hợp lệ";
+        }else{
+            $kt=0;
+            foreach ($_SESSION['usertable'] as $item) {
+                if($item['email']==$_POST['emailxn']){
+                    $kt=1;
+                    break;
+                }
+            }
+            if($kt==0){
+                $_SESSION['erremailxn']='*Địa chỉ email không tồn tại';
+            }
+        }     
+    }
+    if($_SESSION['erremailxn']!=''){
+        echo
+            " 
+            <script> 
+            document.location.href = 'index.php?pg=forgetpass';
+            </script>
+            ";
+    }else{
+        $mail = new PHPMailer(true);
+ 
+        //Server settings
+        $mail->isSMTP();                              //Send using SMTP
+        $mail->CharSet  = "utf-8";
+        $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;             //Enable SMTP authentication
+        $mail->Username   = 'keerthudarshu06@gmail.com';   //SMTP write your email
+        $mail->Password   = 'urdz ztjn ppzf agwn';      //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;                                    
+
+        //Recipients
+        $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
+        $mail->addAddress($_POST["emailxn"]);     //Add a recipient email   // reply to sender email
+        $_SESSION['emailxn']=$_POST["emailxn"];
+        $_SESSION['username']=getusertoemail($_SESSION['emailxn'])['user'];
+    
+        //Content
+        $mail->isHTML(true);               //Set email format to HTML
+        $mail->Subject = 'We have successfully restored your account!';  // email subject headings
+        $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
+        
+    
+        $_SESSION['code']=creatcode();
+        // $noidung = file_get_contents("form_thank.php");
+        $text= '<html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="https://kit.fontawesome.com/945522403a.js" crossorigin="anonymous"></script>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                }
+        
+                .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+        
+                .container>img{
+                    display: block;
+                    margin: 0 auto;
+                    color: black;
+                    width: 100px;
+                }
+        
+                p {
+    
+                    text-align: center;
+                }
+        
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                }
+    
+                th{
+                    background-color: #46694F;
+                    color: #fff;
+                }
+                
+        
+                th, td {
+                    border: 1px solid #46694F;
+                    text-align: left;
+                    padding: 8px;
+                }
+                .title{
+                    text-align:center;
+                    font-size:18px;
+                    color: #46694F; 
+                }
+                .td-trong{
+                    border:none;
+                }
+    
+                .icon{
+                    margin: 10px 0;
+                    text-align: center;
+                }
+    
+                .icon>i{
+                    padding: 3px;
+                    color: #46694F;
+                }
+    
+                #code{
+                    width: 80px;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                    border: 3px solid #dddddd;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 28px;
+                    color: #46694f;
+    
+                }
+                h2{
+                    text-align: center;
+                    color: #46694f;
+                }
+                td{
+                    width:50%;
+                }
+        
+            </style>
+        </head>
+        <body>
+            
+            <div class="container">
+                <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
+                <br>
+                <hr>
+                
+                <h2>Chào mừng bạn trở lại!</h2>
+                <p class="text">Please use the verification code below to confirm your account information.</p>
+                <table>
+                    <tbody>
+                        <tr>
+                        <td><strong>Email</strong> </td>
+                        <td>'.$_SESSION['emailxn'].'</td>
+                        </tr>
+                        <tr>
+                        <td><strong>Tên đăng nhập</strong></td>
+                        <td>'.$_SESSION['username'].'</td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+                
+                <div id="code">
+                    '.$_SESSION['code'].'
+                </div>
+
+                Best regards, <strong>Just 4 You</strong>
+                <hr>
+
+                Just 4 You Shop <br>
+                Website: https://zstyle.online/ <br>
+                Address: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
+                Email: Keerthudarshu06@gmail.com <br>
+                Hotline: 19006789 <br>
+            </div>
+        </body>
+        </html>';
+        $_SESSION['codedung']=$_SESSION['code'];
+        unset($_SESSION['code']);
+        $mail->Body=$text;//email message
+        
+        // Success sent message alert
+        $mail->send();
+        echo
+        " 
+        <script> 
+         document.location.href = 'index.php?pg=forgetpass';
+        </script>
+        ";
+
+    }
+    
+ 
+    
+} 
