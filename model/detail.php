@@ -19,7 +19,6 @@
         $sql="SELECT * FROM img_product_color WHERE id_product=?";
         return pdo_query($sql, $idproduct);
     }
-
     function showimgdetail($img_product){
         $html_img='';
         $i=0;
@@ -47,6 +46,7 @@
                 <div class="detail-image__list">
                   '.$sub_img.'
                 </div>
+               
               </div>';
             }
         }

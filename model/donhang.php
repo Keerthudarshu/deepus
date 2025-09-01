@@ -59,4 +59,20 @@
       $sql="SELECT * FROM donhang WHERE  iduser LIKE ? or tendat LIKE ? or ma_donhang LIKE ? or diachidat LIKE ? or trangthai LIKE ?";
       return pdo_query($sql,'%'.$kw.'%', '%'.$kw.'%', '%'.$kw.'%', '%'.$kw.'%', '%'.$kw.'%');
      }
+     function get_order_detail($order_id) {
+        $sql = "SELECT * FROM donhang WHERE id=?";
+        return pdo_query_one($sql, $order_id);
+    }
+
+    function get_order_items($order_id) {
+        $sql = "SELECT c.*, p.name as product_name FROM cart c LEFT JOIN product p ON c.id_product = p.id WHERE c.id_donhang=?";
+        $items = pdo_query($sql, $order_id);
+        // For items with no product_name, fallback to cart row name if available
+        foreach ($items as &$item) {
+            if (empty($item['product_name']) && isset($item['name'])) {
+                $item['product_name'] = $item['name'];
+            }
+        }
+        return $items;
+    }
 ?>

@@ -258,33 +258,7 @@
                 
                 <?=$html_phuongthuc?>
 
-                <!-- <form action="" class="order-form">
-                  <div class="order-radio">
-                    <div class="order-radio__group">
-                      <input type="radio" value="Thanh toán trực tiếp khi giao hàng" />
-                      <span></span>
-                    </div>
-                    <div class="order-radio-text">Thanh toán trực tiếp khi giao hàng</div>
-                  </div>
-                  <div class="order-radio">
-                    <div class="order-radio__group">
-                      <input
-                        type="radio"
-                        value="Thanh toán bằng Thẻ quốc tế / Thẻ nội địa / QR Code" />
-                      <span></span>
-                    </div>
-                    <div class="order-radio-text">
-                      Thanh toán bằng Thẻ quốc tế / Thẻ nội địa / QR Code
-                    </div>
-                  </div>
-                  <div class="order-radio">
-                    <div class="order-radio__group">
-                      <input type="radio" value="Thanh toán bằng ví MoMo" />
-                      <span></span>
-                    </div>
-                    <div class="order-radio-text">Thanh toán bằng ví MoMo</div>
-                  </div>
-                </form> -->
+               
               </div>
             </div>
             <div class="checkout-right">

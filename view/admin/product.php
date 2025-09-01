@@ -35,6 +35,7 @@
         <td>'.$noibat.'</td>
         <td>'.$bestsell.'</td>
         <td>'.$trend.'</td>
+        <td>'.$stock.'</td>
         <td>'.$view.'</td>
         <td>
             <a href="index.php?pg=updateproduct&id='.$id.'" class="edit">Edit</a>
@@ -64,6 +65,7 @@
       $bestsellup='';
       $trendup='';
       $viewup='';
+    $stockup='';
     }else{
       $activeedit='active';
       if($errma_sanphamup!=''){
@@ -163,6 +165,7 @@
           $chitietup=$chitiet;
           $viewup=$view;
           $danhmucup=$catalog_product['name'];
+            $stockup=$stock;
       }
     }
     if(isset($_SESSION['update_id']) && $_SESSION['update_id'] && isset($_SESSION['editproduct'])){
@@ -410,6 +413,11 @@
                           </div>
                         </div>
                       </div>  
+                      
+                      <div class="modal-form-item">
+                        <div class="modal-form-name">Stock*</div>
+                        <input name="stock" type="text" value="<?=$stockadd?>">
+                      </div>
                       <div class="modal-form-item">
                         <div class="modal-form-name">Views*</div>
                         <input name="view" type="text" value="<?=$viewadd?>">
@@ -612,10 +620,16 @@
                           </div>
                         </div>
                       </div>  
+                      
+                    
                       <div class="modal-form-item">
                         <div class="modal-form-name">Views*</div>
                         <input name="view" type="text" value="<?=$viewup?>"/>
                       </div> 
+                      <div class="modal-form-item">
+                      <div class="modal-form-name">Stock*</div>
+                      <input name="stock" type="text" value="<?=$stockup?>">
+                    </div>
                       <?=$errviewup?>
                       <div class="modal-form-item">
                         <div class="modal-form-name">Details</div>
@@ -632,22 +646,24 @@
 
                 <table class="product">
                 <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Featured</th>
-                    <th>Best Selling</th>
-                    <th>Trending</th>
-                    <th>Views</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product Code</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Featured</th>
+                  <th>Best Selling</th>
+                  <th>Trending</th>
+                  <th>Stock</th>
+                  <th>Views</th>
+                  
+                  <th>Actions</th>
+                </tr>
+              </thead>
                 <tbody>
                     
                     <?=$html_product;?>
 
                 </tbody>
               </table>
-            </div>
+            </div

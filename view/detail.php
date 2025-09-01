@@ -177,7 +177,8 @@
                     <input id="detail-quantity" type="number" value="1" min="1" />
                     <button class="detail-input__plus">+</button>
                   </div>
-                <div class="detail-inventory">In stock</div>
+                  <?php  echo get_stock_status_html($stock); ?>
+
                 <div style="display:none" id="slcon"></div>
               </div>
               <div class="detail-btn">

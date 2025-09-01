@@ -1424,8 +1424,8 @@
                            add_cart($_SESSION['iduser'], $iddonhang, $id, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),0,1);
                            $id_color=getidcolor($color);
                            $id_size=getidsize($size);
-                           $soluongkho=getsoluongtonkhothat($id,$id_color,$id_size);
-                           update_soluongtonkho($id,$id_color,$id_size,$soluongkho-$soluong);
+                           $soluongkho=getquantity_of_inventorythat($id,$id_color,$id_size);
+                           update_quantity_of_inventory($id,$id_color,$id_size,$soluongkho-$soluong);
                         }else{
                            add_cart($_SESSION['iduser'], $iddonhang, 1, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),1,$id_product_design);
                         }

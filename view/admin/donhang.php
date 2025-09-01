@@ -13,8 +13,8 @@ foreach ($donhang as $item) {
         <td>' . number_format($tongtien, 0, '.', ',') . '</td>
         <td>' . $trangthai. '</td>
         <td>
-            
             <a href="index.php?pg=deldonhang&id=' . $id . '" class="del" style="padding: 0px">Cancel</a>
+            <a href="index.php?pg=invoice&id=' . $id . '" class="invoice" style="padding: 0px; margin-left:10px; color:#007bff;">Invoice</a>
         </td>
         </tr>';
     // $active = '';
@@ -305,9 +305,136 @@ foreach ($donhang as $item) {
 
 
     <div class="dashboard-heading">
-        <h2 class="title-primary">Orders</h2>
+            <h2 class="title-primary">Orders</h2>
+            <button class="modal-button" onclick="document.querySelector('.modal-addorder').classList.add('active')">
+                + Add Order
+            </button>
+        </div>
 
-    </div>
+        <!-- Add Order Modal with Cart -->
+        <div class="modal modal-addorder">
+            <div class="modal-overlay" onclick="this.parentElement.classList.remove('active')"></div>
+            <div class="modal-content modal-addproduct">
+                <span class="modal-close" onclick="this.closest('.modal-addorder').classList.remove('active')">✖</span>
+                <div class="modal-main">
+                    <form id="adminOrderForm" action="index.php?pg=addorder" method="post">
+                        <div class="modal-heading">Place New Order</div>
+                        <div class="modal-form modal-form-addpro">
+                            <!-- Product Selection -->
+                            <div class="modal-form-item">
+                                <div class="modal-form-name">Product Code</div>
+                                <select id="product_code_select">
+                                    <option value="">-- Select Product Code --</option>
+                                    <?php
+                                    $conn = pdo_get_connection();
+                                    $stmt = $conn->query("SELECT ma_sanpham FROM product");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='{$row['ma_sanpham']}'>{$row['ma_sanpham']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                                <button type="button" id="addProductBtn" style="margin-left:10px;">Add Product</button>
+                            </div>
+                            <!-- Cart Table -->
+                            <div class="modal-form-item">
+                                <table id="orderCartTable" style="width:100%;margin-bottom:10px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Total</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <!-- Customer Info (hidden until cart has items) -->
+                            <div id="customerInfoSection" style="display:none;">
+                                <div class="modal-form-item">
+                                    <div class="modal-form-name">Customer Name</div>
+                                    <input name="customer_name" type="text" required />
+                                </div>
+                                <div class="modal-form-item">
+                                    <div class="modal-form-name">Phone Number</div>
+                                    <input name="customer_phone" type="text" required />
+                                </div>
+                                <div class="modal-form-item">
+                                    <div class="modal-form-name">Address</div>
+                                    <input name="customer_address" type="text" required />
+                                </div>
+                            </div>
+                            <input type="hidden" name="cart_data" id="cart_data" />
+                        </div>
+                        <div class="modal-btn">
+                            <button type="button" id="confirmOrderBtn" class="modal-button">Confirm Order</button>
+                            <button type="submit" id="submitOrderBtn" class="modal-button" style="display:none;">Place Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Cart logic
+        let cart = [];
+        function renderCart() {
+            const tbody = document.querySelector('#orderCartTable tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, idx) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.code}</td><td>${item.name}</td><td>${item.price}</td><td><input type='number' min='1' value='${item.qty}' style='width:50px;' onchange='updateQty(${idx}, this.value)' /></td><td>${(item.price*item.qty).toFixed(2)}</td><td><button type='button' onclick='removeCartItem(${idx})'>✖</button></td>`;
+                tbody.appendChild(row);
+                total += item.price * item.qty;
+            });
+            // Show customer info if cart has items
+            document.getElementById('customerInfoSection').style.display = cart.length ? '' : 'none';
+        }
+        window.updateQty = function(idx, val) {
+            cart[idx].qty = parseInt(val)||1;
+            renderCart();
+        }
+        window.removeCartItem = function(idx) {
+            cart.splice(idx,1);
+            renderCart();
+        }
+        document.getElementById('addProductBtn').onclick = function() {
+            const code = document.getElementById('product_code_select').value;
+            if (!code) return alert('Select a product code!');
+            fetch('index.php?pg=getproduct&code='+code)
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.success) {
+                        // Check if already in cart
+                        if(cart.find(p=>p.code===code)) return alert('Product already in cart!');
+                        cart.push({code:code, name:data.product.name, price:parseFloat(data.product.price), qty:1});
+                        renderCart();
+                    } else {
+                        alert('Product not found!');
+                    }
+                });
+        }
+        document.getElementById('confirmOrderBtn').onclick = function() {
+            if (!cart.length) return alert('Add at least one product!');
+            // Save cart data to hidden field
+            document.getElementById('cart_data').value = JSON.stringify(cart);
+            // Show submit button, hide confirm
+            document.getElementById('confirmOrderBtn').style.display = 'none';
+            document.getElementById('submitOrderBtn').style.display = '';
+        }
+        // Only reset cart when opening modal via Add Order button
+        document.querySelector('.dashboard-heading button').addEventListener('click', function(){
+            cart = [];
+            renderCart();
+            document.getElementById('confirmOrderBtn').style.display = '';
+            document.getElementById('submitOrderBtn').style.display = 'none';
+            document.getElementById('customerInfoSection').style.display = 'none';
+            document.getElementById('cart_data').value = '';
+        });
+        </script>
 
     <div
         class="modal modal-update <?= $active ?>">

@@ -1,4 +1,11 @@
 <?php
+// Get product by code for AJAX lookup
+function getproduct_by_code($code) {
+   $conn = pdo_get_connection();
+   $stmt = $conn->prepare("SELECT * FROM product WHERE ma_sanpham = ? LIMIT 1");
+   $stmt->execute([$code]);
+   return $stmt->fetch(PDO::FETCH_ASSOC);
+}
    function sale($item){
       if(isset($item['priceold']) && $item['priceold'] !== null && $item['priceold'] > 0){
          return '<span class="product-price-old">'.number_format($item['priceold'],0,'',',').'9</span>';
@@ -6,6 +13,16 @@
          return '';
       }
    }
+
+   function get_stock_status_html($stock) {
+   if ($stock > 5) {
+      return '<span style="color:green; font-size:14px; font-weight:bold;">In Stock: '.$stock.'</span>';
+   } elseif ($stock > 0) {
+      return '<span style="color:red; font-size:14px; font-weight:bold;">Low Stock: '.$stock.'</span>';
+   } else {
+      return '<span style="color:gray; font-size:14px; font-weight:bold;">Out of Stock</span>';
+   }
+}
 
    function showproduct($product){
          extract($product);
@@ -25,17 +42,21 @@
                                                    <input type="hidden" name="size" value="default">
                                                    <input type="hidden" name="soluong" value="1">
                                                    <input type="hidden" name="price" value="'.$price.'">
+                                                   
                                                    <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">
                                                       🛒
                                                    </button>
+                                                   
                                                 </form>
                                                 <div class="icons">
                                                     <a href="'.$linkdetail.'" class="views">View Details</a>
                                                     <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
                                                 </div>
+                                                
                                              </div>
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">
+                              '. get_stock_status_html($stock) .'
                               '.number_format($product['price'],0,'',',').'₹
                                  '.sale($product).'
                               </div>
@@ -160,6 +181,7 @@
                            </form>
                            <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
                         </div>
+                        '. get_stock_status_html($stock) .'
               </div>
             </div>
           </div>';
@@ -231,24 +253,31 @@
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
+                              '. get_stock_status_html($stock) .'
                               <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
+                              
                               <div class="top-btn" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
                                                 <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post" style="display:inline;">
                                                    <input type="hidden" name="id" value="'.$id.'">
                                                    <input type="hidden" name="img" value="'.$img.'">
                                                    <input type="hidden" name="name" value="'.$name.'">
+                                                   
                                                    <input type="hidden" name="color" value="default">
                                                    <input type="hidden" name="size" value="default">
                                                    <input type="hidden" name="soluong" value="1">
+                                                   
                                                    <input type="hidden" name="price" value="'.$price.'">
                                                    <button name="addtocart" class="detail-button__cart" style="background:#f0a924ff;border:none;cursor:pointer;font-size:2rem;line-height:1;">🛒</button>
                                                 </form>
+                                                                                    
                                                 <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy Now</button></a>
                                              </div>
+                                             
                               </div>
                                              
                               </div>
+                              
                            </div>
                            </div>';
             }else{
@@ -261,6 +290,7 @@
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
+                              '. get_stock_status_html($stock) .'
                               <div class="product-price">'.number_format($item['price'],0,'',',').'₹
                               '.sale($item).'
                               <div class="top-btn" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
@@ -325,19 +355,36 @@ function getidcatalog($idproduct){
    
 
 
-   function update_product($id,$ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view){
-      $sql = "UPDATE product SET ma_sanpham=?,name=?,price=?,priceold=?,hot=?,noibat=?, gioitinh=?, idcatalog=?, chitiet=?, bestsell=?, trend=?, view=? WHERE id=?";
-      pdo_execute($sql, $ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view,$id);
+   function update_product($id,$ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view,$stock){
+      $sql = "UPDATE product SET ma_sanpham=?,name=?,price=?,priceold=?,hot=?,noibat=?, gioitinh=?, idcatalog=?, chitiet=?, bestsell=?, trend=?, view=?, stock=? WHERE id=?";
+      pdo_execute($sql, $ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view,$stock,$id);
    }
    function tangluotview($id, $view){
       $sql = "UPDATE product SET view=? WHERE id=?";
       pdo_execute($sql,$view,$id);
    }
-  function add_product($ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view){
-      $sql = "INSERT INTO product (ma_sanpham,name,price,priceold,hot,noibat,gioitinh,idcatalog,chitiet,bestsell,trend,view)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      pdo_execute($sql, $ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view);     
-  }
+
+   // Reduce view count after purchase (like stock management)
+   function reduce_product_view($id, $quantity) {
+      $sql = "UPDATE product SET view = view - ? WHERE id = ?";
+      pdo_execute($sql, $quantity, $id);
+   }
+   function add_product($ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view,$stock){
+         $sql = "INSERT INTO product (ma_sanpham,name,price,priceold,hot,noibat,gioitinh,idcatalog,chitiet,bestsell,trend,view,stock)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         pdo_execute($sql, $ma_sanpham,$name,$price,$priceold,$hot,$noibat,$gioitinh,$idcatalog,$chitiet,$bestsell,$trend,$view,$stock);     
+   }
+   // Reduce stock after purchase
+   function reduce_product_stock($id, $quantity) {
+      $sql = "UPDATE product SET stock = stock - ? WHERE id = ?";
+      pdo_execute($sql, $quantity, $id);
+   }
+
+   // Increase stock (for admin or returns)
+   function increase_product_stock($id, $quantity) {
+      $sql = "UPDATE product SET stock = stock + ? WHERE id = ?";
+      pdo_execute($sql, $quantity, $id);
+   }
   function delproduct($id){
        $sql = "DELETE FROM product WHERE  id=?";
        if(is_array($id)){

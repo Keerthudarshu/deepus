@@ -59,6 +59,7 @@ if (isset($_POST['razorpay_payment_id'])) {
     $tongtien=0;
     $html_donhang='';
     if (isset($_SESSION['giohang'])) {
+        require_once 'model/product.php';
         foreach ($_SESSION['giohang'] as $item) {
             $i++;
             extract($item);
@@ -72,8 +73,16 @@ if (isset($_POST['razorpay_payment_id'])) {
             <td>'.number_format($price*$soluong,0,'.',',').'</td>
         </tr>';
             $tongtien+=$price*$soluong;
+            // Reduce stock
+            $sql = "SELECT * FROM product WHERE name=?";
+            $product_row = pdo_query_one($sql, $name);
+            if ($product_row) {
+                $new_stock = max(0, intval($product_row['view']) - intval($soluong));
+                tangluotview($product_row['id'], $new_stock);
+            }
         }
     } else if (isset($_POST['products'])) {
+        require_once 'model/product.php';
         $products = json_decode($_POST['products'], true);
         foreach ($products as $item) {
             $i++;
@@ -92,6 +101,13 @@ if (isset($_POST['razorpay_payment_id'])) {
             <td>'.number_format($price*$soluong,0,'.',',').'</td>
         </tr>';
             $tongtien+=$price*$soluong;
+            // Reduce stock
+            $sql = "SELECT * FROM product WHERE name=?";
+            $product_row = pdo_query_one($sql, $name);
+            if ($product_row) {
+                $new_stock = max(0, intval($product_row['view']) - intval($soluong));
+                tangluotview($product_row['id'], $new_stock);
+            }
         }
     }
     if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
