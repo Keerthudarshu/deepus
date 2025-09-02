@@ -1205,12 +1205,12 @@
                      }
                      
                      if($errnamenhan=='' && $erremailnhan=='' && $errdiachinhan=='' && $errsdtnhan==''){
-                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Chưa thanh toán',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,$tennhan,$emaildat,$emailnhan,$sdtdat,$sdtnhan,$diachidat,$diachinhan,$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
+                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Unpaid',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,$tennhan,$emaildat,$emailnhan,$sdtdat,$sdtnhan,$diachidat,$diachinhan,$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
                      }
                   }else{
                      if($errname=='' && $erremail=='' && $errdiachi=='' && $errsdt==''){
                         
-                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Chưa thanh toán',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,'',$emaildat,'',$sdtdat,'',$diachidat,'',$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
+                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Unpaid',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,'',$emaildat,'',$sdtdat,'',$diachidat,'',$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
                      }
                   }
                   if($errname=='' && $erremail=='' && $errdiachi=='' && $errsdt=='' && $errnamenhan=='' && $erremailnhan=='' && $errdiachinhan=='' && $errsdtnhan==''){
@@ -1386,7 +1386,7 @@
                         }else{
                            $_SESSION['id_voucher']=1;
                         }
-                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Chưa thanh toán',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,$tennhan,$emaildat,$emailnhan,$sdtdat,$sdtnhan,$diachidat,$diachinhan,$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
+                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Unpaid',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,$tennhan,$emaildat,$emailnhan,$sdtdat,$sdtnhan,$diachidat,$diachinhan,$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
                      }
                   }else{
                      if($errname=='' && $erremail=='' && $errdiachi=='' && $errsdt==''){
@@ -1407,7 +1407,7 @@
                         }else{
                            $_SESSION['id_voucher']=1;
                         }
-                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Chưa thanh toán',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,'',$emaildat,'',$sdtdat,'',$diachidat,'',$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
+                        creatdonhang(getidusercu($_SESSION['username'],$_SESSION['password']), createma_donhang(),$date,'Unpaid',($tongtien*(100-$_SESSION['giamgia'])/100),$tendat,'',$emaildat,'',$sdtdat,'',$diachidat,'',$phuongthuc,$giaohangnhanh,$_SESSION['id_voucher']);
                      }
                   }
                   

@@ -18,7 +18,7 @@
     justify-content: center;
     position: fixed;
     width: 100%;
-    background-color: #46694f;
+    background-color: #1b3252;
     bottom: 0;
     z-index: 9999;
   }
@@ -63,7 +63,7 @@
     height: 80px;
     top: -50%;
     border-radius: 50%;
-    background-color: #46694f;
+    background-color: #1b3252;
     transition: 0.4s;
     border: 6px solid white;
   }
@@ -186,7 +186,7 @@
     color: red;
   }
   .menu-mobile-link.active {
-    background-color: #46694f;
+    background-color: #1b3252;
     color: white;
   }
   .icon-close {
@@ -391,7 +391,7 @@
     content: "";
     width: 100%;
     height: 100%;
-    background-color: #46694f;
+    background-color: #1b3252;
     top: 0;
     left: 0;
     bottom: 0;
@@ -659,7 +659,7 @@
     padding: 10px;
   }
   .login-title {
-    color: #46694f;
+    color: #1b3252;
   }
   .login-regiter {
     font-size: 13px;
@@ -678,7 +678,7 @@
   .title-mobile {
     display: block;
     font-size: 30px;
-    color: #46694f;
+    color: #1b3252;
     margin-bottom: 20px;
   }
   .account-main {
@@ -758,7 +758,7 @@
   }
   .contact-right h2 {
     font-size: 16px;
-    color: #46694f;
+    color: #1b3252;
   }
   .contact-form-group {
     flex-direction: column;

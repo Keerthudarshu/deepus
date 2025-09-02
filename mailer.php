@@ -259,8 +259,8 @@ function creatcode() {
     }
     return $code;
   }
-  function pdo_get_connection(){deepus
-    $dburl = "mysql:host=localhost;dbname=zstyle;charset=utf8";
+  function pdo_get_connection(){
+    $dburl = "mysql:host=localhost;dbname=deepus;charset=utf8";
     $username = 'root';
     $password = '';
     $conn = new PDO($dburl, $username, $password);
