@@ -146,7 +146,7 @@
         </li>
       </ul>
 
-      <section class="header-bottom" style="  background-color: #f0a924ff ;">
+      <section class="header-bottom" style="  background-color: #1b3252 ;">
         <div class="container">
           <div class="header-bottom__main">
             <form action="" class="header-form header-form-mobile">

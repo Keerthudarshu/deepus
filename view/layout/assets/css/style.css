@@ -4,15 +4,15 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-color: #f0a924ff;
+  --primary-color: #1b3252;
   --white: #ffffff;
   --bg: #799881;
   --font: "Poppins", sans-serif;
   --black: #000;
-  --text-heading: #f0a924ff;
+  --text-heading: #1b3252;
   --bg-footer: #000000ff ;
   --red: #f00;
-  --hover: #f0a924ff;
+  --hover: #1b3252;
 }
 * {
   margin: 0;
@@ -61,7 +61,7 @@ body {
   display: none;
 }
 .header {
-  background-color: #f0a924ff !important;
+  background-color: #1b3252 !important;
   padding: 15px 0;
 }
 .header-main {
@@ -290,7 +290,7 @@ body {
 }
 .your-rating input:checked ~ label:before {
   content: "\2605"; /* Dấu sao đầy */
-  color: #f0a924ff;
+  color: #1b3252;
 }
 .div-comment {
   width: 100%;
@@ -376,10 +376,10 @@ body {
   font-size: 14px;
 }
 .comment-rating i:nth-child(1) {
-  color: #f0a924ff;
+  color: #1b3252;
 }
 .comment-rating i:nth-child(2) {
-  color: #f0a924ff;
+  color: #1b3252;
 }
 .review {
   display: flex;
@@ -785,16 +785,16 @@ body {
   line-height: 22px;
 }
 .service-box.item-1 {
-  background-color: #f0a924ff;
+  background-color: #1b3252;
 }
 .service-box.item-2 {
-  background-color: #f0a924ff;
+  background-color: #1b3252;
 }
 .service-box.item-3 {
-  background-color: #f0a924ff;
+  background-color: #1b3252;
 }
 .service-box.item-4 {
-  background-color: #f0a924ff;
+  background-color: #1b3252;
 }
 .seller {
   padding: 60px 0;
@@ -862,7 +862,7 @@ body {
   font-weight: 400;
 }
 .customer-rating i {
-  color: #f0a924ff;
+  color: #1b3252;
 }
 .blog {
   padding: 60px 0;
@@ -1639,7 +1639,7 @@ input[type="radio"] {
   caption-side: bottom;
 }
 .cart-table thead tr th {
-  border-color: #e3a51e;
+  border-color: #1b3252;
   border-bottom: 0 solid transparent;
   color: var(--black);
   font-size: 14px;
