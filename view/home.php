@@ -303,13 +303,13 @@
             <div class="customer-icon">
               <i class="fa fa-quote-left" aria-hidden="true"></i>
             </div>
-            <div class="customer-title">WHAT CUSTOMERS SAY ABOUT JUST 4 YOU SPORTS PRODUCTS</div>
+            <div class="customer-title">WHAT CUSTOMERS SAY ABOUT Deepus SPORTS PRODUCTS</div>
             <p class="customer-desc">
-             "Thank you JUST 4 YOU for helping me get 2 pairs of nice shoes for this summer. For me, JUST 4 YOU is always my first choice, with diverse designs, attentive service, and always providing enthusiastic support to customers. Wishing JUST 4 YOU even more success."
+             "Thank you Deepus for helping me get 2 pairs of nice shoes for this summer. For me, Deepus is always my first choice, with diverse designs, attentive service, and always providing enthusiastic support to customers. Wishing Deepus even more success."
             </p>
             <div class="customer-info">
               <div class="customer-name">Harsha</div>
-              <div class="customer-member">Customer who bought a t-shirt from JUST 4 YOU</div>
+              <div class="customer-member">Customer who bought a t-shirt from Deepus</div>
               <div class="customer-rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>

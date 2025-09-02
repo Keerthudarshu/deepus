@@ -98,7 +98,7 @@
                   </div>
                   <a href="#" class="contact-link">
                     <div class="contact-link-title">Email</div>
-                    ZStyle@gmail.com
+                    deepus@gmail.com
                   </a>
                 </li>
                 <li class="contact-list">
@@ -136,7 +136,7 @@
                   </div>
                   <a href="#" class="contact-link">
                     <div class="contact-link-title">Facebook</div>
-                    zstyle
+                    deepus
                   </a>
                 </li>
               </ul>

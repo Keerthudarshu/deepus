@@ -15,14 +15,14 @@
             <div class="footer-column">
               <div class="footer-logo">
                 <a href="#">
-                  <img src="view/layout/assets/images/logo.png" alt="" style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
+                  <img src="view/layout/assets/images/logo.jpg" alt="" style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
                 </a>
                 <div class="footer-nav">
                   <ul class="footer-menu">
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><i class="fa fa-map-marker" aria-hidden="true"></i>
-                       JUST 4 YOU, Kammanahalli, Bengaluru, Bangalore, Karnataka 560084
+                       Deepus, Kammanahalli, Bengaluru, Bangalore, Karnataka 560084
                       </a>
                     </li>
                     <li class="footer-item">
@@ -34,13 +34,13 @@
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-google"></ion-icon>
-                       Just4You@gmail.com
+                       Deepus@gmail.com
                       </a>
                     </li>
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-facebook"></ion-icon>
-                        Just 4 You
+                        Deepus
                       </a>
                     </li>
                   </ul>
@@ -117,7 +117,7 @@
             </div>
           </div>
         </div>
-  <div class="footer-copy">Copyright © 2025 Just 4 You. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
+  <div class="footer-copy">Copyright © 2025 Deepus. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
       </footer>
     </div>
 

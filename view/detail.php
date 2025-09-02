@@ -225,7 +225,7 @@
                 </p>
               </div>
               <div class="detail-brand">
-                <div class="detail-brand__text">Brand: Just4You</div>
+                <div class="detail-brand__text">Brand: Deepus</div>
                 <div class="detail-brand__text">Origin: Vietnam</div>
                 <div class="detail-brand__text">Gender: Male</div>
                 <div class="detail-brand__text">Color: Blue, Black</div>

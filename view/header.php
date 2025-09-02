@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Just 4 You</title>
+    <title>Deepus</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link
       rel="stylesheet"
@@ -33,7 +33,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
-<link rel="icon" type="image/png" href="view/layout/assets/images/logo.png" />
+<link rel="icon" type="image/png" href="view/layout/assets/images/logo.jpg" />
   </head>
   <body>
     <div class="app">
@@ -47,12 +47,12 @@
             </div>
             <div class="header-logo">
               <a href="index.php">
-                <img src="view/layout/assets/images/logo.png" alt="" style="height:72px; width: 150px;; max-width:350px;" /><strong style="color: #f0a924ff;font-size: 24px; font-family: 'Times New Roman', Times, serif; font-weight: 600;">JUST 4 YOU</strong>
+                <img src="view/layout/assets/images/logo.jpg" alt="" style="height:72px; width: 150px;; max-width:350px;" />
               </a>
             </div>
             <div class="header-logo-mobile">
               <a href="#">
-                <img src="view/layout/assets/images/logo.png" alt="" />
+                <img src="view/layout/assets/images/logo.jpg" alt="" />
               </a>
             </div>
             <div class="header-bad">

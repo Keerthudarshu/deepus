@@ -62,7 +62,7 @@
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Hi, Just4You</div>
+              <div class="header-name">Hi, Deepus</div>
             </div>
           </div>
         </div>

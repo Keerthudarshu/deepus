@@ -62,7 +62,7 @@
           </a>
           <div class="banner-content">
             <div class="banner-content-desc">
-              "If you’re looking for a local brand with affordable prices and stylish, creative designs, think of Just4You."
+              "If you’re looking for a local brand with affordable prices and stylish, creative designs, think of Deepus."
             </div>
           </div>
         </div>
@@ -73,12 +73,12 @@
           <div class="heading-primary">About Us</div>
           <div class="intro-content">
             <p class="intro-desc">
-              JUST 4 YOU – Adorable Styles for Little Smiles
-Welcome to JUST 4 YOU, Bangalore’s favorite destination for trendy and comfortable kidswear. From playful everyday outfits to stylish party wear, we bring you a delightful range of clothing designed to keep your little ones looking cute and feeling comfy.
+              Deepus – Adorable Styles for Little Smiles
+Welcome to Deepus, Bangalore’s favorite destination for trendy and comfortable kidswear. From playful everyday outfits to stylish party wear, we bring you a delightful range of clothing designed to keep your little ones looking cute and feeling comfy.
 
 Our collection includes soft cotton t-shirts, colorful dresses, cozy jackets, and fun seasonal wear — all made with love, care, and kid-friendly fabrics. Every piece is thoughtfully designed to combine style, comfort, and durability, perfect for your growing champs.
 
-At JUST 4 YOU, we know every child is unique. That’s why our designs are as vibrant and joyful as your little one’s personality. Step in today and discover outfits that make every moment picture-perfect!
+At Deepus, we know every child is unique. That’s why our designs are as vibrant and joyful as your little one’s personality. Step in today and discover outfits that make every moment picture-perfect!
             </p>
             <div class="intro-image">
               <img src="view/layout/assets/images/intro.png" alt="" />

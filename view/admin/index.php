@@ -41,29 +41,40 @@
       }
     }
     $order_code = 'ZS_' . substr(md5(uniqid()),0,8);
-    $sql = "INSERT INTO donhang (iduser, tendat, ma_donhang, diachidat, tongtien, trangthai, ngaylap, sdtdat, emaildat, ptthanhtoan, id_voucher) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = pdo_get_connection()->prepare($sql);
-    $stmt->execute([$id_user, $customer_name, $order_code, $address, $total, 'Pending', date('Y-m-d H:i:s'), $customer_phone, $emaildat, 'Admin', $id_voucher]);
-    // Save cart items to cart table for invoice
-    $order_id = pdo_get_connection()->lastInsertId();
-    if (is_array($cart)) {
-      foreach($cart as $item) {
-        // Lookup product ID, image, size, color, product_design from code
-        $product_row = getproduct_by_code($item['code']);
-        $product_id = $product_row ? $product_row['id'] : 0;
-        $img = $product_row ? ($product_row['img'] ?? '') : '';
-        $id_size = isset($product_row['id_size']) ? $product_row['id_size'] : 1;
-        $id_color = isset($product_row['id_color']) ? $product_row['id_color'] : 1;
-        $id_product_design = isset($product_row['id_product_design']) ? $product_row['id_product_design'] : 1;
-        $name = $item['name'] ?? ($product_row['name'] ?? '');
-        $sql_cart = "INSERT INTO cart (id_user, id_donhang, id_product, soluong, price, thanhtien, img, id_size, id_color, id_product_design, name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt_cart = pdo_get_connection()->prepare($sql_cart);
-        $stmt_cart->execute([$id_user, $order_id, $product_id, $item['qty'], $item['price'], $item['price'] * $item['qty'], $img, $id_size, $id_color, $id_product_design, $name]);
-          // Reduce stock after purchase
+    // Use a single PDO connection for both inserts
+    $pdo = pdo_get_connection();
+    try {
+      $pdo->beginTransaction();
+      // Insert into donhang (admin order: iduser=0)
+      $sql = "INSERT INTO donhang (iduser, tendat, ma_donhang, diachidat, tongtien, trangthai, ngaylap, sdtdat, emaildat, ptthanhtoan, id_voucher) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$id_user, $customer_name, $order_code, $address, $total, 'Pending', date('Y-m-d H:i:s'), $customer_phone, $emaildat, 'Admin', $id_voucher]);
+      $order_id = $pdo->lastInsertId();
+      if (!$order_id) {
+        throw new Exception('Order insert failed, no order ID returned.');
+      }
+      // Insert each product into cart table for invoice and reduce stock
+      if (is_array($cart)) {
+        foreach($cart as $item) {
+          $product_row = getproduct_by_code($item['code']);
+          $product_id = $product_row ? $product_row['id'] : 0;
+          $img = $product_row ? ($product_row['img'] ?? '') : '';
+          $id_size = isset($product_row['id_size']) ? $product_row['id_size'] : 1;
+          $id_color = isset($product_row['id_color']) ? $product_row['id_color'] : 1;
+          $id_product_design = isset($product_row['id_product_design']) ? $product_row['id_product_design'] : 1;
+          $name = $item['name'] ?? ($product_row['name'] ?? '');
+          $sql_cart = "INSERT INTO cart (id_user, id_donhang, id_product, soluong, price, thanhtien, img, id_size, id_color, id_product_design, name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt_cart = $pdo->prepare($sql_cart);
+          $stmt_cart->execute([$id_user, $order_id, $product_id, $item['qty'], $item['price'], $item['price'] * $item['qty'], $img, $id_size, $id_color, $id_product_design, $name]);
           if ($product_id && $item['qty'] > 0) {
             reduce_product_stock($product_id, $item['qty']);
           }
+        }
       }
+      $pdo->commit();
+    } catch (Exception $e) {
+      $pdo->rollBack();
+      die('Order failed: ' . $e->getMessage());
     }
     header("Location: index.php?pg=donhang");
     exit;

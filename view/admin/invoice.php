@@ -55,7 +55,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta name="format-detection" content="telephone=no">
-    <title>Invoice #<?= htmlspecialchars($order['ma_donhang'] ?? 'N/A') ?> - Just4You</title>
+    <title>Invoice #<?= htmlspecialchars($order['ma_donhang'] ?? 'N/A') ?> - Deepus</title>
     <style>
         /* Reset all styles to ensure complete isolation */
         * {
@@ -870,18 +870,18 @@ if (isset($_GET['debug']) && $_GET['debug'] == 1) {
         <div class="invoice-header">
             <div class="company-info">
                 <div class="company-logo-img">
-                    <img src="../../view/layout/assets/images/logo.png" alt="Just4You">
+                    <img src="../../view/layout/assets/images/logo.jpg" alt="Deepus">
                 </div>
                 <div class="company-text">
-                    <div class="company-logo">Just4You</div>
+                    <div class="company-logo">Deepus</div>
                     <div class="company-tagline">Fashion for Everyone</div>
                     <div class="company-details">
                         123 Fashion Street<br>
                         Mumbai, Maharashtra 400001<br>
                         India<br>
                         Phone: +91 98765 43210<br>
-                        Email: support@just4you.com<br>
-                        Website: www.just4you.com
+                        Email: support@Deepus.com<br>
+                        Website: www.Deepus.com
                     </div>
                 </div>
             </div>
@@ -987,7 +987,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == 1) {
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <?= date('Y') ?> Just4You. All rights reserved. | Fashion for Everyone</p>
+                <p>&copy; <?= date('Y') ?> Deepus. All rights reserved. | Fashion for Everyone</p>
             </div>
         </div>
 </div>

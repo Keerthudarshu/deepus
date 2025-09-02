@@ -35,13 +35,13 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
 
 
     //Recipients
-    $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
+    $mail->setFrom('keerthudarshu06@gmail.com', 'Deepus' );  // Sender Email and name
     $mail->addAddress($_POST["emaildat"], $_POST["tendat"]);     //Add a recipient email   // reply to sender email
  
     //Content
     $mail->isHTML(true);               //Set email format to HTML
     $mail->Subject = 'Thank you for shopping with us!';  // email subject headings
-    $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
+    $mail->AddEmbeddedImage('view/layout/assets/images/logo.jpg', 'logo', 'logo.jpg');
     $mail->AddEmbeddedImage('upload/form-thanks.jpg', 'img', 'form-thanks.jpg');
     $i=0;
     $tongtien=0;
@@ -156,7 +156,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
             
         </style>
     </head>
-    <body>
+    <body>deepus
         <div class="container-form">
         <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
         <hr>
@@ -218,7 +218,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 We look forward to seeing you soon.
             <br>
 
-            Best regards, <strong>Just 4 You</strong>
+            Best regards, <strong>Deepus</strong>
             <hr>
 
             <div class="icon">
@@ -227,8 +227,8 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 <i class="fa-brands fa-google"></i>
                 <i class="fa-brands fa-shopify"></i>
             </div>
-
-            Just 4 You Shop <br>
+deepus
+            Deepus Shop <br>
             Website: https://zstyle.online/ <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
             Email: keerthudarshu06@gmail.com <br>
@@ -259,7 +259,7 @@ function creatcode() {
     }
     return $code;
   }
-  function pdo_get_connection(){
+  function pdo_get_connection(){deepus
     $dburl = "mysql:host=localhost;dbname=zstyle;charset=utf8";
     $username = 'root';
     $password = '';
@@ -346,7 +346,7 @@ if (isset($_POST["guima"])) {
         $mail->Port       = 587;                                    
 
         //Recipients
-        $mail->setFrom('keerthudarshu06@gmail.com', 'Just 4 You' );  // Sender Email and name
+        $mail->setFrom('keerthudarshu06@gmail.com', 'Deepus' );  // Sender Email and name
         $mail->addAddress($_POST["emailxn"]);     //Add a recipient email   // reply to sender email
         $_SESSION['emailxn']=$_POST["emailxn"];
         $_SESSION['username']=getusertoemail($_SESSION['emailxn'])['user'];
@@ -354,7 +354,7 @@ if (isset($_POST["guima"])) {
         //Content
         $mail->isHTML(true);               //Set email format to HTML
         $mail->Subject = 'We have successfully restored your account!';  // email subject headings
-        $mail->AddEmbeddedImage('view/layout/assets/images/logo.png', 'logo', 'logo.png');
+        $mail->AddEmbeddedImage('view/layout/assets/images/logo.jpg', 'logo', 'logo.jpg');
         
     
         $_SESSION['code']=creatcode();
@@ -446,7 +446,7 @@ if (isset($_POST["guima"])) {
         </head>
         <body>
             
-            <div class="container">
+            <div class="container">deepus
                 <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
                 <br>
                 <hr>
@@ -471,10 +471,10 @@ if (isset($_POST["guima"])) {
                     '.$_SESSION['code'].'
                 </div>
 
-                Best regards, <strong>Just 4 You</strong>
+                Best regards, <strong>Deepus</strong>
                 <hr>
 
-                Just 4 You Shop <br>
+                Deepus Shop <br>
                 Website: https://zstyle.online/ <br>
                 Address: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
                 Email: Keerthudarshu06@gmail.com <br>

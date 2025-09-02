@@ -177,7 +177,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     <body>
         
         <div class="container">
-            <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
+            <img src="cid:logo" alt="deepus Logo" style="display: block; width: 150px; margin: 0 auto;">
             <br>
             
             <h2>Chào mừng bạn trở lại!</h2>
@@ -187,7 +187,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 456385
             </div>
     
-            Trân trọng, <strong>Zstyle</strong>
+            Trân trọng, <strong>deepus</strong>
             <hr>
 
             <div class="icon">
@@ -197,9 +197,9 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 <i class="fa-brands fa-shopify"></i>
             </div>
 
-            ZStyle Shop <br>
+            deepus Shop <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-            Email: ZStylevn@gmail.com <br>
+            Email: deepusvn@gmail.com <br>
             Hotline: 19006789 <br>
         </div>
     </body>

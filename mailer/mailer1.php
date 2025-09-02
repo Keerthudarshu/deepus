@@ -32,7 +32,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     $mail->Port       = 465;                                    
  
     //Recipients
-    $mail->setFrom('keerthudarshu06@gmail.com', 'ZStyle' );  // Sender Email and name
+    $mail->setFrom('keerthudarshu06@gmail.com', 'deepus' );  // Sender Email and name
     $mail->addAddress($_POST["emaildat"], $_POST["tendat"]);     //Add a recipient email   // reply to sender email
  
     //Content
@@ -162,7 +162,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     <body>
         
         <div class="container">
-            <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
+            <img src="cid:logo" alt="deepus Logo" style="display: block; width: 150px; margin: 0 auto;">
             <br>
             
             Xin chào khách hàng!
@@ -202,7 +202,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
             Chúng tôi mong sớm được gặp lại bạn.
             <br>
     
-            Trân trọng, <strong>Zstyle</strong>
+            Trân trọng, <strong>deepus</strong>
             <hr>
 
             <div class="icon">
@@ -212,9 +212,9 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 <i class="fa-brands fa-shopify"></i>
             </div>
 
-            ZStyle Shop <br>
+            deepus Shop <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-            Email: ZStylevn@gmail.com <br>
+            Email: deepusvn@gmail.com <br>
             Hotline: 19006789 <br>
         </div>
     </body>

@@ -17,7 +17,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
-    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/logo.png" />
+    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/logo.jpg" />
   </head>
   <body>
     <div class="app">
@@ -50,7 +50,7 @@
                 <div class="header-avatar">
                   <img src="../layout/assets/images/avatar.png" alt="" />
                 </div>
-                <div class="header-name">Chào, ZStyle</div>
+                <div class="header-name">Chào, deepus</div>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
       <div class="navigation">
         <ul class="dashboard-menu">
           <li class="dashboard-menu-list">
-            <img src="../layout/assets/images/logo.png" alt="" style="height: 100px; width:auto; max-width:160px;"/>
+            <img src="../layout/assets/images/logo.jpg" alt="" style="height: 100px; width:auto; max-width:160px;"/>
           </li>
           <li class="dashboard-menu-list">
             <a href="index.php" class="dashboard-menu-link" data-tab="1">

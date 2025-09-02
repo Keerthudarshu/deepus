@@ -4,9 +4,9 @@
 <footer class="footer">
           <div class="container">
             <div class="footer-logo">
-              <img src="../layout/assets/images/logo.png" alt=""style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
+              <img src="../layout/assets/images/logo.jpg" alt=""style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
             </div>
-  <div class="footer-copy">Copyright © 2025 Just 4 You. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
+  <div class="footer-copy">Copyright © 2025 Deepus. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
           </div>
         </footer>
       </div>
@@ -219,7 +219,7 @@
                         <img src="../layout/assets/images/product-6.png" alt="" />
                       </td>
                       <td>Áo Thun Regular Bear Cool</td>
-                      <td>ZSTYLE1102</td>
+                      <td>deepus1102</td>
                       <td>120 cái</td>
                       <td>290,000đ</td>
                       <td>Áo thun</td>
@@ -233,7 +233,7 @@
                         <img src="../layout/assets/images/product-6.png" alt="" />
                       </td>
                       <td>Áo Thun Regular Bear Cool</td>
-                      <td>ZSTYLE1102</td>
+                      <td>deepus1102</td>
                       <td>120 cái</td>
                       <td>290,000đ</td>
                       <td>Áo thun</td>
@@ -306,7 +306,7 @@
                     <tr>
                       <td>101124</td>
                       <td>GUEST1023</td>
-                      <td>ZSTYLE456</td>
+                      <td>deepus456</td>
                       <td>Sản phẩm tốt, nên trải nghiệm</td>
                       <td>12-08-2023</td>
                       <td>
@@ -317,7 +317,7 @@
                     <tr>
                       <td>101124</td>
                       <td>GUEST1023</td>
-                      <td>ZSTYLE456</td>
+                      <td>deepus456</td>
                       <td>Sản phẩm tốt, nên trải nghiệm</td>
                       <td>12-08-2023</td>
                       <td>
@@ -328,7 +328,7 @@
                     <tr>
                       <td>101124</td>
                       <td>GUEST1023</td>
-                      <td>ZSTYLE456</td>
+                      <td>deepus456</td>
                       <td>Sản phẩm tốt, nên trải nghiệm</td>
                       <td>12-08-2023</td>
                       <td>

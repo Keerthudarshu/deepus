@@ -85,7 +85,7 @@ foreach ($donhang as $item) {
               <div class="header-avatar">
                 <img src="../layout/assets/images/avatar.png" alt="" />
               </div>
-              <div class="header-name">Hi, Just4You</div>
+              <div class="header-name">Hi, Deepus</div>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@ foreach ($donhang as $item) {
             </span>
             <div class="modal-main">
                 <form
-                    action="index.php?pg=addcart"
+                    action="index.php?pg=addorder"
                     method="post"
                     enctype="multipart/form-data">
                     <div
