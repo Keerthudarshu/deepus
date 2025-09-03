@@ -250,7 +250,7 @@ deepus
     } catch (Exception $e) {
         echo '<div style="color:red;">Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '</div>';
     }
-} 
+
 function creatcode() {
     $code='';
     $characters = '0123456789';
@@ -497,6 +497,6 @@ if (isset($_POST["guima"])) {
 
     }
     
- 
+}
     
-} 
+}

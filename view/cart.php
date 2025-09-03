@@ -82,99 +82,178 @@
                 
                 <tbody>
                   <?php
-                    $html_cart='';
-                    $tongtien=0;
-                    $j=0;
-                    if(isset($_SESSION['giohang']) && count($_SESSION['giohang'])>0){
+                    require_once "model/cart.php";
+                    require_once "model/product.php";
+                    require_once "model/user.php";
+                    $html_cart = '';
+                    $tongtien = 0;
+                    $j = 0;
+                    // Show session cart (unpaid)
+                    if(isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0){
                       foreach ($_SESSION['giohang'] as $item) {
-                          extract($item);
-                          if($product_design==0){
-                            $html_cart.='<tr class="cart-product">
-                            <td>
-                              <div class="pro-main">
-                                <div class="pro-image">
-                                  '.check_img($img).'
+                        extract($item);
+                        // ...existing code...
+                        if($product_design==0){
+                          $html_cart.='<tr class="cart-product">
+                          <td>
+                            <div class="pro-main">
+                              <div class="pro-image">
+                                '.check_img($img).'
+                              </div>
+                              <div class="cart-body-auth">
+                                <div class="cart-body-title">'.$name.'</div>
+                                <div class="cart-body-size">'.$color.'/'.$size.'</div>
+                                <div class="detail-input pro-quantity-mobile">
+                                  <button class="detail-input__minus tru">-</button>
+                                  <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
+                                  <button class="detail-input__plus cong">+</button>
+                                  <input class="index" type="hidden" value="'.$j.'">
+                                  <input class="price" type="hidden" value="'.$price.'">
                                 </div>
-                                <div class="cart-body-auth">
-                                  <div class="cart-body-title">'.$name.'</div>
-                                  <div class="cart-body-size">'.$color.'/'.$size.'</div>
-                                  <div class="detail-input pro-quantity-mobile">
-                                    <button class="detail-input__minus tru">-</button>
-                                    <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
-                                    <button class="detail-input__plus cong">+</button>
-                                    <input class="index" type="hidden" value="'.$j.'">
-                                <input class="price" type="hidden" value="'.$price.'">
-                                  </div>
-                                  <div class="cart-body-del">
-                                  <a href="index.php?pg=cart&id='.$j.'"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                  </div>
+                                <div class="cart-body-del">
+                                <a href="index.php?pg=cart&id='.$j.'"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </div>
                               </div>
-                            </td>
-                            <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
-                            <td class="pro-td-quantity">
-                              <div class="detail-input pro-quantity">
-                                <button class="detail-input__minus tru">-</button>
-                                <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
-                                <button class="detail-input__plus cong">+</button>
-                                <input class="index" type="hidden" value="'.$j.'">
-                                <input class="price" type="hidden" value="'.$price.'">
-                              </div>
-                            </td>
-                              <td class="pro-price-quantity">'.number_format(intval($price)*max(intval($soluong),1),0,'',',').'₹</td>
-                          </tr>';
+                            </div>
+                          </td>
+                          <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
+                          <td class="pro-td-quantity">
+                            <div class="detail-input pro-quantity">
+                              <button class="detail-input__minus tru">-</button>
+                              <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" />
+                              <button class="detail-input__plus cong">+</button>
+                              <input class="index" type="hidden" value="'.$j.'">
+                              <input class="price" type="hidden" value="'.$price.'">
+                            </div>
+                          </td>
+                            <td class="pro-price-quantity">'.number_format(intval($price)*max(intval($soluong),1),0,'',',').'₹</td>
+                        </tr>';
                           $tongtien+=intval($price)*intval($soluong);
                           $j++;
-                          }else{
-                            if($product_design==1){
-                              $html_cart.='<tr class="cart-product">
-                                <td>
-                                  <div class="pro-main">
-                                    <div class="pro-image">
-                                      '.check_img($img).'
-                                      <img class="design-icon" src="view/layout/assets/images/design-icon.svg" alt="" />
+                        }else{
+                          if($product_design==1){
+                            $html_cart.='<tr class="cart-product">
+                              <td>
+                                <div class="pro-main">
+                                  <div class="pro-image">
+                                    '.check_img($img).'
+                                    <img class="design-icon" src="view/layout/assets/images/design-icon.svg" alt="" />
+                                  </div>
+                                  <div class="cart-body-auth">
+                                    <div class="cart-body-title">'.$name.'</div>
+                                    <div class="cart-body-size">'.$color.'/'.$size.'</div>
+                                    <div class="detail-input pro-quantity-mobile">
+                                      <button class="detail-input__minus tru">-</button>
+                                      <input class="soluong" type="text" value='.$soluong.' />
+                                      <button class="detail-input__plus cong">+</button>
+                                      <input class="index" type="hidden" value="'.$j.'">
+                                      <input class="price" type="hidden" value="'.$price.'">
                                     </div>
-                                    <div class="cart-body-auth">
-                                      <div class="cart-body-title">'.$name.'</div>
-                                      <div class="cart-body-size">'.$color.'/'.$size.'</div>
-                                      <div class="detail-input pro-quantity-mobile">
-                                        <button class="detail-input__minus tru">-</button>
-                                        <input class="soluong" type="text" value='.$soluong.' />
-                                        <button class="detail-input__plus cong">+</button>
-                                        <input class="index" type="hidden" value="'.$j.'">
-                                    <input class="price" type="hidden" value="'.$price.'">
-                                      </div>
-                                      <div class="cart-body-del">
-                                      <a href="index.php?pg=cart&id='.$j.'"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                      </div>
+                                    <div class="cart-body-del">
+                                    <a href="index.php?pg=cart&id='.$j.'"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </div>
                                   </div>
-                                </td>
-                                <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
-                                <td class="pro-td-quantity">
-                                  <div class="detail-input pro-quantity">
-                                    <button class="detail-input__minus tru">-</button>
-                                    <input class="soluong" type="text" value='.$soluong.' />
-                                    <button class="detail-input__plus cong">+</button>
-                                    <input class="index" type="hidden" value="'.$j.'">
-                                    <input class="price" type="hidden" value="'.$price.'">
-                                  </div>
-                                </td>
-                                <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
-                              </tr>';
-                              $tongtien+=intval($price)*intval($soluong);
-                              $j++;
-                            }
+                                </div>
+                              </td>
+                              <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
+                              <td class="pro-td-quantity">
+                                <div class="detail-input pro-quantity">
+                                  <button class="detail-input__minus tru">-</button>
+                                  <input class="soluong" type="text" value='.$soluong.' />
+                                  <button class="detail-input__plus cong">+</button>
+                                  <input class="index" type="hidden" value="'.$j.'">
+                                  <input class="price" type="hidden" value="'.$price.'">
+                                </div>
+                              </td>
+                              <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
+                            </tr>';
+                            $tongtien+=intval($price)*intval($soluong);
+                            $j++;
                           }
-                          
+                        }
                       }
                     }
-          echo $html_cart;
-          if(count($_SESSION['giohang'])>0){
-            $_SESSION['cart_total'] = $tongtien;
-          }else{
-            unset($_SESSION['cart_total']);
-          }
+                    // Show paid orders from database cart
+                    if(isset($_SESSION['user']) && isset($_SESSION['id_user'])){
+                      $id_user = $_SESSION['id_user'];
+                      // Get paid cart items (id_donhang != 1)
+                      $paid_cart_items = pdo_query("SELECT * FROM cart WHERE id_user=? AND id_donhang<>1", $id_user);
+                      foreach($paid_cart_items as $item){
+                        // Get product info
+                        $product = pdo_query_one("SELECT * FROM product WHERE id=?", $item['id_product']);
+                        $img = isset($product['img']) ? $product['img'] : $item['img'];
+                        $name = isset($product['name']) ? $product['name'] : '';
+                        $color = getcolor($item['id_color']);
+                        $size = getsize($item['id_size']);
+                        $price = $item['price'];
+                        $soluong = $item['soluong'];
+                        $product_design = $item['product_design'];
+                        if($product_design==0){
+                          $html_cart.='<tr class="cart-product paid-order">
+                          <td>
+                            <div class="pro-main">
+                              <div class="pro-image">
+                                '.check_img($img).'
+                              </div>
+                              <div class="cart-body-auth">
+                                <div class="cart-body-title">'.$name.' <span style="color:green;font-size:12px;">[Paid]</span></div>
+                                <div class="cart-body-size">'.$color.'/'.$size.'</div>
+                                <div class="detail-input pro-quantity-mobile">
+                                  <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" readonly />
+                                  <input class="price" type="hidden" value="'.$price.'">
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
+                          <td class="pro-td-quantity">
+                            <div class="detail-input pro-quantity">
+                              <input class="soluong" type="number" min="1" value="'.(intval($soluong)>0?intval($soluong):1).'" readonly />
+                              <input class="price" type="hidden" value="'.$price.'">
+                            </div>
+                          </td>
+                            <td class="pro-price-quantity">'.number_format(intval($price)*max(intval($soluong),1),0,'',',').'₹</td>
+                        </tr>';
+                          $tongtien+=intval($price)*intval($soluong);
+                        }else{
+                          if($product_design==1){
+                            $html_cart.='<tr class="cart-product paid-order">
+                              <td>
+                                <div class="pro-main">
+                                  <div class="pro-image">
+                                    '.check_img($img).'
+                                    <img class="design-icon" src="view/layout/assets/images/design-icon.svg" alt="" />
+                                  </div>
+                                  <div class="cart-body-auth">
+                                    <div class="cart-body-title">'.$name.' <span style="color:green;font-size:12px;">[Paid]</span></div>
+                                    <div class="cart-body-size">'.$color.'/'.$size.'</div>
+                                    <div class="detail-input pro-quantity-mobile">
+                                      <input class="soluong" type="text" value='.$soluong.' readonly />
+                                      <input class="price" type="hidden" value="'.$price.'">
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
+                              <td class="pro-td-quantity">
+                                <div class="detail-input pro-quantity">
+                                  <input class="soluong" type="text" value='.$soluong.' readonly />
+                                  <input class="price" type="hidden" value="'.$price.'">
+                                </div>
+                              </td>
+                              <td class="pro-price-quantity">'.number_format(intval($price)*intval($soluong),0,'',',').'₹</td>
+                            </tr>';
+                            $tongtien+=intval($price)*intval($soluong);
+                          }
+                        }
+                      }
+                    }
+                    echo $html_cart;
+                    if($tongtien>0){
+                      $_SESSION['cart_total'] = $tongtien;
+                    }else{
+                      unset($_SESSION['cart_total']);
+                    }
                   ?>
                 </tbody>
               </table>  

@@ -17,6 +17,10 @@
       </div>';
       }
       $html_product_checkout.='<div class="checkout-right-list">
+        <input type="hidden" name="id_product" value="'.(isset($id)?$id:'').'">
+        <input type="hidden" name="img" value="'.(isset($img)?$img:'').'">
+        <input type="hidden" name="product_design" value="'.(isset($product_design)?$product_design:'').'">
+        <input type="hidden" name="id_product_design" value="'.(isset($id_product_design)?$id_product_design:'').'">
       <div class="checkout-right-item">
         <div class="checkout-right-image">
           '.check_img($img).$soluong.'
@@ -343,12 +347,12 @@
                   "handler": function (response){
                       // Send payment ID and order details to send_mail.php after successful payment
                       var xhr = new XMLHttpRequest();
-                      xhr.open('POST', 'send_mail.php', true);
+                      xhr.open('POST', 'razorpay_process.php', true);
                       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                       xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4 && xhr.status === 200) {
                           alert('Payment successful! Order placed and mail sent.');
-                          window.location.reload();
+                          window.location = "index.php?pg=thankyou";
                         }
                       };
                       // Collect product and user details from the form
@@ -363,15 +367,28 @@
                         var size = item.querySelector('.checkout-right-size').textContent.replace('Size: ','');
                         var price = item.querySelector('.checkout-right-price').textContent.replace('₹','').replace(/,/g,'');
                         var quantity = item.querySelector('.number') ? item.querySelector('.number').textContent : '1';
-                        products.push({title:title, color:color, size:size, price:price, quantity:quantity});
+                        var id_product = item.querySelector('input[name="id_product"]') ? item.querySelector('input[name="id_product"]').value : '';
+                        var img = item.querySelector('input[name="img"]') ? item.querySelector('input[name="img"]').value : '';
+                        var product_design = item.querySelector('input[name="product_design"]') ? item.querySelector('input[name="product_design"]').value : '';
+                        var id_product_design = item.querySelector('input[name="id_product_design"]') ? item.querySelector('input[name="id_product_design"]').value : '';
+                        products.push({
+                          title:title,
+                          color:color,
+                          size:size,
+                          price:price,
+                          quantity:quantity,
+                          id_product:id_product,
+                          img:img,
+                          product_design:product_design,
+                          id_product_design:id_product_design
+                        });
                       });
                       var params = 'razorpay_payment_id=' + encodeURIComponent(response.razorpay_payment_id)
                         + '&name=' + encodeURIComponent(name)
                         + '&email=' + encodeURIComponent(email)
                         + '&phone=' + encodeURIComponent(phone)
                         + '&address=' + encodeURIComponent(address)
-                        + '&products=' + encodeURIComponent(JSON.stringify(products))
-                        + '&sendmail=1';
+                        + '&products=' + encodeURIComponent(JSON.stringify(products));
                       xhr.send(params);
                   },
                   "prefill": {
