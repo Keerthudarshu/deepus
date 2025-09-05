@@ -1426,6 +1426,9 @@
                            $id_size=getidsize($size);
                            $soluongkho=getquantity_of_inventorythat($id,$id_color,$id_size);
                            update_quantity_of_inventory($id,$id_color,$id_size,$soluongkho-$soluong);
+                             // Reduce stock for product
+                             require_once 'model/product.php';
+                             reduce_product_stock($id, $soluong);
                         }else{
                            add_cart($_SESSION['iduser'], $iddonhang, 1, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),1,$id_product_design);
                         }
@@ -1435,16 +1438,15 @@
                      }
                      
                      $_SESSION['mail']=1;
-                     
-                  // unset($_SESSION['giohang']);
-                  // header('location: index.php?pg=account');
+                        // Clear cart and redirect after successful COD order
+                        unset($_SESSION['giohang']);
+                        header('Location: index.php?pg=thankyou');
+                        exit;
+                     }
                   }
-            
                }
-
-            }
-            include_once "view/checkout.php";
-            break;
+               include_once "view/checkout.php";
+               break;
          case 'login':
             if(!isset($_SESSION['usernamelogin']) || !isset($_SESSION['passwordlogin'])){
                $_SESSION['usernamelogin']='';

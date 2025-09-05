@@ -48,6 +48,7 @@ function getproduct_by_code($code) {
                                                    </button>
                                                    
                                                 </form>
+                                                
                                                 <div class="icons">
                                                     <a href="'.$linkdetail.'" class="views">View Details</a>
                                                     <a href="index.php?pg=checkout&id='.$id.'" class="add">Buy Now</a>
@@ -56,10 +57,11 @@ function getproduct_by_code($code) {
                                              </div>
                               <div class="product-title">'.$name.'</div>
                               <div class="product-price">
-                              '. get_stock_status_html($stock) .'
+                           
                               '.number_format($product['price'],0,'',',').'₹
                                  '.sale($product).'
                               </div>
+                                 '. get_stock_status_html($stock) .'
                            </div>';
                   
                   // <form action="index.php?pg=addcart" method="post">

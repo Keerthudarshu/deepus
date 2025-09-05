@@ -43,7 +43,7 @@
         <div class="container">
           <div class="header-main">
             <div class="header-bars">
-              <i class="fa fa-bars menu-toggle" aria-hidden="true"></i>
+              <i class="fa fa-bars menu-toggle" aria-hidden="true" style="background-color:#1b3252"></i>
             </div>
             <div class="header-logo">
               <a href="index.php">
@@ -56,14 +56,27 @@
               </a>
             </div>
             <div class="header-bad">
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              <a href="index.php?pg=cart" style="color:inherit;text-decoration:none;">
+                <i class="fa fa-shopping-bag" aria-hidden="true" style="background-color:#1b3252; color:#fff; border-radius:6px; padding:6px;"></i>
+              </a>
             </div>
+            <div class="header-bad">
+              <a href="favorites.php" style="color:inherit;text-decoration:none;">
+                <i class="fa fa-heart" aria-hidden="true" style="background-color:#1b3252; color:#fff; border-radius:6px; padding:6px;"></i>
+              </a>
+            </div>
+            <div class="header-bad">
+              <a href="index.php?pg=login" style="color:inherit;text-decoration:none;">
+                <i class="fa fa-user-circle" aria-hidden="true" style="background-color:#1b3252; color:#fff; border-radius:6px; padding:6px;"></i>
+              </a>
+            </div>
+            
             <div class="header-form">
               <div class="header-input">
                 <form action="index.php?pg=product" method="post">
                 <input name="search" type="text" placeholder="Search products" style="border:2px solid #000;" />
                 <div class="header-input-icon">
-                  <button name="btn_search" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                  <button name="btn_search" ><i class="fa fa-search" aria-hidden="true" ></i></button>
                 </div>
                 </form>
               </div>
@@ -71,7 +84,7 @@
             <div class="header-auth" style="color: #060606ff;">
               <div class="header-auth__item">
                 <i class="fa fa-heart" aria-hidden="true"></i>
-                <a href="#" class="header-link" style="color: #060606ff;" >Favorites</a>
+                <a href="favorites.php" class="header-link" style="color: #060606ff;" >Favorites</a>
               </div>
               <div class="header-auth__item">
               <?php
@@ -107,7 +120,7 @@
                 <a href="<?=$link_taikhoan?>" class="header-link" style="color: #060606ff;" ><?=$tentaikhoan?></a>
               </div>
               <div class="header-auth__item">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <i class="fa fa-shopping-bag" aria-hidden="true" style="background-color:#1b3252; color:#fff; border-radius:6px; padding:6px;"></i>
                 <a href="index.php?pg=cart" class="header-link" style="color: #060606ff;">Shopping Cart</a>
               </div>
             </div>
@@ -121,7 +134,7 @@
           ></a>
         </li>
         <li class="menu-mobile-item">
-          <a href="#" class="menu-mobile-link active">Home</a>
+          <a href="index.php" class="menu-mobile-link active">Home</a>
         </li>
         <li class="menu-mobile-item">
           <a href="index.php?pg=about" class="menu-mobile-link">About</a>
@@ -139,10 +152,10 @@
           <a href="index.php?pg=contact" class="menu-mobile-link">Contact</a>
         </li>
         <li class="menu-mobile-item">
-          <a href="#" class="menu-mobile-link">Account</a>
+          <a href="index.php?pg=account" class="menu-mobile-link">Account</a>
         </li>
         <li class="menu-mobile-item">
-          <a href="#" class="menu-mobile-link logout">Logout</a>
+          <a href="index.php?pg=logout" class="menu-mobile-link logout">Logout</a>
         </li>
       </ul>
 

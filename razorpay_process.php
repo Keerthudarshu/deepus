@@ -63,6 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['razorpay_payment_id']
                 $price, $thanhtien, $img, $id_size, $id_color,
                 $product_design, $id_product_design
             );
+                // Reduce stock for product
+                require_once 'model/product.php';
+                reduce_product_stock($id_product, $soluong);
         }
     }
 

@@ -70,15 +70,22 @@
                 if(!isset($_SESSION['usernamelogin']) || !isset($_SESSION['passwordlogin'])){
                   $_SESSION['usernamelogin']='';
                   $_SESSION['passwordlogin']='';
-               }
-                echo '<input name="username" type="text" placeholder="Account Name" value='.$_SESSION['usernamelogin'].'> 
+                }
+                $errusername = isset($errusername) ? $errusername : '';
+                $errpassword = isset($errpassword) ? $errpassword : '';
+                echo '<input name="username" type="text" placeholder="Account Name" value="'.htmlspecialchars($_SESSION['usernamelogin']).'"> 
                 <div class="errform mb-unset">'.$errusername.'</div>
-  
+
                 <div class="login-password">
-                  <input name="password" type="password" placeholder="Password" value='.$_SESSION['passwordlogin'].' >
+                  <input name="password" type="password" placeholder="Password" value="'.htmlspecialchars($_SESSION['passwordlogin']).'" >
                   <i class="fa fa-eye hien"  onclick="anmatkhau()" aria-hidden="true"></i>
                 </div>
                 <div class="errform mb-unset">'.$errpassword.'</div>';
+
+                // Show popup if there is an error
+                if (!empty($errusername) || !empty($errpassword)) {
+                  echo '<script>alert("'.($errusername ? $errusername : $errpassword).'");</script>';
+                }
               ?>
               
 
