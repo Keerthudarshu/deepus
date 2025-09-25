@@ -14,8 +14,8 @@
         <td>'.$pass.'</td>
         <td>'.$sdt.'</td>
         <td>
-            <a href="index.php?pg=updateuser&id='.$id.'" class="edit">Edit</a>
-            <a href="index.php?pg=deluser&id='.$id.'" class="del">Delete</a>
+            <a href="/deepus/view/admin/index?pg=updateuser&id='.$id.'" class="edit">Edit</a>
+            <a href="/deepus/view/admin/index?pg=deluser&id='.$id.'" class="del">Delete</a>
         </td>
         </tr>';
     }
@@ -209,7 +209,7 @@
             <div class="header-bar">
               <i class="fa fa-angle-left icon-bar" aria-hidden="true"></i>
             </div>
-            <form action="index.php?pg=user" method="post" class="header-form">
+            <form action="/deepus/view/admin/index?pg=user" method="post" class="header-form">
               <div class="header-input">
                 <input name="keyworduser" type="text" placeholder="Tìm kiếm " />
                 <div class="header-input-icon">
@@ -237,7 +237,7 @@
 <div class="modal modal-addpro <?=$activeadd?>">
                 <div class="modal-overlay"></div>
                 <div class="modal-content modal-addproduct">
-                <a href="index.php?pg=adduser&close=1">
+                <a href="/deepus/view/admin/index?pg=adduser&close=1">
                   <span class="modal-close">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +253,7 @@
                   </span>
                 </a>
                   <div class="modal-main">
-                    <form action="index.php?pg=adduser" method="post"  enctype="multipart/form-data">
+                    <form action="/deepus/view/admin/index?pg=adduser" method="post"  enctype="multipart/form-data">
                     <div class="modal-heading">Add new account</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
@@ -414,7 +414,7 @@
                 <div class="modal modal-update <?=$activeedit?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=updateuser&close=1">
+                    <a href="/deepus/view/admin/index?pg=updateuser&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -430,7 +430,7 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                        <form action="index.php?pg=updateuser" method="post"  enctype="multipart/form-data">
+                        <form action="/deepus/view/admin/index?pg=updateuser" method="post"  enctype="multipart/form-data">
                         <div class="modal-heading">Update Account</div>
                         <div class="modal-form  modal-form-addpro">
                         <div class="modal-form-item">

@@ -9,7 +9,7 @@ $order_id = isset($order_id) ? $order_id : (isset($_GET['id']) ? intval($_GET['i
 
 if ($order_id <= 0) {
     echo '<h2>Invalid order ID</h2>';
-    echo '<p><a href="index.php?pg=donhang">← Back to Orders</a></p>';
+    echo '<p><a href="index?pg=donhang">← Back to Orders</a></p>';
     exit;
 }
 
@@ -18,7 +18,7 @@ try {
     if (!$order) {
         echo '<h2>Order not found</h2>';
         echo '<p>Order ID: ' . htmlspecialchars($order_id) . ' could not be found.</p>';
-        echo '<p><a href="index.php?pg=donhang">← Back to Orders</a></p>';
+    echo '<p><a href="index?pg=donhang">← Back to Orders</a></p>';
         exit;
     }
 
@@ -26,13 +26,13 @@ try {
     if (!$order_items || empty($order_items)) {
         echo '<h2>Order items not found</h2>';
         echo '<p>Order ID: ' . htmlspecialchars($order_id) . ' has no items.</p>';
-        echo '<p><a href="index.php?pg=donhang">← Back to Orders</a></p>';
+    echo '<p><a href="index?pg=donhang">← Back to Orders</a></p>';
         exit;
     }
 } catch (Exception $e) {
     echo '<h2>Database Error</h2>';
     echo '<p>An error occurred while retrieving order information: ' . htmlspecialchars($e->getMessage()) . '</p>';
-    echo '<p><a href="index.php?pg=donhang">← Back to Orders</a></p>';
+    echo '<p><a href="index?pg=donhang">← Back to Orders</a></p>';
     exit;
 }
 
@@ -756,7 +756,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == 1) {
 </head>
 <body>
     <div class="action-buttons">
-        <a href="index.php?pg=donhang" class="btn btn-back">← Back</a>
+    <a href="index?pg=donhang" class="btn btn-back">← Back</a>
         <button class="btn btn-print" onclick="printInvoice()">Print</button>
         <a href="?debug=1" class="btn btn-debug" style="background: #28a745 !important; color: white !important;">Debug</a>
     </div>
@@ -870,7 +870,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == 1) {
         <div class="invoice-header">
             <div class="company-info">
                 <div class="company-logo-img">
-                    <img src="../../view/layout/assets/images/logo.jpg" alt="Deepus">
+                    <img src="../../view/layout/assets/images/Deepu's.png" alt="Deepus">
                 </div>
                 <div class="company-text">
                     <div class="company-logo">Deepus</div>

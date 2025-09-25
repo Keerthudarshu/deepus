@@ -1,3 +1,157 @@
+<style>
+.main-image-container{
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 520px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.detail-img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: zoom-in;
+  user-select: none;
+}
+  .zoom-wrapper{
+    position: absolute;
+    display: none;
+    width: 300px;
+    height: 300px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 30;
+    overflow: hidden;
+  }
+.detail-image__list{
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.detail-image__item{
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: border-color .15s;
+}
+.detail-image__item.active{
+  border-color: #46694F;
+}
+@media(max-width:700px){
+  .main-image-container{
+    height: 360px;
+    max-width: 360px;
+  }
+  .zoom-wrapper{
+    width: 200px;
+    height: 200px;
+  }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const ZOOM_SCALE = 2.5;
+  document.querySelectorAll('.detail-image').forEach(function(container) {
+    const mainImg = container.querySelector('.detail-img');
+    const zoomEl  = container.querySelector('.zoom-wrapper');
+    const thumbs  = container.querySelectorAll('.detail-image__item');
+
+    function preloadNatural(src){
+      return new Promise(function(resolve){
+        const tmp = new Image();
+        tmp.onload = function(){ resolve({w: tmp.naturalWidth, h: tmp.naturalHeight}); };
+        tmp.onerror = function(){ resolve(null); };
+        tmp.src = src;
+      });
+    }
+    preloadNatural(mainImg.getAttribute('data-large') || mainImg.src).then(dim => {
+      mainImg._nat = dim;
+    });
+    thumbs.forEach(function(t){
+      t.addEventListener('click', function(e){
+        const large = t.dataset.large || t.src;
+        mainImg.src = large;
+        mainImg.setAttribute('data-large', large);
+        thumbs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        preloadNatural(large).then(dim => mainImg._nat = dim);
+      });
+      t.setAttribute('tabindex', '0');
+      t.addEventListener('keydown', function(ev){
+        if(ev.key === 'Enter' || ev.key === ' '){
+          ev.preventDefault();
+          t.click();
+        }
+      });
+    });
+
+    // Only zoom when hovering the main image
+    function showZoom(e) {
+      const rect = mainImg.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      zoomEl.style.display = 'block';
+      const zw = zoomEl.offsetWidth;
+      const zh = zoomEl.offsetHeight;
+      let left = x + rect.left - container.getBoundingClientRect().left - zw/2;
+      let top  = y + rect.top - container.getBoundingClientRect().top - zh/2;
+      left = Math.max(6, Math.min(left, container.offsetWidth - zw - 6));
+      top  = Math.max(6, Math.min(top, container.offsetHeight - zh - 6));
+      zoomEl.style.left = left + 'px';
+      zoomEl.style.top  = top  + 'px';
+      const src = mainImg.getAttribute('data-large') || mainImg.src;
+      zoomEl.style.backgroundImage = `url("${src}")`;
+      const nat = mainImg._nat;
+      if(nat && nat.w && nat.h){
+        const bgW = Math.round(nat.w * ZOOM_SCALE);
+        const bgH = Math.round(nat.h * ZOOM_SCALE);
+        zoomEl.style.backgroundSize = `${bgW}px ${bgH}px`;
+      } else {
+        zoomEl.style.backgroundSize = `${rect.width * ZOOM_SCALE}px ${rect.height * ZOOM_SCALE}px`;
+      }
+      const percentX = (x / rect.width) * 100;
+      const percentY = (y / rect.height) * 100;
+      zoomEl.style.backgroundPosition = `${percentX}% ${percentY}%`;
+    }
+    mainImg.addEventListener('mouseenter', function(e){
+      zoomEl.style.display = 'block';
+    });
+    mainImg.addEventListener('mousemove', showZoom);
+    mainImg.addEventListener('mouseleave', function(){
+      zoomEl.style.display = 'none';
+    });
+
+    // Touch support for zoom on main image only
+    let touchZoomActive = false;
+    mainImg.addEventListener('touchstart', function(ev){
+      const touch = ev.touches[0];
+      if(!touch) return;
+      touchZoomActive = true;
+      showZoom({clientX: touch.clientX, clientY: touch.clientY});
+    }, {passive:true});
+    mainImg.addEventListener('touchmove', function(ev){
+      const touch = ev.touches[0];
+      if(!touch || !touchZoomActive) return;
+      showZoom({clientX: touch.clientX, clientY: touch.clientY});
+    }, {passive:true});
+    mainImg.addEventListener('touchend', function(){
+      touchZoomActive = false;
+      zoomEl.style.display = 'none';
+    });
+  });
+});
+</script>
 <?php
   $html_color='';
   $i=0;
@@ -16,25 +170,26 @@
       <div  id_color="'.$id.'" onclick="change_color(this)" class="detail-circle">
         <div style="display:none;">'.$color.'</div>
         <span class="detail-color__circle" style="background-color: '.$ma_color.'"></span>
-    
-    </div>';
+      </div>';
     }
   }
-  $html_size='';
-  $i=0;
- 
-  foreach ($list_size as $item) {
-    $i++;
-    extract($item);
-    if($i==1){
-      $html_size.='
-      <div id_size="'.$id.'" onclick="change_size(this)" class="detail-size__item active">'.$ma_size.'</div>
-    ';
-    }else{
-      $html_size.='
-      <div id_size="'.$id.'" onclick="change_size(this)" class="detail-size__item">'.$ma_size.'</div>';
-    }
-  }
+
+// Fetch size row from size table for current product code
+include_once "model/size.php";
+$size_row = null;
+if (isset($ma_sanpham)) {
+  $pdo = pdo_get_connection();
+  $stmt = $pdo->prepare("SELECT * FROM size WHERE product_code = ? LIMIT 1");
+  $stmt->execute([$ma_sanpham]);
+  $size_row = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+$html_size = '';
+$js_size_prices = [];
+for ($sz = 20; $sz <= 38; $sz += 2) {
+    $price = isset($size_row['size_' . $sz]) ? $size_row['size_' . $sz] : '';
+    $js_size_prices[$sz] = $price;
+    $html_size .= '<div id_size="' . $sz . '" class="detail-size__item">' . $sz . '</div>';
+}
   $html_relative_product='';
   foreach ($splienquan as $item) {
     $html_relative_product.=showproduct($item);
@@ -163,12 +318,67 @@
                 <?=$html_color?>
               </div>
               <div class="detail-size">Size: <span class="pick-size">XS</span></div>
+              <style>
+                .detail-size__list {
+                  display: grid;
+                  grid-template-columns: repeat(5, 1fr);
+                  grid-template-rows: repeat(2, 1fr);
+                  gap: 16px;
+                  margin-bottom: 16px;
+                  max-width: 500px;
+                }
+                .detail-size__item {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 48px;
+                  font-size: 1.2rem;
+                  background: #fff;
+                  border: 2px solid #e6e6e6;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: border-color 0.2s, box-shadow 0.2s;
+                }
+                .detail-size__item.active {
+                  border-color: #46694F;
+                  box-shadow: 0 2px 8px rgba(70,105,79,0.08);
+                }
+              </style>
+              <script>
+                var sizePrices = <?php echo json_encode($js_size_prices); ?>;
+                document.addEventListener('DOMContentLoaded', function() {
+                  var priceInput = document.getElementById('detail-price-value');
+                  var sizeEls = document.querySelectorAll('.detail-size__item');
+                  sizeEls.forEach(function(el) {
+                    el.addEventListener('click', function() {
+                      sizeEls.forEach(x => x.classList.remove('active'));
+                      el.classList.add('active');
+                      var sz = el.getAttribute('id_size');
+                      var price = sizePrices[sz];
+                      if (price && price > 0) {
+                        priceInput.value = Number(price).toLocaleString() + '₹';
+                        window.basePrice = Number(price);
+                      } else {
+                        priceInput.value = 'N/A';
+                        window.basePrice = 0;
+                      }
+                    });
+                  });
+                  // Set initial price to first size with price
+                  for (var sz = 20; sz <= 38; sz += 2) {
+                    var price = sizePrices[sz];
+                    if (price && price > 0) {
+                      priceInput.value = Number(price).toLocaleString() + '₹';
+                      window.basePrice = Number(price);
+                      var firstEl = document.querySelector('.detail-size__item[id_size="'+sz+'"]');
+                      if (firstEl) firstEl.classList.add('active');
+                      break;
+                    }
+                  }
+                });
+              </script>
               <div class="detail-size__list">
-
-                <?php
-                  echo $html_size;
-                ?>
-
+                <?php echo $html_size; ?>
               </div>
               <div class="detail-auth">
                 <div class="detail-text">Quantity:</div>
@@ -182,25 +392,93 @@
                 <div style="display:none" id="slcon"></div>
               </div>
               <div class="detail-btn">
-                <form id="checkoutdung" action="index.php?pg=checkout" method="post">
-                  <input  type="hidden" name="soluong_checkout" value=1>
-                  <input type="hidden" name="id_checkout" value=<?=$detail['id']?>>
-                  <button name="btndetailcheckout" class="detail-button">Buy now</button>
-              </form>
-              <button style="display:none" id="checkoutsai" onclick="hethang()" class="detail-button">Buy now</button>
+                <form id="checkoutdung" action="index?pg=checkout" method="post">
+                  <input type="hidden" name="soluong_checkout" id="checkout-qty" value="1">
+                  <input type="hidden" name="id_checkout" value="<?=$detail['id']?>">
+                  <input type="hidden" name="size_checkout" id="checkout-size" value="">
+                  <input type="hidden" name="price_checkout" id="checkout-price" value="">
+                </form>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var sizeEls = document.querySelectorAll('.detail-size__item');
+                  var sizePrices = <?php echo json_encode($js_size_prices); ?>;
+                  var checkoutSize = document.getElementById('checkout-size');
+                  var checkoutPrice = document.getElementById('checkout-price');
+                  var checkoutQty = document.getElementById('checkout-qty');
+                  // Set initial size/price if available
+                  if (sizeEls.length > 0) {
+                    var activeSize = document.querySelector('.detail-size__item.active');
+                    var sz = activeSize ? activeSize.getAttribute('id_size') : sizeEls[0].getAttribute('id_size');
+                    checkoutSize.value = sz;
+                    checkoutPrice.value = sizePrices[sz] || '';
+                  }
+                  sizeEls.forEach(function(el) {
+                    el.addEventListener('click', function() {
+                      var sz = el.getAttribute('id_size');
+                      checkoutSize.value = sz;
+                      checkoutPrice.value = sizePrices[sz] || '';
+                    });
+                  });
+                  // Update qty if changed elsewhere
+                  var qtyInput = document.querySelector('.soluong');
+                  if (qtyInput) {
+                    qtyInput.addEventListener('input', function() {
+                      checkoutQty.value = qtyInput.value;
+                    });
+                  }
+                });
+                </script>
               </div>
               <div class="detail-btn">
-                <form id="cartdung" class="addtocart" action="index.php?pg=addtocart" method="post">
-                  <input type="hidden" name="id" value=<?=$detail['id']?>>
-                  <input  type="hidden" name="img" value="">
+                <form id="cartdung" class="addtocart" action="index?pg=addtocart" method="post">
+                  <input type="hidden" name="id" value="<?=$detail['id']?>">
+                  <input type="hidden" name="img" value="<?=isset($imgproduct['main_img']) ? $imgproduct['main_img'] : (isset($imgproduct[0]) ? $imgproduct[0] : '')?>">
                   <input type="hidden" name="name" value="<?=$name?>">
-                  <input type="hidden" name="color" value="">
-                  <input  type="hidden" name="size" value="">
-                  <input  type="hidden" name="soluong" value="">
-                  <input  type="hidden" name="price" value=<?=$price?>>
+                  <input type="hidden" name="color" id="cart-color" value="<?=isset($list_color[0]['color']) ? $list_color[0]['color'] : ''?>">
+                  <input type="hidden" name="size" id="cart-size" value="<?=isset($list_size[0]['ma_size']) ? $list_size[0]['ma_size'] : ''?>">
+                  <input type="hidden" name="soluong" id="cart-qty" value="1">
+                  <input type="hidden" name="price" id="cart-price" value="">
                   <button name="addtocart" class="detail-button__cart">Add to cart</button>
                 </form>
-                <button style="display:none" id="cartsai" onclick="hethang()" class="detail-button__cart">Add to cart</button>
+                <script>
+                // Update hidden fields for color, size, and quantity on selection
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Color
+                  document.querySelectorAll('.detail-circle').forEach(function(el) {
+                    el.addEventListener('click', function() {
+                      var color = this.querySelector('div').textContent.trim();
+                      document.getElementById('cart-color').value = color;
+                    });
+                  });
+                  // Size
+                  var sizeEls = document.querySelectorAll('.detail-size__item');
+                  var sizePrices = <?php echo json_encode($js_size_prices); ?>;
+                  sizeEls.forEach(function(el) {
+                    el.addEventListener('click', function() {
+                      var size = this.textContent.trim();
+                      document.getElementById('cart-size').value = size;
+                      var sz = el.getAttribute('id_size');
+                      var price = sizePrices[sz];
+                      document.getElementById('cart-price').value = price ? price : '';
+                    });
+                  });
+                  // Set initial price for first active size
+                  var activeEl = document.querySelector('.detail-size__item.active');
+                  if (activeEl) {
+                    var sz = activeEl.getAttribute('id_size');
+                    var price = sizePrices[sz];
+                    document.getElementById('cart-price').value = price ? price : '';
+                  }
+                  // Quantity
+                  var qtyInput = document.getElementById('detail-quantity');
+                  if(qtyInput) {
+                    qtyInput.addEventListener('input', function() {
+                      document.getElementById('cart-qty').value = this.value;
+                    });
+                  }
+                });
+                </script>
+                <!-- Hidden fallback button removed. Main Add to cart button above is always visible. -->
               </div>
             </div>
           </div>

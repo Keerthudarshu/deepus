@@ -27,8 +27,8 @@
         </div>
         <div class="dashboard">
           <div class="container">
-<div class="dashboard-content active" data-tab="1">
-              <h2 class="heading-primary">Dashboard</h2>
+           <div class="dashboard-content active" data-tab="1">
+            
               <div class="dashboard-title">Overview</div>
               <div class="dashboard-list">
                 <div class="dashboard-card">
@@ -68,6 +68,17 @@
                   </div>
                 </div>
                 <div class="dashboard-card">
+                    <div class="dashboard-card-quantity">
+                      <div class="dashboard-card-name">Revenue</div>
+                      <span><?=number_format(tongdoanhthu()[0]['tongdoanhthu'],0,'.',',')?></span>
+                    </div>
+                    <div class="dashboard-card-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="none">
+                        <path d="M43.3934 5.27734L30.0095 0C28.6278 1.52031 25.5689 2.58125 22.0012 2.58125C18.4336 2.58125 15.3746 1.52031 13.9929 0L0.60906 5.27734C0.0660074 5.49609 -0.153964 6.02109 0.114126 6.45312L4.04611 12.7148C4.32107 13.1469 4.98098 13.3219 5.52403 13.1086L9.41477 11.5938C10.1434 11.3094 10.9958 11.7305 10.9958 12.3812V26.25C10.9958 27.218 11.9788 28 13.1955 28H30.7932C32.0099 28 32.9929 27.218 32.9929 26.25V12.3758C32.9929 11.7305 33.8453 11.3039 34.5739 11.5883L38.4647 13.1031C39.0077 13.3219 39.6676 13.1469 39.9426 12.7094L43.8815 6.45312C44.1564 6.02109 43.9365 5.49062 43.3934 5.27734Z" fill="#46694F"/>
+                      </svg>
+                    </div>
+                  </div>
+                <div class="dashboard-card">
                   <div class="dashboard-card-quantity">
                     <div class="dashboard-card-name">Product</div>
                     <span><?=count(getproduct())?></span>
@@ -75,35 +86,87 @@
                   <div class="dashboard-card-icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="44"
+                      width="30"
                       height="28"
-                      viewBox="0 0 44 28"
+                      viewBox="0 0 30 28"
                       fill="none">
+                      <path
+                        d="M23.5714 8.75V7C23.5714 3.14016 19.7263 0 15 0C10.2737 0 6.42857 3.14016 6.42857 7V8.75H0V23.625C0 26.0413 2.39846 28 5.35714 28H24.6429C27.6015 28 30 26.0413 30 23.625V8.75H23.5714ZM10.7143 7C10.7143 5.07008 12.6368 3.5 15 3.5C17.3632 3.5 19.2857 5.07008 19.2857 7V8.75H10.7143V7ZM21.4286 13.5625C20.541 13.5625 19.8214 12.9749 19.8214 12.25C19.8214 11.5251 20.541 10.9375 21.4286 10.9375C22.3162 10.9375 23.0357 11.5251 23.0357 12.25C23.0357 12.9749 22.3162 13.5625 21.4286 13.5625ZM8.57143 13.5625C7.68382 13.5625 6.96429 12.9749 6.96429 12.25C6.96429 11.5251 7.68382 10.9375 8.57143 10.9375C9.45904 10.9375 10.1786 11.5251 10.1786 12.25C10.1786 12.9749 9.45904 13.5625 8.57143 13.5625Z"
+                        fill="#46694F" />
+                    </svg>
+                  </div>
+                </div>
+                    
                       <path
                         d="M43.3934 5.27734L30.0095 0C28.6278 1.52031 25.5689 2.58125 22.0012 2.58125C18.4336 2.58125 15.3746 1.52031 13.9929 0L0.60906 5.27734C0.0660074 5.49609 -0.153964 6.02109 0.114126 6.45312L4.04611 12.7148C4.32107 13.1469 4.98098 13.3219 5.52403 13.1086L9.41477 11.5938C10.1434 11.3094 10.9958 11.7305 10.9958 12.3812V26.25C10.9958 27.218 11.9788 28 13.1955 28H30.7932C32.0099 28 32.9929 27.218 32.9929 26.25V12.3758C32.9929 11.7305 33.8453 11.3039 34.5739 11.5883L38.4647 13.1031C39.0077 13.3219 39.6676 13.1469 39.9426 12.7094L43.8815 6.45312C44.1564 6.02109 43.9365 5.49062 43.3934 5.27734Z"
                         fill="#46694F" />
                     </svg>
                   </div>
+                  
+               
+                  
+
+            <!-- Stock Alerts Block -->
+            <?php
+            require_once __DIR__ . '/../../model/low_stock.php';
+            $lowStock = get_low_stock_products(50);
+            if (!function_exists('get_out_of_stock_products')) {
+              function get_out_of_stock_products($limit = 50) {
+                $limit = intval($limit);
+                $sql = "SELECT * FROM product WHERE stock = 0 ORDER BY id DESC LIMIT $limit";
+                return pdo_query($sql);
+              }
+            }
+            $outOfStock = get_out_of_stock_products(50);
+            $allStockAlerts = array_merge($lowStock, $outOfStock);
+            usort($allStockAlerts, function($a, $b) {
+              if ($a['stock'] == $b['stock']) return 0;
+              return ($a['stock'] == 0) ? 1 : (($b['stock'] == 0) ? -1 : $a['stock'] - $b['stock']);
+            });
+            ?>
+              <div style="margin-top:20px; margin-bottom:32px;">
+              <div >
+                <div >
+                  <div >
+                    <i class="fa fa-exclamation-triangle" style="color:#ffb300;font-size:1.5rem;"></i>
+                    <span style="font-weight:600;font-size:1.2rem;">Stock Alerts</span>
+                    <span style="background:#ffb300;color:#fff;border-radius:16px;padding:2px 12px;font-size:0.95rem;font-weight:600;">
+                      <?= count($lowStock) + count($outOfStock) ?>
+                    </span>
+                  </div>
                 </div>
-                <div class="dashboard-card">
-                  <div class="dashboard-card-quantity">
-                    <div class="dashboard-card-name">Revenue</div>
-                    <span><?=number_format(tongdoanhthu()[0]['tongdoanhthu'],0,'.',',')?></span>
+                <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;">
+                  <?php 
+                  require_once __DIR__ . '/../../model/product.php';
+                  foreach ($allStockAlerts as $p): 
+                    $isOut = intval($p['stock']) === 0;
+                    $stockText = $isOut ? '0 left' : intval($p['stock']) . ' left';
+                    $stockColor = $isOut ? '#d32f2f' : (intval($p['stock']) <= 5 ? '#e65100' : '#333');
+                    $weight = $p['variant'] ?? $p['weight'] ?? '';
+                    $imgData = getimg_product_main($p['id']);
+                    $imgTag = isset($imgData['main_img']) ? check_img_admin($imgData['main_img']) : '';
+                  ?>
+                  <div style="background:#f9f9f9;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,0.03);display:flex;align-items:center;gap:16px;">
+                    <div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;background:#fff;border:1px solid #eee;">
+                      <?=$imgTag?>
+                    </div>
+                    <div style="flex:1;">
+                      <div style="font-weight:500;font-size:1.08rem;line-height:1.2;word-break:break-word;\"><?=htmlspecialchars($p['name'])?></div>
+                      <?php if ($weight): ?>
+                        <div style="font-size:0.98rem;color:#888;line-height:1.2;word-break:break-word;\"><?=$weight?></div>
+                      <?php endif; ?>
+                      <div style="margin-top:12px;">
+                        <span style="color:<?=$stockColor?>;font-weight:600;font-size:1.08rem;min-width:48px;text-align:right;\"><?=$stockText?></span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="dashboard-card-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="31"
-                      height="34"
-                      viewBox="0 0 31 34"
-                      fill="none">
-                      <path
-                        d="M0 26.8858V29.7183C0 32.0599 5.20703 33.9638 11.625 33.9638C18.043 33.9638 23.25 32.0599 23.25 29.7183V26.8858C20.7494 28.8161 16.1781 29.7183 11.625 29.7183C7.07188 29.7183 2.50059 28.8161 0 26.8858ZM19.375 8.49094C25.793 8.49094 31 6.58711 31 4.24547C31 1.90383 25.793 0 19.375 0C12.957 0 7.75 1.90383 7.75 4.24547C7.75 6.58711 12.957 8.49094 19.375 8.49094ZM0 19.9272V23.3501C0 25.6917 5.20703 27.5956 11.625 27.5956C18.043 27.5956 23.25 25.6917 23.25 23.3501V19.9272C20.7494 22.1826 16.1721 23.3501 11.625 23.3501C7.07793 23.3501 2.50059 22.1826 0 19.9272ZM25.1875 20.6569C28.6568 19.9205 31 18.554 31 16.9819V14.1494C29.5953 15.2373 27.5307 15.9802 25.1875 16.4379V20.6569ZM11.625 10.6137C5.20703 10.6137 0 12.9885 0 15.9205C0 18.8525 5.20703 21.2274 11.625 21.2274C18.043 21.2274 23.25 18.8525 23.25 15.9205C23.25 12.9885 18.043 10.6137 11.625 10.6137ZM24.9029 14.3484C28.5357 13.6319 31 12.2256 31 10.6137V7.78115C28.8506 9.44618 25.1572 10.3417 21.2701 10.554C23.0562 11.5026 24.3701 12.7762 24.9029 14.3484Z"
-                        fill="#46694F" />
-                    </svg>
-                  </div>
+                  <?php endforeach; ?>
                 </div>
               </div>
+            </div>
+            <!-- New Orders Notification -->
+            
+             
               <div class="statistical-main">
                 <div class="statistical-left">
                   <h2 class="title">Category product ratio</h2>

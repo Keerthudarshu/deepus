@@ -5,51 +5,55 @@
         $html_catalog.='<div class="dropdown-item" onclick="select(this)">'.$name.'</div>';
     }
     $html_product='';
-    foreach ($product as $item) {
-        extract($item);
-        if($hot==1){
-            $hot='x';
-        }else{
-            $hot='';
-        }
-        if($noibat==1){
-            $noibat='x';
-        }else{
-            $noibat='';
-        }
-        if($bestsell==1){
-            $bestsell='x';
-        }else{
-            $bestsell='';
-        }
-        if($trend==1){
-            $trend='x';
-        }else{
-            $trend='';
-        }
-        $html_product.='<tr>
-        <td>'.$id.'</td>
-        <td>'.$ma_sanpham.'</td>
-        <td>'.$name.'</td>
-        <td>'.number_format($price,0,'.',',').'</td>
-        <td>'.$noibat.'</td>
-        <td>'.$bestsell.'</td>
-        <td>'.$trend.'</td>
-        <td>'.$stock.'</td>
-        <td>'.$view.'</td>
-        <td>
-            <a href="index.php?pg=updateproduct&id='.$id.'" class="edit">Edit</a>
-            <a href="index.php?pg=delproduct&id='.$id.'" class="del">Delete</a>
-        <form action="index.php?pg=addcart" method="post" style="display:inline;">
-          <input type="hidden" name="id" value="'.$id.'">
-          <input type="hidden" name="name" value="'.$name.'">
-          <input type="hidden" name="price" value="'.$price.'">
-          
-        </form>
-        </td>
-        </tr>';
-        
+  $shown_codes = array();
+  foreach ($product as $item) {
+    extract($item);
+    if (in_array($ma_sanpham, $shown_codes)) {
+      continue;
     }
+    $shown_codes[] = $ma_sanpham;
+    if($hot==1){
+      $hot='x';
+    }else{
+      $hot='';
+    }
+    if($noibat==1){
+      $noibat='x';
+    }else{
+      $noibat='';
+    }
+    if($bestsell==1){
+      $bestsell='x';
+    }else{
+      $bestsell='';
+    }
+    if($trend==1){
+      $trend='x';
+    }else{
+      $trend='';
+    }
+    $html_product.='<tr>
+    <td>'.$id.'</td>
+    <td>'.$ma_sanpham.'</td>
+    <td>'.$name.'</td>
+    <td>'.number_format($price,0,'.',',').'</td>
+    <td>'.(isset($size) ? htmlspecialchars($size) : '').'</td>
+    <td>'.$noibat.'</td>
+    <td>'.$bestsell.'</td>
+    <td>'.$trend.'</td>
+    <td>'.$stock.'</td>
+    <td>'.$view.'</td>
+    <td>
+      <a href="index?pg=updateproduct&id='.$id.'" class="edit">Edit</a>
+      <a href="index?pg=delproduct&id='.$id.'" class="del">Delete</a>
+      <form action="index?pg=addcart" method="post" style="display:inline;">
+        <input type="hidden" name="id" value="'.$id.'">
+        <input type="hidden" name="name" value="'.$name.'">
+        <input type="hidden" name="price" value="'.$price.'">
+      </form>
+    </td>
+    </tr>';
+  }
 
     if(!isset($_SESSION['update_id'])){
       $activeedit='';
@@ -82,19 +86,20 @@
       }
     }
     if(!isset($_SESSION['addproduct'])){
-      $activeadd='';
-      $ma_sanphamadd='';
-      $nameadd='';
-      $priceadd='';
-      $priceoldadd='';
-      $hotadd='';
-      $noibatadd='';
-      $chitietadd='';
-      $gioitinhadd='';
-      $danhmucadd='';
-      $bestselladd='';
-      $trendadd='';
-      $viewadd='';
+  $activeadd='';
+  $ma_sanphamadd='';
+  $nameadd='';
+  $priceadd='';
+  $priceoldadd='';
+  $hotadd='';
+  $noibatadd='';
+  $chitietadd='';
+  $gioitinhadd='';
+  $danhmucadd='';
+  $bestselladd='';
+  $trendadd='';
+  $viewadd='';
+  $stockadd='';
     }else{
       $activeadd='active';
       if($errma_sanphamadd!=''){
@@ -207,7 +212,7 @@
         <img src="../../view/layout/assets/images/thatbai.png" alt="">
           <h3>Bạn không thể xóa sản phẩm này bảng sản phẩm chứa chứa thuộc tính khóa ngoại</h3>
           <div class="modal__succesfully">
-              <a href="index.php?pg=product"><button class="monal__succesfully-btn">Đồng ý</button>
+              <a href="index?pg=product"><button class="monal__succesfully-btn">Đồng ý</button>
           </div>
         </div>
       </div>
@@ -231,7 +236,7 @@
             <div class="header-bar">
               <i class="fa fa-angle-left icon-bar" aria-hidden="true"></i>
             </div>
-            <form action="index.php?pg=product" method="post" class="header-form">
+            <form action="index?pg=product" method="post" class="header-form">
               <div class="header-input">
                 <input name="keywordproduct" type="text" placeholder="Tìm kiếm " />
                 <div class="header-input-icon">
@@ -259,7 +264,7 @@
 <div class="modal modal-addpro <?=$activeadd?>">
                 <div class="modal-overlay"></div>
                 <div class="modal-content modal-addproduct">
-                <a href="index.php?pg=addproduct&close=1">
+                <a href="index?pg=addproduct&close=1">
                   <span class="modal-close">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +280,7 @@
                   </span>
                 </a>
                   <div class="modal-main">
-                    <form action="index.php?pg=addproduct" method="post">
+                    <form action="index?pg=addproduct" method="post">
                     <div class="modal-heading">Add new product</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
@@ -291,6 +296,22 @@
                       <div class="modal-form-item">
                         <div class="modal-form-name">Current price*</div>
                         <input name="price" type="text" value="<?=$priceadd?>">
+                      </div>
+                      <div class="modal-form-item">
+                        <div class="modal-form-name">Size*</div>
+                        <select name="size">
+                          <option value="">Select size</option>
+                           <option value="20">20</option>
+                          <option value="22">22</option>
+                          <option value="24">24</option>
+                          <option value="26">26</option>
+                          <option value="28">28</option>
+                          <option value="30">30</option>
+                          <option value="32">32</option>
+                          <option value="34">34</option>
+                          <option value="36">36</option>
+                          <option value="38">38</option>
+                        </select>
                       </div>
                       <?=$errpriceadd?>
                       <div class="modal-form-item">
@@ -466,7 +487,7 @@
                 <div class="modal modal-update <?=$activeedit?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=updateproduct&close=1">
+                    <a href="index?pg=updateproduct&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -482,7 +503,7 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                      <form action="index.php?pg=updateproduct" method="post">
+                      <form action="index?pg=updateproduct" method="post">
                       <div class="modal-heading">Product Updates</div>
                       <div class="modal-form  modal-form-addpro">
                       <div class="modal-form-item">
@@ -498,6 +519,22 @@
                       <div class="modal-form-item">
                         <div class="modal-form-name">Current Price*</div>
                         <input name="price" type="text" value="<?=$priceup?>"/>
+                      </div>
+                      <div class="modal-form-item">
+                        <div class="modal-form-name">Size*</div>
+                                                <select name="size">
+                                                  <option value="">Select size</option>
+                                                  <option value="20" <?=($sizeup=="20"?"selected":"")?>>20</option>
+                                                  <option value="22" <?=($sizeup=="22"?"selected":"")?>>22</option>
+                                                  <option value="24" <?=($sizeup=="24"?"selected":"")?>>24</option>
+                                                  <option value="26" <?=($sizeup=="26"?"selected":"")?>>26</option>
+                                                  <option value="28" <?=($sizeup=="28"?"selected":"")?>>28</option>
+                                                  <option value="30" <?=($sizeup=="30"?"selected":"")?>>30</option>
+                                                  <option value="32" <?=($sizeup=="32"?"selected":"")?>>32</option>
+                                                  <option value="34" <?=($sizeup=="34"?"selected":"")?>>34</option>
+                                                  <option value="36" <?=($sizeup=="36"?"selected":"")?>>36</option>
+                                                  <option value="38" <?=($sizeup=="38"?"selected":"")?>>38</option>
+                                                </select>
                       </div>
                       <?=$errpriceup?>
                       <div class="modal-form-item">
@@ -651,12 +688,12 @@
                   <th>Product Code</th>
                   <th>Product Name</th>
                   <th>Price</th>
+                  <th>Size</th>
                   <th>Featured</th>
                   <th>Best Selling</th>
                   <th>Trending</th>
                   <th>Stock</th>
                   <th>Views</th>
-                  
                   <th>Actions</th>
                 </tr>
               </thead>

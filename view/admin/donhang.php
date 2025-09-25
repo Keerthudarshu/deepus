@@ -13,8 +13,8 @@ foreach ($donhang as $item) {
         <td>' . number_format($tongtien, 0, '.', ',') . '</td>
         <td>' . $trangthai. '</td>
         <td>
-            <a href="index.php?pg=deldonhang&id=' . $id . '" class="del" style="padding: 0px">Cancel</a>
-            <a href="index.php?pg=invoice&id=' . $id . '" class="invoice" style="padding: 0px; margin-left:10px; color:#007bff;">Invoice</a>
+            <a href="index?pg=deldonhang&id=' . $id . '" class="del" style="padding: 0px">Cancel</a>
+            <a href="index?pg=invoice&id=' . $id . '" class="invoice" style="padding: 0px; margin-left:10px; color:#007bff;">Invoice</a>
         </td>
         </tr>';
     // $active = '';
@@ -68,7 +68,7 @@ foreach ($donhang as $item) {
             <div class="header-bar">
               <i class="fa fa-angle-left icon-bar" aria-hidden="true"></i>
             </div>
-            <form action="index.php?pg=donhang" method="post" class="header-form">
+            <form action="index?pg=donhang" method="post" class="header-form">
               <div class="header-input">
                 <input name="keyworddonhang" type="text" placeholder="Search " />
                 <div class="header-input-icon">
@@ -113,7 +113,7 @@ foreach ($donhang as $item) {
             </span>
             <div class="modal-main">
                 <form
-                    action="index.php?pg=addorder"
+                    action="index?pg=addorder"
                     method="post"
                     enctype="multipart/form-data">
                     <div
@@ -317,7 +317,7 @@ foreach ($donhang as $item) {
             <div class="modal-content modal-addproduct">
                 <span class="modal-close" onclick="this.closest('.modal-addorder').classList.remove('active')">✖</span>
                 <div class="modal-main">
-                    <form id="adminOrderForm" action="index.php?pg=addorder" method="post">
+                    <form id="adminOrderForm" action="index?pg=addorder" method="post">
                         <div class="modal-heading">Place New Order</div>
                         <div class="modal-form modal-form-addpro">
                             <!-- Product Selection -->
@@ -442,7 +442,7 @@ foreach ($donhang as $item) {
         </div>
         <div class="modal-content">
             <a
-                href="index.php?pg=updateuser&close=1">
+                href="index?pg=updateuser&close=1">
                 <span
                     class="modal-close">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -459,7 +459,7 @@ foreach ($donhang as $item) {
             </a>
             <div class="modal-main">
                 <form
-                    action="index.php?pg=updateuser"
+                    action="index?pg=updateuser"
                     method="post"
                     enctype="multipart/form-data">
                     <div

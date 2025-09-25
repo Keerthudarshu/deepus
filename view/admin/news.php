@@ -14,8 +14,8 @@
         <td>'.$thoigian.'</td>
         <td>'.$noidung.'</td>
         <td class="chunhieu">
-            <a href="index.php?pg=update_news&id='.$id.'" class="edit">Fix</a>
-            <a href="index.php?pg=del_news&id='.$id.'" class="del">Erase</a>
+            <a href="index?pg=update_news&id='.$id.'" class="edit">Fix</a>
+            <a href="index?pg=del_news&id='.$id.'" class="del">Erase</a>
         </td>
         </tr>';
     $active='';
@@ -87,7 +87,7 @@
                     </svg>
                   </span>
                   <div class="modal-main">
-                    <form action="index.php?pg=add_news" method="post"  enctype="multipart/form-data">
+                    <form action="index?pg=add_news" method="post"  enctype="multipart/form-data">
                     <div class="modal-heading">Add New News</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
@@ -159,7 +159,7 @@
                 <div class="modal modal-update <?=$active?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=update_news&close=1">
+                    <a href="index?pg=update_news&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +175,7 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                        <form action="index.php?pg=update_news" method="post"  enctype="multipart/form-data">
+                        <form action="index?pg=update_news" method="post"  enctype="multipart/form-data">
                         <div class="modal-heading">Update News</div>
                         <div class="modal-form  modal-form-addpro">
                           <div class="modal-form-item">

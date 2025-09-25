@@ -15,7 +15,7 @@ if (isset($_GET['add']) && is_numeric($_GET['add'])) {
     if (!in_array($productId, $_SESSION['favorites'])) {
         $_SESSION['favorites'][] = $productId;
     }
-    header('Location: favorites.php');
+    header('Location: /deepus/favorites');
     exit;
 }
 
@@ -23,7 +23,7 @@ if (isset($_GET['add']) && is_numeric($_GET['add'])) {
 if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
     $productId = intval($_GET['remove']);
     $_SESSION['favorites'] = array_diff($_SESSION['favorites'], [$productId]);
-    header('Location: favorites.php');
+    header('Location: /deepus/favorites');
     exit;
 }
 
@@ -113,6 +113,6 @@ include 'view/header.php';
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        <a href="index.php">Back to Home</a>
+    <a href="/deepus/index">Back to Home</a>
     </div>
 <?php include 'view/footer.php'; ?>

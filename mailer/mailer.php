@@ -3,7 +3,9 @@
 </style>
 <?php
  
- session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
  ob_start();
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -37,8 +39,8 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
  
     //Content
     $mail->isHTML(true);               //Set email format to HTML
-    $mail->Subject = 'Cảm ơn bạn đã mua hàng cùng chúng tôi!';  // email subject headings
-    $mail->AddEmbeddedImage('view/layout/assets/images/logo-form.png', 'logo', 'logo-form.png');
+    $mail->Subject = 'Thank you for shopping with us!';  // email subject headings
+    $mail->AddEmbeddedImage("view/layout/assets/images/Deepu's.png", 'logo', "Deepu's.png");
     $i=0;
     $tongtien=0;
     $html_donhang='';
@@ -159,51 +161,69 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
     
         </style>
     </head>
-    <body>
+    <body>deepus
+        <div class="container-form">
+        <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
+        <hr>
+        <h2 class="title">ORDER INFORMATION</h2> 
+        <p class="thank">Thank you for visiting our store and placing an order here!</p>
+
+                <table>
+                    <thead>
+                        <tr >
+                            <th  colspan="8"><p style="font-size: 16px;text-align: center"><strong>Order ID:</strong> '.$_SESSION['donhang']['ma_donhang'].' </th>
+                        </tr> 
+                        
+                    </thead>
+                    
+                    <tbody>
+                        <td colspan="2" style="text-align:left"><strong>Date Of Establishment</strong></td>
+                        <td colspan="6" style="text-align:left">'.$_SESSION['ngaylap'].'</td>
+                      
+                    </tbody>
+                    <tbody>
+                        <td colspan="2" style="text-align:left"><strong>Full Name</strong></td>
+                        <td colspan="6" style="text-align:left">'.$_SESSION['name'].'</td>
+                      
+                    </tbody>
+                    <tbody>
+                        <td colspan="2" style="text-align:left"><strong>Email</strong></td>
+                        <td colspan="6" style="text-align:left">'.$_SESSION['email'].'</td>
+                    </tbody>
+                    <tbody>
+                        <td colspan="2" style="text-align:left"><strong>Phone Number</strong></td>
+                        <td colspan="6" style="text-align:left">'.$_SESSION['sdt'].'</td>
+                    </tbody>
+                    <tbody>
+                        <td colspan="2" style="text-align:left"><strong>Address</strong></td>
+                        <td colspan="6" style="text-align:left">'.$_SESSION['diachi'].'</td>
+                    </tbody>
+                    '.(isset($account) ? $account : '').'
+
+                    
+                    
+                    <thead>
+                        <tr>
+                          <th>STT</th>
+                            <th>Product Name</th>
+                            <th>Size</th>
+                            <th>Color</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                      '.$html_donhang.'
+                    </tbody>
         
-        <div class="container">
-            <img src="cid:logo" alt="deepus Logo" style="display: block; width: 150px; margin: 0 auto;">
+                    
+                </table>
+                We look forward to seeing you soon.
             <br>
-            
-            Xin chào khách hàng!
-            <br>
-            Cảm ơn bạn đã ghé thăm cửa hàng của chúng tôi và đặt hàng đầu tiên!
-            <h1 class="title">Thông tin khách hàng</h1>
-            Họ và tên:  <br>
-            Địa chỉ: <br>
-            Số điện thoại: <br>
-            Email:
-            <h1 class="title">Thông tin đơn hàng</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Size</th>
-                        <th>Màu sắc</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                  '.$html_donhang.'
-                </tbody>
-    
-                
-            </table>
-            
-        
-    
-            Chúng tôi rất vui vì bạn đã tìm thấy sản phẩm mà bạn đang tìm kiếm trong cửa hàng của chúng tôi.
-    
-            Mục tiêu của chúng tôi là làm cho khách hàng luôn hài lòng, vì vậy hãy cho chúng tôi biết trải nghiệm của bạn với chúng tôi như thế nào trong lần đầu tiên mua sắm.
-    
-            Chúng tôi mong sớm được gặp lại bạn.
-            <br>
-    
-            Trân trọng, <strong>deepus</strong>
+
+            Best regards, <strong>Deepus</strong>
             <hr>
 
             <div class="icon">
@@ -213,11 +233,12 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
                 <i class="fa-brands fa-shopify"></i>
             </div>
 
-            deepus Shop <br>
+            Deepus Shop <br>
+            Website: https://zstyle.online/ <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-            Email: deepusvn@gmail.com <br>
+            Email: keerthudarshu06@gmail.com <br>
             Hotline: 19006789 <br>
-        </div>
+            </div>
     </body>
     </html>';
     $mail->Body=$text;//email message

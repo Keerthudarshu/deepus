@@ -82,26 +82,26 @@
     </style>
     <div class="category-scroll-section">
       <div class="category-scroll-list">
-        <a href="#" class="category-card" >
-          <img src="view/layout/assets/images/girls.webp" class="category-card-img" alt="Girls" />
-        </a>
-        <a href="#" class="category-card" >
+            <a href="index?pg=product&category=girls" class="category-card">
+              <img src="view/layout/assets/images/girls.webp" class="category-card-img" alt="Girls" />
+            </a>
+        <a href="index?pg=product&category=boys" class="category-card" >
           <img src="view/layout/assets/images/boys.webp" class="category-card-img" alt="Boys" />
         </a>
-        <a href="#" class="category-card" >
+       
+        <a href="index?pg=product&category=infant" class="category-card" >
           <img src="view/layout/assets/images/infant.webp" class="category-card-img" alt="Infant" />
         </a>
-        <a href="#" class="category-card" >
+        <a href="index?pg=product&category=casual" class="category-card" >
           <img src="view/layout/assets/images/casual wear.webp" class="category-card-img" alt="Casual wear" />
         </a>
-        <a href="#" class="category-card" >
+        <a href="index?pg=product&category=party" class="category-card" >
           <img src="view/layout/assets/images/part wear.webp" class="category-card-img" alt="Party wear" />
         </a>
-        <a href="#" class="category-card" >
+        <a href="index?pg=product&category=ethnic" class="category-card" >
           <img src="view/layout/assets/images/ethnic wear.webp" class="category-card-img" alt="Ethnic wear" />
-         
         </a>
-        <a href="#" class="category-card" >
+        <a href="index?pg=product&category=luxe" class="category-card" >
           <img src="view/layout/assets/images/luxe.webp" class="category-card-img" alt="Luxe" />
         </a>
       </div>
@@ -255,7 +255,6 @@
                             <div class="deal-bestseller">Best Seller</div>
                             <div class="deal-auth">
                             <a href="#" class="deal-view">View details</a>
-                            <a href="index.php?pg=checkout&id='.$id.'" class="add"><button class="deal-btn">Buy now</button></a>
 
                             </div>
                         </div>

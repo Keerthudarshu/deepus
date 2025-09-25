@@ -14,8 +14,8 @@
         <td>'.$idProductVal.'</td>
         <td>'.$idColorVal.'</td>
         <td>
-            <a href="index.php?pg=update_img_product_color&id='.$id.'" class="edit">Fix</a>
-            <a href="index.php?pg=del_img_product_color&id='.$id.'" class="del">Erase</a>
+            <a href="index?pg=update_img_product_color&id='.$id.'" class="edit">Fix</a>
+            <a href="index?pg=del_img_product_color&id='.$id.'" class="del">Erase</a>
         </td>
         </tr>';
     $active='';
@@ -105,7 +105,7 @@
                     </svg>
                   </span>
                   <div class="modal-main">
-                    <form action="index.php?pg=add_img_product_color" method="post"  enctype="multipart/form-data">
+                    <form action="index?pg=add_img_product_color" method="post"  enctype="multipart/form-data">
                     <div class="modal-heading">Add New Image</div>
                     <div class="modal-form modal-form-addpro">
                         <?php 
@@ -188,7 +188,7 @@
                 <div class="modal modal-update <?=$active?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=update_img_product_color&close=1">
+                    <a href="index?pg=update_img_product_color&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +204,7 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                        <form action="index.php?pg=update_img_product_color" method="post"  enctype="multipart/form-data">
+                        <form action="index?pg=update_img_product_color" method="post"  enctype="multipart/form-data">
                         <div class="modal-heading">Update Image</div>
                         <div class="modal-form  modal-form-addpro">
                         

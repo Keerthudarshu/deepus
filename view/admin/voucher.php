@@ -11,8 +11,8 @@
           <td>'.$ngayketthuc.'</td>
           <td>'.$dieukien.'</td>
           <td>
-              <a href="index.php?pg=update_voucher&id='.$id.'" class="edit">Fix</a>
-              <a href="index.php?pg=del_voucher&id='.$id.'" class="del">Delete</a>
+              <a href="/deepus/view/admin/index?pg=update_voucher&id='.$id.'" class="edit">Fix</a>
+              <a href="/deepus/view/admin/index?pg=del_voucher&id='.$id.'" class="del">Delete</a>
           </td>
         </tr>';
     $active='';
@@ -79,7 +79,7 @@
                     </svg>
                   </span>
                   <div class="modal-main">
-                    <form action="index.php?pg=add_voucher" method="post"  enctype="multipart/form-data">
+                    <form action="/deepus/view/admin/index?pg=add_voucher" method="post"  enctype="multipart/form-data">
                     <div class="modal-heading">Add New Voucher</div>
                     <div class="modal-form modal-form-addpro">
                       <div class="modal-form-item">
@@ -141,7 +141,7 @@
                 <div class="modal modal-update <?=$active?>">
                   <div class="modal-overlay"></div>
                   <div class="modal-content">
-                    <a href="index.php?pg=update_voucher&close=1">
+                    <a href="/deepus/view/admin/index?pg=update_voucher&close=1">
                     <span class="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@
                     </span>
                     </a>
                     <div class="modal-main">
-                        <form action="index.php?pg=update_voucher" method="post"  enctype="multipart/form-data">
+                        <form action="/deepus/view/admin/index?pg=update_voucher" method="post"  enctype="multipart/form-data">
                         <div class="modal-heading">Update Voucher</div>
                         <div class="modal-form  modal-form-addpro">
                             <div class="modal-form-item">

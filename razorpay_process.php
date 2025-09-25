@@ -1,8 +1,10 @@
+
 <?php
 session_start();
 require_once 'model/connectdb.php';
 require_once 'model/donhang.php';
 require_once 'model/cart.php';
+require_once 'model/product.php';
 require_once 'PHPMailer-master/PHPMailer-master/src/Exception.php';
 require_once 'PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
 require_once 'PHPMailer-master/PHPMailer-master/src/SMTP.php';
@@ -53,19 +55,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['razorpay_payment_id']
             $thanhtien  = $price * $soluong;
 
             $img = isset($item['img']) ? $item['img'] : '';
-            $id_size  = getidsize($item['size']);
+            $id_size  = getidsize($item['id_product'], $item['size']);
+            if ($id_size === null) { $id_size = 0; }
             $id_color = getidcolor($item['color']);
             $product_design     = isset($item['product_design']) ? $item['product_design'] : '';
             $id_product_design  = isset($item['id_product_design']) ? (int)$item['id_product_design'] : 0;
 
+            // Insert regardless of size lookup; default id_size=0 when missing
             add_cart(
                 $iduser, $id_donhang, $id_product, $soluong,
                 $price, $thanhtien, $img, $id_size, $id_color,
                 $product_design, $id_product_design
             );
-                // Reduce stock for product
-                require_once 'model/product.php';
+            // Reduce stock for product
+            if ($id_product > 0 && $soluong > 0) {
                 reduce_product_stock($id_product, $soluong);
+            }
         }
     }
 
@@ -90,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['razorpay_payment_id']
 
     $mail->isHTML(true);
     $mail->Subject = "Order Confirmation - $ma_donhang";
-    $mail->AddEmbeddedImage('view/layout/assets/images/logo.jpg', 'logo', 'logo.jpg');
+    $mail->AddEmbeddedImage("view/layout/assets/images/Deepu's.png", 'logo', "Deepu's.png");
 
         // Build HTML invoice table
         $html_donhang = '';
@@ -225,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['razorpay_payment_id']
                 <i class="fa-brands fa-google"></i>
                 <i class="fa-brands fa-shopify"></i>
             </div>
-deepus
+
             Deepus Shop <br>
             Website: https://zstyle.online/ <br>
             Địa chỉ: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>

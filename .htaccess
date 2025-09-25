@@ -1,6 +1,30 @@
+
 RewriteEngine On
 
-# Block extensionless URLs (e.g., /index)
-RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^checkout$ index.php?pg=checkout [L,QSA]
+# Allow extensionless URLs for admin pages
+RewriteCond %{REQUEST_URI} ^/deepus/view/admin/([^/.]+)$
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^view/admin/([^/.]+)$ view/admin/$1.php [L]
+
+# Allow extensionless access to razorpay_process.php via /deepus/razorpay_process
+RewriteRule ^razorpay_process$ razorpay_process.php [L,QSA]
+
+# Exclude admin and other special folders from rewrite
+RewriteCond %{REQUEST_URI} ^/deepus/view/admin/ [NC]
+RewriteRule ^ - [L]
+
+# Remove .php extension from URL (allow extensionless access)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([a-zA-Z0-9_-]+)$ - [F,L]
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)$ $1.php [L]
+
+# Redirect .php URLs to extensionless URLs (keep /deepus/ prefix)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/deepus/([^.]+)\.php [NC]
+RewriteRule ^([^.]+)\.php$ /deepus/$1 [R=301,L]
+
+# Optional: Force index.php for root
+DirectoryIndex index.php
+
+# Allow extensionless access to mailer.php via /deepus/mailer
+RewriteRule ^mailer$ mailer.php [L,QSA]

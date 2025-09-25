@@ -3,6 +3,15 @@
         $sql = "INSERT INTO cart(id_user, id_donhang, id_product, soluong, price,thanhtien,img,id_size,id_color,product_design,id_product_design) VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)";
         pdo_execute($sql, $id_user, $id_donhang, $id_product, $soluong, $price,$thanhtien,$img,$id_size,$id_color,$product_design,$id_product_design);
     }
+
+    // Atomic insert that returns the last inserted ID
+    function add_cart_and_get_id($id_user, $id_donhang, $id_product, $soluong, $price,$thanhtien,$img,$id_size,$id_color,$product_design,$id_product_design){
+        $pdo = pdo_get_connection();
+        $sql = "INSERT INTO cart(id_user, id_donhang, id_product, soluong, price,thanhtien,img,id_size,id_color,product_design,id_product_design) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id_user, $id_donhang, $id_product, $soluong, $price, $thanhtien, $img, $id_size, $id_color, $product_design, $id_product_design]);
+        return (int)$pdo->lastInsertId();
+    }
     
     function update_cart($id,$id_user, $id_donhang, $id_product, $soluong, $price,$thanhtien,$img,$id_size,$id_color,$product_design,$id_product_design){
         $sql = "UPDATE cart SET id_user=?,id_donhang=?,id_product=?,soluong=?, price=?, thanhtien=?, img=?, id_size=?, id_color=?,product_design=?,id_product_design=? WHERE id=?";
@@ -56,13 +65,14 @@
         }
     }
 
-    function getidsize($size){
-        $sql="SELECT * FROM size where ma_size=?";
-        $row = pdo_query_one($sql, $size);
-        if ($row !== false && isset($row['id'])) {
-            return $row['id'];
+    // New getidsize: returns product_code for the selected size
+    function getidsize($product_code, $size) {
+        $sql = "SELECT * FROM size WHERE product_code = ?";
+        $row = pdo_query_one($sql, $product_code);
+        if ($row !== false && isset($row['size_' . $size])) {
+            return $row['size_' . $size]; // returns price for that size
         } else {
-            return 1; // fallback to valid default
+            return null;
         }
     }
 

@@ -21,7 +21,10 @@
    include_once "view/header.php";
    if(isset($_GET['pg'])&&($_GET['pg']!="")){
       $pg=$_GET['pg'];
-      switch ($pg) {
+   switch ($pg) {
+      case 'size':
+      include_once "view/admin/size.php";
+      break;
          case 'product':
             if(isset($_GET['tatca']) && $_GET['tatca']){
                unset($_SESSION['filterprice']);
@@ -862,7 +865,7 @@
                unset($_SESSION['id_size_design']);
                unset($_SESSION['img_front']);
                unset($_SESSION['img_back']);
-               header('location: index.php?pg=cart');
+               header('location: /deepus/index?pg=cart');
             }
             if(isset($_SESSION['iduser']) && isset($_SESSION['role']) && $_SESSION['role']==0){
                $product_design=getproductdesign($_SESSION['iduser']);
@@ -900,7 +903,7 @@
                $listsoluongtonkho=getsoluongtonkho($idsp);
                tangluotview($idsp, $detail['view']+1);
             }else{
-               header('location: index.php');
+               header('location: /deepus/index');
             }  
             include_once "view/detail.php";   
             break;
@@ -927,15 +930,15 @@
                   array_splice($_SESSION['giohang'],$ind,1);
                else
                   $_SESSION['giohang'][$ind]['soluong']=$soluong;
-               header('location: index.php?pg=cart');
+               header('location: /deepus/index?pg=cart');
             }
             if(isset($_GET['delcart']) && ($_GET['delcart']==true)){
                unset($_SESSION['giohang']);
-               header('location: index.php?pg=cart');
+               header('location: /deepus/index?pg=cart');
             }
             if(isset($_GET['id']) && ($_GET['id']>=0)){
                array_splice($_SESSION['giohang'],$_GET['id'],1);
-               header('location: index.php?pg=cart');
+               header('location: /deepus/index?pg=cart');
             }
             include_once "view/cart.php";
             break;
@@ -981,7 +984,7 @@
                }
                if($kt==true)
                $_SESSION['giohang'][]=$sp;
-               header('location: index.php?pg=cart');
+               header('location: /deepus/index?pg=cart');
             }
             break;
          case 'checkout':
@@ -1006,7 +1009,7 @@
                unset($_SESSION['giohang']);
                $spdetail=getproductdetail($id);
                
-               $sp=["id"=>$id,"img"=> getlistimgcolor($id)[0]['main_img'],"name"=>$spdetail['name'] ,"price"=>$spdetail['price'] ,"color"=>getcolor(getlistimgcolor($id)[0]['id_color']),"size"=>getlistsize()[0]['ma_size'],"soluong"=>$soluong,"product_design"=>0,"id_product_design"=>1];
+               $sp=["id"=>$id,"img"=> getlistimgcolor($id)[0]['main_img'],"name"=>$spdetail['name'] ,"price"=>$spdetail['price'] ,"color"=>getcolor(getlistimgcolor($id)[0]['id_color']),"size"=>isset($_POST['size']) ? $_POST['size'] : '',"soluong"=>$soluong,"product_design"=>0,"id_product_design"=>1];
                $_SESSION['giohang'][]=$sp;
             }
             if(isset($_GET['id']) && $_GET['id']){
@@ -1019,7 +1022,7 @@
                unset($_SESSION['giohang']);
                $spdetail=getproductdetail($id);
                
-               $sp=["id"=>$id,"img"=> getlistimgcolor($id)[0]['main_img'],"name"=>$spdetail['name'] ,"price"=>$spdetail['price'] ,"color"=>getcolor(getlistimgcolor($id)[0]['id_color']),"size"=>getlistsize()[0]['ma_size'],"soluong"=>1,"product_design"=>0,"id_product_design"=>1];
+               $sp=["id"=>$id,"img"=> getlistimgcolor($id)[0]['main_img'],"name"=>$spdetail['name'] ,"price"=>$spdetail['price'] ,"color"=>getcolor(getlistimgcolor($id)[0]['id_color']),"size"=>isset($_POST['size']) ? $_POST['size'] : '',"soluong"=>1,"product_design"=>0,"id_product_design"=>1];
                $_SESSION['giohang'][]=$sp;
             }
             if(!isset($_SESSION['giamgia'])){
@@ -1231,11 +1234,24 @@
                            $tongtien+=$soluong*$price;
                            $id=intval($id);
                            if($product_design==0){
-                              add_cart($_SESSION['iduser'], 1, $id, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),0,1);
+                                             $id_size = getidsize($id, $size);
+                                             if ($id_size !== null) {
+                                                $new_cart_id = add_cart_and_get_id($_SESSION['iduser'], 1, $id, $soluong, $price, $soluong*$price, $img, $id_size, getidcolor($color), 0, 1);
+                                                $_SESSION['id_cart'][] = $new_cart_id;
+                                             } else {
+                                                // Optionally show error or skip adding to cart
+                                                // echo "Error: Selected size not available for this product.";
+                                             }
                            }else{
-                              add_cart($_SESSION['iduser'], 1, 1, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),1,$id_product_design);
+                                             $id_size = getidsize($id, $size);
+                                             if ($id_size !== null) {
+                                                $new_cart_id = add_cart_and_get_id($_SESSION['iduser'], 1, 1, $soluong, $price, $soluong*$price, $img, $id_size, getidcolor($color), 1, $id_product_design);
+                                                $_SESSION['id_cart'][] = $new_cart_id;
+                                             } else {
+                                                // Optionally show error or skip adding to cart
+                                                // echo "Error: Selected size not available for this product.";
+                                             }
                            }
-                           array_push($_SESSION['id_cart'],getidcartmoi());
                         }
                      }
                      if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
@@ -1421,16 +1437,16 @@
                         $tongtien+=$soluong*$price;
                         $id=intval($id);
                         if($product_design==0){
-                           add_cart($_SESSION['iduser'], $iddonhang, $id, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),0,1);
+                           add_cart($_SESSION['iduser'], $iddonhang, $id, $soluong, $price,$soluong*$price,$img,getidsize($id, $size),getidcolor($color),0,1);
                            $id_color=getidcolor($color);
-                           $id_size=getidsize($size);
+                           $id_size=getidsize($id, $size);
                            $soluongkho=getquantity_of_inventorythat($id,$id_color,$id_size);
                            update_quantity_of_inventory($id,$id_color,$id_size,$soluongkho-$soluong);
                              // Reduce stock for product
                              require_once 'model/product.php';
                              reduce_product_stock($id, $soluong);
                         }else{
-                           add_cart($_SESSION['iduser'], $iddonhang, 1, $soluong, $price,$soluong*$price,$img,getidsize($size),getidcolor($color),1,$id_product_design);
+                           add_cart($_SESSION['iduser'], $iddonhang, 1, $soluong, $price,$soluong*$price,$img,getidsize(1, $size),getidcolor($color),1,$id_product_design);
                         }
                      }
                      if(isset($_SESSION['giamgia']) && $_SESSION['giamgia']>0){
@@ -1438,9 +1454,12 @@
                      }
                      
                      $_SESSION['mail']=1;
+                        // Send mail automatically after order placement
+                        $_POST['sendmail'] = true;
+                        require_once __DIR__ . '/mailer.php';
                         // Clear cart and redirect after successful COD order
                         unset($_SESSION['giohang']);
-                        header('Location: index.php?pg=thankyou');
+                        header('Location: /deepus/index?pg=thankyou');
                         exit;
                      }
                   }
@@ -1515,13 +1534,13 @@
                   }
                   unset($_SESSION['id_voucher']);
                      unset($_SESSION['giamgia']);
-                  header('location: index.php?pg=account');
+                  header('location: /deepus/index?pg=account');
                }else{
                   
                   if(getrole($username,$password)==1){
                      $_SESSION['role']=1;
                      $_SESSION['loginuser']=0;
-                     header('location: view/admin/index.php');
+                     header('location: /deepus/view/admin/index');
                   }else{
                      $_SESSION['loginuser']=-1;
                   }
@@ -1592,7 +1611,7 @@
                   unset($_SESSION['emailsignup']);
                   unset($_SESSION['repasswordsignup']);
                   creatuser($user,$pass, '',$email,'','','','',0,'',1);
-                  header('location: index.php?pg=login');
+                  header('location: /deepus/index?pg=login');
                }
             }
             include_once "view/register.php";
@@ -1667,7 +1686,7 @@
                unset($_SESSION['passnew']);
                unset($_SESSION['emailxn']);
                unset($_SESSION['repassnew']);
-               header('location: index.php?pg=login');
+               header('location: /deepus/index?pg=login');
             }
             include_once "view/forgetpass.php";
             break;
@@ -1688,7 +1707,7 @@
                }else{
                   $_SESSION['err_comment']=1;
                }
-               header('location: index.php?pg=detail&id='.$id_product);
+               header('location: /deepus/index?pg=detail&id='.$id_product);
             }
             break;
          case 'about':
@@ -1696,6 +1715,12 @@
             break;
          case 'contact':
             include_once "view/contact.php";
+            break;
+         case 'returns':
+            include_once "view/returns.php";
+            break;
+         case 'shipping':
+            include_once "view/shipping.php";
             break;
          case 'news':
             include_once "view/news.php";
@@ -1838,7 +1863,7 @@
                unset($_SESSION['id_voucher']);
                unset($_SESSION['giamgia']);
             }
-            header('location: index.php');
+            header('location: /deepus/index');
             break;
          default:
             $new_home=getnew_home();

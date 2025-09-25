@@ -4,7 +4,7 @@
 <footer class="footer">
           <div class="container">
             <div class="footer-logo">
-              <img src="../layout/assets/images/logo.jpg" alt=""style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
+              <img src="../layout/assets/images/Deepu's.png" alt=""style="width: 80px; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
             </div>
   <div class="footer-copy">Copyright © 2025 Deepus. All rights reserved.| Developed by <a href="https://www.pjntech.com/">PJN Technologies</a></div>
           </div>

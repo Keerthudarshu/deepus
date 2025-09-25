@@ -9,8 +9,9 @@
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="view/layout/assets/css/style.css" />
-    <link rel="stylesheet" href="view/layout/assets/css/responsive.css" />
+  <link rel="stylesheet" href="view/layout/assets/css/style.css" />
+  <link rel="stylesheet" href="view/layout/assets/css/responsive.css" />
+  <link rel="stylesheet" href="view/layout/assets/css/header-dropdown.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -33,7 +34,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
-<link rel="icon" type="image/png" href="view/layout/assets/images/logo.jpg" />
+<link rel="icon" type="image/png" href="view/layout/assets/images/Deepu's.png" />
   </head>
   <body>
     <div class="app">
@@ -46,13 +47,13 @@
               <i class="fa fa-bars menu-toggle" aria-hidden="true" style="background-color:#1b3252"></i>
             </div>
             <div class="header-logo">
-              <a href="index.php">
-                <img src="view/layout/assets/images/logo.jpg" alt="" style="height:72px; width: 150px;; max-width:350px;" />
+              <a href="/deepus/index.php">
+                <img src="view/layout/assets/images/Deepu's.png" alt="" style="height:72px; width: 150px;; max-width:350px;" />
               </a>
             </div>
             <div class="header-logo-mobile">
-              <a href="#">
-                <img src="view/layout/assets/images/logo.jpg" alt="" />
+              <a href="/deepus/index.php">
+                <img src="view/layout/assets/images/Deepu's.png" alt="" />
               </a>
             </div>
             <div class="header-bad">
@@ -120,7 +121,7 @@
                 <a href="<?=$link_taikhoan?>" class="header-link" style="color: #060606ff;" ><?=$tentaikhoan?></a>
               </div>
               <div class="header-auth__item">
-                <i class="fa fa-shopping-bag" aria-hidden="true" style="background-color:#1b3252; color:#fff; border-radius:6px; padding:6px;"></i>
+                <i class="fa fa-shopping-bag" aria-hidden="true" style=""></i>
                 <a href="index.php?pg=cart" class="header-link" style="color: #060606ff;">Shopping Cart</a>
               </div>
             </div>
@@ -134,7 +135,7 @@
           ></a>
         </li>
         <li class="menu-mobile-item">
-          <a href="index.php" class="menu-mobile-link active">Home</a>
+          <a href="/deepus/index.php" class="menu-mobile-link active">Home</a>
         </li>
         <li class="menu-mobile-item">
           <a href="index.php?pg=about" class="menu-mobile-link">About</a>
@@ -143,8 +144,14 @@
           <a href="index.php?pg=product" class="menu-mobile-link">Products</a>
         </li>
         <li class="menu-mobile-item">
-          <a href="index.php?pg=design" class="menu-mobile-link">Design</a>
+          <a href="index.php?pg=boys" class="menu-mobile-link">Boys</a>
         </li>
+        <li class="menu-mobile-item">
+          <a href="index.php?pg=girls" class="menu-mobile-link">Girls</a>
+        </li>
+        <!-- <li class="menu-mobile-item">
+          <a href="index.php?pg=design" class="menu-mobile-link">Design</a>
+        </li> -->
         <li class="menu-mobile-item">
           <a href="index.php?pg=news" class="menu-mobile-link">News</a>
         </li>
@@ -159,7 +166,26 @@
         </li>
       </ul>
 
-      <section class="header-bottom" style="  background-color: #1b3252 ;">
+  <section class="header-bottom" style="  background-color: #1b3252 ;">
+    <script>
+      // Dropdown open/close on click (for both desktop and mobile)
+      document.addEventListener('DOMContentLoaded', function() {
+        var dropdown = document.querySelector('.header-menu-dropdown');
+        if(dropdown) {
+          var link = dropdown.querySelector('a.header-menu-link');
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+          });
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+              dropdown.classList.remove('open');
+            }
+          });
+        }
+      });
+    </script>
         <div class="container">
           <div class="header-bottom__main">
             <form action="" class="header-form header-form-mobile">
@@ -172,11 +198,11 @@
             </form>
             <ul class="header-menu"  >
               <li class="header-menu-item">
-                <a href="index.php" class="header-menu-link">Home</a>
+                <a href="/deepus/index.php" class="header-menu-link">Home</a>
               </li>
-              <li class="header-menu-item">
+              <!-- <li class="header-menu-item">
                 <a href="index.php?pg=design" class="header-menu-link">Design</a>
-              </li>
+              </li> -->
               <li class="header-menu-item">
                 <a href="index.php?pg=about" class="header-menu-link">About</a>
               </li>
@@ -188,6 +214,16 @@
               </li>
               <li class="header-menu-item">
                 <a href="index.php?pg=girls" class="header-menu-link">Girls</a>
+              </li>
+              <li class="header-menu-item header-menu-dropdown">
+                <a href="#" class="header-menu-link">Deepus Care <i class="fa fa-caret-down"></i></a>
+                <ul class="header-dropdown-menu">
+                  <li><a href="index.php?pg=news" class="header-menu-link">News</a></li>
+                  <li><a href="index.php?pg=contact" class="header-menu-link">Contact</a></li>
+                  <li><a href="index.php?pg=returns" class="header-menu-link">Returns & Refund Policy</a></li>
+                  <li><a href="index.php?pg=shipping" class="header-menu-link">Shipping Policy</a></li>
+                  <li><a href="index.php?pg=payment" class="header-menu-link">Payment Methods</a></li>
+                </ul>
               </li>
               <li class="header-menu-item">
                 <a href="index.php?pg=news" class="header-menu-link">News</a>

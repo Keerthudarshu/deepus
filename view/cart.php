@@ -42,13 +42,17 @@
                     if(isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0){
                       foreach ($_SESSION['giohang'] as $item) {
                         extract($item);
+                        // Always fetch the current main image by product id to avoid stale/missing images
+                        $img_row = getimg_product_main($id);
+                        $img_main = isset($img_row['main_img']) ? $img_row['main_img'] : (isset($img) ? $img : '');
+                        $img_html = check_img($img_main);
                         // ...existing code...
                         if($product_design==0){
                           $html_cart.='<tr class="cart-product">
                           <td>
                             <div class="pro-main">
                               <div class="pro-image">
-                                '.check_img($img).'
+                                '.$img_html.'
                               </div>
                               <div class="cart-body-auth">
                                 <div class="cart-body-title">'.$name.'</div>
@@ -66,7 +70,7 @@
                               </div>
                             </div>
                           </td>
-                          <td class="pro-price">'.number_format($price,0,'',',').'₹</td>
+                          <td class="pro-price">'.number_format(($price !== '' ? (float)$price : 0),0,'',',').'₹</td>
                           <td class="pro-td-quantity">
                             <div class="detail-input pro-quantity">
                               <button class="detail-input__minus tru">-</button>
@@ -86,7 +90,7 @@
                               <td>
                                 <div class="pro-main">
                                   <div class="pro-image">
-                                    '.check_img($img).'
+                                    '.$img_html.'
                                     <img class="design-icon" src="view/layout/assets/images/design-icon.svg" alt="" />
                                   </div>
                                   <div class="cart-body-auth">
@@ -131,7 +135,10 @@
                       foreach($paid_cart_items as $item){
                         // Get product info
                         $product = pdo_query_one("SELECT * FROM product WHERE id=?", $item['id_product']);
-                        $img = isset($product['img']) ? $product['img'] : $item['img'];
+                        // Resolve main image from product id (fallback to stored img)
+                        $img_row = getimg_product_main($item['id_product']);
+                        $img = isset($img_row['main_img']) ? $img_row['main_img'] : (isset($product['img']) ? $product['img'] : $item['img']);
+                        $img_html = check_img($img);
                         $name = isset($product['name']) ? $product['name'] : '';
                         $color = getcolor($item['id_color']);
                         $size = getsize($item['id_size']);
@@ -143,7 +150,7 @@
                           <td>
                             <div class="pro-main">
                               <div class="pro-image">
-                                '.check_img($img).'
+                                '.$img_html.'
                               </div>
                               <div class="cart-body-auth">
                                 <div class="cart-body-title">'.$name.' <span style="color:green;font-size:12px;">[Paid]</span></div>
@@ -171,7 +178,7 @@
                               <td>
                                 <div class="pro-main">
                                   <div class="pro-image">
-                                    '.check_img($img).'
+                                    '.$img_html.'
                                     <img class="design-icon" src="view/layout/assets/images/design-icon.svg" alt="" />
                                   </div>
                                   <div class="cart-body-auth">

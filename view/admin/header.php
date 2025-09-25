@@ -17,7 +17,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet" />
-    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/logo.jpg" />
+    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="../layout/assets/images/Deepu's.png" />
   </head>
   <body>
     <div class="app">
@@ -59,88 +59,94 @@
       <div class="navigation">
         <ul class="dashboard-menu">
           <li class="dashboard-menu-list">
-            <img src="../layout/assets/images/logo.jpg" alt="" style="height: 100px; width:auto; max-width:160px;"/>
+            <img src="../layout/assets/images/Deepu's.png" alt="" style="height: 100px; width:auto; max-width:160px;"/>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php" class="dashboard-menu-link" data-tab="1">
+            <a href="index" class="dashboard-menu-link" data-tab="1">
               <i class="fa fa-tachometer" aria-hidden="true"></i>
               Dashboard
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=catalog" class="dashboard-menu-link" data-tab="2">
+            <a href="index?pg=catalog" class="dashboard-menu-link" data-tab="2">
               <i class="fa fa-list" aria-hidden="true"></i>
               Product categories
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=product" class="dashboard-menu-link" data-tab="3">
+            <a href="index?pg=product" class="dashboard-menu-link" data-tab="3">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
              Products
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=user" class="dashboard-menu-link" data-tab="4">
+            <a href="index?pg=user" class="dashboard-menu-link" data-tab="4">
               <i class="fa fa-user" aria-hidden="true"></i>
               Account
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=donhang" class="dashboard-menu-link" data-tab="5">
+            <a href="index?pg=donhang" class="dashboard-menu-link" data-tab="5">
               <i class="fa fa-shopping-bag " aria-hidden="true"></i>
              Orders
             </a>
           </li>
-          <li class="dashboard-menu-list">
-            <a href="index.php?pg=cart" class="dashboard-menu-link" data-tab="6">
+           <li class="dashboard-menu-list">
+            <a href="index?pg=cart" class="dashboard-menu-link" data-tab="6">
               <i class="	fa fa-shopping-cart" aria-hidden="true"></i>
               Cart
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=binhluan" class="dashboard-menu-link" data-tab="7">
+            <a href="index.php?pg=size" class="dashboard-menu-link" data-tab="14">
+              <i class="fa fa-arrows-v" aria-hidden="true"></i>
+              Size
+            </a>
+          </li>
+          <li class="dashboard-menu-list">
+            <a href="index?pg=binhluan" class="dashboard-menu-link" data-tab="7">
               <i class="fa fa-commenting" aria-hidden="true"></i>
               Comments
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=news" class="dashboard-menu-link" data-tab="8">
+            <a href="index?pg=news" class="dashboard-menu-link" data-tab="8">
             <ion-icon name="newspaper"></ion-icon>
               News
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=img_product_color" class="dashboard-menu-link" data-tab="9">
+            <a href="index?pg=img_product_color" class="dashboard-menu-link" data-tab="9">
             <ion-icon name="image"></ion-icon>
               Product images
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=voucher" class="dashboard-menu-link" data-tab="10">
+            <a href="index?pg=voucher" class="dashboard-menu-link" data-tab="10">
             <ion-icon name="gift"></ion-icon>
               Voucher
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=dadung_voucher" class="dashboard-menu-link" data-tab="11">
+            <a href="index?pg=dadung_voucher" class="dashboard-menu-link" data-tab="11">
             <ion-icon name="gift"></ion-icon>
              Used vouchers
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=design" class="dashboard-menu-link" data-tab="12">
+            <a href="index?pg=design" class="dashboard-menu-link" data-tab="12">
             <i class="fa fa-pencil" aria-hidden="true"></i>
               Design
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=img_design" class="dashboard-menu-link" data-tab="13">
+            <a href="index?pg=img_design" class="dashboard-menu-link" data-tab="13">
             <ion-icon name="images"></ion-icon>
               Product images
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=logout" class="dashboard-menu-link">
+            <a href="index?pg=logout" class="dashboard-menu-link">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
               Log out
             </a>

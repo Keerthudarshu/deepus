@@ -24,34 +24,52 @@
         $i=0;
         foreach ($img_product as $item) {
             $i++;
-            extract($item);
-            $img='<img class="detail-img" src="'.check_link_img($item['main_img']).'" alt="" />';
-            $sub_img='<img class="detail-image__item" onclick="change_img(this)" src="'.check_link_img($item['main_img']).'" alt="" />';
-            $sub_img.='<img class="detail-image__item"  onclick="change_img(this)" src="'.check_link_img($item['sub_img1']).'" alt="" />';
-            $sub_img.='<img class="detail-image__item" onclick="change_img(this)" src="'.check_link_img($item['sub_img2']).'" alt="" />';
-            $sub_img.='<img class="detail-image__item"  onclick="change_img(this)" src="'.check_link_img($item['sub_img3']).'" alt="" />';
-    
+            // build full paths via your helper
+            $main_src = check_link_img($item['main_img']);
+            $sub1_src = isset($item['sub_img1']) ? check_link_img($item['sub_img1']) : '';
+            $sub2_src = isset($item['sub_img2']) ? check_link_img($item['sub_img2']) : '';
+            $sub3_src = isset($item['sub_img3']) ? check_link_img($item['sub_img3']) : '';
+
+            // thumbnails HTML
+            $sub_img_html = '';
+            // add main as first thumbnail (useful)
+            $sub_img_html .= '<img class="detail-image__item'.($i==1 ? ' active' : '').'" onclick="change_img(this)" data-large="'.$main_src.'" src="'.$main_src.'" alt="thumb" loading="lazy"/>';
+            if(!empty($sub1_src)) $sub_img_html .= '<img class="detail-image__item" onclick="change_img(this)" data-large="'.$sub1_src.'" src="'.$sub1_src.'" alt="thumb" loading="lazy"/>';
+            if(!empty($sub2_src)) $sub_img_html .= '<img class="detail-image__item" onclick="change_img(this)" data-large="'.$sub2_src.'" src="'.$sub2_src.'" alt="thumb" loading="lazy"/>';
+            if(!empty($sub3_src)) $sub_img_html .= '<img class="detail-image__item" onclick="change_img(this)" data-large="'.$sub3_src.'" src="'.$sub3_src.'" alt="thumb" loading="lazy"/>';
+
+            // main image + zoom wrapper
+            $main_img_tag = '<img class="detail-img" src="'.$main_src.'" data-large="'.$main_src.'" alt="Product image" />';
+
+            // first visible block keeps the same behavior as before
             if($i==1){
-                $html_img.='<div class="detail-image">
-                '.$img.'
-                <div style="display:none;">'.$item['main_img'].'</div>
-                <div class="detail-image__list">
-                  '.$sub_img.'
-                </div>
-              </div>';
+                $html_img.='
+                <div class="detail-image">
+                  <div class="main-image-container">
+                    '.$main_img_tag.'
+                    <div style="display:none;">'.$item['main_img'].'</div>
+                    <div class="zoom-wrapper" aria-hidden="true"></div>
+                  </div>
+                  <div class="detail-image__list">
+                    '.$sub_img_html.'
+                  </div>
+                </div>';
             }else{
-                $html_img.='<div class="detail-image" style="display: none;">
-                '.$img.'
-                <div style="display:none;">'.$item['main_img'].'</div>
-                <div class="detail-image__list">
-                  '.$sub_img.'
-                </div>
-               
-              </div>';
+                $html_img.='
+                <div class="detail-image" style="display: none;">
+                  <div class="main-image-container">
+                    '.$main_img_tag.'
+                    <div style="display:none;">'.$item['main_img'].'</div>
+                    <div class="zoom-wrapper" aria-hidden="true"></div>
+                  </div>
+                  <div class="detail-image__list">
+                    '.$sub_img_html.'
+                  </div>
+                </div>';
             }
         }
         echo $html_img;
-    }
+  }
 
     function showcomment($listcomment){
         $html_comment='';

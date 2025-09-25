@@ -53,7 +53,7 @@ if (isset($_POST['razorpay_payment_id'])) {
     //Content
     $mail->isHTML(true);               //Set email format to HTML
     $mail->Subject = 'Thank you for shopping with us!';  // email subject headings
-    $mail->AddEmbeddedImage('view/layout/assets/images/logo.jpg', 'logo', 'logo.jpg');
+    $mail->AddEmbeddedImage('view/layout/assets/images/Deepu's.png', 'logo', 'Deepu's.png');
     $mail->AddEmbeddedImage('upload/form-thanks.jpg', 'img', 'form-thanks.jpg');
     $i=0;
     $tongtien=0;
@@ -391,7 +391,7 @@ if (isset($_POST["guima"])) {
         //Content
         $mail->isHTML(true);               //Set email format to HTML
         $mail->Subject = 'We have successfully restored your account!';  // email subject headings
-        $mail->AddEmbeddedImage('view/layout/assets/images/logo.jpg', 'logo', 'logo.jpg');
+        $mail->AddEmbeddedImage('view/layout/assets/images/Deepu's.png', 'logo', 'Deepu's.png');
         
     
         $_SESSION['code']=creatcode();

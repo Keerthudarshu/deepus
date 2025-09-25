@@ -2,7 +2,7 @@
   session_start();
   ob_start();
   if($_SESSION['role']!=1){
-    header('location: ../../index.php');
+  header('location: /deepus/index');
   }
    
 
@@ -76,7 +76,7 @@
       $pdo->rollBack();
       die('Order failed: ' . $e->getMessage());
     }
-    header("Location: index.php?pg=donhang");
+  header("Location: index?pg=donhang");
     exit;
   }
 
@@ -103,9 +103,12 @@
   if(isset($_GET['pg'])&&($_GET['pg']!="")){
     $pg=$_GET['pg'];
     switch ($pg) {
+      case 'size':
+        include_once 'size.php';
+        break;
           case 'catalog':
             $catalog=getcatalog();
-            // ...existing catalog logic only...
+            include_once 'catalog.php';
             break;
 
           case 'updatecatalog':
@@ -205,6 +208,7 @@
               $trendadd=$_POST['trend'];
               $viewadd=$_POST['view'];
               $stockadd = isset($_POST['stock']) ? intval($_POST['stock']) : 0;
+              $sizeadd = isset($_POST['size']) ? $_POST['size'] : '';
               $_SESSION['addproduct']=1;
               $product=getproduct();
               if($ma_sanphamadd==''){
@@ -281,7 +285,7 @@
                     break;
                   }
                 }
-                add_product($ma_sanphamadd,$nameadd,$priceadd,$priceoldadd,$hotadd,$noibatadd,$gioitinhadd,$idcatalogadd,$chitietadd,$bestselladd,$trendadd,$viewadd,$stockadd);
+                add_product($ma_sanphamadd,$nameadd,$priceadd,$priceoldadd,$hotadd,$noibatadd,$gioitinhadd,$idcatalogadd,$chitietadd,$bestselladd,$trendadd,$viewadd,$stockadd,$sizeadd);
               }
               
 
@@ -331,6 +335,7 @@
               $trendup=$_POST['trend'];
               $viewup=$_POST['view'];
               $stockup=$_POST['stock'];
+              $sizeup = isset($_POST['size']) ? $_POST['size'] : '';
               $danhmucup=$idcatalogup;
               $_SESSION['editproduct']=1;
               if($hotup=='Có'){
@@ -409,7 +414,7 @@
                     break;
                   }
                 }
-                update_product($_SESSION['update_id'],$ma_sanphamup,$nameup,$priceup,$priceoldup,$hotup,$noibatup,$gioitinhup,$idcatalogup,$chitietup,$bestsellup,$trendup,$viewup,$stockup);
+                update_product($_SESSION['update_id'],$ma_sanphamup,$nameup,$priceup,$priceoldup,$hotup,$noibatup,$gioitinhup,$idcatalogup,$chitietup,$bestsellup,$trendup,$viewup,$stockup,$sizeup);
                 unset($_SESSION['update_id']);
                 unset($_SESSION['editproduct']);
               }    
@@ -943,7 +948,7 @@
                         include_once "invoice.php";
                     } else {
                         echo '<h2>Invalid order ID</h2>';
-                        echo '<p><a href="index.php?pg=donhang">← Back to Orders</a></p>';
+                        echo '<p><a href="/deepus/view/admin/index?pg=donhang">← Back to Orders</a></p>';
                     }
                     break;
                     
@@ -953,7 +958,7 @@
                 unset($_SESSION['iduser']);
                 unset($_SESSION['usernamelogin']);
                 unset($_SESSION['passwordlogin']);
-                header('location: index.php');
+                header('location: /deepus/index');
                 break;
          default:
             
