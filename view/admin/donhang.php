@@ -333,6 +333,12 @@ foreach ($donhang as $item) {
                                     }
                                     ?>
                                 </select>
+                                <select id="size_select" style="margin-left:10px;">
+                                    <option value="">-- Select Size --</option>
+                                    <?php for ($i = 20; $i <= 38; $i += 2): ?>
+                                        <option value="<?= $i ?>">Size <?= $i ?></option>
+                                    <?php endfor; ?>
+                                </select>
                                 <button type="button" id="addProductBtn" style="margin-left:10px;">Add Product</button>
                             </div>
                             <!-- Cart Table -->
@@ -342,6 +348,7 @@ foreach ($donhang as $item) {
                                         <tr>
                                             <th>Code</th>
                                             <th>Name</th>
+                                            <th>Size</th>
                                             <th>Price</th>
                                             <th>Qty</th>
                                             <th>Total</th>
@@ -386,7 +393,7 @@ foreach ($donhang as $item) {
             let total = 0;
             cart.forEach((item, idx) => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${item.code}</td><td>${item.name}</td><td>${item.price}</td><td><input type='number' min='1' value='${item.qty}' style='width:50px;' onchange='updateQty(${idx}, this.value)' /></td><td>${(item.price*item.qty).toFixed(2)}</td><td><button type='button' onclick='removeCartItem(${idx})'>✖</button></td>`;
+                row.innerHTML = `<td>${item.code}</td><td>${item.name}</td><td>${item.size}</td><td>${item.price}</td><td><input type='number' min='1' value='${item.qty}' style='width:50px;' onchange='updateQty(${idx}, this.value)' /></td><td>${(item.price*item.qty).toFixed(2)}</td><td><button type='button' onclick='removeCartItem(${idx})'>✖</button></td>`;
                 tbody.appendChild(row);
                 total += item.price * item.qty;
             });
@@ -403,18 +410,46 @@ foreach ($donhang as $item) {
         }
         document.getElementById('addProductBtn').onclick = function() {
             const code = document.getElementById('product_code_select').value;
+            const size = document.getElementById('size_select').value;
             if (!code) return alert('Select a product code!');
-            fetch('index.php?pg=getproduct&code='+code)
-                .then(res=>res.json())
-                .then(data=>{
-                    if(data.success) {
-                        // Check if already in cart
-                        if(cart.find(p=>p.code===code)) return alert('Product already in cart!');
-                        cart.push({code:code, name:data.product.name, price:parseFloat(data.product.price), qty:1});
-                        renderCart();
+            if (!size) return alert('Select a size!');
+            // Fetch price for selected size
+            fetch('index.php?pg=getsizeprice&code='+code+'&size='+size)
+                .then(res => {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(priceData => {
+                    console.log('Price fetch response:', priceData);
+                    if(priceData.success) {
+                        const price = parseFloat(priceData.price);
+                        fetch('index.php?pg=getproduct&code='+code)
+                            .then(res => {
+                                if (!res.ok) throw new Error('Network response was not ok');
+                                return res.json();
+                            })
+                            .then(data => {
+                                console.log('Product fetch response:', data);
+                                if(data.success) {
+                                    // Check if already in cart with same code and size
+                                    if(cart.find(p=>p.code===code && p.size===size)) return alert('Product with this size already in cart!');
+                                    cart.push({code:code, name:data.product.name, size:size, price:price, qty:1});
+                                    renderCart();
+                                } else {
+                                    alert('Product not found!');
+                                }
+                            })
+                            .catch(err => {
+                                console.error('Error fetching product:', err);
+                                alert('Error fetching product details!');
+                            });
                     } else {
-                        alert('Product not found!');
+                        alert('Could not fetch price for selected size!');
                     }
+                })
+                .catch(err => {
+                    console.error('Error fetching price:', err);
+                    alert('Error fetching price for selected size!');
                 });
         }
         document.getElementById('confirmOrderBtn').onclick = function() {

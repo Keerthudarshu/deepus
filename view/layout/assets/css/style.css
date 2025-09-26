@@ -520,6 +520,44 @@ body {
   padding: 5px;
   background-color: #f3f3f3;
 }
+.product-images .favorite-btn{
+  position:absolute;
+  top:10px !important;
+  right:10px !important;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.95);
+  border:1px solid #e5e5e5;
+  color:#9aa0a6;
+  transition: all .2s ease;
+  opacity:0;
+  visibility:hidden;
+  z-index:3;
+}
+.product-images:hover .favorite-btn{ opacity:1; visibility:visible; }
+.product-images .favorite-btn i{ font-size:18px; }
+.product-images .favorite-btn:hover{ transform: scale(1.2); }
+.favorite-btn:hover{
+  color:#1b3252;
+  border-color:#1b3252;
+  background:#eaf0f7;
+}
+
+/* Hard override: ensure heart is always at top-right even if other rules conflict */
+.product-item .favorite-btn,
+.top-flex .favorite-btn,
+.deal-item__image .favorite-btn {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 10 !important;
+}
 .product-images:hover > .icons {
   bottom: 0;
 }
@@ -679,7 +717,29 @@ body {
 .deal-item__image {
   max-width: 250px;
   width: 100%;
+  position: relative;
 }
+.deal-item__image .favorite-btn{
+  position:absolute;
+  top:8px !important;
+  right:8px !important;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.95);
+  border:1px solid #e5e5e5;
+  color:#9aa0a6;
+  transition: all .2s ease;
+  opacity:0;
+  visibility:hidden;
+  z-index:2;
+}
+.deal-item__image:hover .favorite-btn{ opacity:1; visibility:visible; }
+.deal-item__image .favorite-btn i{ font-size:18px; }
+.deal-item__image .favorite-btn:hover{ transform: scale(1.2); }
 .deal-item__image img {
   width: 100%;
 }

@@ -1,6 +1,7 @@
+document.addEventListener('DOMContentLoaded', function(){
 const color = document.getElementById("color");
 const size = document.getElementById("size");
-const image = document.getElementById("image");
+const imageTabBtn = document.getElementById("image");
 const upload = document.getElementById("upload");
 const history = document.getElementById("history");
 const colorContent = document.querySelector(".design-mobile-content");
@@ -25,34 +26,34 @@ function hideAllTabs() {
   historyContent.style.display = "none";
 }
 
-color.addEventListener("click", showColor);
+if(color) color.addEventListener("click", showColor);
 function showColor() {
   hideAllTabs();
   colorContent.style.display = "block";
   closeContent();
 }
 
-size.addEventListener("click", showSize);
+if(size) size.addEventListener("click", showSize);
 function showSize() {
   hideAllTabs();
   sizeContent.style.display = "block";
   closeContent();
 }
-image.addEventListener("click", showImg);
+if(imageTabBtn) imageTabBtn.addEventListener("click", showImg);
 function showImg() {
   hideAllTabs();
   uploadContent.style.display = "block";
   closeContent();
 }
 
-upload.addEventListener("click", showUpload);
+if(upload) upload.addEventListener("click", showUpload);
 function showUpload() {
   hideAllTabs();
   uploadFileContent.style.display = "block";
   closeContent();
 }
 
-history.addEventListener("click", showHistory);
+if(history) history.addEventListener("click", showHistory);
 function showHistory() {
   hideAllTabs();
   historyContent.style.display = "block";
@@ -81,6 +82,8 @@ function drag(event,id) {
     event.dataTransfer.setData("text", event.target.id);
     draggingElements=id;
   }
+
+});
 
   
   function allowDrop(event) {

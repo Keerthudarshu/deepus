@@ -1,4 +1,5 @@
 // Product Detail
+document.addEventListener('DOMContentLoaded', function(){
 const idDetail = document.getElementById("iddetail");
 const policy = document.getElementById("policy");
 const comment = document.getElementById("comment");
@@ -7,6 +8,9 @@ const detailContent2 = document.querySelector(".detail-content-2");
 const detailComment = document.querySelector(".detail-content-comment");
 const detailTab = document.querySelectorAll(".detail-tab__link");
 const sizeItems = document.querySelectorAll(".detail-size__item");
+
+// Only run on pages that have detail markup
+if(!detailContent){ return; }
 
 var detail_image=document.getElementsByClassName('detail-image');
 var detail_color=document.getElementsByClassName('detail-circle');
@@ -251,3 +255,5 @@ function anmatkhau(){
   else
       document.getElementsByClassName('login-password')[0].getElementsByTagName('input')[0].type='password';
 }
+
+});

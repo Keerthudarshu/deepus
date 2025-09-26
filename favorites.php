@@ -2,7 +2,9 @@
 // favorites.php
 session_start();
 include_once "model/connectdb.php";
+include_once "model/global.php";
 include_once "model/product.php";
+include_once "model/user.php";
 
 // Initialize favorites in session if not set
 if (!isset($_SESSION['favorites'])) {
@@ -31,7 +33,10 @@ if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
 $favorites = [];
 if (!empty($_SESSION['favorites'])) {
     $ids = implode(',', array_map('intval', $_SESSION['favorites']));
-    $favorites = get_products_by_ids($ids); // You need to implement this in model/product.php
+    if ($ids !== '') {
+        $sql = "SELECT * FROM product WHERE id IN ($ids) ORDER BY id DESC";
+        $favorites = pdo_query($sql);
+    }
 }
 
 include 'view/header.php';
@@ -43,7 +48,7 @@ include 'view/header.php';
                 <div class="container">
                     <div class="cart-title-heading">Favorites</div>
                     <div class="cart-main">
-                        <div class="cart-left">
+                        <div class="cart-left" style="width:100%">
                             <table class="cart-table">
                                 <thead>
                                     <tr>
@@ -71,47 +76,53 @@ include 'view/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="cart-right">
-                            <div class="cart-info">Order Details</div>
-                            <div class="cart-content">
-                                <div class="cart-content-price">
-                                    <div class="cart-content__text">Total Amount</div>
-                                    <div class="cart-content__price"><span id="cart-total-display">0₹</span></div>
-                                </div>
-                                <div class="cart-item">
-                                    <div class="cart-sale">Discount</div>
-                                    <span>Valid at checkout</span>
-                                </div>
-                                <div class="cart-item">
-                                    <div class="cart-sale">Delivery Charges</div>
-                                    <span>Calculated at checkout</span>
-                                </div>
-                                <div class="detail-btn">
-                                    <button class="detail-button" disabled>Go to Payment</button>
-                                </div>
-                                <div class="cart-checkout">
-                                    <p>We accept payments via</p>
-                                    <div class="cart-checkout-icon">
-                                        <img src="view/layout/assets/images/visa.svg" alt="" />
-                                        <img src="view/layout/assets/images/napas.svg" alt="" />
-                                        <img src="view/layout/assets/images/zalopay-icon.svg" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
         <?php else: ?>
-            <div class="favorites-list">
-                <?php foreach ($favorites as $product): ?>
-                    <div class="favorite-item">
-                        <img src="upload/<?= htmlspecialchars($product['img']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" style="width:100px;">
-                        <div><?= htmlspecialchars($product['name']) ?></div>
-                        <a href="favorites.php?remove=<?= $product['id'] ?>">Remove</a>
+            <section class="cart">
+                <div class="container">
+                    <div class="cart-title-heading">Favorites</div>
+                    <div class="cart-main">
+                        <div class="cart-left" style="width:100%">
+                            <table class="cart-table">
+                                <thead>
+                                    <tr>
+                                        <th class="pro-info">Product Details</th>
+                                        <th>Item Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($favorites as $product): ?>
+                                        <?php 
+                                            $main = getimg_product_main($product['id']);
+                                            $mainImg = isset($main['main_img']) ? trim((string)$main['main_img']) : '';
+                                            $imgSrc = $mainImg !== '' ? 'upload/'.htmlspecialchars($mainImg, ENT_QUOTES) : 'view/layout/assets/images/avatar.png';
+                                            $alt = htmlspecialchars((string)$product['name'], ENT_QUOTES);
+                                            $price = (int)$product['price'];
+                                        ?>
+                                        <tr>
+                                            <td style="display:flex;align-items:center;gap:12px;">
+                                                <a href="index.php?pg=detail&id=<?= (int)$product['id'] ?>" style="display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none;">
+                                                    <img src="<?= $imgSrc ?>" alt="<?= $alt ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #eee;border-radius:4px;">
+                                                    <div><?= htmlspecialchars((string)$product['name']) ?></div>
+                                                </a>
+                                            </td>
+                                            <td><?= number_format($price,0,'',',') ?>₹</td>
+                                            <td>1</td>
+                                            <td><?= number_format($price,0,'',',') ?>₹</td>
+                                            <td><a href="favorites.php?remove=<?= (int)$product['id'] ?>" class="del">Remove</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            </section>
         <?php endif; ?>
     <a href="/deepus/index">Back to Home</a>
     </div>

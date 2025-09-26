@@ -7,6 +7,12 @@
     $erruser='<div class="errform mb-unset">'.$erruser.'</div>';
   }
 
+  // Show success popup after successful profile update
+  if(isset($_SESSION['account_updated']) && $_SESSION['account_updated'] == 1){
+    echo '<script>window.addEventListener("DOMContentLoaded", function(){ alert("Profile updated successfully"); });</script>';
+    unset($_SESSION['account_updated']);
+  }
+
 ?>
  
 <div class="link-mobile">
@@ -96,22 +102,23 @@
                   <input name="diachi" type="text" value="<?=$diachi?>" />
                 </div>
                 <div class="product-btn account-btn">
-                  <button name="update_account" class="button-primary">Update account</button>
-                  <button name="del_account" class="button-primary button-del">Delete account</button>
+                  <button type="submit" name="update_account" class="button-primary">Update account</button>
+                  <button type="submit" name="del_account" class="button-primary button-del">Delete account</button>
                 </div>
                 </div>
               
               <div class="account-right-image">
                 <div class="account-right-avatar">
-                <input type="hidden" name="hinhcu" value=<?=$img?>>
+                <input type="hidden" name="hinhcu" value="<?= htmlspecialchars($img, ENT_QUOTES) ?>">
                   <?php
+                    // Build preview HTML without mutating $img filename
                     if(check_img($img)==""){
-                      $img='<img id="img-preview" src="view/layout/assets/images/avatar.png" alt="" />';
+                      $imgTag = '<img id="img-preview" src="view/layout/assets/images/avatar.png" alt="" />';
                     }else{
-                      $img=substr_replace(check_img($img), ' id="img-preview" ', 5, 0);
+                      $imgTag = substr_replace(check_img($img), ' id="img-preview" ', 5, 0);
                     }
                   ?>
-                  <?=$img?>
+                  <?=$imgTag?>
                   <input name="img" id="file-input" type="file" accept="image/*"/>
                 </div>
                 <script>

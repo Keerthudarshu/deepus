@@ -22,6 +22,7 @@
     include_once "../../model/design.php";
     include_once "../../model/voucher.php";
     include_once "../../model/giamgia.php";
+    include_once "../../model/size.php";
 
    
   // Handle admin order placement (cart modal) before routing
@@ -81,6 +82,30 @@
   }
 
   // AJAX endpoint for product lookup by code
+  // AJAX endpoint for price lookup by product code and size
+  if (isset($_GET['pg']) && $_GET['pg'] === 'getsizeprice' && isset($_GET['code']) && isset($_GET['size'])) {
+    $code = $_GET['code'];
+    $size = $_GET['size'];
+    // You need a function to get price by product code and size
+    // Example: get_price_by_code_and_size($code, $size)
+    if (function_exists('get_price_by_code_and_size')) {
+      $price = get_price_by_code_and_size($code, $size);
+      if ($price !== null) {
+        echo json_encode(['success' => true, 'price' => $price]);
+      } else {
+        echo json_encode(['success' => false]);
+      }
+    } else {
+      // fallback: try to get product and use its price
+      $product = getproduct_by_code($code);
+      if ($product && isset($product['price'])) {
+        echo json_encode(['success' => true, 'price' => $product['price']]);
+      } else {
+        echo json_encode(['success' => false]);
+      }
+    }
+    exit;
+  }
   if (isset($_GET['pg']) && $_GET['pg'] === 'getproduct' && isset($_GET['code'])) {
     $code = $_GET['code'];
     $product = getproduct_by_code($code); // You may need to implement this function in model/product.php
