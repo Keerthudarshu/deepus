@@ -47,23 +47,7 @@
               <div class="login-button">
                 <button name="btn_register" class="login-btn">Register</button>
               </div>
-              <div class="login__center">
-                <div class="form-group-center text">Or sign in with</div>
-                <div class="form-app">
-                  <div class="form-app__fb">
-                  <button class="btn_google">
-                    <ion-icon style="height:20px; width: 20px; margin-right: 10px" name="logo-facebook"></ion-icon>
-                      <span> Facebook</span>
-                    </button>
-                  </div>
-                  <div class="form-app__google">
-                    <button class="btn_google">
-                    <ion-icon style="height:20px; width: 20px; margin-right: 10px" name="logo-google"></ion-icon>
-                      <span> Google</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              
             </form>
           </div>
         </div>

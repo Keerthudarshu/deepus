@@ -9,22 +9,49 @@
     include_once "model/cart.php";
     include_once "model/user.php";
     include_once "model/donhang.php";
-    include_once "model/giamgia.php";
     include_once "model/comment.php";
     include_once "model/global.php";
     include_once "model/design.php";
     include_once "model/soluongtonkho.php";
     include_once "model/news.php";
- 
 
-   
+   // AJAX: toggle wishlist item
+   if (isset($_GET['pg']) && $_GET['pg'] === 'toggle_wishlist' && isset($_GET['id'])) {
+      $id = intval($_GET['id']);
+      if (!isset($_SESSION['wishlist']) || !is_array($_SESSION['wishlist'])) {
+         $_SESSION['wishlist'] = [];
+      }
+      $action = 'added';
+      if (($key = array_search($id, $_SESSION['wishlist'])) !== false) {
+         unset($_SESSION['wishlist'][$key]);
+         $_SESSION['wishlist'] = array_values($_SESSION['wishlist']);
+         $action = 'removed';
+      } else {
+         $_SESSION['wishlist'][] = $id;
+      }
+      header('Content-Type: application/json');
+      echo json_encode(['success' => true, 'action' => $action, 'count' => count($_SESSION['wishlist'])]);
+      exit;
+   }
+
    include_once "view/header.php";
    if(isset($_GET['pg'])&&($_GET['pg']!="")){
       $pg=$_GET['pg'];
    switch ($pg) {
+      case 'wishlist':
+         $ids = isset($_SESSION['wishlist']) && is_array($_SESSION['wishlist']) ? array_map('intval', $_SESSION['wishlist']) : [];
+         $wishlist_products = function_exists('get_products_by_ids') ? get_products_by_ids($ids) : [];
+         include_once "view/wishlist.php";
+         break;
       case 'size':
       include_once "view/admin/size.php";
       break;
+      case 'payment':
+         include_once "view/payment.php";
+         break;
+      case 'payment_security':
+         include_once "view/payment_security.php";
+         break;
          case 'product':
             if(isset($_GET['tatca']) && $_GET['tatca']){
                unset($_SESSION['filterprice']);
@@ -284,7 +311,7 @@
             include_once "view/product.php";
             break;
 
-         case 'boys':
+         case 'product':
             if(isset($_GET['tatca']) && $_GET['tatca']){
                unset($_SESSION['filterprice']);
                unset($_SESSION['filtercolor']);

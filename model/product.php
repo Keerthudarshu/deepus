@@ -29,12 +29,18 @@ function getproduct_by_code($code) {
          $img=getimg_product_main($id)['main_img'];
             $linkdetail='index.php?pg=detail&id='.$id;
             $strproduct='';
+            $activeClass = (isset($_SESSION['wishlist']) && is_array($_SESSION['wishlist']) && in_array($id, $_SESSION['wishlist'])) ? ' active' : '';
             $strproduct='<div class="product-item">
                                              <div class="product-images" style="position:relative;">
                                                 <a href="'.$linkdetail.'">
                                                     '.check_img($img).'
                                                 </a>
-                                               
+                                                <button class="wishlist-btn'.$activeClass.'" data-product-id="'.$id.'" aria-label="Add to wishlist" title="Add To Wishlist">
+                                                  <svg class="heart-icon-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                    <path d="M12.1 21s-6.6-4.35-9.1-7.5C1.05 11.4 1 8.9 2.7 7.2c1.7-1.7 4.5-1.6 6.2.1L12 10.4l3.1-3.1c1.7-1.7 4.5-1.8 6.2-.1 1.7 1.7 1.65 4.2-.3 6.3C18.7 16.65 12.1 21 12.1 21z" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  </svg>
+                                                </button>
+                                                
                                                 
                                                 <div class="icons">
                                                     <a href="'.$linkdetail.'" class="views">View Details</a>
@@ -139,12 +145,18 @@ function getproduct_by_code($code) {
          $img=getimg_product_main($id);
             $linkdetail='index.php?pg=detail&id='.$id;
             $strproduct='';
+            $activeClass = (isset($_SESSION['wishlist']) && is_array($_SESSION['wishlist']) && in_array($id, $_SESSION['wishlist'])) ? ' active' : '';
             $strproduct='<div class="deal-item">
             <div class="deal-list">
-              <div class="deal-item__image">
+              <div class="deal-item__image" style="position:relative;">
                 <a href="'.$linkdetail.'">
                   '.check_img($img['main_img']).'
                 </a>
+                <button class="wishlist-btn'.$activeClass.'" data-product-id="'.$id.'" aria-label="Add to wishlist" title="Add To Wishlist">
+                  <svg class="heart-icon-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12.1 21s-6.6-4.35-9.1-7.5C1.05 11.4 1 8.9 2.7 7.2c1.7-1.7 4.5-1.6 6.2.1L12 10.4l3.1-3.1c1.7-1.7 4.5-1.8 6.2-.1 1.7 1.7 1.65 4.2-.3 6.3C18.7 16.65 12.1 21 12.1 21z" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
                 <div class="deal-items">
                   '.check_img($img).'
                 </div>
@@ -231,10 +243,15 @@ function getproduct_by_code($code) {
                $strproduct.='<div class="top-item">
                               <h2 class="top-item-title">'.$trangthai.'</h2>
                               <div class="product-item top-flex">
-                              <div class="product-images">
+                              <div class="product-images" style="position:relative;">
                               <a href="'.$linkdetail.'">
                                  '.$img2.'
                               </a>
+                              <button class="wishlist-btn" data-product-id="'.$id.'" aria-label="Add to wishlist" title="Add To Wishlist">
+                                <svg class="heart-icon-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                  <path d="M12.1 21s-6.6-4.35-9.1-7.5C1.05 11.4 1 8.9 2.7 7.2c1.7-1.7 4.5-1.6 6.2.1L12 10.4l3.1-3.1c1.7-1.7 4.5-1.8 6.2-.1 1.7 1.7 1.65 4.2-.3 6.3C18.7 16.65 12.1 21 12.1 21z" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </button>
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
@@ -266,10 +283,13 @@ function getproduct_by_code($code) {
             }else{
                $strproduct.='<div class="top-item">
                               <div class="product-item top-flex">
-                              <div class="product-images">
+                              <div class="product-images" style="position:relative;">
                               <a href="'.$linkdetail.'">
                                  '.$img2.'
                               </a>
+                              <button class="wishlist-btn" data-product-id="'.$id.'" aria-label="Add to wishlist" title="Add To Wishlist">
+                                <span class="heart" aria-hidden="true">❤</span>
+                              </button>
                               </div>
                               <div class="top-body">
                               <div class="product-title">'.$name.'</div>
@@ -432,6 +452,16 @@ function getidcatalog($idproduct){
          products.id = comment.id_product
    GROUP BY comment.id_product";
    return pdo_query($sql);
+}
+
+// Helper: fetch products by a list of IDs (preserves order)
+function get_products_by_ids(array $ids) {
+   if (empty($ids)) return [];
+   $placeholders = implode(',', array_fill(0, count($ids), '?'));
+   $order = implode(',', array_fill(0, count($ids), '?'));
+   $sql = "SELECT * FROM product WHERE id IN ($placeholders) ORDER BY FIELD(id, $order)";
+   $params = array_merge($ids, $ids);
+   return pdo_query($sql, ...$params);
 }
 
 ?>

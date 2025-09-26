@@ -6,16 +6,20 @@ include_once "model/global.php";
 include_once "model/product.php";
 include_once "model/user.php";
 
-// Initialize favorites in session if not set
-if (!isset($_SESSION['favorites'])) {
-    $_SESSION['favorites'] = [];
+// Normalize session storage: use 'wishlist' as the canonical key
+if (!isset($_SESSION['wishlist']) || !is_array($_SESSION['wishlist'])) {
+    $_SESSION['wishlist'] = [];
+}
+// Backward compatibility: merge any legacy 'favorites' into 'wishlist'
+if (isset($_SESSION['favorites']) && is_array($_SESSION['favorites'])) {
+    $_SESSION['wishlist'] = array_values(array_unique(array_merge($_SESSION['wishlist'], $_SESSION['favorites'])));
 }
 
 // Add product to favorites
 if (isset($_GET['add']) && is_numeric($_GET['add'])) {
     $productId = intval($_GET['add']);
-    if (!in_array($productId, $_SESSION['favorites'])) {
-        $_SESSION['favorites'][] = $productId;
+    if (!in_array($productId, $_SESSION['wishlist'])) {
+        $_SESSION['wishlist'][] = $productId;
     }
     header('Location: /deepus/favorites');
     exit;
@@ -24,15 +28,15 @@ if (isset($_GET['add']) && is_numeric($_GET['add'])) {
 // Remove product from favorites
 if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
     $productId = intval($_GET['remove']);
-    $_SESSION['favorites'] = array_diff($_SESSION['favorites'], [$productId]);
+    $_SESSION['wishlist'] = array_values(array_diff($_SESSION['wishlist'], [$productId]));
     header('Location: /deepus/favorites');
     exit;
 }
 
 // Get favorite products
 $favorites = [];
-if (!empty($_SESSION['favorites'])) {
-    $ids = implode(',', array_map('intval', $_SESSION['favorites']));
+if (!empty($_SESSION['wishlist'])) {
+    $ids = implode(',', array_map('intval', $_SESSION['wishlist']));
     if ($ids !== '') {
         $sql = "SELECT * FROM product WHERE id IN ($ids) ORDER BY id DESC";
         $favorites = pdo_query($sql);

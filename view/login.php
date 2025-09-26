@@ -43,23 +43,7 @@
               <div class="login-button">
                 <button class="login-btn" name="login">Log In</button>
               </div>
-              <div class="login__center">
-                <div class="form-group-center text">Or log in with</div>
-                <div class="form-app">
-                  <div class="form-app__fb">
-                  <button class="btn_google">
-                    <ion-icon style="height:20px; width: 20px; margin-right: 10px" name="logo-facebook"></ion-icon>
-                      <span> Facebook</span>
-                    </button>
-                  </div>
-                  <div class="form-app__google">
-                    <button class="btn_google">
-                    <ion-icon style="height:20px; width: 20px; margin-right: 10px" name="logo-google"></ion-icon>
-                      <span> Google</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              
             </form>
           </div>
         </div>
