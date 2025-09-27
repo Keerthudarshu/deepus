@@ -101,7 +101,7 @@
                       }else{
                         $img=check_img($img);
                       }
-                      $link_taikhoan='index.php?pg=account';
+                      $link_taikhoan='index.php?pg=account&id='.(int)$_SESSION['iduser'].'&user='.urlencode($taikhoan['user']);
                     } else {
                       $tentaikhoan='Account';
                       $img='<img src="view/layout/assets/images/avatar.png" alt="" />';
@@ -159,7 +159,11 @@
           <a href="index.php?pg=contact" class="menu-mobile-link">Contact</a>
         </li>
         <li class="menu-mobile-item">
-          <a href="index.php?pg=account" class="menu-mobile-link">Account</a>
+          <?php if(isset($_SESSION['iduser']) && isset($tentaikhoan) && $tentaikhoan!=='Account'): ?>
+            <a href="index.php?pg=account&id=<?= (int)$_SESSION['iduser'] ?>&user=<?= urlencode($tentaikhoan) ?>" class="menu-mobile-link">Account</a>
+          <?php else: ?>
+            <a href="index.php?pg=account" class="menu-mobile-link">Account</a>
+          <?php endif; ?>
         </li>
         <li class="menu-mobile-item">
           <a href="index.php?pg=logout" class="menu-mobile-link logout">Logout</a>

@@ -56,74 +56,13 @@ function creatpass() {
    }
    return $username;
  }
-// Duplicate creatuser removed
-function creatuser($user,$pass, $name,$email,$sdt,$gioitinh=null,$ngaysinh=null,$diachi='', $role=0, $img='', $kichhoat=1){
-  // Normalize inputs
-  $user = trim((string)$user);
-  $pass = trim((string)$pass);
-  $name = trim((string)$name);
-  $email = trim((string)$email);
-  $sdt = trim((string)$sdt);
-  $diachi = trim((string)($diachi ?? ''));
-  // Defaults
-  $gioitinh = ($gioitinh == 1) ? 1 : 0;
-  $ngaysinh = (empty($ngaysinh) || $ngaysinh == '0000-00-00') ? null : $ngaysinh;
-  $role = $role ?? 0;
-  $img = $img ?? '';
-  $kichhoat = $kichhoat ?? 1;
-  $sql = "INSERT INTO users (user,pass, name,email,sdt,gioitinh,ngaysinh,diachi,role,img,kichhoat)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?)";      
-  pdo_execute($sql, $user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat);
+ function creatuser($user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat){
+   $sql = "INSERT INTO users (user,pass, name,email,sdt,gioitinh,ngaysinh,diachi,role,img,kichhoat)
+   VALUES (?,?,?,?,?,?,?,?,?,?,?)";      
+   pdo_execute($sql, $user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat);
 }
 
-function update_user($id,$user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat){
-  // Fetch current values to avoid overwriting with blanks
-  $current = getuser($id);
-  if (!$current) {
-    // Try to find by username first (likely created at registration)
-    if (!function_exists('getuserbyusername')) {
-      // no-op, function defined below in this patch
-    }
-    $existing = getuserbyusername($user);
-    if ($existing && isset($existing['id'])) {
-      $id = (int)$existing['id'];
-      $current = $existing;
-      if (session_status() === PHP_SESSION_NONE) { @session_start(); }
-      $_SESSION['iduser'] = $id;
-    } else {
-      // If user row does not exist yet, create it (allows post-registration completion)
-      creatuser($user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat);
-      return;
-    }
-  }
-
-  // Normalize inputs
-  $user = trim((string)$user);
-  $pass = trim((string)$pass);
-  $name = trim((string)$name);
-  $email = trim((string)$email);
-  $sdt = trim((string)$sdt);
-  $diachi = trim((string)$diachi);
-  $img = ($img === null) ? '' : trim((string)$img);
-  $ngaysinh = (empty($ngaysinh) || $ngaysinh == '0000-00-00') ? $current['ngaysinh'] : $ngaysinh;
-
-  // Preserve existing fields when empty provided
-  if ($user === '') { $user = $current['user']; }
-  if ($pass === '') { $pass = $current['pass']; }
-  if ($name === '') { $name = $current['name']; }
-  if ($email === '') { $email = $current['email']; }
-  if ($sdt === '') { $sdt = $current['sdt']; }
-  if ($diachi === '') { $diachi = $current['diachi']; }
-  if ($img === '') { $img = $current['img']; }
-  if (!isset($gioitinh)) { $gioitinh = $current['gioitinh']; }
-  if (!isset($role)) { $role = $current['role']; }
-  if (!isset($kichhoat)) { $kichhoat = $current['kichhoat']; }
-
-  // Cast numeric fields
-  $gioitinh = (int)$gioitinh;
-  $role = (int)$role;
-  $kichhoat = (int)$kichhoat;
-
+function update_user($user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat,$id){
   $sql = "UPDATE users SET user=?,pass=?,name=?,email=?,sdt=?,gioitinh=?, ngaysinh=?, diachi=?, role=?, img=?, kichhoat=? WHERE id=?";
   pdo_execute($sql, $user,$pass, $name,$email,$sdt,$gioitinh,$ngaysinh,$diachi,$role,$img,$kichhoat,$id);
 }
@@ -146,10 +85,6 @@ function deluser($id){
 function getuser($id){
    $sql="SELECT * FROM users WHERE id=?";
    return pdo_query_one($sql, $id);
-}
-function getuserbyusername($user){
-  $sql = "SELECT * FROM users WHERE user=?";
-  return pdo_query_one($sql, $user);
 }
 function getusertoemail($email){
   $sql="SELECT * FROM users WHERE email=?";

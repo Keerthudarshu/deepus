@@ -1,18 +1,48 @@
 
+
 <?php
-  if($erremail!=''){
-    $erremail='<div class="errform mb-unset">'.$erremail.'</div>';
-  }
-  if($erruser!=''){
-    $erruser='<div class="errform mb-unset">'.$erruser.'</div>';
-  }
+// Include required files for functions we need
+include_once __DIR__ . '/../model/product.php';  // For check_img function
+include_once __DIR__ . '/../model/global.php';   // For PATH_IMG constant
 
-  // Show success popup after successful profile update
-  if(isset($_SESSION['account_updated']) && $_SESSION['account_updated'] == 1){
-    echo '<script>window.addEventListener("DOMContentLoaded", function(){ alert("Profile updated successfully"); });</script>';
+// Handle error messages from session (set by index.php)
+$erremail = '';
+$erruser = '';
+
+if(isset($_SESSION['erremail'])){
+    $erremail = '<div class="errform mb-unset" style="color: red; font-weight: bold; margin: 5px 0;">' . $_SESSION['erremail'] . '</div>';
+    unset($_SESSION['erremail']);
+}
+if(isset($_SESSION['erruser'])){
+    $erruser = '<div class="errform mb-unset" style="color: red; font-weight: bold; margin: 5px 0;">' . $_SESSION['erruser'] . '</div>';
+    unset($_SESSION['erruser']);
+}
+
+// Show success message after successful profile update
+if(isset($_SESSION['account_updated']) && $_SESSION['account_updated'] == 1){
+    echo '<script>
+        window.addEventListener("DOMContentLoaded", function(){ 
+            alert("✅ Profile updated successfully! Your new information has been saved to the database.");
+        });
+    </script>';
     unset($_SESSION['account_updated']);
-  }
+}
 
+// Show success message with custom text if available
+if(isset($_SESSION['update_success'])){
+    echo '<script>
+        window.addEventListener("DOMContentLoaded", function(){ 
+            alert("' . addslashes($_SESSION['update_success']) . '");
+        });
+    </script>';
+    unset($_SESSION['update_success']);
+}
+
+// Show error popup if there was a database error
+if(isset($_SESSION['update_error'])){
+    echo '<script>window.addEventListener("DOMContentLoaded", function(){ alert("❌ Error: ' . addslashes($_SESSION['update_error']) . '"); });</script>';
+    unset($_SESSION['update_error']);
+}
 ?>
  
 <div class="link-mobile">
@@ -20,7 +50,7 @@
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
         <a href="#">T-Shirts</a>
       </div>
-      <form action="index.php?pg=account" method="post" enctype="multipart/form-data">
+      <form action="index?pg=account" method="post" enctype="multipart/form-data">
       <section class="account">
         <div class="container">
           <h2 class="title-mobile">My profile</h2>
@@ -29,16 +59,16 @@
               <div class="account-info">
                 <div class="account-avatar">
                   <?php
-                  if(check_img($img)==""){
+                  if(check_img($img ?? '') == ""){
                     $img2='<img src="view/layout/assets/images/avatar.png" alt="" />';
                   }else{
-                    $img2=check_img($img);
+                    $img2=check_img($img ?? '');
                   }         
                   ?>
                   <?=$img2?>
                 </div>
                 <div class="account-body">
-                  <div class="account-name"><?=$user?></div>
+                  <div class="account-name"><?=$user ?? ''?></div>
                   <div class="account-edit">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 Edit profile
@@ -76,46 +106,47 @@
                 <p>Manage your profile information for account security</p>
                 <div class="account-group">
                   <label for="">Username:</label> <br />
-                  <input name="user" type="text" value="<?=$user?>" />
+                  <input name="user" type="text" value="<?=htmlspecialchars($user ?? '')?>" />
                 </div>
                 <?=$erruser?>
-                <input name="pass" type="hidden" value="<?=$pass?>" />
+                <input name="pass" type="hidden" value="<?=htmlspecialchars($pass ?? '')?>" />
+                <input type="hidden" name="iduser" value="<?= (int)($id ?? $_SESSION['iduser'] ?? 0) ?>" />
                 <div class="account-group">
                   <label for="">Full name:</label> <br />
-                  <input name="name" type="text" value="<?=$name?>" />
+                  <input name="name" type="text" value="<?=htmlspecialchars($name ?? '')?>" />
                 </div>
                 <div class="account-group">
                   <label for="">Email:</label> <br />
-                  <input name="email" type="text" value="<?=$email?>" />
+                  <input name="email" type="email" value="<?=htmlspecialchars($email ?? '')?>" />
                 </div>
                 <?=$erremail?>
                 <div class="account-group">
                   <label for="">Phone number:</label> <br />
-                  <input  name="sdt" type="text" value="<?=$sdt?>" />
+                  <input  name="sdt" type="text" value="<?=htmlspecialchars($sdt ?? '')?>" />
                 </div>
                 <div class="account-group">
                   <label for="">Date of birth:</label> <br />
-                  <input name="ngaysinh" type="date" value="<?=$ngaysinh?>" />
+                  <input name="ngaysinh" type="date" value="<?=htmlspecialchars($ngaysinh ?? '')?>" />
                 </div>
                 <div class="account-group">
                   <label for="">Address:</label> <br />
-                  <input name="diachi" type="text" value="<?=$diachi?>" />
+                  <input name="diachi" type="text" value="<?=htmlspecialchars($diachi ?? '')?>" />
                 </div>
                 <div class="product-btn account-btn">
                   <button type="submit" name="update_account" class="button-primary">Update account</button>
-                  <button type="submit" name="del_account" class="button-primary button-del">Delete account</button>
+                  <button type="submit" name="del_account" class="button-primary button-del" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">Delete account</button>
                 </div>
                 </div>
               
               <div class="account-right-image">
                 <div class="account-right-avatar">
-                <input type="hidden" name="hinhcu" value="<?= htmlspecialchars($img, ENT_QUOTES) ?>">
+                <input type="hidden" name="hinhcu" value="<?= htmlspecialchars($img ?? '', ENT_QUOTES) ?>">
                   <?php
                     // Build preview HTML without mutating $img filename
-                    if(check_img($img)==""){
+                    if(check_img($img ?? '') == ""){
                       $imgTag = '<img id="img-preview" src="view/layout/assets/images/avatar.png" alt="" />';
                     }else{
-                      $imgTag = substr_replace(check_img($img), ' id="img-preview" ', 5, 0);
+                      $imgTag = substr_replace(check_img($img ?? ''), ' id="img-preview" ', 5, 0);
                     }
                   ?>
                   <?=$imgTag?>
@@ -153,26 +184,31 @@
                 <tbody>
                   <?php
                     if(isset($_SESSION['iduser']) && isset($_SESSION['role']) && $_SESSION['role']==0){
-                     $listdonhang;
-                     $html_donhang='';
-                     $i=0;
-                     foreach ($listdonhang as $item) {
-                      $i++;
-                      extract($item);
-                      $html_donhang.='<tr>
-                      <td>'.$i.'</td>
-                      <td>'.$ma_donhang.'</td>
-                      <td>'.$iduser.'</td>
-                      <td>'.$ngaylap.'</td>
-                      <td>'.number_format($tongtien,0,'.',',').'</td>
-                      <td>'.$trangthai.'</td>
-                      <td>
-                        <a href="index.php?pg=account&id='.$id.'" class="del">Cancel</a>
-                      </td>
-                    </tr>';
-                     } 
+                     if(isset($listdonhang) && is_array($listdonhang)) {
+                       $html_donhang='';
+                       $i=0;
+                       foreach ($listdonhang as $item) {
+                        $i++;
+                        extract($item);
+                        $html_donhang.='<tr>
+                        <td>'.$i.'</td>
+                        <td>'.($ma_donhang ?? '').'</td>
+                        <td>'.($_SESSION['iduser'] ?? '').'</td>
+                        <td>'.($ngaylap ?? '').'</td>
+                        <td>'.number_format($tongtien ?? 0, 0, '.', ',').'</td>
+                        <td>'.($trangthai ?? '').'</td>
+                        <td>
+                          <a href="index.php?pg=account&id='.($id ?? '').'" class="del">Cancel</a>
+                        </td>
+                      </tr>';
+                       } 
+                       echo $html_donhang;
+                     } else {
+                       echo '<tr><td colspan="7">No orders found</td></tr>';
+                     }
+                    } else {
+                      echo '<tr><td colspan="7">Please login to view orders</td></tr>';
                     }
-                    echo $html_donhang;
                   ?>
                 </tbody>
               </table>

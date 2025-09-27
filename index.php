@@ -1756,16 +1756,23 @@
             $erruser='';
             $erremail='';
 
-            if(isset($_SESSION['loginuser']) && isset($_SESSION['role']) && $_SESSION['loginuser']==0 && $_SESSION['role']==0){
+            if(isset($_SESSION['loginuser']) && isset($_SESSION['role']) && $_SESSION['role']==0){
                if(isset($_POST['update_account'])){
-                  $name=$_POST['name'];
-                  $user=$_POST['user'];
-                  $email=$_POST['email'];
-                  $pass=$_POST['pass'];
-                  $sdt=$_POST['sdt'];
-                  $ngaysinh=$_POST['ngaysinh'];
-                  $diachi=$_POST['diachi'];
-                  $img=$_FILES['img']['name'];
+                  $name=$_POST['name'] ?? '';
+                  $user=$_POST['user'] ?? '';
+                  $email=$_POST['email'] ?? '';
+                  $pass=$_POST['pass'] ?? '';
+                  $sdt=$_POST['sdt'] ?? '';
+                  $ngaysinh=$_POST['ngaysinh'] ?? '';
+                  $diachi=$_POST['diachi'] ?? '';
+                  $img=$_FILES['img']['name'] ?? '';
+                  
+                  // If pass is empty, get it from current user data
+                  if(empty($pass)) {
+                     $currentUserForPass = getuser($_SESSION['iduser']);
+                     $pass = $currentUserForPass['pass'];
+                  }
+                  
                   $tableuser=getusertable();
                   if($user==''){
                      $erruser="*Username cannot be empty";
@@ -1778,14 +1785,14 @@
                         }
                      }
                      if($kt==1){
-                        $erruser="*This username already exists.";
+                        $erruser="*This username already exists";
                      }
                   }
                   if($email==''){
-                     $erremail="*Email cannot be empty.";
+                     $erremail="*Email cannot be empty";
                   }else{
                      if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                        $erremail="*Invalid email address.";
+                        $erremail="*Invalid email format";
                      }else{
                         $kt=0;
                         foreach ($tableuser as $item) {
@@ -1795,25 +1802,73 @@
                            }
                         }
                         if($kt==1){
-                           $erremail="*This email already exists.";
+                           $erremail="*This email already exists";
                         }
                      }
                   }
                   
                   
                   if($erremail=='' && $erruser==''){
-                     if($img!=''){
-                        $target_file = PATH_IMG . basename($img);
-                        move_uploaded_file($_FILES['img']["tmp_name"], $target_file);
-                        if($_POST['hinhcu']!=''){
-                           $hinhcu=PATH_IMG.$_POST['hinhcu'];
-                           delimghost($hinhcu);
+                     // Get current user data to preserve fields we're not updating
+                     $currentUserData = getuser($_SESSION['iduser']);
+                     
+                     if(!$currentUserData) {
+                        $_SESSION['update_error'] = 'User data not found in database';
+                     } else {
+                        try {
+                           // Handle image upload
+                           $finalImageName = $_POST['hinhcu'] ?? ''; // Default to current image
+                           
+                           if($img!=''){
+                              $target_file = PATH_IMG . basename($img);
+                              if(move_uploaded_file($_FILES['img']["tmp_name"], $target_file)) {
+                                 // Delete old image if it exists
+                                 if($_POST['hinhcu']!=''){
+                                    $hinhcu=PATH_IMG.$_POST['hinhcu'];
+                                    if(file_exists($hinhcu)) {
+                                       unlink($hinhcu);
+                                    }
+                                 }
+                                 $finalImageName = $img;
+                              }
+                           }
+                           
+                           // Update user with new information
+                           update_user(
+                              $user,                            // user (new username)
+                              $pass,                            // pass (from form or current)
+                              $name,                            // name (new full name)
+                              $email,                           // email (new email)
+                              $sdt,                             // sdt (new phone)
+                              $currentUserData['gioitinh'],     // keep current gender
+                              $ngaysinh,                        // ngaysinh (new date of birth)
+                              $diachi,                          // diachi (new address)
+                              $currentUserData['role'],         // keep current role
+                              $finalImageName,                  // img (new or current image)
+                              $currentUserData['kichhoat'],     // keep current activation
+                              $_SESSION['iduser']               // id (WHERE condition)
+                           );
+                           
+                           // Update session variables with new data
+                           $_SESSION['username'] = $user;
+                           $_SESSION['password'] = $pass;
+                           $_SESSION['account_updated'] = 1;
+                           
+                           // Store success message
+                           $_SESSION['update_success'] = 'Profile updated successfully! Your information has been saved to the database.';
+                           
+                           // Redirect to prevent resubmission
+                           header('Location: index?pg=account');
+                           exit;
+                           
+                        } catch(Exception $e) {
+                           $_SESSION['update_error'] = 'Database error: ' . $e->getMessage();
                         }
-                        update_user($_SESSION['iduser'],$user,$pass, $name,$email,$sdt,0,$ngaysinh,$diachi,0,$img,1);
-                     }else{
-                        update_user($_SESSION['iduser'],$user,$pass, $name,$email,$sdt,0,$ngaysinh,$diachi,0,$_POST['hinhcu'],1);
-   
                      }
+                  } else {
+                     // Store errors in session for display
+                     if($erruser) $_SESSION['erruser'] = $erruser;
+                     if($erremail) $_SESSION['erremail'] = $erremail;
                   }
                   
                }
@@ -1833,13 +1888,16 @@
                $listdonhang=getdonhang($_SESSION['iduser']);
                extract($user);
                
+               // Make error variables available to the view
+               $erremail = isset($erremail) ? $erremail : '';
+               $erruser = isset($erruser) ? $erruser : '';
+               
                include_once "view/account.php";
             }else{
                include_once "view/login.php";
             }
             
             break;
-         
          case 'logoutuser':
 
             
