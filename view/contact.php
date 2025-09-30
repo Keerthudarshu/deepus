@@ -48,7 +48,7 @@
                   </div>
                   <a href="#" class="contact-link">
                     <div class="contact-link-title">Email</div>
-                    deepus@gmail.com
+                    fashiondeepus@gmail.com
                   </a>
                 </li>
                 <li class="contact-list">

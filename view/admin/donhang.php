@@ -49,7 +49,7 @@ foreach ($donhang as $item) {
                 if ($gioitinh == 1) {
                     $gioitinh = 'Nam';
                 } else {
-                    $gioitinh = 'Nữ';
+                    $gioitinh = 'Female';
                 }
             }
             $hinhcu = $img;

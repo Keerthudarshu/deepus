@@ -8,7 +8,7 @@ function getproduct_by_code($code) {
 }
    function sale($item){
       if(isset($item['priceold']) && $item['priceold'] !== null && $item['priceold'] > 0){
-         return '<span class="product-price-old">'.number_format($item['priceold'],0,'',',').'9</span>';
+         return '<span class="product-price-old">'.number_format($item['priceold'],0,'',',').'.9</span>';
       }else{
          return '';
       }
@@ -288,7 +288,9 @@ function getproduct_by_code($code) {
                                  '.$img2.'
                               </a>
                               <button class="wishlist-btn" data-product-id="'.$id.'" aria-label="Add to wishlist" title="Add To Wishlist">
-                                <span class="heart" aria-hidden="true">❤</span>
+                                <svg class="heart-icon-svg" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                  <path d="M12.1 21s-6.6-4.35-9.1-7.5C1.05 11.4 1 8.9 2.7 7.2c1.7-1.7 4.5-1.6 6.2.1L12 10.4l3.1-3.1c1.7-1.7 4.5-1.8 6.2-.1 1.7 1.7 1.65 4.2-.3 6.3C18.7 16.65 12.1 21 12.1 21z" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                               </button>
                               </div>
                               <div class="top-body">

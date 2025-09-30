@@ -311,7 +311,7 @@ if (isset($_POST["guima"])) {
         $_SESSION['erremailxn']='*Bạn chưa nhập email';
     }else{
         if(!filter_var($_POST['emailxn'], FILTER_VALIDATE_EMAIL)){
-            $_SESSION['erremailxn']="*Địa chỉ email không hợp lệ";
+            $_SESSION['erremailxn']="*Địa chỉ email Choose hợp lệ";
         }else{
             $kt=0;
             foreach ($_SESSION['usertable'] as $item) {
@@ -321,7 +321,7 @@ if (isset($_POST["guima"])) {
                 }
             }
             if($kt==0){
-                $_SESSION['erremailxn']='*Địa chỉ email không tồn tại';
+                $_SESSION['erremailxn']='*Địa chỉ email Choose tồn tại';
             }
         }     
     }

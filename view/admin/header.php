@@ -35,7 +35,7 @@
               </div>
               <form action="" class="header-form">
                 <div class="header-input">
-                  <input type="text" placeholder="Tìm kiếm " />
+                  <input type="text" placeholder="Search  " />
                   <div class="header-input-icon">
                     <i class="fa fa-search" aria-hidden="true"></i>
                   </div>
@@ -98,7 +98,7 @@
             </a>
           </li>
           <li class="dashboard-menu-list">
-            <a href="index.php?pg=size" class="dashboard-menu-link" data-tab="14">
+            <a href="index?pg=size" class="dashboard-menu-link" data-tab="14">
               <i class="fa fa-arrows-v" aria-hidden="true"></i>
               Size
             </a>

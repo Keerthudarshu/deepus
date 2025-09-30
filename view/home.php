@@ -85,7 +85,7 @@
             <a href="index?pg=product&category=girls" class="category-card">
               <img src="view/layout/assets/images/girls.webp" class="category-card-img" alt="Girls" />
             </a>
-        <a href="index?pg=product&category=boys" class="category-card" >
+        <a href="index.php?pg=product&gioitinh=1" class="category-card" >
           <img src="view/layout/assets/images/boys.webp" class="category-card-img" alt="Boys" />
         </a>
        
@@ -111,7 +111,7 @@
         <div class="hero-slider">
           <div class="hero-item">
             <div class="hero-image">
-              <a href="index.php?pg=design">
+              <a href="index.php?pg=product">
                 <img src="view/layout/assets/images/banner 1.webp" alt="" />
               </a>
               
@@ -124,7 +124,7 @@
           </div>
           <div class="hero-item">
             <div class="hero-image">
-              <a href="index.php?pg=design">
+              <a href="index.php?pg=product">
                 <img src="view/layout/assets/images/banner 3.webp" alt="" />
               </a>
               

@@ -1089,7 +1089,7 @@
                   $errvoucher="*Bạn chưa nhập mã giảm giá";
                }else{
                   if(!is_array(getvoucher($_POST['magiamgia']))){
-                     $errvoucher="*Mã giảm giá này không tồn tại";
+                     $errvoucher="*Mã giảm giá này Choose tồn tại";
                   }else{
                      if(isset($_SESSION['iduser']) && is_array(getdadung_voucher(getvoucher($_POST['magiamgia'])['id'], $_SESSION['iduser']))){
                         $errvoucher="*Mã giảm giá này chỉ được sử dụng 1 lần";
@@ -1159,7 +1159,7 @@
                      $erremail="*Bạn chưa nhập email người đặt hàng";
                   }else{
                      if (!filter_var($emaildat, FILTER_VALIDATE_EMAIL)){
-                        $erremail="*Địa chỉ email không hợp lệ";
+                        $erremail="*Địa chỉ email Choose hợp lệ";
                      }
                   }
                   
@@ -1172,7 +1172,7 @@
                      if (isValidPhoneNumber($sdtdat)) {
 
                     } else {
-                        $errsdt= "*Số điện thoại không hợp lệ";
+                        $errsdt= "*Số điện thoại Choose hợp lệ";
                     }
                   }
                   if($diachidat==''){

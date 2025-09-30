@@ -512,7 +512,7 @@
                 $err_emailadd="*Bạn chưa nhập địa chỉ email";
               }else{
                 if (!filter_var($emailadd, FILTER_VALIDATE_EMAIL)){
-                  $err_emailadd="*Địa chỉ email không hợp lệ";
+                  $err_emailadd="*Địa chỉ email Choose hợp lệ";
                 }else{
                   foreach ($usertable as $item) {
                     if($item['email']==$emailadd){
@@ -609,7 +609,7 @@
                 $err_emailup="*Bạn chưa nhập địa chỉ email";
               }else{
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                  $err_emailup="*Địa chỉ email không hợp lệ";
+                  $err_emailup="*Địa chỉ email Choose hợp lệ";
                 }else{
                   foreach ($usertable as $item) {
                     if($item['email']==$email && $item['email']!=$user_detail['email']){

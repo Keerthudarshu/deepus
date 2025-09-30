@@ -47,7 +47,7 @@
             </div>
             <form action="" class="header-form">
               <div class="header-input">
-                <input type="text" placeholder="Tìm kiếm " />
+                <input type="text" placeholder="Search  " />
                 <div class="header-input-icon">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </div>
@@ -212,7 +212,7 @@
                                       const src = URL.createObjectURL(e.target.files[0]);
                                       image.src = src;
                                   } else {
-                                      // Nếu không có hình ảnh mới được chọn, hiển thị hình ảnh cũ
+                                      // Nếu Choose có hình ảnh mới được chọn, hiển thị hình ảnh cũ
                                       image.src = hiddenInput.value;
                                   }
                               });

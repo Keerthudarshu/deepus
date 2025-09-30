@@ -49,7 +49,7 @@ foreach ($binhluan as $item) {
                 if ($gioitinh == 1) {
                     $gioitinh = 'Nam';
                 } else {
-                    $gioitinh = 'Nữ';
+                    $gioitinh = 'Female';
                 }
             }
             $hinhcu = $img;
@@ -70,7 +70,7 @@ foreach ($binhluan as $item) {
             </div>
             <form action="" class="header-form">
               <div class="header-input">
-                <input type="text" placeholder="Tìm kiếm " />
+                <input type="text" placeholder="Search  " />
                 <div class="header-input-icon">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </div>

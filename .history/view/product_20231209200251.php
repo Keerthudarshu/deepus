@@ -131,7 +131,7 @@ $html_iconsubpage.='<li class="product-pagination-list">
                     </li>
                     <li class="list-product-item">
                       <input type="checkbox"  onclick="tailai(this)" link="index.php?pg=product&gioitinh=2"/>
-                      Nữ
+                      Female
                     </li>
                     <li class="list-product-item">
                       <input type="checkbox"  onclick="tailai(this)" link="index.php?pg=product&gioitinh=3"/>

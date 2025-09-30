@@ -98,10 +98,10 @@ function update_soluong() {
   
   soluong.value = parseInt(soluong.value);
 
-    // Kiểm tra nếu không phải là số nguyên dương
+    // Kiểm tra nếu Choose phải là số nguyên dương
     if (isNaN(soluong.value) || soluong.value <= 0) {
       
-      soluong.value = 1; // Gán bằng 1 nếu không phải là số nguyên dương
+      soluong.value = 1; // Gán bằng 1 nếu Choose phải là số nguyên dương
     }
 
   soluongcart.value=soluong.value;

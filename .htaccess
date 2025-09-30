@@ -1,6 +1,9 @@
 
 RewriteEngine On
 
+# Clean URL for boys page
+RewriteRule ^boys$ index.php?pg=product&gioitinh=1 [L,QSA]
+
 RewriteRule ^checkout$ index.php?pg=checkout [L,QSA]
 # Allow extensionless URLs for admin pages
 RewriteCond %{REQUEST_URI} ^/deepus/view/admin/([^/.]+)$

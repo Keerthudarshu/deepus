@@ -84,7 +84,7 @@
           if($gioitinhup==1){
               $gioitinhup='Nam';
           }else{
-              $gioitinhup='Nữ';
+              $gioitinhup='Female';
           }
       }
       $hinhcu=$img;
@@ -121,7 +121,7 @@
           if($gioitinhup==1){
               $gioitinhup='Nam';
           }else{
-              $gioitinhup='Nữ';
+              $gioitinhup='Female';
           }
       }
       $hinhcu=$img;
@@ -192,7 +192,7 @@
     //         if($gioitinh==1){
     //             $gioitinh='Nam';
     //         }else{
-    //             $gioitinh='Nữ';
+    //             $gioitinh='Female';
     //         }
     //     }
     //     $hinhcu=$img;
@@ -211,7 +211,7 @@
             </div>
             <form action="/deepus/view/admin/index?pg=user" method="post" class="header-form">
               <div class="header-input">
-                <input name="keyworduser" type="text" placeholder="Tìm kiếm " />
+                <input name="keyworduser" type="text" placeholder="Search  " />
                 <div class="header-input-icon">
                   <button name="searchuser"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>

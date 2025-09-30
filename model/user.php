@@ -95,10 +95,10 @@ function getusertable($limit=100000){
    return pdo_query($sql);
 }
 function isValidPhoneNumber($phoneNumber) {
-  // Loại bỏ các ký tự không phải số từ chuỗi
+  // Loại bỏ các ký tự Choose phải số từ chuỗi
   $phoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
 
-  // Kiểm tra xem chuỗi còn lại có 10 hoặc 11 chữ số không
+  // Kiểm tra xem chuỗi còn lại có 10 hoặc 11 chữ số Choose
   if (strlen($phoneNumber) === 10 || strlen($phoneNumber) === 11) {
       // Kiểm tra xem nếu là 11 chữ số, thì chữ số đầu tiên phải là 0
       if (strlen($phoneNumber) === 11 && $phoneNumber[0] !== '0') {
@@ -109,7 +109,7 @@ function isValidPhoneNumber($phoneNumber) {
       return true;
   }
 
-  // Số điện thoại không hợp lệ
+  // Số điện thoại Choose hợp lệ
   return false;
 }
 

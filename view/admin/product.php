@@ -61,6 +61,7 @@
       $nameup='';
       $priceup='';
       $priceoldup='';
+      $sizeup='';
       $hotup='';
       $noibatup='';
       $chitietup='';
@@ -91,6 +92,7 @@
   $nameadd='';
   $priceadd='';
   $priceoldadd='';
+  $sizeadd='';
   $hotadd='';
   $noibatadd='';
   $chitietadd='';
@@ -120,6 +122,7 @@
       $nameup='';
       $priceup='';
       $priceoldup='';
+      $sizeup='';
       $chitietup='';
       $viewup='';
       $hotup='';
@@ -134,31 +137,32 @@
       $activeedit='active';
       if(isset($product_detail)){
         extract($product_detail);
+        $sizeup = isset($size) ? $size : '';
         if($hot==1){
           $hotup='Có';
         }else{
-          $hotup='Không';
+          $hotup='Choose';
         }
         if($noibat==1){
             $noibatup='Có';
           }else{
-            $noibatup='Không';
+            $noibatup='Choose';
           }
           if($bestsell==1){
             $bestsellup='Có';
           }else{
-            $bestsellup='Không';
+            $bestsellup='Choose';
           }
           if($trend==1){
             $trendup='Có';
           }else{
-            $trendup='Không';
+            $trendup='Choose';
           }
           if($gioitinh==1){
             $gioitinhup='Nam';
           }else{
             if($gioitinh==2){
-                $gioitinhup='Nữ';
+                $gioitinhup='Choose';
             }else{
                 $gioitinhup='Unisex';
             }
@@ -177,28 +181,28 @@
       if($hotup==1){
         $hotup='Có';
       }else{
-        $hotup='Không';
+        $hotup='Choose';
       }
       if($noibatup==1){
           $noibatup='Có';
         }else{
-          $noibatup='Không';
+          $noibatup='Choose';
         }
         if($bestsellup==1){
           $bestsellup='Có';
         }else{
-          $bestsellup='Không';
+          $bestsellup='Choose';
         }
         if($trendup==1){
           $trendup='Có';
         }else{
-          $trendup='Không';
+          $trendup='Choose';
         }
         if($gioitinhup==1){
           $gioitinhup='Nam';
         }else{
           if($gioitinhup==2){
-              $gioitinhup='Nữ';
+              $gioitinhup='Choose';
           }else{
               $gioitinhup='Unisex';
           }
@@ -210,7 +214,7 @@
       <div class="modal-content">
         <div class="modal-main">
         <img src="../../view/layout/assets/images/thatbai.png" alt="">
-          <h3>Bạn không thể xóa sản phẩm này bảng sản phẩm chứa chứa thuộc tính khóa ngoại</h3>
+          <h3>Bạn Choose thể xóa sản phẩm này bảng sản phẩm chứa chứa thuộc tính khóa ngoại</h3>
           <div class="modal__succesfully">
               <a href="index?pg=product"><button class="monal__succesfully-btn">Đồng ý</button>
           </div>
@@ -238,7 +242,7 @@
             </div>
             <form action="index?pg=product" method="post" class="header-form">
               <div class="header-input">
-                <input name="keywordproduct" type="text" placeholder="Tìm kiếm " />
+                <input name="keywordproduct" type="text" placeholder="Search  " />
                 <div class="header-input-icon">
                   <button name="searchproduct"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
@@ -326,13 +330,13 @@
                               <div class="dropdown-content" dropdown="1">
                               No
                               </div>
-                              <input name="hot" type="hidden" class="dropdown-input" value="Không" dropdown="1"/>
+                              <input name="hot" type="hidden" class="dropdown-input" value="Choose" dropdown="1"/>
                               <i
                                 class="fa fa-angle-down dropdown-icon icon1"
                                 aria-hidden="true" dropdown="1" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="1">
-                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
                             <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
@@ -345,13 +349,13 @@
                               <div class="dropdown-content" dropdown="2">
                               No
                               </div>
-                              <input name="noibat" type="hidden" class="dropdown-input" value="Không" dropdown="2"/>
+                              <input name="noibat" type="hidden" class="dropdown-input" value="Choose" dropdown="2"/>
                               <i
                                 class="fa fa-angle-down dropdown-icon icon1"
                                 aria-hidden="true" dropdown="2" onclick="dropdown(this)"></i>
                           </div>
                           <div class="dropdown-list active" dropdown="2">
-                            <div class="dropdown-item" onclick="select(this)">Have</div>
+                            <div class="dropdown-item" onclick="select(this)">Yes</div>
                             <div class="dropdown-item" onclick="select(this)">No</div>
                           </div>
                         </div>
@@ -372,7 +376,7 @@
                           <div class="dropdown-list active" dropdown="3">
                             <div class="dropdown-item" onclick="select(this)">Unisex</div>
                             <div class="dropdown-item" onclick="select(this)">Male</div>
-                            <div class="dropdown-item" onclick="select(this)">Female</div>
+                            <div class="dropdown-item" onclick="select(this)">Unisex</div>
                           </div>
                         </div>
                       </div>   
@@ -404,7 +408,7 @@
                               <div class="dropdown-content" dropdown="5">
                               No
                               </div>
-                              <input name="bestsell" type="hidden" class="dropdown-input" value="Không" dropdown="5"/>
+                              <input name="bestsell" type="hidden" class="dropdown-input" value="Choose" dropdown="5"/>
                               <i
                                 class="fa fa-angle-down dropdown-icon icon1"
                                 aria-hidden="true" dropdown="5" onclick="dropdown(this)"></i>
@@ -423,7 +427,7 @@
                               <div class="dropdown-content" dropdown="6">
                               No
                               </div>
-                              <input name="trend" type="hidden" class="dropdown-input" value="Không" dropdown="6"/>
+                              <input name="trend" type="hidden" class="dropdown-input" value="Choose" dropdown="6"/>
                               <i
                                 class="fa fa-angle-down dropdown-icon icon1"
                                 aria-hidden="true" dropdown="6" onclick="dropdown(this)"></i>
@@ -595,7 +599,7 @@
                           <div class="dropdown-list active" dropdown="9">
                             <div class="dropdown-item" onclick="select(this)">Unisex</div>
                             <div class="dropdown-item" onclick="select(this)">Male</div>
-                            <div class="dropdown-item" onclick="select(this)">Female</div>
+                            <div class="dropdown-item" onclick="select(this)">Choose</div>
                           </div>
                         </div>
                       </div>   

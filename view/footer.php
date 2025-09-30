@@ -22,25 +22,25 @@
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><i class="fa fa-map-marker" aria-hidden="true"></i>
-                       Deepus, Kammanahalli, Bengaluru, Bangalore, Karnataka 560084
+                       Hallmark Plaza, 56/5, Ibrahim Sahib St, Tasker Town, Shivaji Nagar, Bengaluru, Karnataka 560001
                       </a>
                     </li>
                     <li class="footer-item">
                       <a href="#" class="footer-link"
                         ><i class="fa fa-phone" aria-hidden="true"></i>
-                        094482 51753
+                        6366623968
                       </a>
                     </li>
                     <li class="footer-item">
-                      <a href="#" class="footer-link"
+                      <a href="https://www.facebook.com/profile.php?id=61581117598985" class="footer-link"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-google"></ion-icon>
-                       Deepus@gmail.com
+                       fashiondeepus@gmail.com
                       </a>
                     </li>
                     <li class="footer-item">
-                      <a href="#" class="footer-link"
+                      <a href="https://www.facebook.com/profile.php?id=61581117598985" class="footer-link" target="_blank"
                         ><ion-icon style="height: 26px; width: 26px" name="logo-facebook"></ion-icon>
-                        Deepus
+                       Visit Our Facebook Page
                       </a>
                     </li>
                   </ul>

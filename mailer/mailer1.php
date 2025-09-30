@@ -195,7 +195,7 @@ if (isset($_POST["sendmail"]) && isset($_SESSION['giohang'])) {
             
         
     
-            Chúng tôi rất vui vì bạn đã tìm thấy sản phẩm mà bạn đang tìm kiếm trong cửa hàng của chúng tôi.
+            Chúng tôi rất vui vì bạn đã tìm thấy sản phẩm mà bạn đang Search  trong cửa hàng của chúng tôi.
     
             Mục tiêu của chúng tôi là làm cho khách hàng luôn hài lòng, vì vậy hãy cho chúng tôi biết trải nghiệm của bạn với chúng tôi như thế nào trong lần đầu tiên mua sắm.
     

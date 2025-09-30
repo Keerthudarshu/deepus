@@ -120,7 +120,7 @@ deepus Shop được thiết kế để cung cấp trải nghiệm mua sắm tr�
 ## ✨ Các Tính năng Chính
 
 ### Dành cho Khách hàng:
-*   **Duyệt Sản phẩm Trực quan:** Trang chủ hiển thị các sản phẩm mới và nổi bật, danh mục sản phẩm và chức năng tìm kiếm nâng cao.
+*   **Duyệt Sản phẩm Trực quan:** Trang chủ hiển thị các sản phẩm mới và nổi bật, danh mục sản phẩm và chức năng Search  nâng cao.
 *   **Trang Chi tiết Sản phẩm:** Hình ảnh sản phẩm chất lượng cao, mô tả chi tiết, tùy chọn kích cỡ và màu sắc, cùng với đánh giá của khách hàng.
 *   **Giỏ hàng:** Giỏ hàng đơn giản, rõ ràng để thêm sản phẩm, cập nhật số lượng và áp dụng mã giảm giá.
 *   **Quy trình Thanh toán An toàn:** Quy trình thanh toán gồm nhiều bước, dễ thực hiện để nhập thông tin vận chuyển và hoàn tất đơn hàng.

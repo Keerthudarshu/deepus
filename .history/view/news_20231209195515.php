@@ -82,7 +82,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->
@@ -101,7 +101,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->
@@ -120,7 +120,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->
@@ -139,7 +139,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->
@@ -158,7 +158,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->
@@ -177,7 +177,7 @@
                   <div class="blog-date">05/10/2023</div>
                   <div class="blog-desc">
                     Là những người đam mê bộ môn Gym và mong muốn có thân hình đẹp, thu hút mọi ánh
-                    nhìn của nữ giới,...
+                    nhìn của Female giới,...
                   </div>
                 </div>
               </div> -->

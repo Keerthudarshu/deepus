@@ -53,7 +53,7 @@ foreach ($cart as $item) {
                 if ($gioitinh == 1) {
                     $gioitinh = 'Nam';
                 } else {
-                    $gioitinh = 'Nữ';
+                    $gioitinh = 'Female';
                 }
             }
             $hinhcu = $img;
@@ -73,7 +73,7 @@ foreach ($cart as $item) {
             </div>
             <form action="index.php?pg=cart" method="post" class="header-form">
               <div class="header-input">
-                <input name="keywordcart" type="text" placeholder="Tìm kiếm " />
+                <input name="keywordcart" type="text" placeholder="Search  " />
                 <div class="header-input-icon">
                   <button name="searchcart"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>

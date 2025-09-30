@@ -135,7 +135,7 @@
           ></a>
         </li>
         <li class="menu-mobile-item">
-          <a href="/deepus/index.php" class="menu-mobile-link active">Home</a>
+          <a href="/deepus/index" class="menu-mobile-link active">Home</a>
         </li>
         <li class="menu-mobile-item">
           <a href="index.php?pg=about" class="menu-mobile-link">About</a>
@@ -144,7 +144,7 @@
           <a href="index.php?pg=product" class="menu-mobile-link">Products</a>
         </li>
         <li class="menu-mobile-item">
-          <a href="index.php?pg=boys" class="menu-mobile-link">Boys</a>
+          <a href="index.php?pg=product&gioitinh=1" class="menu-mobile-link">Boys</a>
         </li>
         <li class="menu-mobile-item">
           <a href="index.php?pg=girls" class="menu-mobile-link">Girls</a>
@@ -202,7 +202,7 @@
             </form>
             <ul class="header-menu"  >
               <li class="header-menu-item">
-                <a href="/deepus/index.php" class="header-menu-link">Home</a>
+                <a href="/deepus/index" class="header-menu-link">Home</a>
               </li>
               <!-- <li class="header-menu-item">
                 <a href="index.php?pg=design" class="header-menu-link">Design</a>
@@ -214,7 +214,7 @@
                 <a href="index.php?pg=product" class="header-menu-link">Products</a>
               </li>
               <li class="header-menu-item">
-                <a href="index.php?pg=boys" class="header-menu-link">Boys</a>
+                <a href="index.php?pg=product&gioitinh=1" class="header-menu-link">Boys</a>
               </li>
               <li class="header-menu-item">
                 <a href="index.php?pg=girls" class="header-menu-link">Girls</a>
