@@ -132,13 +132,91 @@
           </div>
         </div>
       </section>
-      <section class="product">
-        <div class="container">
+      <style>
+        /* Mobile responsive fixes for Outstanding Products section */
+        @media (max-width: 767.98px) {
+          /* Fix Outstanding Products container */
+          .product .container {
+            padding: 0 15px !important;
+            max-width: calc(100% - 30px) !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-main {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            flex-direction: column !important;
+          }
+          
+          .product-left,
+          .product-right {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+          }
+          
+          .product-list.product-list-2 {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+          }
+          
+          .product-list.product-list-2 .product-item {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+          }
+          
+          .product-item {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+          }
+          
+          .product-item .product-images,
+          .product-item .product-title,
+          .product-item .product-price {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-item .product-images img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            box-sizing: border-box !important;
+          }
+          
+          /* Additional spacing fix for the entire section */
+          section.product:first-of-type {
+            padding: 20px 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+          }
+        }
+      </style>
+      <section class="product" style="overflow-x: hidden;">
+        <div class="container" style="max-width: calc(100% - 30px); padding: 0 15px; box-sizing: border-box;">
           <div class="heading-primary">Outstanding Products</div>
-          <div class="product-main">
+          <div class="product-main" style="width: 100%; box-sizing: border-box;">
             <!-- Left Column -->
-            <div class="product-left">
-              <div class="product-list product-list-2">
+            <div class="product-left" style="width: 100%; padding: 0; margin: 0;">
+              <div class="product-list product-list-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; box-sizing: border-box;">
                 <?php
                   $product_latest = getproduct(8);
                   $html_product='';
@@ -150,8 +228,8 @@
               </div>
             </div>
             <!-- Right Column -->
-            <div class="product-right">
-              <div class="product-list product-list-2">
+            <div class="product-right" style="width: 100%; padding: 0; margin: 0;">
+              <div class="product-list product-list-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; box-sizing: border-box;">
                 <?php
                   $html_product='';
                   foreach (array_slice($product_latest, 4, 4) as $item) {
@@ -214,8 +292,100 @@
           </div>
         </div>
       </section>
-      <section class="product">
-        <div class="container">
+      <style>
+        /* Mobile responsive fixes for best selling products section */
+        @media (max-width: 767.98px) {
+          .product .container {
+            padding: 0 15px !important;
+            max-width: calc(100% - 30px) !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-box {
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-main.mt-30 {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-list.product-box__list {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-list.mt-30 {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+            margin: 15px 0 0 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-list .product-item {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+          }
+          
+          .my-product {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .my-product .product-item {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+          }
+          
+          .my-product .product-item .product-images,
+          .my-product .product-item .product-title,
+          .my-product .product-item .product-price {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .my-product .product-item .product-images img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            box-sizing: border-box !important;
+          }
+          
+          /* Fix for tab section container */
+          section.product:nth-of-type(2) {
+            padding: 20px 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+          }
+        }
+      </style>
+      <section class="product" style="overflow-x: hidden;">
+        <div class="container" style="max-width: calc(100% - 30px); padding: 0 15px; box-sizing: border-box;">
           <div class="heading-primary">OUR BEST SELLING PRODUCTS</div>
           <ul class="tab-menu">
             <?php
@@ -297,6 +467,100 @@
         
         </div>
       </section>
+      
+      <!-- Global mobile responsive fix for all product sections -->
+      <style>
+        @media (max-width: 767.98px) {
+          /* Universal mobile fixes for ALL product sections */
+          body, html {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+          }
+          
+          .product,
+          section.product {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+          }
+          
+          .product .container,
+          section.product .container {
+            padding: 0 15px !important;
+            max-width: calc(100vw - 30px) !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+          }
+          
+          /* All product grids */
+          .product-list,
+          .product-list-2,
+          .product-list.product-box__list,
+          .product-list.mt-30 {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+          }
+          
+          /* All product items */
+          .product-item {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+          }
+          
+          .product-item * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          
+          .product-item img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+          }
+          
+          /* Specific fixes for product containers */
+          .product-main,
+          .product-main.mt-30 {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+          }
+          
+          .product-left,
+          .product-right {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+          }
+          
+          .my-product {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+          }
+        }
+      </style>
+      
       <section class="service" style="background-color: white !important;">
         <div class="container">
           <div class="service-list">
@@ -307,7 +571,7 @@
               <div class="service-content">
                 <h4 class="service-title">Free shipping</h4>
                 <p class="service-desc">
-                  Apply free shipping for all orders from 500,000 VND, delivered within 24 hours.                </p>
+                  Apply free shipping for all orders from 5,000, delivered within 24 hours.                </p>
               </div>
             </div>
             <div class="service-box item-2">

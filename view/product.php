@@ -279,3 +279,50 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </section>
+
+<!-- Mobile responsive fix for product grid spacing -->
+<style>
+@media screen and (max-width: 767.98px) {
+  /* Ensure proper mobile spacing for product list */
+  .list-product .container {
+    padding: 0 15px !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Fix product grid spacing */
+  .list-product-items {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure product items don't overflow */
+  .product-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+  
+  /* Fix right side content spacing */
+  .list-product__right {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Ensure no horizontal scroll on mobile */
+  .list-product__main {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+</style>

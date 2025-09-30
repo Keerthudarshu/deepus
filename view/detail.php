@@ -48,6 +48,17 @@
 .detail-image__item.active{
   border-color: #46694F;
 }
+/* Out of stock button styling */
+.detail-button__cart.out-of-stock {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+.detail-button__cart.out-of-stock:hover {
+  background-color: #ccc !important;
+  color: #666 !important;
+}
 @media(max-width:700px){
   .main-image-container{
     height: 360px;
@@ -153,6 +164,24 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php
+  // Display stock error message if set
+  $html_stock_error = '';
+  if(isset($_SESSION['stock_error'])) {
+    $html_stock_error = '<div class="modal active">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-main">
+          <img src="view/layout/assets/images/thatbai.png" alt="">
+          <h3>' . $_SESSION['stock_error'] . '</h3>
+          <div class="modal__succesfully">
+              <button onclick="closeStockError()" class="monal__succesfully-btn">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>';
+    unset($_SESSION['stock_error']);
+  }
+  
   $html_color='';
   $i=0;
   foreach ($list_color as $item) {
@@ -239,9 +268,10 @@ for ($sz = 20; $sz <= 38; $sz += 2) {
     }
     unset($_SESSION['err_comment']);
   }
-?>
+?>                
 
-
+<?=$html_stock_error?>
+<?=$html_err_comment?>
 
 <div id="myData" data-array='<?php echo $arr; ?>'></div>
 <script>
@@ -438,9 +468,16 @@ for ($sz = 20; $sz <= 38; $sz += 2) {
                   <input type="hidden" name="size" id="cart-size" value="<?=isset($list_size[0]['ma_size']) ? $list_size[0]['ma_size'] : ''?>">
                   <input type="hidden" name="soluong" id="cart-qty" value="1">
                   <input type="hidden" name="price" id="cart-price" value="">
-                  <button name="addtocart" class="detail-button__cart">Add to cart</button>
+                  <?php if($stock > 0): ?>
+                    <button name="addtocart" class="detail-button__cart">Add to cart</button>
+                  <?php else: ?>
+                    <button type="button" class="detail-button__cart out-of-stock" disabled>Product Out of Stock</button>
+                  <?php endif; ?>
                 </form>
                 <script>
+                function closeStockError() {
+                  document.querySelector('.modal.active').style.display = 'none';
+                }
                 // Update hidden fields for color, size, and quantity on selection
                 document.addEventListener('DOMContentLoaded', function() {
                   // Color
@@ -473,7 +510,29 @@ for ($sz = 20; $sz <= 38; $sz += 2) {
                   var qtyInput = document.getElementById('detail-quantity');
                   if(qtyInput) {
                     qtyInput.addEventListener('input', function() {
-                      document.getElementById('cart-qty').value = this.value;
+                      var currentStock = <?=$stock?>;
+                      var requestedQty = parseInt(this.value);
+                      
+                      if (currentStock <= 0) {
+                        // Disable add to cart button if out of stock
+                        var addBtn = document.querySelector('button[name="addtocart"]');
+                        if (addBtn) {
+                          addBtn.disabled = true;
+                          addBtn.textContent = 'Product Out of Stock';
+                          addBtn.classList.add('out-of-stock');
+                        }
+                        this.value = 0;
+                        document.getElementById('cart-qty').value = 0;
+                        return;
+                      }
+                      
+                      if (requestedQty > currentStock) {
+                        alert('Only ' + currentStock + ' items available in stock.');
+                        this.value = currentStock;
+                        requestedQty = currentStock;
+                      }
+                      
+                      document.getElementById('cart-qty').value = requestedQty;
                     });
                   }
                 });

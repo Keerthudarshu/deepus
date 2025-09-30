@@ -69,33 +69,33 @@
               <?php
               
                if((isset($_SESSION['code']) && $_SESSION['code']) || (isset($_SESSION['codedung']) && $_SESSION['codedung'])){
-                    echo '<form action="index.php?pg=forgetpass" method="post" class="login-form">
-                    <input name="codexn" type="text" placeholder="Mã xác nhận" value="'.$_SESSION['code'].'">
+                    echo '<form action="index?pg=forgetpass" method="post" class="login-form">
+                    <input name="codexn" type="text" placeholder="Verification Code" value="'.$_SESSION['code'].'">
                     <div class="errform mb-unset">'.$_SESSION['errcode'].'</div>
                     <div class="login-button">
-                    <button class="login-btn" name="nhapcode">Gửi mã</button>
+                    <button class="login-btn" name="nhapcode">Submit Code</button>
                 </div>
                 </form>';
                }else{
                     if(isset($_SESSION['xacnhanemail']) && $_SESSION['xacnhanemail']==1){
-                        echo '<form action="index.php?pg=forgetpass" method="post" class="login-form">
+                        echo '<form action="index?pg=forgetpass" method="post" class="login-form">
                                 <div class="login-password">
-                                    <input name="pass" type="password" placeholder="Mật khẩu mới"  value="'.$_SESSION['passnew'].'">
+                                    <input name="pass" type="password" placeholder="New Password"  value="'.$_SESSION['passnew'].'">
                                     <i class="fa fa-eye hien"  onclick="anmatkhau()" aria-hidden="true"></i>
                                 </div>
                                 <div class="errform mb-unset">'.$_SESSION['errpassnew'].'</div>
                                 <div class="login-password">
-                                    <input name="repass" type="password" placeholder="Nhập lại mật khẩu "  value="'.$_SESSION['repassnew'].'">
+                                    <input name="repass" type="password" placeholder="Confirm Password"  value="'.$_SESSION['repassnew'].'">
                                     <i class="fa fa-eye hien"  onclick="anmatkhau1()" aria-hidden="true"></i>
                                 </div>
                                 <div class="errform">'.$_SESSION['errrepassnew'].'</div>
                                 <div class="login-button">
-                                <button class="login-btn" name="nhappass">Tạo mật khẩu</button>
+                                <button class="login-btn" name="nhappass">Create Password</button>
                             </div>
                             </form>';
                     }else{
-                        echo '<form action="mailer.php" method="post" class="login-form">
-                        <input name="emailxn" type="text" placeholder="Email" value="'.$_SESSION['emailxn'].'">
+                        echo '<form action="mailer/mailer_forgetpass" method="post" class="login-form">
+                        <input name="emailxn" type="email" placeholder="Email" value="'.$_SESSION['emailxn'].'">
                         <div class="errform mb-unset">'.$_SESSION['erremailxn'].'</div>
                         <div class="login-button">
                         <button class="login-btn" name="guima">Confirm email</button>

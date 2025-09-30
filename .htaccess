@@ -31,3 +31,6 @@ DirectoryIndex index.php
 
 # Allow extensionless access to mailer.php via /deepus/mailer
 RewriteRule ^mailer$ mailer.php [L,QSA]
+
+# Allow extensionless access to forget password mailer
+RewriteRule ^mailer/mailer_forgetpass$ mailer/mailer_forgetpass.php [L,QSA]

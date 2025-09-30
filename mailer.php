@@ -2,11 +2,23 @@
 
 </style>
 <?php
- 
- session_start();
- ob_start();
+session_start();
+ob_start();
+
+// Debug logging - Remove this after testing
+error_log("Mailer.php accessed at " . date('Y-m-d H:i:s') . " with POST data: " . print_r($_POST, true));
+
+// Include database functions from the main application
+require_once 'model/connectdb.php';
+require_once 'model/user.php';
+
 //Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
+//These must be at the top of your script, not insid            echo
+            " 
+            <script> 
+            document.location.href = 'index?pg=forgetpass';
+            </script>
+            ";nction
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
  
@@ -246,7 +258,7 @@ deepus
     // Success sent message alert
     try {
         $mail->send();
-        echo "<script>document.location.href = 'index.php?pg=account';</script>";
+        echo "<script>document.location.href = 'index?pg=account';</script>";
     } catch (Exception $e) {
         echo '<div style="color:red;">Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '</div>';
     }
@@ -258,70 +270,21 @@ function creatcode() {
       $code .= $characters[mt_rand(0, strlen($characters) - 1)];
     }
     return $code;
-  }
-  function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=deepus;charset=utf8";
-    $username = 'root';
-    $password = '';
-    $conn = new PDO($dburl, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
- }
- function pdo_query($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $rows = $stmt->fetchAll();
-        return $rows;
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
- }
- function pdo_query_one($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
- }
- function getusertoemail($email){
-    $sql="SELECT * FROM users WHERE email=?";
-    return pdo_query_one($sql, $email);
-  }
+}
 
 if (isset($_POST["guima"])) {
     $_SESSION['erremailxn']='';
     $_SESSION['emailxn']=$_POST["emailxn"];
     if($_POST['emailxn']==''){
-        $_SESSION['erremailxn']='*Bạn chưa nhập email';
+        $_SESSION['erremailxn']='*You have not entered an email';
     }else{
         if(!filter_var($_POST['emailxn'], FILTER_VALIDATE_EMAIL)){
-            $_SESSION['erremailxn']="*Địa chỉ email Choose hợp lệ";
+            $_SESSION['erremailxn']="*Invalid email address";
         }else{
-            $kt=0;
-            foreach ($_SESSION['usertable'] as $item) {
-                if($item['email']==$_POST['emailxn']){
-                    $kt=1;
-                    break;
-                }
-            }
-            if($kt==0){
-                $_SESSION['erremailxn']='*Địa chỉ email Choose tồn tại';
+            // Check if email EXISTS in database (not if it doesn't exist)
+            $user_found = getusertoemail($_POST['emailxn']);
+            if(!$user_found){
+                $_SESSION['erremailxn']='*This email address is not registered';
             }
         }     
     }
@@ -335,165 +298,194 @@ if (isset($_POST["guima"])) {
     }else{
         $mail = new PHPMailer(true);
  
-        //Server settings
-        $mail->isSMTP();                              //Send using SMTP
-        $mail->CharSet  = "utf-8";
-        $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;             //Enable SMTP authentication
-        $mail->Username   = 'keerthudarshu06@gmail.com';   //SMTP write your email
-        $mail->Password   = 'urdz ztjn ppzf agwn';      //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;                                    
+        try {
+            //Server settings
+            $mail->isSMTP();                              //Send using SMTP
+            $mail->CharSet  = "utf-8";
+            $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;             //Enable SMTP authentication
+            $mail->Username   = 'keerthudarshu06@gmail.com';   //SMTP write your email
+            $mail->Password   = 'urdz ztjn ppzf agwn';      //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+            $mail->SMTPDebug  = 0; // Set to 2 for debugging, 0 for production
+            $mail->Debugoutput = 'html';
 
-        //Recipients
-        $mail->setFrom('keerthudarshu06@gmail.com', 'Deepus' );  // Sender Email and name
-        $mail->addAddress($_POST["emailxn"]);     //Add a recipient email   // reply to sender email
-        $_SESSION['emailxn']=$_POST["emailxn"];
-        $_SESSION['username']=getusertoemail($_SESSION['emailxn'])['user'];
-    
-        //Content
-        $mail->isHTML(true);               //Set email format to HTML
-        $mail->Subject = 'We have successfully restored your account!';  // email subject headings
-        $mail->AddEmbeddedImage('view/layout/assets/images/Deepu's.png', 'logo', 'Deepu's.png');
+            //Recipients
+            $mail->setFrom('keerthudarshu06@gmail.com', 'Deepus' );  // Sender Email and name
+            $mail->addAddress($_POST["emailxn"]);     //Add a recipient email   // reply to sender email
+            $_SESSION['emailxn']=$_POST["emailxn"];
+            $_SESSION['username']=getusertoemail($_SESSION['emailxn'])['user'];
         
-    
-        $_SESSION['code']=creatcode();
-        // $noidung = file_get_contents("form_thank.php");
-        $text= '<html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="https://kit.fontawesome.com/945522403a.js" crossorigin="anonymous"></script>
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                }
-        
-                .container {
-                    max-width: 600px;
-                    margin: 0 auto;
-                }
-        
-                .container>img{
-                    display: block;
-                    margin: 0 auto;
-                    color: black;
-                    width: 100px;
-                }
-        
-                p {
-    
-                    text-align: center;
-                }
-        
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin: 20px 0;
-                }
-    
-                th{
-                    background-color: #46694F;
-                    color: #fff;
-                }
-                
-        
-                th, td {
-                    border: 1px solid #46694F;
-                    text-align: left;
-                    padding: 8px;
-                }
-                .title{
-                    text-align:center;
-                    font-size:18px;
-                    color: #46694F; 
-                }
-                .td-trong{
-                    border:none;
-                }
-    
-                .icon{
-                    margin: 10px 0;
-                    text-align: center;
-                }
-    
-                .icon>i{
-                    padding: 3px;
-                    color: #46694F;
-                }
-    
-                #code{
-                    width: 80px;
-                    margin: 0 auto;
-                    padding: 10px 20px;
-                    border: 3px solid #dddddd;
-                    border-radius: 5px;
-                    text-align: center;
-                    font-weight: bold;
-                    font-size: 28px;
-                    color: #46694f;
-    
-                }
-                h2{
-                    text-align: center;
-                    color: #46694f;
-                }
-                td{
-                    width:50%;
-                }
-        
-            </style>
-        </head>
-        <body>
+            //Content
+            $mail->isHTML(true);               //Set email format to HTML
+            $mail->Subject = 'Password Reset Code - Deepus';  // email subject headings
             
-            <div class="container">deepus
-                <img src="cid:logo" alt="ZStyle Logo" style="display: block; width: 150px; margin: 0 auto;">
-                <br>
-                <hr>
-                
-                <h2>Chào mừng bạn trở lại!</h2>
-                <p class="text">Please use the verification code below to confirm your account information.</p>
-                <table>
-                    <tbody>
-                        <tr>
-                        <td><strong>Email</strong> </td>
-                        <td>'.$_SESSION['emailxn'].'</td>
-                        </tr>
-                        <tr>
-                        <td><strong>Tên đăng nhập</strong></td>
-                        <td>'.$_SESSION['username'].'</td>
-                        </tr>
-                    </tbody>
+            // Check if image exists before adding
+            $logo_path = 'view/layout/assets/images/Deepu\'s.png';
+            if(file_exists($logo_path)) {
+                $mail->AddEmbeddedImage($logo_path, 'logo', 'Deepu\'s.png');
+            }
+            
+            $_SESSION['code']=creatcode();
+            // $noidung = file_get_contents("form_thank.php");
+            $text= '<html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Password Reset - Deepus</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 20px;
+                        background-color: #f5f5f5;
+                    }
+            
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        background-color: white;
+                        border-radius: 10px;
+                        padding: 30px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    }
+            
+                    .container>img{
+                        display: block;
+                        margin: 0 auto 20px auto;
+                        width: 150px;
+                    }
+            
+                    p {
+                        text-align: center;
+                        line-height: 1.6;
+                        color: #333;
+                    }
+            
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 20px 0;
+                    }
+
+                    th{
+                        background-color: #46694F;
+                        color: #fff;
+                        padding: 12px;
+                    }
                     
-                </table>
+            
+                    th, td {
+                        border: 1px solid #46694F;
+                        text-align: left;
+                        padding: 12px;
+                    }
+                    .title{
+                        text-align:center;
+                        font-size:24px;
+                        color: #46694F; 
+                        margin-bottom: 10px;
+                    }
+
+                    #code{
+                        width: 120px;
+                        margin: 20px auto;
+                        padding: 15px 25px;
+                        border: 3px solid #46694F;
+                        border-radius: 8px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 32px;
+                        color: #46694f;
+                        background-color: #f8f9fa;
+                    }
+                    h2{
+                        text-align: center;
+                        color: #46694f;
+                        margin-bottom: 20px;
+                    }
+                    td{
+                        width:50%;
+                    }
+                    
+                    .footer {
+                        text-align: center;
+                        margin-top: 30px;
+                        padding-top: 20px;
+                        border-top: 1px solid #eee;
+                        color: #666;
+                        font-size: 14px;
+                    }
+            
+                </style>
+            </head>
+            <body>
                 
-                <div id="code">
-                    '.$_SESSION['code'].'
+                <div class="container">
+                    '.($logo_path && file_exists($logo_path) ? '<img src="cid:logo" alt="Deepus Logo">' : '<h1 style="text-align:center; color:#46694F;">Deepus</h1>').'
+                    <hr style="border: 1px solid #46694F; margin: 20px 0;">
+                    
+                    <h2>Password Reset Request</h2>
+                    <p>Hello! We received a request to reset your password. Please use the verification code below to proceed with your password reset.</p>
+                    
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>'.$_SESSION['emailxn'].'</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Username</strong></td>
+                                <td>'.$_SESSION['username'].'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><strong>Your verification code is:</strong></p>
+                    <div id="code">
+                        '.$_SESSION['code'].'
+                    </div>
+                    
+                    <p style="color: #666; font-size: 14px;">
+                        This code will expire in 10 minutes. If you did not request a password reset, please ignore this email.
+                    </p>
+
+                    <div class="footer">
+                        <strong>Best regards, Deepus Team</strong><br>
+                        <hr style="margin: 15px 0;">
+                        <strong>Deepus Shop</strong><br>
+                        Website: https://deepus.com<br>
+                        Email: keerthudarshu06@gmail.com<br>
+                        Hotline: 19006789
+                    </div>
                 </div>
+            </body>
+            </html>';
+            $_SESSION['codedung']=$_SESSION['code'];
+            unset($_SESSION['code']);
+            $mail->Body=$text;//email message
+            
+            // Success sent message alert
+            $mail->send();
+            echo
+            " 
+            <script> 
+             alert('Verification code sent successfully! Please check your email.');
+             document.location.href = 'index?pg=forgetpass';
+            </script>
+            ";
 
-                Best regards, <strong>Deepus</strong>
-                <hr>
-
-                Deepus Shop <br>
-                Website: https://zstyle.online/ <br>
-                Address: Tầng 12, tòa T, Công viên phần mềm Quang Trung <br>
-                Email: Keerthudarshu06@gmail.com <br>
-                Hotline: 19006789 <br>
-            </div>
-        </body>
-        </html>';
-        $_SESSION['codedung']=$_SESSION['code'];
-        unset($_SESSION['code']);
-        $mail->Body=$text;//email message
-        
-        // Success sent message alert
-        $mail->send();
-        echo
-        " 
-        <script> 
-         document.location.href = 'index.php?pg=forgetpass';
-        </script>
-        ";
+        } catch (Exception $e) {
+            $_SESSION['erremailxn'] = '*Failed to send email. Please try again later.';
+            echo
+            " 
+            <script> 
+             alert('Error sending email: " . addslashes($e->getMessage()) . "');
+             document.location.href = 'index?pg=forgetpass';
+            </script>
+            ";
+        }
 
     }
     

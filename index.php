@@ -998,6 +998,23 @@
                $name=$_POST['name'];
                $price=$_POST['price'];
                $soluong=$_POST['soluong'];
+               
+               // Check stock before adding to cart
+               include_once "model/detail.php";
+               $product_detail = getproductdetail($id);
+               
+               if (!$product_detail || $product_detail['stock'] <= 0) {
+                  $_SESSION['stock_error'] = 'Product is out of stock and cannot be added to cart.';
+                  header('location: /deepus/index?pg=detail&id=' . $id);
+                  exit;
+               }
+               
+               if ($product_detail['stock'] < intval($soluong)) {
+                  $_SESSION['stock_error'] = 'Insufficient stock. Only ' . $product_detail['stock'] . ' items available.';
+                  header('location: /deepus/index?pg=detail&id=' . $id);
+                  exit;
+               }
+               
                $sp=["id"=>$id,"img"=>$img ,"name"=>$name ,"price"=>$price ,"color"=>$color,"size"=>$size,"soluong"=>$soluong, "product_design"=>0,"id_product_design"=>1];
                $i=0;
                $kt=true;
